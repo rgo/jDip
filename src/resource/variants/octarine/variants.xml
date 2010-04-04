@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<!DOCTYPE VARIANTS [
+	<!ELEMENT VARIANTS (DESCRIPTION, MAP_DEFINITION+, VARIANT+)>
+	
+	<!ELEMENT DESCRIPTION (#PCDATA)>
+	
+	<!ELEMENT MAP_DEFINITION (DESCRIPTION?)>
+	<!ATTLIST MAP_DEFINITION 
+		id ID #REQUIRED
+		title CDATA #REQUIRED
+		URI CDATA #REQUIRED
+		thumbURI CDATA #REQUIRED
+		preferredUnitStyle CDATA #IMPLIED
+		>
+	
+	<!ELEMENT VARIANT (DESCRIPTION, MAP, RULEOPTIONS?, POWER+, STARTINGTIME, VICTORYCONDITIONS, SUPPLYCENTER+, INITIALSTATE*)>
+	<!ATTLIST VARIANT
+			name CDATA #REQUIRED
+			default (true|false) "false"
+			version CDATA #REQUIRED
+			aliases CDATA #IMPLIED
+			>
+			
+	<!ELEMENT MAP (MAP_GRAPHIC*)>
+	<!ATTLIST MAP adjacencyURI CDATA #REQUIRED>
+	
+	<!ELEMENT MAP_GRAPHIC EMPTY>
+	<!ATTLIST MAP_GRAPHIC
+			ref IDREF #REQUIRED
+			default (true|false) "false"
+			preferredUnitStyle CDATA #IMPLIED
+			>
+	
+	<!ELEMENT RULEOPTIONS (RULEOPTION+)>
+	<!ELEMENT RULEOPTION EMPTY>
+	<!ATTLIST RULEOPTION	name CDATA #REQUIRED
+				value CDATA #REQUIRED>
+	
+	<!ELEMENT POWER EMPTY>
+	<!ATTLIST POWER name CDATA #REQUIRED
+			active (true|false) "true"
+			adjective CDATA #REQUIRED
+			altnames CDATA #IMPLIED
+			>
+	
+	<!ELEMENT STARTINGTIME EMPTY>
+	<!ATTLIST STARTINGTIME 	turn CDATA #REQUIRED
+				allowBCYears (true|false) "false"
+				>
+	
+	<!ELEMENT VICTORYCONDITIONS (WINNING_SUPPLY_CENTERS?, YEARS_WITHOUT_SC_CAPTURE?, GAME_LENGTH?)>
+	
+	<!ELEMENT WINNING_SUPPLY_CENTERS EMPTY>
+	<!ATTLIST WINNING_SUPPLY_CENTERS value CDATA #REQUIRED>
+	
+	<!ELEMENT YEARS_WITHOUT_SC_CAPTURE EMPTY>
+	<!ATTLIST YEARS_WITHOUT_SC_CAPTURE value CDATA #REQUIRED>
+	
+	<!ELEMENT GAME_LENGTH EMPTY>
+	<!ATTLIST GAME_LENGTH value CDATA #REQUIRED>
+	
+	<!ELEMENT SUPPLYCENTER EMPTY>
+	<!ATTLIST SUPPLYCENTER 	province CDATA #REQUIRED
+				homepower CDATA "none"
+				owner CDATA "none"
+				>
+				
+	<!ELEMENT INITIALSTATE EMPTY>
+	<!ATTLIST INITIALSTATE 	province CDATA #REQUIRED
+				power CDATA #REQUIRED
+				unit CDATA #REQUIRED
+				unitcoast CDATA #IMPLIED
+				>
+]>
+
+<VARIANTS>
+	<DESCRIPTION><![CDATA[The main variant list for jDip]]></DESCRIPTION> 
+	
+	<MAP_DEFINITION id="standard" title="Standard" preferredUnitStyle="period" URI="octarine.svg" thumbURI="octarine_thumb.png">
+		<DESCRIPTION>The traditional Octarine map.</DESCRIPTION>
+	</MAP_DEFINITION>
+	
+	
+	<VARIANT name="Octarine" version="0.06" default="true">
+		<DESCRIPTION><![CDATA[
+		<p>
+			This is version 0.06 (Ogg) of the Octarine Diplomacy variant, 
+			an 8-player variant for Diplomacy based on Terry Pratchett's 
+			Discworld.
+		</p>
+		<p>
+			Standard Diplomacy rules are used and only the map 
+			(with some special provinces) has been changed.
+		</p>
+		<h2>Special provinces:</h2>
+		<div class="indent1cm">
+			<p>
+				The Celestial Straits between Agatea and the main continent are
+				frozen in Winter. Therefore, fleets may only pass through in Spring,
+				whilst armies may cross in Autumn. Specifically: In Spring, PEL and WWO 
+				are adjacent, LIG and Ctk are not. In Autumn, LIG and Ctk are adjacent,
+				PEL and WWO are not. No coastal designations are required for fleets in 
+				LIG or Ctk; it is assumed that a fleet in these provinces can keep a 
+				channel open through Winter if necessary, but that there is not time 
+				for a fleet to open a channel directly from PEL to WWO and move through 
+				it in one turn.
+			</p>
+			<p>
+				Due to the edicts carved in the ancient stone of Djelibeybi, 
+				no foreign military units are allowed to occupy or traverse 
+				Djelibeybi or its coastal waters. There is therefore no direct 
+				movement whatsoever between Ephebe and Tsort.
+				</p>
+			<p>
+				The provinces of beTrobi Islands, Brown Islands, Land of Fog, 
+				and Purdeighsland, are normal coastal provinces - they may be occupied 
+				by an army (convoyed there) or a fleet. A fleet in any of them may not 
+				take part in a convoy.
+			</p>
+			<p>
+				Ku is a special sea supply centre. Ku may only be occupied by a 
+				fleet, and a fleet there may be involved in a convoy.
+			</p>
+			<p>
+				The provinces of Purdeighsland and Terror Incognita are treated 
+				as Sweden and Denmark are in standard Diplomacy. Armies and fleets 
+				may move freely between them. Also, the coast of Terror Incognita 
+				from Hubwards New Llamedos past The Big Bight, Purdeighsland, and 
+				the Rimwards Widdershins Ocean to the edge of the map is a single 
+				coast--the Hubwards coast.
+			</p>
+		</div>
+		<p style="margin-top:21pt;">
+			Authors: Jake N Aard and Gary Duke<br>
+			Electronic map by Bjrn Lijnema
+		</p>]]></DESCRIPTION> 
+		
+		<MAP adjacencyURI="octarine_adjacency.xml">
+			<MAP_GRAPHIC ref="standard" default="true" />
+		</MAP>
+		
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY" />
+		</RULEOPTIONS>
+		
+		<POWER name="Ogg" active="true" adjective="Oggish" /> 
+		<POWER name="XXXX" active="true" adjective="Foureksian" /> 
+		<POWER name="Genua" active="true" adjective="Genuan" /> 
+		<POWER name="Klatch" active="true" adjective="Klatchian" /> 
+		<POWER name="Muntab" active="true" adjective="Muntabi" /> 
+		<POWER name="Morpork" active="true" adjective="Morporkian" /> 
+		<POWER name="Agatea" active="true" adjective="Agatean" />
+		<POWER name="Hublands" active="true" adjective="Hublandish" />
+		<STARTINGTIME turn="Spring, 01, Movement" />
+		
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="22" />
+		</VICTORYCONDITIONS>
+
+		<SUPPLYCENTER province="ank" homepower="Morpork" owner="Morpork"/>
+		<SUPPLYCENTER province="bes" homepower="Agatea" owner="Agatea"/>
+		<SUPPLYCENTER province="bla" homepower="Genua" owner="Genua"/>
+		<SUPPLYCENTER province="bor" />
+		<SUPPLYCENTER province="bri" homepower="Muntab" owner="Muntab"/>
+		<SUPPLYCENTER province="bro" />
+		<SUPPLYCENTER province="bti" />
+		<SUPPLYCENTER province="chi" homepower="Ogg" owner="Ogg"/>
+		<SUPPLYCENTER province="ctk" />
+		<SUPPLYCENTER province="eph" homepower="Morpork" owner="Morpork"/>
+		<SUPPLYCENTER province="gen" homepower="Genua" owner="Genua"/>
+		<SUPPLYCENTER province="gha" homepower="Muntab" owner="Muntab"/>
+		<SUPPLYCENTER province="hng" homepower="Agatea" owner="Agatea"/>
+		<SUPPLYCENTER province="hnl" homepower="XXXX" owner="XXXX"/>
+		<SUPPLYCENTER province="how" homepower="Klatch" owner="Klatch"/>
+		<SUPPLYCENTER province="hub" homepower="Hublands" owner="Hublands"/>
+		<SUPPLYCENTER province="ing" homepower="Hublands" owner="Hublands"/>
+		<SUPPLYCENTER province="kha" homepower="Klatch" owner="Klatch"/>
+		<SUPPLYCENTER province="kru" />
+		<SUPPLYCENTER province="ku" />
+		<SUPPLYCENTER province="kyt" homepower="Genua" owner="Genua"/>
+		<SUPPLYCENTER province="lan" homepower="Ogg" owner="Ogg"/>
+		<SUPPLYCENTER province="lla" homepower="Ogg" owner="Ogg"/>
+		<SUPPLYCENTER province="lof" />
+		<SUPPLYCENTER province="mom" />
+		<SUPPLYCENTER province="mun" homepower="Muntab" owner="Muntab"/>
+		<SUPPLYCENTER province="naf" />
+		<SUPPLYCENTER province="nef" />
+		<SUPPLYCENTER province="not" />
+		<SUPPLYCENTER province="omn" homepower="Morpork" owner="Morpork"/>
+		<SUPPLYCENTER province="pur" homepower="XXXX" owner="XXXX"/>
+		<SUPPLYCENTER province="red" homepower="Klatch" owner="Klatch"/>
+		<SUPPLYCENTER province="reh" homepower="Muntab" owner="Muntab"/>
+		<SUPPLYCENTER province="sdi" homepower="Agatea" owner="Agatea"/>
+		<SUPPLYCENTER province="ter" homepower="XXXX" owner="XXXX"/>
+		<SUPPLYCENTER province="tez" />
+		<SUPPLYCENTER province="tso" />
+		<SUPPLYCENTER province="ube" />
+		<SUPPLYCENTER province="ura" />
+		<SUPPLYCENTER province="ush" />
+		<SUPPLYCENTER province="vor" homepower="Hublands" owner="Hublands"/>
+		<SUPPLYCENTER province="wyr" />
+
+
+		<INITIALSTATE province="ank" power="Morpork" unit="fleet" />
+		<INITIALSTATE province="bes" power="Agatea" unit="fleet" />
+		<INITIALSTATE province="bla" power="Genua" unit="fleet" />
+		<INITIALSTATE province="bri" power="Muntab" unit="fleet" />
+		<INITIALSTATE province="chi" power="Ogg" unit="fleet" />
+		<INITIALSTATE province="eph" power="Morpork" unit="army" />
+		<INITIALSTATE province="gen" power="Genua" unit="army" />
+		<INITIALSTATE province="gha" power="Muntab" unit="army" />
+		<INITIALSTATE province="how" power="Klatch" unit="army" />
+		<INITIALSTATE province="hng" power="Agatea" unit="fleet" />
+		<INITIALSTATE province="hnl" power="XXXX" unit="fleet" />
+		<INITIALSTATE province="hub" power="Hublands" unit="army" />
+		<INITIALSTATE province="ing" power="Hublands" unit="fleet" />
+		<INITIALSTATE province="kha" power="Klatch" unit="fleet" />
+		<INITIALSTATE province="kyt" power="Genua" unit="fleet" />
+		<INITIALSTATE province="lan" power="Ogg" unit="army" />
+		<INITIALSTATE province="lla" power="Ogg" unit="army" />
+		<INITIALSTATE province="mun" power="Muntab" unit="army" />
+		<INITIALSTATE province="omn" power="Morpork" unit="army" />
+		<INITIALSTATE province="pur" power="XXXX" unit="fleet" />
+		<INITIALSTATE province="red" power="Klatch" unit="army" />
+		<INITIALSTATE province="reh" power="Muntab" unit="fleet" unitcoast="ec" />
+		<INITIALSTATE province="sdi" power="Agatea" unit="fleet" unitcoast="nc" />
+		<INITIALSTATE province="ter" power="XXXX" unit="fleet" unitcoast="sc" />
+		<INITIALSTATE province="vor" power="Hublands" unit="army" />
+	</VARIANT>
+</VARIANTS>

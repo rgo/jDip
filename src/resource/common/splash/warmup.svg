@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" 
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="500px" height="500px" viewBox="0 0 500 500"
+	xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin">
+	
+	<rect x="0" y="0" width="50" height="50" fill="beige" />
+	<circle cx="8" cy="8" r="8" fill="red" stroke="red"/>
+	<text x="5" y="5">text</text>
+	
+</svg>

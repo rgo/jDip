@@ -1,0 +1,70 @@
+<html>
+<head>
+ <title>Variant Plugin File Structure</title>
+ <link rel="StyleSheet" href="../application_help.css">
+</head>
+<body>
+ <h1>Variant Plugin File Structure</h1>
+ 
+ 
+ <h2>Varant Plugin Naming</h2>
+ <p>
+ Variant plugins must have one of the following file extensions (case sensitive):
+ </p>
+ <ul>
+ 	<li><p>*Variants.zip</p></li>
+ 	<li><p>*Variant.zip</p></li>
+ 	<li><p>*Variants.jar</p></li>
+ 	<li><p>*Variant.jar</p></li>
+ </ul>
+ <p style="margin-top:6pt;">
+ For example, the file "StdVariants.zip" is valid, but "Stdvariants.zip" is not.
+ </p>
+ 
+ <h2>Variant Plugin Loading</h2>
+ <p>
+ When jDip is started, the variants/ directory is scanned for files with one of
+ the above extensions. When found, the file is opened and the "variants.xml" 
+ contained within is parsed. During startup, only the variants.xml file and the
+ adjacency file(s) are parsed. The SVG map files are not parsed until the map
+ is loaded.
+ </p>
+ 
+ <h2>Variant Plugin File Format</h2>
+ <p>
+ All variant files are .zip (Zip format) files. Note that .jar is a Java-specific
+ variant of the Zip format, and is also acceptable. The Zip format confers several 
+ advantages:
+ </p>
+ <ul>
+ 	<li><p>Standard across most platforms</p></li>
+ 	<li><p>Wide tool support for creating and viewing files</p></li>
+ 	<li><p>Hierarchical format permits good organization</p></li>
+ 	<li><p>Compression, to save disk space and network bandwith</p></li>
+ </ul>
+ <p style="margin-top:6pt;">
+ Note that the .jar files may be renamed to .zip and opened with any standard tool for
+ viewing or extracting the contents of Zip files.
+ </p>
+ 
+ <h2>Variant Plugin File Structure Details</h2>
+ <p>
+ A variant plugin must contain, in the root directory, a "variants.xml" file (all lowercase).
+ The structure of the variants.xml file is detailed in the variants.xml file section. 
+ </p>
+ <p>
+ A plugin may contain multiple variants.
+ </p>
+ <h2>An Example: SailhoVariants.zip</h2>
+ <p>
+ Inside SailhoVariants.zip, there are the following files:
+ </p>
+ <ol>
+ 	<li><p><b>sailho.svg</b>: the SVG Map file</p></li>
+ 	<li><p><b>sailho_adjacency.xml</b>: the Province definition and adjacency description</p></li>
+ 	<li><p><b>sailho_thumb.jpg</b>: the SVG Map thumbnail</p></li>
+ 	<li><p><b>variants.xml</b>: the Variant descriptions for SailHo! and SailHo! Crowded</p></li>
+ </ol>
+ </p>
+</body>
+</html>

@@ -1,0 +1,973 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" 
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"
+[
+	<!-- jDip-specific XML additions -->
+	<!-- PROVINCE_DATA -->
+	<!ENTITY % svgExt "| jdipNS:PROVINCE_DATA" >
+	
+	<!ELEMENT jdipNS:PROVINCE_DATA (jdipNS:PROVINCE)+>
+	<!ATTLIST jdipNS:PROVINCE_DATA
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  dislodgedUnitOffset CDATA #IMPLIED
+	  >
+	<!ELEMENT jdipNS:PROVINCE (jdipNS:UNIT, jdipNS:DISLODGED_UNIT?, jdipNS:SUPPLY_CENTER?)+>
+	<!ATTLIST jdipNS:PROVINCE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  name CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:UNIT EMPTY>
+	<!ATTLIST jdipNS:UNIT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:DISLODGED_UNIT EMPTY>
+	<!ATTLIST jdipNS:DISLODGED_UNIT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:SUPPLY_CENTER EMPTY>
+	<!ATTLIST jdipNS:SUPPLY_CENTER
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	  
+	<!-- Display Parameters -->
+	<!ENTITY % svgExt "| jdipNS:DISPLAY" >
+	
+	<!ELEMENT jdipNS:DISPLAY (jdipNS:ZOOM, jdipNS:LABELS)>
+	<!ATTLIST jdipNS:DISPLAY
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	<!ELEMENT jdipNS:ZOOM EMPTY>
+	<!ATTLIST jdipNS:ZOOM
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  min CDATA #REQUIRED
+	  max CDATA #REQUIRED
+	  factor CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:LABELS EMPTY>
+	<!ATTLIST jdipNS:LABELS
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  brief (true|false) "true"
+	  full (true|false) "true"
+	  >
+	  
+	  <!-- Order Drawing Parameters -->
+	<!ENTITY % svgExt "| jdipNS:ORDERDRAWING" >
+	
+	<!ELEMENT jdipNS:ORDERDRAWING (jdipNS:POWERCOLORS, jdipNS:SYMBOLSIZE+, jdipNS:BUILD, jdipNS:REMOVE,  jdipNS:DISBAND, jdipNS:WAIVE, jdipNS:HOLD, jdipNS:MOVE, jdipNS:RETREAT, jdipNS:SUPPORT, jdipNS:CONVOY )>
+	<!ATTLIST jdipNS:ORDERDRAWING
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	
+	<!ELEMENT jdipNS:POWERCOLORS (jdipNS:POWERCOLOR+)>
+	<!ATTLIST jdipNS:POWERCOLORS
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	
+	<!ELEMENT jdipNS:POWERCOLOR EMPTY>
+	<!ATTLIST jdipNS:POWERCOLOR
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  power CDATA #REQUIRED
+	  color CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:SYMBOLSIZE EMPTY>
+	<!ATTLIST jdipNS:SYMBOLSIZE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  name CDATA #REQUIRED
+	  width CDATA #REQUIRED
+	  height CDATA #REQUIRED
+	  >
+	
+	  <!ELEMENT jdipNS:HOLD EMPTY>
+	<!ATTLIST jdipNS:HOLD
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  widths CDATA #REQUIRED
+	  shadowWidths CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:DISBAND EMPTY>
+	<!ATTLIST jdipNS:DISBAND
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:WAIVE EMPTY>
+	<!ATTLIST jdipNS:WAIVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	>
+	  
+	<!ELEMENT jdipNS:REMOVE EMPTY>
+	<!ATTLIST jdipNS:REMOVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:BUILD EMPTY>
+	<!ATTLIST jdipNS:BUILD
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:MOVE EMPTY>
+	<!ATTLIST jdipNS:MOVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  widths CDATA #REQUIRED
+	  shadowWidths CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:RETREAT EMPTY>
+	<!ATTLIST jdipNS:RETREAT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:SUPPORT EMPTY>
+	<!ATTLIST jdipNS:SUPPORT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:CONVOY EMPTY>
+	<!ATTLIST jdipNS:CONVOY
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+]>
+<svg width="595px" height="475" viewBox="0 0 595 475" 
+	xmlns="http://www.w3.org/2000/svg" version="1.0" color-rendering="optimizeQuality" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin">
+	
+	<jdipNS:DISPLAY>
+		<jdipNS:ZOOM min="5" max="2200" factor="1.2"/>
+		<jdipNS:LABELS brief="true" full="true"/>
+	</jdipNS:DISPLAY>
+	
+	<jdipNS:ORDERDRAWING>
+		<jdipNS:POWERCOLORS>
+			<jdipNS:POWERCOLOR power="china"	 	color="#ff9999"/>
+			<jdipNS:POWERCOLOR power="india" 	 	color="#ff00ff"/>
+			<jdipNS:POWERCOLOR power="indonesia" 	color="#00b2ff"/>
+			<jdipNS:POWERCOLOR power="japan" 	 	color="#00b200"/>
+			<jdipNS:POWERCOLOR power="persia" 	    color="#b2b2b2"/>
+			<jdipNS:POWERCOLOR power="russia"    	color="#b28033"/>
+			<jdipNS:POWERCOLOR power="siberia"    	color="#ffff00"/>
+		</jdipNS:POWERCOLORS>
+		
+		<jdipNS:SYMBOLSIZE name="Fleet" width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="Army"  width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="Wing"  width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedFleet" width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedArmy"  width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedWing"  width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="FailedOrder"    width="24" height="24"/>
+		<jdipNS:SYMBOLSIZE name="SupplyCenter" width="9" height="9"/>
+		<jdipNS:SYMBOLSIZE name="BuildUnit" width="25" height="25"/>
+		<jdipNS:SYMBOLSIZE name="RemoveUnit" width="25" height="25"/>
+		<jdipNS:SYMBOLSIZE name="WaivedBuild" width="25" height="25"/>
+		
+		<jdipNS:BUILD deltaRadius="0"/>
+		<jdipNS:REMOVE deltaRadius="3"/>
+		<jdipNS:DISBAND deltaRadius="3"/>
+		<jdipNS:WAIVE deltaRadius="0"/>
+		<jdipNS:HOLD deltaRadius="3" strokeCSSStyle="varwidthorder" hilightOffset="0" hilightCSSClass="varwidthshadow" widths="3,5,7,9" shadowWidths="5,7,9,11"/>
+		<jdipNS:MOVE deltaRadius="3" strokeCSSStyle="varwidthorder" markerID="arrow" hilightOffset="0" hilightCSSClass="varwidthshadow" widths="3,5,7,9" shadowWidths="5,7,9,11"/>
+		<jdipNS:RETREAT deltaRadius="3" strokeCSSStyle="defaultorder" markerID="arrow" hilightOffset="0" hilightCSSClass="shadoworder"/>
+		<jdipNS:SUPPORT deltaRadius="5" strokeCSSStyle="supportorder" markerID="arrow" hilightOffset="0" hilightCSSClass="shadowdash"/>
+		<jdipNS:CONVOY deltaRadius="3" strokeCSSStyle="convoyorder" markerID="arrow" hilightOffset="0" hilightCSSClass="shadowdash"/>
+	</jdipNS:ORDERDRAWING>
+	
+	<jdipNS:PROVINCE_DATA>
+		<jdipNS:PROVINCE name="afg"><jdipNS:UNIT x="240" y="186"/><jdipNS:DISLODGED_UNIT x="247" y="179"/><jdipNS:SUPPLY_CENTER x="247" y="179"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ara"><jdipNS:UNIT x="144" y="246"/><jdipNS:DISLODGED_UNIT x="151" y="239"/><jdipNS:SUPPLY_CENTER x="124.9" y="231.5"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ara-wc"><jdipNS:UNIT x="144" y="246"/><jdipNS:DISLODGED_UNIT x="151" y="239"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ara-ec"><jdipNS:UNIT x="144" y="246"/><jdipNS:DISLODGED_UNIT x="151" y="239"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ars"><jdipNS:UNIT x="228" y="321"/><jdipNS:DISLODGED_UNIT x="235" y="314"/><jdipNS:SUPPLY_CENTER x="235" y="314"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="arc"><jdipNS:UNIT x="251" y="9"/><jdipNS:DISLODGED_UNIT x="258" y="2"/><jdipNS:SUPPLY_CENTER x="258" y="2"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="aus"><jdipNS:UNIT x="562" y="452"/><jdipNS:DISLODGED_UNIT x="569" y="445"/><jdipNS:SUPPLY_CENTER x="543.5" y="464.8"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bla"><jdipNS:UNIT x="84" y="130"/><jdipNS:DISLODGED_UNIT x="91" y="123"/><jdipNS:SUPPLY_CENTER x="91" y="123"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bal"><jdipNS:UNIT x="30" y="125"/><jdipNS:DISLODGED_UNIT x="37" y="118"/><jdipNS:SUPPLY_CENTER x="37.6" y="139.8"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bal-sc"><jdipNS:UNIT x="30" y="125"/><jdipNS:DISLODGED_UNIT x="37" y="118"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bal-ec"><jdipNS:UNIT x="30" y="125"/><jdipNS:DISLODGED_UNIT x="37" y="118"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bar"><jdipNS:UNIT x="104" y="14"/><jdipNS:DISLODGED_UNIT x="111" y="7"/><jdipNS:SUPPLY_CENTER x="111" y="7"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ban"><jdipNS:UNIT x="357" y="238"/><jdipNS:DISLODGED_UNIT x="364" y="231"/><jdipNS:SUPPLY_CENTER x="353.9" y="251.6"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bob"><jdipNS:UNIT x="364" y="309"/><jdipNS:DISLODGED_UNIT x="371" y="302"/><jdipNS:SUPPLY_CENTER x="371" y="302"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bjg"><jdipNS:UNIT x="418" y="149"/><jdipNS:DISLODGED_UNIT x="425" y="142"/><jdipNS:SUPPLY_CENTER x="425.5" y="169.5"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ber"><jdipNS:UNIT x="564" y="51"/><jdipNS:DISLODGED_UNIT x="571" y="44"/><jdipNS:SUPPLY_CENTER x="571" y="44"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bom"><jdipNS:UNIT x="295" y="286"/><jdipNS:DISLODGED_UNIT x="302" y="279"/><jdipNS:SUPPLY_CENTER x="300.6" y="304.1"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bor"><jdipNS:UNIT x="480" y="356"/><jdipNS:DISLODGED_UNIT x="487" y="349"/><jdipNS:SUPPLY_CENTER x="481.4" y="372.2"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bur"><jdipNS:UNIT x="378" y="259"/><jdipNS:DISLODGED_UNIT x="385" y="252"/><jdipNS:SUPPLY_CENTER x="385" y="252"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="cal"><jdipNS:UNIT x="326" y="259"/><jdipNS:DISLODGED_UNIT x="333" y="252"/><jdipNS:SUPPLY_CENTER x="319.8" y="277.8"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="cam"><jdipNS:UNIT x="439" y="295"/><jdipNS:DISLODGED_UNIT x="446" y="288"/><jdipNS:SUPPLY_CENTER x="446" y="288"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="cas"><jdipNS:UNIT x="154" y="125"/><jdipNS:DISLODGED_UNIT x="161" y="118"/><jdipNS:SUPPLY_CENTER x="161" y="118"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="cau"><jdipNS:UNIT x="136" y="160"/><jdipNS:DISLODGED_UNIT x="143" y="153"/><jdipNS:SUPPLY_CENTER x="143" y="153"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="cel"><jdipNS:UNIT x="554" y="346"/><jdipNS:DISLODGED_UNIT x="561" y="339"/><jdipNS:SUPPLY_CENTER x="561" y="339"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="cio"><jdipNS:UNIT x="309" y="392"/><jdipNS:DISLODGED_UNIT x="316" y="385"/><jdipNS:SUPPLY_CENTER x="316" y="385"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="chq"><jdipNS:UNIT x="407" y="220"/><jdipNS:DISLODGED_UNIT x="414" y="213"/><jdipNS:SUPPLY_CENTER x="414" y="213"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="chu"><jdipNS:UNIT x="550" y="10"/><jdipNS:DISLODGED_UNIT x="557" y="3"/><jdipNS:SUPPLY_CENTER x="557" y="3"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="del"><jdipNS:UNIT x="294" y="227"/><jdipNS:DISLODGED_UNIT x="301" y="220"/><jdipNS:SUPPLY_CENTER x="297.9" y="248.1"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="eaf"><jdipNS:UNIT x="135" y="338"/><jdipNS:DISLODGED_UNIT x="142" y="331"/><jdipNS:SUPPLY_CENTER x="142" y="331"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="eas"><jdipNS:UNIT x="124" y="424"/><jdipNS:DISLODGED_UNIT x="131" y="417"/><jdipNS:SUPPLY_CENTER x="131" y="417"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ecs"><jdipNS:UNIT x="557" y="257"/><jdipNS:DISLODGED_UNIT x="564" y="250"/><jdipNS:SUPPLY_CENTER x="564" y="250"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="esb"><jdipNS:UNIT x="372" y="29"/><jdipNS:DISLODGED_UNIT x="379" y="22"/><jdipNS:SUPPLY_CENTER x="379" y="22"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="eio"><jdipNS:UNIT x="434" y="428"/><jdipNS:DISLODGED_UNIT x="441" y="421"/><jdipNS:SUPPLY_CENTER x="441" y="421"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="eme"><jdipNS:UNIT x="44" y="178"/><jdipNS:DISLODGED_UNIT x="51" y="171"/><jdipNS:SUPPLY_CENTER x="51" y="171"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="egy"><jdipNS:UNIT x="61" y="249"/><jdipNS:DISLODGED_UNIT x="68" y="242"/><jdipNS:SUPPLY_CENTER x="65.5" y="222.8"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="eka"><jdipNS:UNIT x="216" y="92"/><jdipNS:DISLODGED_UNIT x="223" y="85"/><jdipNS:SUPPLY_CENTER x="223" y="85"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="hok"><jdipNS:UNIT x="549" y="120"/><jdipNS:DISLODGED_UNIT x="556" y="113"/><jdipNS:SUPPLY_CENTER x="540.8" y="128.4"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="hkg"><jdipNS:UNIT x="424" y="239"/><jdipNS:DISLODGED_UNIT x="431" y="232"/><jdipNS:SUPPLY_CENTER x="431" y="232"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="hon"><jdipNS:UNIT x="555" y="160"/><jdipNS:DISLODGED_UNIT x="562" y="153"/><jdipNS:SUPPLY_CENTER x="545.2" y="173"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="irk"><jdipNS:UNIT x="396" y="56"/><jdipNS:DISLODGED_UNIT x="403" y="49"/><jdipNS:SUPPLY_CENTER x="367.8" y="59.4"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="irn"><jdipNS:UNIT x="188" y="194"/><jdipNS:DISLODGED_UNIT x="195" y="187"/><jdipNS:SUPPLY_CENTER x="170.4" y="198.3"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="irn-nc"><jdipNS:UNIT x="188" y="194"/><jdipNS:DISLODGED_UNIT x="195" y="187"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="irn-sc"><jdipNS:UNIT x="188" y="194"/><jdipNS:DISLODGED_UNIT x="195" y="187"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="irq"><jdipNS:UNIT x="130" y="189"/><jdipNS:DISLODGED_UNIT x="137" y="182"/><jdipNS:SUPPLY_CENTER x="137.2" y="203.6"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="jav"><jdipNS:UNIT x="466" y="406"/><jdipNS:DISLODGED_UNIT x="473" y="399"/><jdipNS:SUPPLY_CENTER x="466" y="406"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="jvs"><jdipNS:UNIT x="537" y="409"/><jdipNS:DISLODGED_UNIT x="544" y="402"/><jdipNS:SUPPLY_CENTER x="544" y="402"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="kam"><jdipNS:UNIT x="480" y="25"/><jdipNS:DISLODGED_UNIT x="487" y="18"/><jdipNS:SUPPLY_CENTER x="457.8" y="28.8"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="kaz"><jdipNS:UNIT x="185" y="116"/><jdipNS:DISLODGED_UNIT x="192" y="109"/><jdipNS:SUPPLY_CENTER x="192" y="109"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="kor"><jdipNS:UNIT x="490" y="146"/><jdipNS:DISLODGED_UNIT x="497" y="139"/><jdipNS:SUPPLY_CENTER x="497" y="139"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="kun"><jdipNS:UNIT x="318" y="171"/><jdipNS:DISLODGED_UNIT x="325" y="164"/><jdipNS:SUPPLY_CENTER x="325" y="164"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="lao"><jdipNS:UNIT x="400" y="258"/><jdipNS:DISLODGED_UNIT x="407" y="251"/><jdipNS:SUPPLY_CENTER x="409.8" y="275.2"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="liv"><jdipNS:UNIT x="47" y="42"/><jdipNS:DISLODGED_UNIT x="54" y="35"/><jdipNS:SUPPLY_CENTER x="54" y="35"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mad"><jdipNS:UNIT x="156" y="453"/><jdipNS:DISLODGED_UNIT x="163" y="446"/><jdipNS:SUPPLY_CENTER x="145" y="464.8"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="man"><jdipNS:UNIT x="459" y="109"/><jdipNS:DISLODGED_UNIT x="466" y="102"/><jdipNS:SUPPLY_CENTER x="473.6" y="123.2"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mon"><jdipNS:UNIT x="359" y="119"/><jdipNS:DISLODGED_UNIT x="366" y="112"/><jdipNS:SUPPLY_CENTER x="366" y="112"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mos"><jdipNS:UNIT x="112" y="67"/><jdipNS:DISLODGED_UNIT x="119" y="60"/><jdipNS:SUPPLY_CENTER x="116.2" y="82.1"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="new"><jdipNS:UNIT x="578" y="396"/><jdipNS:DISLODGED_UNIT x="585" y="389"/><jdipNS:SUPPLY_CENTER x="560.1" y="395.8"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nov"><jdipNS:UNIT x="328" y="80"/><jdipNS:DISLODGED_UNIT x="335" y="73"/><jdipNS:SUPPLY_CENTER x="302.3" y="87.4"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="oma"><jdipNS:UNIT x="189" y="255"/><jdipNS:DISLODGED_UNIT x="196" y="248"/><jdipNS:SUPPLY_CENTER x="186.1" y="270"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="pak"><jdipNS:UNIT x="252" y="214"/><jdipNS:DISLODGED_UNIT x="259" y="207"/><jdipNS:SUPPLY_CENTER x="250.8" y="230.7"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="per"><jdipNS:UNIT x="182" y="231"/><jdipNS:DISLODGED_UNIT x="189" y="224"/><jdipNS:SUPPLY_CENTER x="189" y="224"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="phi"><jdipNS:UNIT x="520" y="287"/><jdipNS:DISLODGED_UNIT x="527" y="280"/><jdipNS:SUPPLY_CENTER x="511.1" y="262.1"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="red"><jdipNS:UNIT x="113" y="265"/><jdipNS:DISLODGED_UNIT x="120" y="258"/><jdipNS:SUPPLY_CENTER x="120" y="258"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="okh"><jdipNS:UNIT x="533" y="90"/><jdipNS:DISLODGED_UNIT x="540" y="83"/><jdipNS:SUPPLY_CENTER x="540" y="83"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sev"><jdipNS:UNIT x="114" y="111"/><jdipNS:DISLODGED_UNIT x="121" y="104"/><jdipNS:SUPPLY_CENTER x="117.1" y="120.6"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sev-wc"><jdipNS:UNIT x="114" y="111"/><jdipNS:DISLODGED_UNIT x="121" y="104"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sev-ec"><jdipNS:UNIT x="114" y="111"/><jdipNS:DISLODGED_UNIT x="121" y="104"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="scs"><jdipNS:UNIT x="480" y="269"/><jdipNS:DISLODGED_UNIT x="487" y="262"/><jdipNS:SUPPLY_CENTER x="487" y="262"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sey"><jdipNS:UNIT x="208" y="423"/><jdipNS:DISLODGED_UNIT x="215" y="416"/><jdipNS:SUPPLY_CENTER x="215" y="416"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sha"><jdipNS:UNIT x="463" y="207"/><jdipNS:DISLODGED_UNIT x="470" y="200"/><jdipNS:SUPPLY_CENTER x="463.1" y="223.7"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sio"><jdipNS:UNIT x="331" y="445"/><jdipNS:DISLODGED_UNIT x="338" y="438"/><jdipNS:SUPPLY_CENTER x="338" y="438"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sri"><jdipNS:UNIT x="334" y="348"/><jdipNS:DISLODGED_UNIT x="341" y="341"/><jdipNS:SUPPLY_CENTER x="334" y="348"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="stp"><jdipNS:UNIT x="145" y="51"/><jdipNS:DISLODGED_UNIT x="152" y="44"/><jdipNS:SUPPLY_CENTER x="112.7" y="46.3"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sum"><jdipNS:UNIT x="414" y="367"/><jdipNS:DISLODGED_UNIT x="421" y="360"/><jdipNS:SUPPLY_CENTER x="427.2" y="386.2"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="syr"><jdipNS:UNIT x="105" y="193"/><jdipNS:DISLODGED_UNIT x="112" y="186"/><jdipNS:SUPPLY_CENTER x="112" y="186"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ths"><jdipNS:UNIT x="454" y="328"/><jdipNS:DISLODGED_UNIT x="461" y="321"/><jdipNS:SUPPLY_CENTER x="461" y="321"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tha"><jdipNS:UNIT x="411" y="298"/><jdipNS:DISLODGED_UNIT x="418" y="291"/><jdipNS:SUPPLY_CENTER x="427.2" y="346.9"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tia"><jdipNS:UNIT x="284" y="159"/><jdipNS:DISLODGED_UNIT x="291" y="152"/><jdipNS:SUPPLY_CENTER x="286.6" y="174.7"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tib"><jdipNS:UNIT x="363" y="189"/><jdipNS:DISLODGED_UNIT x="370" y="182"/><jdipNS:SUPPLY_CENTER x="380.1" y="203.6"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tur"><jdipNS:UNIT x="95" y="155"/><jdipNS:DISLODGED_UNIT x="102" y="148"/><jdipNS:SUPPLY_CENTER x="76.9" y="162.5"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ura"><jdipNS:UNIT x="194" y="57"/><jdipNS:DISLODGED_UNIT x="201" y="50"/><jdipNS:SUPPLY_CENTER x="189.6" y="76.9"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ukr"><jdipNS:UNIT x="43" y="85"/><jdipNS:DISLODGED_UNIT x="50" y="78"/><jdipNS:SUPPLY_CENTER x="50" y="78"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="uzb"><jdipNS:UNIT x="217" y="155"/><jdipNS:DISLODGED_UNIT x="224" y="148"/><jdipNS:SUPPLY_CENTER x="199.2" y="159"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="vie"><jdipNS:UNIT x="430" y="265"/><jdipNS:DISLODGED_UNIT x="437" y="258"/><jdipNS:SUPPLY_CENTER x="439.5" y="277.8"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="vla"><jdipNS:UNIT x="509" y="97"/><jdipNS:DISLODGED_UNIT x="516" y="90"/><jdipNS:SUPPLY_CENTER x="516" y="90"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="war"><jdipNS:UNIT x="29" y="75"/><jdipNS:DISLODGED_UNIT x="36" y="68"/><jdipNS:SUPPLY_CENTER x="36" y="68"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="wsb"><jdipNS:UNIT x="263" y="48"/><jdipNS:DISLODGED_UNIT x="270" y="41"/><jdipNS:SUPPLY_CENTER x="249.9" y="65.5"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="yak"><jdipNS:UNIT x="458" y="54"/><jdipNS:DISLODGED_UNIT x="465" y="47"/><jdipNS:SUPPLY_CENTER x="487.5" y="70.8"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="yel"><jdipNS:UNIT x="513" y="194"/><jdipNS:DISLODGED_UNIT x="520" y="187"/><jdipNS:SUPPLY_CENTER x="520" y="187"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="yem"><jdipNS:UNIT x="162" y="286"/><jdipNS:DISLODGED_UNIT x="169" y="279"/><jdipNS:SUPPLY_CENTER x="169" y="279"/></jdipNS:PROVINCE>
+	</jdipNS:PROVINCE_DATA>	
+	
+	<defs>
+		<style type="text/css"><![CDATA[
+		
+		/* text */
+		.labeltextShort	{font: 8px black Arial;text-anchor:middle;}
+		.labeltextLong	{font: 6px black Arial;text-anchor:middle;}
+		.coastText		{font: 6px black Arial;font-weight:bold;text-anchor:middle;}
+		
+		/* decoration classes */
+		.border		{fill:none;stroke:black;stroke-width:2;}
+		.tooltip	{fill:#FEEFB8; stroke:black; stroke-width:1;}
+
+		/* invisible click rects fill:none does not work */
+		.invisible	{stroke:#000000;fill:#000000;fill-opacity:0.0;opacity:0.0}
+		
+		/* default region coloring, by power */
+		.nopower 	{fill:antiquewhite;		stroke:black;stroke-width:1}
+		.water		{fill:lightblue;		stroke:black;stroke-width:1}
+		
+		.neutral	{fill:lightgray;		stroke:black;stroke-width:1}
+		
+		.china 	 	{fill:#ff9999;	stroke:black;stroke-width:1}
+		.india 	 	{fill:#ff00ff;	stroke:black;stroke-width:1}
+		.indonesia  {fill:#00b2ff;	stroke:black;stroke-width:1}
+		.japan 	 	{fill:#00b200;	stroke:black;stroke-width:1}
+		.persia 	{fill:#b2b2b2;	stroke:black;stroke-width:1}
+		.russia 	{fill:#b28033;	stroke:black;stroke-width:1}
+		.siberia   	{fill:#ffff00;	stroke:black;stroke-width:1}
+		
+		/* unit colors, by power note that underscores are not supported */
+		
+		.unitchina 	 	{fill:#ff9999;	fill-opacity:0.85;}
+		.unitindia 	 	{fill:#ff00ff;	fill-opacity:0.85;}
+		.unitindonesia  {fill:#00b2ff;	fill-opacity:0.85;}
+		.unitjapan 	 	{fill:#00b200;	fill-opacity:0.85;}
+		.unitpersia 	{fill:#b2b2b2;	fill-opacity:0.85;}
+		.unitrussia 	{fill:#b28033;	fill-opacity:0.85;}
+		.unitsiberia   	{fill:#ffff00;	fill-opacity:0.85;}
+		
+		/* supply center styles */
+		
+		.scnopower	{fill:black;stroke:black;}
+		
+		.scchina 	 	{fill:black;stroke:black;}
+		.scindia 	 	{fill:black;stroke:black;}
+		.scindonesia    {fill:black;stroke:black;}
+		.scjapan 	 	{fill:black;stroke:black;}
+		.scpersia 	    {fill:black;stroke:black;}
+		.scrussia 	    {fill:black;stroke:black;}
+		.scsiberia   	{fill:black;stroke:black;}
+		
+		/* order drawing styles, stroke and fill colors should not be specified */
+		
+		.defaultorder	{stroke-width:4;fill:none;}
+		.supportorder	{stroke-width:4;fill:none;stroke-dasharray:5,5;}
+		.convoyorder	{stroke-dasharray:15,5;stroke-width:4;fill:none;}
+		
+		.shadoworder	{stroke-width:4.5;fill:none;stroke:black;}
+		.shadowdash		{stroke-width:4.5;fill:none;stroke:black;opacity:0.45;}
+		
+		.varwidthorder  {fill:none;}
+		.varwidthshadow {fill:none;stroke:black;}
+		
+		]]></style>
+	
+		<marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="4" orient="auto">
+			<path d="M 0 0 L 10 5 L 0 10 z"/>
+		</marker>
+	</defs>
+		
+	<g id="MapLayer">
+		<path id="_afg" class="nopower" d="M 217,178 L 221 210 L 231 210 L 237 205 L 243 200 L 250 196 L 254 185 L 262 181 L 273 168 L 261 165 L 240 165 L 237 175 L 230 177 L 217 178"/>
+		<path id="_ara" class="nopower" d="M 98,221 L 115 254 L 133 278 L 135 285 L 173 276 L 173 245 L 170 236 L 151 217 L 117 206 L 108 212 L 98 221"/>
+		<path id="_ars" class="water" d="M 139,369 L 155 414 L 235 385 L 326 351 L 324 339 L 309 335 L 300 335 L 275 286 L 272 260 L 262 260 L 252 240 L 226 241 L 213 242 L 210 256 L 182 285 L 171 294 L 171 315 L 154 357 L 139 369 "/>
+		<path id="_arc" class="water" d="M 171,23 L 172 33 L 179 41 L 215 39 L 230 38 L 320 29 L 336 23 L 352 18 L 416 21 L 455 14 L 483 12 L 467 0 L 172 0 L 171 23"/>
+		<path id="_aus" class="nopower" d="M 486,475 L 595 475 L 595 453 L 581 448 L 581 441 L 557 442 L 553 447 L 547 441 L 540 445 L 537 447 L 533 452 L 529 459 L 517 463 L 492 467 L 486 475"/>
+		<path id="_bal" class="nopower" d="M 0,142 L 20 177 L 32 168 L 42 147 L 56 133 L 64 137 L 67 130 L 80 121 L 67 107 L 61 101 L 47 102 L 11 102 L 0 142"/>
+		<path id="_ban" class="nopower" d="M 335,233 L 336 244 L 352 260 L 358 260 L 360 253 L 367 258 L 370 255 L 371 245 L 377 236 L 371 236 L 366 228 L 360 229 L 351 226 L 343 235 L 335 233"/>
+		<path id="_bar" class="water" d="M 39,0 L 46 10 L 52 9 L 67 9 L 70 18 L 71 25 L 64 19 L 66 29 L 71 32 L 110 37 L 134 49 L 144 42 L 163 32 L 171 23 L 172 0 L 39 0 "/>
+		<path id="_bob" class="water" d="M 309,335 L 324 339 L 330 334 L 335 340 L 344 347 L 403 366 L 401 359 L 397 356 L 395 351 L 390 348 L 388 346 L 388 335 L 392 343 L 395 343 L 400 344 L 408 350 L 410 353 L 419 348 L 413 332 L 406 322 L 405 304 L 393 291 L 392 293 L 389 293 L 388 289 L 383 294 L 381 290 L 383 283 L 380 277 L 373 272 L 370 264 L 370 255 L 367 258 L 360 253 L 358 260 L 352 260 L 346 267 L 335 276 L 329 288 L 318 300 L 318 311 L 315 325 L 309 335 "/>
+		<path id="_bjg" class="nopower" d="M 358,147 L 362 154 L 362 166 L 366 170 L 373 171 L 388 179 L 403 179 L 418 190 L 425 197 L 430 199 L 437 198 L 450 186 L 454 189 L 459 187 L 465 193 L 476 197 L 489 196 L 488 193 L 486 191 L 482 188 L 480 186 L 475 183 L 472 177 L 472 175 L 475 170 L 477 169 L 478 166 L 477 164 L 474 164 L 468 166 L 467 169 L 463 166 L 457 159 L 457 155 L 459 149 L 449 148 L 449 145 L 453 137 L 454 132 L 452 125 L 448 121 L 441 120 L 437 116 L 436 113 L 432 110 L 418 126 L 410 126 L 392 145 L 358 147"/>
+		<path id="_ber" class="water" d="M 531,33 L 532 43 L 534 52 L 534 61 L 534 70 L 531 74 L 563 94 L 593 110 L 593 23 L 535 27 L 531 33 "/>
+		<path id="_bla" class="water" d="M 64,137 L 64 145 L 65 147 L 68 148 L 73 149 L 78 143 L 106 145 L 110 142 L 111 139 L 108 137 L 102 128 L 95 122 L 80 121 L 67 130 L 64 137 "/>
+		<path id="_bom" class="nopower" d="M 272,260 L 275 286 L 300 335 L 309 335 L 315 325 L 318 311 L 318 300 L 311 294 L 301 268 L 291 263 L 283 251 L 272 260 "/>
+		<path id="_bor" class="nopower" d="M 453,358 L 456 372 L 461 376 L 459 381 L 472 382 L 476 387 L 480 383 L 487 392 L 498 381 L 493 376 L 496 369 L 498 367 L 499 362 L 503 364 L 507 358 L 499 351 L 498 346 L 495 346 L 495 343 L 497 339 L 499 337 L 501 333 L 504 330 L 497 331 L 494 327 L 494 325 L 492 325 L 483 334 L 483 337 L 473 348 L 467 354 L 464 362 L 461 361 L 458 359 L 453 358 "/>
+		<path id="_bur" class="nopower" d="M 370,255 L 370 264 L 373 272 L 380 277 L 383 283 L 381 290 L 383 294 L 388 289 L 389 293 L 392 293 L 393 291 L 397 287 L 403 285 L 403 277 L 398 272 L 389 264 L 384 256 L 389 247 L 384 240 L 377 236 L 371 245 L 370 255 "/>
+		<path id="_cal" class="nopower" d="M 301,268 L 311 294 L 318 300 L 329 288 L 335 276 L 346 267 L 352 260 L 336 244 L 335 233 L 332 233 L 315 227 L 314 255 L 311 261 L 301 268 "/>
+		<path id="_cam" class="nopower" d="M 426,294 L 426 302 L 434 307 L 437 314 L 441 319 L 446 315 L 452 309 L 461 301 L 453 296 L 449 296 L 447 288 L 437 285 L 435 285 L 433 289 L 428 292 L 426 294 "/>
+		<path id="_cas" class="water" d="M 140,128 L 142 136 L 146 140 L 153 147 L 155 154 L 154 159 L 153 162 L 150 170 L 155 170 L 173 169 L 172 162 L 170 158 L 173 151 L 167 145 L 165 145 L 164 140 L 157 132 L 161 127 L 165 126 L 167 120 L 159 117 L 152 117 L 150 118 L 140 128 "/>
+		<path id="_cau" class="nopower" d="M 102,128 L 108 137 L 111 139 L 110 142 L 106 145 L 118 156 L 124 166 L 130 172 L 135 178 L 138 177 L 147 173 L 150 170 L 153 162 L 154 159 L 155 154 L 153 147 L 146 140 L 140 141 L 136 141 L 130 138 L 118 128 L 102 128 "/>
+		<path id="_cel" class="water" d="M 495,343 L 495 346 L 498 346 L 499 351 L 507 358 L 534 377 L 548 376 L 553 387 L 562 388 L 570 384 L 578 388 L 579 385 L 585 391 L 595 392 L 593 307 L 538 307 L 541 310 L 542 315 L 543 320 L 543 325 L 539 328 L 535 331 L 532 325 L 504 330 L 501 333 L 499 337 L 497 339 L 495 343 "/>
+		<path id="_cio" class="water" d="M 235,385 L 242 449 L 343 422 L 413 384 L 413 378 L 403 366 L 344 347 L 337 359 L 326 361 L 326 351 L 235 385 "/>
+		<path id="_chq" class="nopower" d="M 384,240 L 389 247 L 398 248 L 398 244 L 406 241 L 415 233 L 425 231 L 435 231 L 444 231 L 443 224 L 435 212 L 428 205 L 414 208 L 406 211 L 395 219 L 385 227 L 384 240 "/>
+		<path id="_chu" class="water" d="M 467,0 L 483 12 L 499 11 L 506 11 L 518 13 L 522 14 L 527 18 L 535 27 L 593 23 L 593 0 L 467 0 "/>
+		<path id="_del" class="nopower" d="M 266,225 L 283 251 L 291 263 L 301 268 L 311 261 L 314 255 L 315 227 L 305 221 L 286 201 L 286 194 L 279 193 L 277 195 L 271 205 L 267 215 L 266 225 "/>
+		<path id="_eaf" class="nopower" d="M 102,275 L 102 296 L 102 405 L 139 369 L 154 357 L 171 315 L 132 315 L 102 275 "/>
+		<path id="_ecs" class="water" d="M 476,240 L 505 257 L 510 250 L 514 251 L 518 251 L 519 256 L 522 261 L 518 265 L 514 269 L 518 274 L 522 278 L 526 283 L 527 285 L 528 290 L 531 296 L 538 307 L 593 307 L 592 240 L 593 110 L 563 94 L 554 112 L 556 113 L 558 119 L 561 125 L 556 130 L 556 141 L 560 142 L 563 147 L 563 152 L 565 156 L 563 162 L 564 169 L 560 173 L 555 174 L 552 177 L 548 182 L 546 217 L 489 221 L 483 230 L 476 240 "/>
+		<path id="_esb" class="nopower" d="M 318,43 L 400 43 L 421 40 L 416 21 L 352 18 L 336 23 L 318 43 "/>
+		<path id="_eas" class="water" d="M 64,475 L 124 475 L 145 450 L 164 441 L 155 414 L 139 369 L 102 405 L 64 475 "/>
+		<path id="_eio" class="water" d="M 343,422 L 372 437 L 492 467 L 517 463 L 529 459 L 533 452 L 537 447 L 540 445 L 493 413 L 484 415 L 476 415 L 462 415 L 452 411 L 443 413 L 441 414 L 439 413 L 430 412 L 440 408 L 445 406 L 439 401 L 435 404 L 431 403 L 424 396 L 414 390 L 413 384 L 343 422 "/>
+		<path id="_eme" class="water" d="M 0,142 L 0 215 L 7 214 L 7 205 L 19 203 L 49 203 L 59 213 L 76 210 L 79 209 L 88 207 L 97 177 L 57 177 L 50 156 L 42 147 L 32 168 L 20 177 L 0 142 "/>
+		<path id="_egy" class="nopower" d="M 19,203 L 32 296 L 102 296 L 102 275 L 81 223 L 82 220 L 76 210 L 59 213 L 49 203 L 19 203 "/>
+		<path id="_eka" class="nopower" d="M 194,94 L 200 117 L 225 119 L 238 107 L 238 88 L 226 80 L 202 86 L 194 94 "/>
+		<path id="_hok" class="nopower" d="M 534,130 L 537 130 L 538 135 L 542 137 L 543 132 L 546 129 L 551 131 L 556 130 L 561 125 L 558 119 L 556 113 L 554 112 L 547 113 L 536 107 L 539 112 L 542 116 L 540 120 L 535 125 L 534 130 "/>
+		<path id="_hkg" class="nopower" d="M 398,244 L 398 248 L 413 252 L 417 254 L 420 250 L 423 246 L 439 245 L 443 250 L 445 249 L 457 253 L 460 249 L 467 241 L 444 231 L 435 231 L 425 231 L 415 233 L 406 241 L 398 244 "/>
+		<path id="_hon" class="nopower" d="M 524,187 L 526 190 L 529 191 L 532 186 L 537 181 L 542 179 L 548 182 L 552 177 L 555 174 L 560 173 L 564 169 L 563 162 L 565 156 L 563 152 L 563 147 L 560 142 L 556 141 L 549 138 L 544 148 L 551 152 L 548 158 L 541 160 L 540 168 L 531 172 L 529 178 L 527 183 L 524 187 "/>
+		<path id="_irn" class="nopower" d="M 135,178 L 146 189 L 151 197 L 153 210 L 174 215 L 184 225 L 201 227 L 213 242 L 226 241 L 221 210 L 217 178 L 205 173 L 184 170 L 173 169 L 155 170 L 150 170 L 147 173 L 138 177 L 135 178 "/>
+		<path id="_irq" class="nopower" d="M 116,172 L 122 188 L 117 196 L 117 206 L 151 217 L 153 210 L 151 197 L 146 189 L 135 178 L 130 172 L 124 166 L 116 172 "/>
+		<path id="_irk" class="nopower" d="M 299,64 L 400 73 L 409 79 L 427 81 L 431 80 L 433 79 L 436 80 L 439 85 L 442 84 L 446 86 L 458 73 L 428 53 L 400 43 L 318 43 L 299 64 "/>
+		<path id="_jav" class="nopower" d="M 430,412 L 439 413 L 441 414 L 443 413 L 452 411 L 462 415 L 476 415 L 484 415 L 493 413 L 487 405 L 479 408 L 473 401 L 467 401 L 457 400 L 453 403 L 445 406 L 440 408 L 430 412 "/>
+		<path id="_jvs" class="water" d="M 431,376 L 440 388 L 439 401 L 445 406 L 453 403 L 457 400 L 467 401 L 473 401 L 479 408 L 487 405 L 493 413 L 540 445 L 547 441 L 553 447 L 557 442 L 581 441 L 581 448 L 595 453 L 595 427 L 584 426 L 582 417 L 575 409 L 568 407 L 556 402 L 551 397 L 547 402 L 544 397 L 543 391 L 547 387 L 540 385 L 534 377 L 507 358 L 503 364 L 499 362 L 498 367 L 496 369 L 493 376 L 498 381 L 487 392 L 480 383 L 476 387 L 472 382 L 459 381 L 461 376 L 456 372 L 431 376 "/>
+		<path id="_kam" class="nopower" d="M 416,21 L 421 40 L 480 43 L 486 41 L 493 35 L 508 33 L 514 34 L 520 37 L 525 43 L 525 51 L 524 58 L 524 64 L 527 70 L 531 74 L 534 70 L 534 61 L 534 52 L 532 43 L 531 33 L 535 27 L 527 18 L 522 14 L 518 13 L 506 11 L 499 11 L 483 12 L 455 14 L 416 21 "/>
+		<path id="_kaz" class="nopower" d="M 157,132 L 164 140 L 165 145 L 167 145 L 175 145 L 192 142 L 211 138 L 224 139 L 230 139 L 233 140 L 238 143 L 242 140 L 248 144 L 244 155 L 248 155 L 258 151 L 268 141 L 273 146 L 278 142 L 285 135 L 301 126 L 300 119 L 306 119 L 310 112 L 312 109 L 262 109 L 238 107 L 225 119 L 200 117 L 194 94 L 159 92 L 171 112 L 171 114 L 167 120 L 165 126 L 161 127 L 157 132 "/>
+		<path id="_kor" class="nopower" d="M 467,139 L 467 143 L 467 146 L 473 151 L 478 149 L 481 147 L 485 151 L 487 156 L 489 160 L 495 161 L 500 166 L 501 170 L 497 174 L 499 178 L 504 178 L 511 176 L 513 173 L 511 165 L 507 158 L 503 152 L 498 151 L 498 147 L 500 143 L 500 138 L 503 131 L 501 129 L 497 127 L 495 129 L 493 133 L 490 137 L 486 137 L 482 135 L 475 135 L 471 136 L 467 139 "/>
+		<path id="_kun" class="nopower" d="M 295,189 L 296 200 L 306 205 L 322 208 L 335 216 L 341 215 L 338 208 L 341 201 L 333 193 L 341 180 L 334 170 L 334 160 L 331 145 L 329 138 L 334 132 L 326 128 L 318 131 L 314 140 L 313 148 L 310 156 L 308 160 L 296 168 L 299 171 L 301 181 L 300 185 L 295 189 "/>
+		<path id="_lao" class="nopower" d="M 384,256 L 389 264 L 398 272 L 403 277 L 403 285 L 410 285 L 415 287 L 426 294 L 428 292 L 433 289 L 435 285 L 430 279 L 426 276 L 417 272 L 411 267 L 413 260 L 417 254 L 413 252 L 398 248 L 389 247 L 384 256 "/>
+		<path id="_liv" class="nopower" d="M 18,55 L 23 55 L 27 53 L 34 53 L 41 57 L 45 62 L 51 67 L 68 60 L 68 42 L 51 33 L 47 29 L 41 26 L 39 27 L 33 29 L 24 32 L 21 40 L 18 55 "/>
+		<path id="_mad" class="nopower" d="M 124,475 L 165 475 L 164 441 L 145 450 L 124 475 "/>
+		<path id="_man" class="nopower" d="M 416,95 L 416 102 L 420 103 L 426 103 L 432 98 L 436 104 L 432 110 L 436 113 L 437 116 L 441 120 L 448 121 L 452 125 L 454 132 L 453 137 L 449 145 L 449 148 L 459 149 L 464 145 L 467 143 L 467 139 L 471 136 L 475 135 L 482 135 L 486 137 L 490 137 L 493 133 L 495 129 L 497 127 L 494 123 L 494 119 L 498 114 L 501 108 L 500 105 L 498 101 L 494 98 L 491 100 L 489 101 L 487 95 L 484 96 L 474 106 L 472 104 L 470 104 L 466 102 L 463 100 L 459 93 L 446 86 L 442 84 L 439 85 L 436 80 L 433 79 L 431 80 L 427 81 L 426 83 L 426 89 L 421 93 L 416 95 "/>
+		<path id="_mon" class="nopower" d="M 300,119 L 301 126 L 308 130 L 318 131 L 326 128 L 334 132 L 339 133 L 340 139 L 348 145 L 358 147 L 392 145 L 410 126 L 418 126 L 432 110 L 436 104 L 432 98 L 426 103 L 420 103 L 416 102 L 416 95 L 412 95 L 407 98 L 401 99 L 381 100 L 374 102 L 370 101 L 367 99 L 366 96 L 360 100 L 351 98 L 344 95 L 342 99 L 336 105 L 333 107 L 328 106 L 324 102 L 316 101 L 312 109 L 310 112 L 306 119 L 300 119 "/>
+		<path id="_mos" class="nopower" d="M 51,67 L 52 78 L 56 78 L 61 82 L 71 82 L 78 86 L 86 91 L 96 91 L 101 95 L 104 102 L 119 101 L 128 103 L 135 108 L 150 118 L 152 117 L 159 117 L 167 120 L 171 114 L 171 112 L 159 92 L 151 85 L 145 76 L 134 68 L 117 54 L 105 52 L 95 48 L 84 45 L 78 44 L 68 42 L 68 60 L 51 67 "/>
+		<path id="_new" class="nopower" d="M 534,377 L 540 385 L 547 387 L 543 391 L 544 397 L 547 402 L 551 397 L 556 402 L 568 407 L 575 409 L 582 417 L 584 426 L 595 427 L 595 392 L 585 391 L 579 385 L 578 388 L 570 384 L 562 388 L 553 387 L 548 376 L 534 377 "/>
+		<path id="_nov" class="nopower" d="M 238,88 L 238 107 L 262 109 L 312 109 L 316 101 L 324 102 L 328 106 L 333 107 L 336 105 L 342 99 L 344 95 L 351 98 L 360 100 L 366 96 L 367 99 L 370 101 L 374 102 L 381 100 L 401 99 L 407 98 L 412 95 L 416 95 L 421 93 L 426 89 L 426 83 L 427 81 L 409 79 L 400 73 L 299 64 L 284 63 L 273 72 L 271 73 L 263 73 L 258 77 L 248 88 L 238 88 "/>
+		<path id="_oma" class="nopower" d="M 173,245 L 173 276 L 182 276 L 182 285 L 210 256 L 196 247 L 193 239 L 183 246 L 173 245 "/>
+		<path id="_pak" class="nopower" d="M 221,210 L 226 241 L 252 240 L 262 260 L 272 260 L 283 251 L 266 225 L 267 215 L 271 205 L 277 195 L 279 193 L 278 189 L 275 179 L 273 168 L 262 181 L 254 185 L 250 196 L 243 200 L 237 205 L 231 210 L 221 210 "/>
+		<path id="_per" class="water" d="M 151,217 L 170 236 L 173 245 L 183 246 L 193 239 L 196 247 L 210 256 L 213 242 L 201 227 L 184 225 L 174 215 L 153 210 L 151 217 "/>
+		<path id="_phi" class="nopower" d="M 502,261 L 502 265 L 504 268 L 504 275 L 505 277 L 511 276 L 515 280 L 515 282 L 510 286 L 507 286 L 516 295 L 522 303 L 528 310 L 525 313 L 523 315 L 521 319 L 520 321 L 520 324 L 523 323 L 528 319 L 532 325 L 535 331 L 539 328 L 543 325 L 543 320 L 542 315 L 541 310 L 538 307 L 531 296 L 528 290 L 527 285 L 526 283 L 522 278 L 518 274 L 514 269 L 518 265 L 522 261 L 519 256 L 518 251 L 514 251 L 510 250 L 505 257 L 502 261 "/>
+		<path id="_red" class="water" d="M 81,223 L 102 275 L 132 315 L 171 315 L 171 294 L 159 301 L 139 301 L 135 285 L 133 278 L 115 254 L 98 221 L 94 225 L 86 219 L 85 219 L 82 220 L 81 223 "/>
+		<path id="_okh" class="water" d="M 468,60 L 474 63 L 484 60 L 493 61 L 500 72 L 507 79 L 509 82 L 509 88 L 513 89 L 516 94 L 521 103 L 519 109 L 517 118 L 514 124 L 510 128 L 509 131 L 503 131 L 500 138 L 500 143 L 498 147 L 498 151 L 503 152 L 507 158 L 511 165 L 513 173 L 529 178 L 531 172 L 540 168 L 541 160 L 548 158 L 551 152 L 544 148 L 549 138 L 556 141 L 556 130 L 551 131 L 546 129 L 543 132 L 542 137 L 538 135 L 537 130 L 534 130 L 535 125 L 540 120 L 542 116 L 539 112 L 536 107 L 547 113 L 554 112 L 563 94 L 531 74 L 527 70 L 524 64 L 524 58 L 525 51 L 525 43 L 520 37 L 514 34 L 508 33 L 493 35 L 486 41 L 480 43 L 468 60 "/>
+		<path id="_sev" class="nopower" d="M 67,107 L 80 121 L 95 122 L 102 128 L 118 128 L 130 138 L 136 141 L 140 141 L 146 140 L 142 136 L 140 128 L 150 118 L 135 108 L 128 103 L 119 101 L 104 102 L 93 104 L 82 104 L 67 107 "/>
+		<path id="_sey" class="water" d="M 155,414 L 164 441 L 165 475 L 245 475 L 242 449 L 235 385 L 155 414 "/>
+		<path id="_sha" class="nopower" d="M 425,197 L 428 205 L 435 212 L 443 224 L 444 231 L 467 241 L 474 241 L 476 240 L 483 230 L 489 221 L 490 214 L 490 211 L 489 207 L 490 200 L 489 196 L 476 197 L 465 193 L 459 187 L 454 189 L 450 186 L 437 198 L 430 199 L 425 197 "/>
+		<path id="_scs" class="water" d="M 439,257 L 439 263 L 444 270 L 455 282 L 457 279 L 459 284 L 461 289 L 492 325 L 494 325 L 494 327 L 497 331 L 504 330 L 532 325 L 528 319 L 523 323 L 520 324 L 520 321 L 521 319 L 523 315 L 525 313 L 528 310 L 522 303 L 516 295 L 507 286 L 510 286 L 515 282 L 515 280 L 511 276 L 505 277 L 504 275 L 504 268 L 502 265 L 502 261 L 505 257 L 476 240 L 474 241 L 467 241 L 460 249 L 457 253 L 445 249 L 443 250 L 439 257 "/>
+		<path id="_sio" class="water" d="M 242,449 L 245 475 L 486 475 L 492 467 L 372 437 L 343 422 L 242 449 "/>
+		<path id="_sri" class="nopower" d="M 324,339 L 326 351 L 326 361 L 337 359 L 344 347 L 335 340 L 330 334 L 324 339 "/>
+		<path id="_stp" class="nopower" d="M 41,26 L 47 29 L 51 33 L 68 42 L 78 44 L 84 45 L 95 48 L 105 52 L 117 54 L 134 68 L 145 76 L 160 58 L 171 58 L 179 41 L 172 33 L 171 23 L 163 32 L 144 42 L 134 49 L 110 37 L 71 32 L 66 29 L 64 19 L 71 25 L 70 18 L 67 9 L 52 9 L 46 10 L 44 19 L 41 26 "/>
+		<path id="_sum" class="nopower" d="M 388,335 L 388 346 L 390 348 L 395 351 L 397 356 L 401 359 L 403 366 L 413 378 L 413 384 L 414 390 L 424 396 L 431 403 L 435 404 L 439 401 L 440 388 L 431 376 L 410 353 L 408 350 L 400 344 L 395 343 L 392 343 L 388 335 "/>
+		<path id="_syr" class="nopower" d="M 79,209 L 85 219 L 86 219 L 94 225 L 98 221 L 108 212 L 117 206 L 117 196 L 122 188 L 116 172 L 97 177 L 88 207 L 79 209 "/>
+		<path id="_ths" class="water" d="M 410,353 L 431 376 L 456 372 L 453 358 L 458 359 L 461 361 L 464 362 L 467 354 L 473 348 L 483 337 L 483 334 L 492 325 L 461 289 L 461 301 L 452 309 L 446 315 L 441 319 L 437 314 L 434 307 L 426 302 L 423 302 L 417 305 L 415 311 L 415 318 L 418 327 L 422 333 L 428 338 L 436 341 L 436 362 L 431 361 L 425 355 L 419 348 L 410 353 "/>
+		<path id="_tha" class="nopower" d="M 393,291 L 405 304 L 406 322 L 413 332 L 419 348 L 425 355 L 431 361 L 436 362 L 436 341 L 428 338 L 422 333 L 418 327 L 415 318 L 415 311 L 417 305 L 423 302 L 426 302 L 426 294 L 415 287 L 410 285 L 403 285 L 397 287 L 393 291 "/>
+		<path id="_tib" class="nopower" d="M 329,138 L 331 145 L 334 160 L 334 170 L 341 180 L 333 193 L 341 201 L 338 208 L 341 215 L 351 215 L 368 217 L 379 222 L 385 227 L 395 219 L 406 211 L 414 208 L 428 205 L 425 197 L 418 190 L 403 179 L 388 179 L 373 171 L 366 170 L 362 166 L 362 154 L 358 147 L 348 145 L 340 139 L 339 133 L 334 132 L 329 138 "/>
+		<path id="_tia" class="nopower" d="M 240,165 L 261 165 L 273 168 L 275 179 L 278 189 L 279 193 L 286 194 L 286 201 L 296 200 L 295 189 L 300 185 L 301 181 L 299 171 L 296 168 L 308 160 L 310 156 L 313 148 L 314 140 L 318 131 L 308 130 L 301 126 L 285 135 L 278 142 L 273 146 L 268 141 L 258 151 L 248 155 L 244 155 L 240 165 "/>
+		<path id="_tur" class="nopower" d="M 42,147 L 50 156 L 57 177 L 97 177 L 116 172 L 124 166 L 118 156 L 106 145 L 78 143 L 73 149 L 68 148 L 65 147 L 64 145 L 64 137 L 56 133 L 42 147 "/>
+		<path id="_ukr" class="nopower" d="M 43,85 L 44 89 L 47 93 L 47 102 L 61 101 L 67 107 L 82 104 L 93 104 L 104 102 L 101 95 L 96 91 L 86 91 L 78 86 L 71 82 L 61 82 L 56 78 L 52 78 L 48 80 L 43 85 "/>
+		<path id="_ura" class="nopower" d="M 145,76 L 151 85 L 159 92 L 194 94 L 202 86 L 226 80 L 230 71 L 230 38 L 215 39 L 179 41 L 171 58 L 160 58 L 145 76 "/>
+		<path id="_uzb" class="nopower" d="M 167,145 L 173 151 L 170 158 L 172 162 L 173 169 L 184 170 L 205 173 L 217 178 L 230 177 L 237 175 L 240 165 L 244 155 L 248 144 L 242 140 L 238 143 L 233 140 L 230 139 L 224 139 L 211 138 L 192 142 L 175 145 L 167 145 "/>
+		<path id="_vie" class="nopower" d="M 411,267 L 417 272 L 426 276 L 430 279 L 435 285 L 437 285 L 447 288 L 449 296 L 453 296 L 461 301 L 461 289 L 459 284 L 457 279 L 455 282 L 444 270 L 439 263 L 439 257 L 443 250 L 439 245 L 423 246 L 420 250 L 417 254 L 413 260 L 411 267 "/>
+		<path id="_vla" class="nopower" d="M 446,86 L 459 93 L 463 100 L 466 102 L 470 104 L 472 104 L 474 106 L 484 96 L 487 95 L 489 101 L 491 100 L 494 98 L 498 101 L 500 105 L 501 108 L 498 114 L 494 119 L 494 123 L 497 127 L 501 129 L 503 131 L 509 131 L 510 128 L 514 124 L 517 118 L 519 109 L 521 103 L 516 94 L 513 89 L 509 88 L 509 82 L 507 79 L 498 82 L 458 73 L 446 86 "/>
+		<path id="_war" class="nopower" d="M 9,86 L 11 98 L 11 102 L 47 102 L 47 93 L 44 89 L 43 85 L 48 80 L 52 78 L 51 67 L 45 62 L 41 57 L 34 53 L 27 53 L 23 55 L 18 55 L 11 68 L 9 86 "/>
+		<path id="_wsb" class="nopower" d="M 226,80 L 238 88 L 248 88 L 258 77 L 263 73 L 271 73 L 273 72 L 284 63 L 299 64 L 318 43 L 336 23 L 320 29 L 230 38 L 230 71 L 226 80 "/>
+		<path id="_yak" class="nopower" d="M 400,43 L 428 53 L 458 73 L 498 82 L 507 79 L 500 72 L 493 61 L 484 60 L 474 63 L 468 60 L 480 43 L 421 40 L 400 43 "/>
+		<path id="_yel" class="water" d="M 457,155 L 457 159 L 463 166 L 467 169 L 468 166 L 474 164 L 477 164 L 478 166 L 477 169 L 475 170 L 472 175 L 472 177 L 475 183 L 480 186 L 482 188 L 486 191 L 488 193 L 489 196 L 490 200 L 489 207 L 490 211 L 490 214 L 489 221 L 546 217 L 548 182 L 542 179 L 537 181 L 532 186 L 529 191 L 526 190 L 524 187 L 527 183 L 529 178 L 513 173 L 511 176 L 504 178 L 499 178 L 497 174 L 501 170 L 500 166 L 495 161 L 489 160 L 487 156 L 485 151 L 481 147 L 478 149 L 473 151 L 467 146 L 467 143 L 464 145 L 459 149 L 457 155 "/>
+		<path id="_yem" class="nopower" d="M 135,285 L 139 301 L 159 301 L 171 294 L 182 285 L 182 276 L 173 276 L 135 285 "/>
+	</g>
+	<g>
+		<!-- decorations -->
+		<path class="neutral" d="M 0,0 L 0 142 L 11 102 L 11 98 L 9 86 L 11 68 L 18 55 L 21 40 L 24 32 L 33 29 L 39 27 L 41 26 L 44 19 L 46 10 L 39 0 L 0 0 "/>
+		<path class="neutral" d="M 0,215 L 0 475 L 64 475 L 102 405 L 102 296 L 32 296 L 19 203 L 7 205 L 7 214 L 0 215 "/>
+		<path class="water" d="M 42,147 L 50 156 L 53 152 L 60 153 L 67 150 L 68 148 L 65 147 L 64 149 L 58 148 L 51 150 L 42 147 "/>
+		<path class="water" d="M 76,210 L 82 220 L 85 219 L 79 209 L 76 210 "/>
+		<path class="water" d="M 110,142 L 125 150 L 141 153 L 153 162 L 154 159 L 142 150 L 126 147 L 111 139 L 110 142 "/>
+		<path class="neutral" d="M 286,201 L 305 221 L 315 227 L 332 233 L 335 233 L 343 235 L 351 226 L 360 229 L 366 228 L 371 236 L 377 236 L 384 240 L 385 227 L 379 222 L 368 217 L 351 215 L 341 215 L 335 216 L 322 208 L 306 205 L 296 200 L 286 201 "/>
+		<path class="border" d="M 0,142 L 20 177 L 32 168 L 42 147 L 51 150 L 58 148 L 64 149 L 65 147 L 64 145 L 64 137 L 67 130 L 80 121 L 95 122 L 102 128 L 108 137 L 111 139 L 126 147 L 142 150 L 154 159 L 155 154 L 153 147 L 146 140 L 142 136 L 140 128 L 150 118 L 152 117 L 159 117 L 167 120 L 165 126 L 161 127 L 157 132 L 164 140 L 165 145 L 167 145 L 173 151 L 170 158 L 172 162 L 173 169 L 155 170 L 150 170 L 153 162 L 141 153 L 125 150 L 110 142 L 106 145 L 78 143 L 73 149 L 68 148 L 67 150 L 60 153 L 53 152 L 50 156 L 57 177 L 97 177 L 88 207 L 79 209 L 85 219 L 86 219 L 94 225 L 98 221 L 115 254 L 133 278 L 135 285 L 139 301 L 159 301 L 171 294 L 182 285 L 210 256 L 196 247 L 193 239 L 183 246 L 173 245 L 170 236 L 151 217 L 153 210 L 174 215 L 184 225 L 201 227 L 213 242 L 226 241 L 252 240 L 262 260 L 272 260 L 275 286 L 300 335 L 309 335 L 315 325 L 318 311 L 318 300 L 329 288 L 335 276 L 346 267 L 352 260 L 358 260 L 360 253 L 367 258 L 370 255 L 370 264 L 373 272 L 380 277 L 383 283 L 381 290 L 383 294 L 388 289 L 389 293 L 392 293 L 393 291 L 405 304 L 406 322 L 413 332 L 419 348 L 425 355 L 431 361 L 436 362 L 436 341 L 428 338 L 422 333 L 418 327 L 415 318 L 415 311 L 417 305 L 423 302 L 426 302 L 434 307 L 437 314 L 441 319 L 446 315 L 452 309 L 461 301 L 461 289 L 459 284 L 457 279 L 455 282 L 444 270 L 439 263 L 439 257 L 443 250 L 445 249 L 457 253 L 460 249 L 467 241 L 474 241 L 476 240 L 483 230 L 489 221 L 490 214 L 490 211 L 489 207 L 490 200 L 489 196 L 488 193 L 486 191 L 482 188 L 480 186 L 475 183 L 472 177 L 472 175 L 475 170 L 477 169 L 478 166 L 477 164 L 474 164 L 468 166 L 467 169 L 463 166 L 457 159 L 457 155 L 459 149 L 464 145 L 467 143 L 467 146 L 473 151 L 478 149 L 481 147 L 485 151 L 487 156 L 489 160 L 495 161 L 500 166 L 501 170 L 497 174 L 499 178 L 504 178 L 511 176 L 513 173 L 511 165 L 507 158 L 503 152 L 498 151 L 498 147 L 500 143 L 500 138 L 503 131 L 509 131 L 510 128 L 514 124 L 517 118 L 519 109 L 521 103 L 516 94 L 513 89 L 509 88 L 509 82 L 507 79 L 500 72 L 493 61 L 484 60 L 474 63 L 468 60 L 480 43 L 486 41 L 493 35 L 508 33 L 514 34 L 520 37 L 525 43 L 525 51 L 524 58 L 524 64 L 527 70 L 531 74 L 534 70 L 534 61 L 534 52 L 532 43 L 531 33 L 535 27 L 527 18 L 522 14 L 518 13 L 506 11 L 499 11 L 483 12 L 455 14 L 416 21 L 352 18 L 336 23 L 320 29 L 230 38 L 215 39 L 179 41 L 172 33 L 171 23 L 163 32 L 144 42 L 134 49 L 110 37 L 71 32 L 66 29 L 64 19 L 71 25 L 70 18 L 67 9 L 52 9 L 46 10 L 44 19 L 41 26 L 39 27 L 33 29 L 24 32 L 21 40 L 18 55 L 11 68 L 9 86 L 11 98 L 11 102 L 0 142 "/>
+		<path class="border" d="M 0,215 L 7 214 L 7 205 L 19 203 L 49 203 L 59 213 L 76 210 L 82 220 L 81 223 L 102 275 L 132 315 L 171 315 L 154 357 L 139 369 L 102 405 L 64 475 "/>
+		<path class="border" d="M 19,203 L 32 296 L 102 296 L 102 405 "/>
+		<path class="border" d="M 39,0 L 46 10 "/>
+		<path class="border" d="M 124,475 L 145 450 L 164 441 L 165 475 "/>
+		<path class="border" d="M 286,201 L 296 200 L 306 205 L 322 208 L 335 216 L 341 215 L 351 215 L 368 217 L 379 222 L 385 227 L 384 240 L 377 236 L 371 236 L 366 228 L 360 229 L 351 226 L 343 235 L 335 233 L 332 233 L 315 227 L 305 221 L 286 201 "/>
+		<path class="border" d="M 324,339 L 330 334 L 335 340 L 344 347 L 337 359 L 326 361 L 326 351 L 324 339 "/>
+		<path class="border" d="M 388,335 L 388 346 L 390 348 L 395 351 L 397 356 L 401 359 L 403 366 L 413 378 L 413 384 L 414 390 L 424 396 L 431 403 L 435 404 L 439 401 L 440 388 L 431 376 L 410 353 L 408 350 L 400 344 L 395 343 L 392 343 L 388 335 "/>
+		<path class="border" d="M 430,412 L 439 413 L 441 414 L 443 413 L 452 411 L 462 415 L 476 415 L 484 415 L 493 413 L 487 405 L 479 408 L 473 401 L 467 401 L 457 400 L 453 403 L 445 406 L 440 408 L 430 412 "/>
+		<path class="border" d="M 453,358 L 458 359 L 461 361 L 464 362 L 467 354 L 473 348 L 483 337 L 483 334 L 492 325 L 494 325 L 494 327 L 497 331 L 504 330 L 501 333 L 499 337 L 497 339 L 495 343 L 495 346 L 498 346 L 499 351 L 507 358 L 503 364 L 499 362 L 498 367 L 496 369 L 493 376 L 498 381 L 487 392 L 480 383 L 476 387 L 472 382 L 459 381 L 461 376 L 456 372 L 453 358 "/>
+		<path class="border" d="M 486,475 L 492 467 L 517 463 L 529 459 L 533 452 L 537 447 L 540 445 L 547 441 L 553 447 L 557 442 L 581 441 L 581 448 L 595 453 "/>
+		<path class="border" d="M 502,261 L 505 257 L 510 250 L 514 251 L 518 251 L 519 256 L 522 261 L 518 265 L 514 269 L 518 274 L 522 278 L 526 283 L 527 285 L 528 290 L 531 296 L 538 307 L 541 310 L 542 315 L 543 320 L 543 325 L 539 328 L 535 331 L 532 325 L 528 319 L 523 323 L 520 324 L 520 321 L 521 319 L 523 315 L 525 313 L 528 310 L 522 303 L 516 295 L 507 286 L 510 286 L 515 282 L 515 280 L 511 276 L 505 277 L 504 275 L 504 268 L 502 265 L 502 261 "/>
+		<path class="border" d="M 524,187 L 526 190 L 529 191 L 532 186 L 537 181 L 542 179 L 548 182 L 552 177 L 555 174 L 560 173 L 564 169 L 563 162 L 565 156 L 563 152 L 563 147 L 560 142 L 556 141 L 549 138 L 544 148 L 551 152 L 548 158 L 541 160 L 540 168 L 531 172 L 529 178 L 527 183 L 524 187 "/>
+		<path class="border" d="M 534,130 L 537 130 L 538 135 L 542 137 L 543 132 L 546 129 L 551 131 L 556 130 L 561 125 L 558 119 L 556 113 L 554 112 L 547 113 L 536 107 L 539 112 L 542 116 L 540 120 L 535 125 L 534 130 "/>
+		<path class="border" d="M 534,377 L 548 376 L 553 387 L 562 388 L 570 384 L 578 388 L 579 385 L 585 391 L 595 392"/>
+		<path class="border" d="M 534,377 L 540 385 L 547 387 L 543 391 L 544 397 L 547 402 L 551 397 L 556 402 L 568 407 L 575 409 L 582 417 L 584 426 L 595 427"/>
+		<rect class="border" x="1" y="1" width="593" height="473"/>
+		<g class="coastText">
+			<!-- ara -->
+			<text x="147" y="230">ec</text>
+			<text x="141" y="272">wc</text>
+			<!-- bal -->
+			<text x="64" y="126">ec</text>
+			<text x="25" y="165">sc</text>
+			<!-- irn -->
+			<text x="163" y="183">nc</text>
+			<text x="194" y="220">sc</text>
+			<!-- sev -->
+			<text x="134" y="126">ec</text>
+			<text x="88" y="118">wc</text>
+		</g>
+	</g>
+	
+	<!-- drawing layer: supply centers -->
+	<g id="SupplyCenterLayer"/>
+
+	<!-- drawing layer: orders -->
+	<g id="OrderLayer"/>
+	
+	<!-- drawing layer: units -->
+	<g id="UnitLayer"/>
+	
+	<!-- drawing layer: dislodged units -->
+	<g id="DislodgedUnitLayer"/>
+	
+	<!-- above-the-unit drawing layer -->
+	<g id="HighestOrderLayer"/>
+	
+	<!-- abbreviated province names -->
+	<g id="BriefLabelLayer" class="labeltextShort" transform="translate(0,10)" visibility="hidden">
+		<g class="tooltip" transform="translate(-15,-13)">
+			<rect x="240" y="186" width="30" height="16" rx="4" ry="4"/>
+			<rect x="144" y="246" width="30" height="16" rx="4" ry="4"/>
+			<rect x="144" y="246" width="30" height="16" rx="4" ry="4"/>
+			<rect x="228" y="321" width="30" height="16" rx="4" ry="4"/>
+			<rect x="251" y="9" width="30" height="16" rx="4" ry="4"/>
+			<rect x="562" y="452" width="30" height="16" rx="4" ry="4"/>
+			<rect x="30" y="125" width="30" height="16" rx="4" ry="4"/>
+			<rect x="357" y="238" width="30" height="16" rx="4" ry="4"/>
+			<rect x="104" y="14" width="30" height="16" rx="4" ry="4"/>
+			<rect x="364" y="309" width="30" height="16" rx="4" ry="4"/>
+			<rect x="418" y="149" width="30" height="16" rx="4" ry="4"/>
+			<rect x="564" y="51" width="30" height="16" rx="4" ry="4"/>
+			<rect x="84" y="130" width="30" height="16" rx="4" ry="4"/>
+			<rect x="295" y="286" width="30" height="16" rx="4" ry="4"/>
+			<rect x="480" y="356" width="30" height="16" rx="4" ry="4"/>
+			<rect x="378" y="259" width="30" height="16" rx="4" ry="4"/>
+			<rect x="326" y="259" width="30" height="16" rx="4" ry="4"/>
+			<rect x="439" y="295" width="30" height="16" rx="4" ry="4"/>
+			<rect x="154" y="125" width="30" height="16" rx="4" ry="4"/>
+			<rect x="136" y="160" width="30" height="16" rx="4" ry="4"/>
+			<rect x="554" y="346" width="30" height="16" rx="4" ry="4"/>
+			<rect x="309" y="392" width="30" height="16" rx="4" ry="4"/>
+			<rect x="407" y="220" width="30" height="16" rx="4" ry="4"/>
+			<rect x="550" y="10" width="30" height="16" rx="4" ry="4"/>
+			<rect x="294" y="227" width="30" height="16" rx="4" ry="4"/>
+			<rect x="135" y="338" width="30" height="16" rx="4" ry="4"/>
+			<rect x="557" y="257" width="30" height="16" rx="4" ry="4"/>
+			<rect x="372" y="29" width="30" height="16" rx="4" ry="4"/> 
+			<rect x="124" y="424" width="30" height="16" rx="4" ry="4"/>
+			<rect x="434" y="428" width="30" height="16" rx="4" ry="4"/>
+			<rect x="44" y="178" width="30" height="16" rx="4" ry="4"/>
+			<rect x="61" y="249" width="30" height="16" rx="4" ry="4"/>
+			<rect x="216" y="92" width="30" height="16" rx="4" ry="4"/>
+			<rect x="549" y="120" width="30" height="16" rx="4" ry="4"/>
+			<rect x="424" y="239" width="30" height="16" rx="4" ry="4"/>
+			<rect x="555" y="160" width="30" height="16" rx="4" ry="4"/>
+			<rect x="188" y="194" width="30" height="16" rx="4" ry="4"/>
+			<rect x="130" y="189" width="30" height="16" rx="4" ry="4"/>
+			<rect x="396" y="56" width="30" height="16" rx="4" ry="4"/> 
+			<rect x="466" y="406" width="30" height="16" rx="4" ry="4"/>
+			<rect x="537" y="409" width="30" height="16" rx="4" ry="4"/>
+			<rect x="480" y="25" width="30" height="16" rx="4" ry="4"/> 
+			<rect x="185" y="116" width="30" height="16" rx="4" ry="4"/>
+			<rect x="490" y="146" width="30" height="16" rx="4" ry="4"/>
+			<rect x="318" y="171" width="30" height="16" rx="4" ry="4"/>
+			<rect x="400" y="258" width="30" height="16" rx="4" ry="4"/>
+			<rect x="47" y="42" width="30" height="16" rx="4" ry="4"/>
+			<rect x="151" y="459" width="30" height="16" rx="4" ry="4"/>
+			<rect x="459" y="109" width="30" height="16" rx="4" ry="4"/>
+			<rect x="359" y="119" width="30" height="16" rx="4" ry="4"/>
+			<rect x="112" y="67" width="30" height="16" rx="4" ry="4"/>
+			<rect x="580" y="396" width="30" height="16" rx="4" ry="4"/>
+			<rect x="328" y="80" width="30" height="16" rx="4" ry="4"/>
+			<rect x="189" y="255" width="30" height="16" rx="4" ry="4"/>
+			<rect x="252" y="214" width="30" height="16" rx="4" ry="4"/>
+			<rect x="182" y="231" width="30" height="16" rx="4" ry="4"/>
+			<rect x="520" y="287" width="30" height="16" rx="4" ry="4"/>
+			<rect x="113" y="265" width="30" height="16" rx="4" ry="4"/>
+			<rect x="533" y="90" width="30" height="16" rx="4" ry="4"/>
+			<rect x="114" y="111" width="30" height="16" rx="4" ry="4"/>
+			<rect x="208" y="423" width="30" height="16" rx="4" ry="4"/>
+			<rect x="463" y="207" width="30" height="16" rx="4" ry="4"/>
+			<rect x="480" y="269" width="30" height="16" rx="4" ry="4"/>
+			<rect x="331" y="445" width="30" height="16" rx="4" ry="4"/>
+			<rect x="334" y="348" width="30" height="16" rx="4" ry="4"/>
+			<rect x="145" y="51" width="30" height="16" rx="4" ry="4"/>
+			<rect x="414" y="367" width="30" height="16" rx="4" ry="4"/>
+			<rect x="105" y="193" width="30" height="16" rx="4" ry="4"/>
+			<rect x="454" y="328" width="30" height="16" rx="4" ry="4"/>
+			<rect x="411" y="298" width="30" height="16" rx="4" ry="4"/>
+			<rect x="363" y="189" width="30" height="16" rx="4" ry="4"/>
+			<rect x="284" y="159" width="30" height="16" rx="4" ry="4"/>
+			<rect x="95" y="155" width="30" height="16" rx="4" ry="4"/>
+			<rect x="60" y="85" width="30" height="16" rx="4" ry="4"/>
+			<rect x="194" y="57" width="30" height="16" rx="4" ry="4"/>
+			<rect x="217" y="155" width="30" height="16" rx="4" ry="4"/>
+			<rect x="430" y="265" width="30" height="16" rx="4" ry="4"/>
+			<rect x="509" y="97" width="30" height="16" rx="4" ry="4"/>
+			<rect x="29" y="75" width="30" height="16" rx="4" ry="4"/>
+			<rect x="263" y="48" width="30" height="16" rx="4" ry="4"/>
+			<rect x="455" y="54" width="30" height="16" rx="4" ry="4"/>
+			<rect x="513" y="194" width="30" height="16" rx="4" ry="4"/>
+			<rect x="162" y="286" width="30" height="16" rx="4" ry="4"/> 
+		</g>
+		
+		<text x="240" y="186">Afg</text>
+		<text x="144" y="246">Ara</text>
+		<text x="228" y="321">ARS</text>
+		<text x="251" y="9">ARC</text>
+		<text x="562" y="452">Aus</text>
+		<text x="30" y="125">Bal</text>
+		<text x="357" y="238">Ban</text>
+		<text x="104" y="14">BAR</text>
+		<text x="364" y="309">BOB</text>
+		<text x="418" y="149">Bjg</text>
+		<text x="564" y="51">BER</text>
+		<text x="84" y="130">BLA</text>
+		<text x="295" y="286">Bom</text>
+		<text x="480" y="356">Bor</text>
+		<text x="378" y="259">Bur</text>
+		<text x="326" y="259">Cal</text>
+		<text x="439" y="295">Cam</text>
+		<text x="154" y="125">CAS</text>
+		<text x="136" y="160">Cau</text>
+		<text x="554" y="346">CEL</text>
+		<text x="309" y="392">CIO</text>
+		<text x="407" y="220">Chq</text>
+		<text x="550" y="10">CHU</text>
+		<text x="294" y="227">Del</text>
+		<text x="135" y="338">EAf</text>
+		<text x="557" y="257">ECS</text>
+		<text x="372" y="29"> ESb</text>
+		<text x="124" y="424">EAS</text>
+		<text x="434" y="428">EIO</text>
+		<text x="44" y="178">EME</text>
+		<text x="61" y="249">Egy</text>
+		<text x="216" y="92">Eka</text>
+		<text x="549" y="120">Hok</text>
+		<text x="424" y="239">HKg</text>
+		<text x="555" y="160">Hon</text>
+		<text x="188" y="194">Irn</text>
+		<text x="130" y="189">Irq</text>
+		<text x="396" y="56"> Irk</text>
+		<text x="466" y="406">Jav</text>
+		<text x="537" y="409">JVS</text>
+		<text x="480" y="25"> Kam</text>
+		<text x="185" y="116">Kaz</text>
+		<text x="490" y="146">Kor</text>
+		<text x="318" y="171">Kun</text>
+		<text x="400" y="258">Lao</text>
+		<text x="47" y="42">Liv</text>
+		<text x="151" y="459">Mad</text>
+		<text x="459" y="109">Man</text>
+		<text x="359" y="119">Mon</text>
+		<text x="112" y="67">Mos</text>
+		<text x="580" y="396">New</text>
+		<text x="328" y="80">Nov</text>
+		<text x="189" y="255">Oma</text>
+		<text x="252" y="214">Pak</text>
+		<text x="182" y="231">PER</text>
+		<text x="520" y="287">Phi</text>
+		<text x="113" y="265">RED</text>
+		<text x="533" y="90">OKH</text>
+		<text x="114" y="111">Sev</text>
+		<text x="208" y="423">SEY</text>
+		<text x="463" y="207">Sha</text>
+		<text x="480" y="269">SCS</text>
+		<text x="331" y="445">SIO</text>
+		<text x="334" y="348">Sri</text>
+		<text x="145" y="51">StP</text>
+		<text x="414" y="367">Sum</text>
+		<text x="105" y="193">Syr</text>
+		<text x="454" y="328">THS</text>
+		<text x="411" y="298">Tha</text>
+		<text x="363" y="189">Tib</text>
+		<text x="284" y="159">Tia</text>
+		<text x="95" y="155">Tur</text>
+		<text x="60"   y="85">Ukr</text>
+		<text x="194" y="57">Ura</text>
+		<text x="217" y="155">Uzb</text>
+		<text x="430" y="265">Vie</text>
+		<text x="509"  y="97">Vla</text>
+		<text x="29"   y="75">War</text>
+		<text x="263"  y="48">WSb</text>
+		<text x="455"  y="54">Yak</text>
+		<text x="513" y="194">YEL</text>
+		<text x="162" y="286">Yem</text>
+	</g>
+	
+	<!-- full province names -->
+	<g id="FullLabelLayer" class="labeltextLong" transform="translate(0,10)" visibility="hidden">
+		<rect x="240" y="186" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="240" y="186">Afghanistan</text>
+		<rect x="144" y="246" width="50" height="16" rx="4" ry="4" transform="translate(-25,-13)" class="tooltip"/>
+		<text x="144" y="246">Arabia</text>
+		<rect x="228" y="321" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="228" y="321">Arabian Sea</text>
+		<rect x="251" y="9" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="251" y="9">Arctic Sea</text>
+		<rect x="555" y="452" width="60" height="16" rx="4" ry="4" transform="translate(-30,-13)" class="tooltip"/>
+		<text x="555" y="452">Australia</text>
+		<rect x="30" y="125" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="30" y="125">Balkans</text>
+		<rect x="357" y="238" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="357" y="238">Bangladesh</text>
+		<rect x="115" y="14" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="115" y="14">Barents Sea</text>
+		<rect x="364" y="309" width="80" height="16" rx="4" ry="4" transform="translate(-40,-13)" class="tooltip"/>
+		<text x="364" y="309">Bay of Bengal</text>
+		<rect x="418" y="155" width="50" height="16" rx="4" ry="4" transform="translate(-25,-13)" class="tooltip"/>
+		<text x="418" y="155">Beijing</text>
+		<rect x="564" y="51" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="564" y="51">Bering Strait</text>
+		<rect x="84" y="130" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="84" y="130">Black Sea</text>
+		<rect x="295" y="286" width="60" height="16" rx="4" ry="4" transform="translate(-30,-13)" class="tooltip"/>
+		<text x="295" y="286">Bombay</text>
+		<rect x="480" y="356" width="50" height="16" rx="4" ry="4" transform="translate(-25,-13)" class="tooltip"/>
+		<text x="480" y="356">Borneo</text>
+		<rect x="378" y="259" width="45" height="16" rx="4" ry="4" transform="translate(-22,-13)" class="tooltip"/>
+		<text x="378" y="259">Burma</text>
+		<rect x="326" y="259" width="60" height="16" rx="4" ry="4" transform="translate(-30,-13)" class="tooltip"/>
+		<text x="326" y="259">Calcutta</text>
+		<rect x="439" y="295" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="439" y="295">Cambodia</text>
+		<rect x="154" y="125" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="154" y="125">Caspian Sea</text>
+		<rect x="136" y="160" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="136" y="160">Caucasus</text>
+		<rect x="554" y="342" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="554" y="342">Celebes Sea</text>
+		<rect x="309" y="392" width="120" height="16" rx="4" ry="4" transform="translate(-60,-13)" class="tooltip"/>
+		<text x="309" y="392">Central Indian Ocean</text>
+		<rect x="407" y="220" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="407" y="220">Chongqing</text>
+		<rect x="550" y="6" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="550" y="6">Chucki Sea</text>
+		<rect x="294" y="227" width="45" height="16" rx="4" ry="4" transform="translate(-22,-13)" class="tooltip"/>
+		<text x="294" y="227">Delhi</text>
+		<rect x="135" y="338" width="65" height="16" rx="4" ry="4" transform="translate(-33,-13)" class="tooltip"/>
+		<text x="135" y="338">East Africa</text>
+		<g>
+			<rect x="557" y="230" width="50" height="50" rx="4" ry="4" transform="translate(-25,-15)" class="tooltip"/>
+			<text x="557" y="230">Eastern</text>
+			<text x="557" y="245">China</text>
+			<text x="557" y="260">Sea</text>
+		</g>
+		<rect x="372" y="25" width="74" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/> 
+		<text x="372" y="25">East Siberia</text>
+		<g>
+			<rect x="130" y="400" width="45" height="45" rx="4" ry="4" transform="translate(-22,-13)" class="tooltip"/>
+			<text x="130" y="400">East</text>
+			<text x="130" y="415">African</text>
+			<text x="130" y="430">Sea</text>
+		</g>
+		<rect x="445" y="428" width="124" height="16" rx="4" ry="4" transform="translate(-62,-13)" class="tooltip"/>
+		<text x="445" y="428">Eastern Indian Ocean</text>
+		<g>
+			<rect x="44" y="178" width="80" height="32" rx="4" ry="4" transform="translate(-40,-13)" class="tooltip"/>
+			<text x="44" y="178">Eastern</text>
+			<text x="44" y="193">Mediterranean</text>
+		</g>
+		<rect x="61" y="249" width="45" height="16" rx="4" ry="4" transform="translate(-22,-13)" class="tooltip"/>
+		<text x="61" y="249">Egypt</text>
+		<rect x="216" y="92" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="216" y="92">Ekaterinburg</text>
+		<rect x="549" y="120" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="549" y="120">Hokkaido</text>
+		<rect x="424" y="239" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="424" y="239">Hong Kong</text>
+		<rect x="555" y="160" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="555" y="160">Honshu</text>
+		<rect x="188" y="194" width="35" height="16" rx="4" ry="4" transform="translate(-17,-13)" class="tooltip"/>
+		<text x="188" y="194">Iran</text>
+		<rect x="135" y="182" width="40" height="16" rx="4" ry="4" transform="translate(-20,-13)" class="tooltip"/>
+		<text x="135" y="182">Iraq</text>
+		<rect x="396" y="56" width="55" height="16" rx="4" ry="4" transform="translate(-27,-13)" class="tooltip"/> 
+		<text x="396" y="56">Irkutsk</text>
+		<rect x="466" y="406" width="40" height="16" rx="4" ry="4" transform="translate(-20,-13)" class="tooltip"/>
+		<text x="466" y="406">Java</text>
+		<g>
+			<rect x="520" y="390" width="42" height="32" rx="4" ry="4" transform="translate(-21,-13)" class="tooltip"/>
+			<text x="520" y="390">Jawan</text>
+			<text x="520" y="405">Sea</text>
+		</g>
+		<rect x="480" y="16" width="72" height="16" rx="4" ry="4" transform="translate(-36,-13)" class="tooltip"/> 
+		<text x="480" y="16">Kamchatka</text>
+		<rect x="185" y="116" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="185" y="116">Kazakhstan</text>
+		<rect x="490" y="146" width="45" height="16" rx="4" ry="4" transform="translate(-22,-13)" class="tooltip"/>
+		<text x="490" y="146">Korea</text>
+		<rect x="318" y="171" width="50" height="16" rx="4" ry="4" transform="translate(-25,-13)" class="tooltip"/>
+		<text x="318" y="171">Kunlun</text>
+		<rect x="400" y="258" width="40" height="16" rx="4" ry="4" transform="translate(-20,-13)" class="tooltip"/>
+		<text x="400" y="258">Laos</text>
+		<rect x="47" y="42" width="60" height="16" rx="4" ry="4" transform="translate(-30,-13)" class="tooltip"/>
+		<text x="47" y="42">Livonia</text>
+		<rect x="156" y="453" width="72" height="16" rx="4" ry="4" transform="translate(-36,-13)" class="tooltip"/>
+		<text x="156" y="453">Madagascar</text>
+		<rect x="459" y="109" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="459" y="109">Manchuria</text>
+		<rect x="370" y="119" width="55" height="16" rx="4" ry="4" transform="translate(-27,-13)" class="tooltip"/>
+		<text x="370" y="119">Mongolia</text>
+		<rect x="112" y="67" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="112" y="67">Moscow</text>
+		<rect x="565" y="370" width="44" height="32" rx="4" ry="4" transform="translate(-22,-13)" class="tooltip"/>
+		<g>
+			<text x="565" y="370">New</text>
+			<text x="565" y="385">Guinea</text>
+		</g>
+		<rect x="328" y="80" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="328" y="80">Novosibirsk</text>
+		<rect x="189" y="255" width="40" height="16" rx="4" ry="4" transform="translate(-20,-13)" class="tooltip"/>
+		<text x="189" y="255">Oman</text>
+		<rect x="252" y="214" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="252" y="214">Pakistan</text>
+		<rect x="182" y="231" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="182" y="231">Persian Gulf</text>
+		<rect x="535" y="295" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="535" y="295">Philippines</text>
+		<rect x="113" y="265" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="113" y="265">Red Sea</text>
+		<rect x="533" y="75" width="90" height="16" rx="4" ry="4" transform="translate(-45,-13)" class="tooltip"/>
+		<text x="533" y="75">Sea of Okhotsk</text>
+		<rect x="114" y="111" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="114" y="111">Sevastopol</text>
+		<rect x="200" y="423" width="70" height="16" rx="4" ry="4" transform="translate(-35,-13)" class="tooltip"/>
+		<text x="200" y="423">Seychelles</text>
+		<rect x="463" y="207" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="463" y="207">Shanghai</text>
+		<g>
+			<rect x="480" y="255" width="40" height="48" rx="4" ry="4" transform="translate(-20,-13)" class="tooltip"/>
+			<text x="480" y="255">South</text>
+			<text x="480" y="270">China</text>
+			<text x="480" y="285">Sea</text>
+		</g>
+		<rect x="331" y="455" width="123" height="16" rx="4" ry="4" transform="translate(-62,-13)" class="tooltip"/>
+		<text x="331" y="455">South Indian Ocean</text>
+		<rect x="334" y="348" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="334" y="348">Sri Lanka</text>
+		<rect x="145" y="51" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="145" y="51">St Petersburg</text>
+		<rect x="414" y="367" width="55" height="16" rx="4" ry="4" transform="translate(-27,-13)" class="tooltip"/>
+		<text x="414" y="367">Sumatra</text>
+		<rect x="105" y="193" width="45" height="16" rx="4" ry="4" transform="translate(-22,-13)" class="tooltip"/>
+		<text x="105" y="193">Syria</text>
+		<rect x="454" y="328" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="454" y="328">Thai Sea</text>
+		<rect x="411" y="298" width="60" height="16" rx="4" ry="4" transform="translate(-30,-13)" class="tooltip"/>
+		<text x="411" y="298">Thailand</text>
+		<rect x="375" y="189" width="42" height="16" rx="4" ry="4" transform="translate(-21,-13)" class="tooltip"/>
+		<text x="375" y="189">Tibet</text>
+		<rect x="284" y="150" width="60" height="16" rx="4" ry="4" transform="translate(-30,-13)" class="tooltip"/>
+		<text x="284" y="150">Tien Shan</text>
+		<rect x="80" y="155" width="45" height="16" rx="4" ry="4" transform="translate(-22,-13)" class="tooltip"/>
+		<text x="80" y="155">Turkey</text>
+		<rect x="55" y="85" width="50" height="16" rx="4" ry="4" transform="translate(-25,-13)" class="tooltip"/>
+		<text x="55"   y="85">Ukraine</text>
+		<rect x="194" y="57" width="40" height="16" rx="4" ry="4" transform="translate(-20,-13)" class="tooltip"/>
+		<text x="194" y="57">Urals</text>
+		<rect x="217" y="155" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="217" y="155">Uzbekistan</text>
+		<rect x="430" y="265" width="55" height="16" rx="4" ry="4" transform="translate(-27,-13)" class="tooltip"/>
+		<text x="430" y="265">Vietnam</text>
+		<rect x="509" y="97" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="509"  y="97">Vladivostok</text>
+		<rect x="29" y="75" width="55" height="16" rx="4" ry="4" transform="translate(-27,-13)" class="tooltip"/>
+		<text x="29"   y="75">Warsaw</text>
+		<rect x="263" y="48" width="75" height="16" rx="4" ry="4" transform="translate(-37,-13)" class="tooltip"/>
+		<text x="263"  y="48">West Siberia</text>
+		<rect x="455" y="54" width="55" height="16" rx="4" ry="4" transform="translate(-27,-13)" class="tooltip"/>
+		<text x="458"  y="54">Yakutsk</text>
+		<g>
+			<rect x="513" y="180" width="45" height="32" rx="4" ry="4" transform="translate(-23,-13)" class="tooltip"/>
+			<text x="513" y="182">Yellow</text>
+			<text x="513" y="195">Sea</text>
+		</g>
+		<rect x="162" y="286" width="45" height="16" rx="4" ry="4" transform="translate(-22,-13)" class="tooltip"/> 
+		<text x="162" y="286">Yemen</text>
+	</g>
+	
+	<!-- mouse-detect layer. This must be the last layer. -->
+	<g id="MouseLayer" class="invisible">
+		<path id="afg"  d="M 217,178 L 221 210 L 231 210 L 237 205 L 243 200 L 250 196 L 254 185 L 262 181 L 273 168 L 261 165 L 240 165 L 237 175 L 230 177 L 217 178"/>
+		<path id="ara"  d="M 98,221 L 115 254 L 133 278 L 135 285 L 173 276 L 173 245 L 170 236 L 151 217 L 117 206 L 108 212 L 98 221"/>
+		<path id="ars"  d="M 139,369 L 155 414 L 235 385 L 326 351 L 324 339 L 309 335 L 300 335 L 275 286 L 272 260 L 262 260 L 252 240 L 226 241 L 213 242 L 210 256 L 182 285 L 171 294 L 171 315 L 154 357 L 139 369 "/>
+		<path id="arc"  d="M 171,23 L 172 33 L 179 41 L 215 39 L 230 38 L 320 29 L 336 23 L 352 18 L 416 21 L 455 14 L 483 12 L 467 0 L 172 0 L 171 23"/>
+		<path id="aus"  d="M 486,475 L 595 475 L 595 453 L 581 448 L 581 441 L 557 442 L 553 447 L 547 441 L 540 445 L 537 447 L 533 452 L 529 459 L 517 463 L 492 467 L 486 475"/>
+		<path id="bal"  d="M 0,142 L 20 177 L 32 168 L 42 147 L 56 133 L 64 137 L 67 130 L 80 121 L 67 107 L 61 101 L 47 102 L 11 102 L 0 142"/>
+		<path id="ban"  d="M 335,233 L 336 244 L 352 260 L 358 260 L 360 253 L 367 258 L 370 255 L 371 245 L 377 236 L 371 236 L 366 228 L 360 229 L 351 226 L 343 235 L 335 233"/>
+		<path id="bar"  d="M 39,0 L 46 10 L 52 9 L 67 9 L 70 18 L 71 25 L 64 19 L 66 29 L 71 32 L 110 37 L 134 49 L 144 42 L 163 32 L 171 23 L 172 0 L 39 0 "/>
+		<path id="bob"  d="M 309,335 L 324 339 L 330 334 L 335 340 L 344 347 L 403 366 L 401 359 L 397 356 L 395 351 L 390 348 L 388 346 L 388 335 L 392 343 L 395 343 L 400 344 L 408 350 L 410 353 L 419 348 L 413 332 L 406 322 L 405 304 L 393 291 L 392 293 L 389 293 L 388 289 L 383 294 L 381 290 L 383 283 L 380 277 L 373 272 L 370 264 L 370 255 L 367 258 L 360 253 L 358 260 L 352 260 L 346 267 L 335 276 L 329 288 L 318 300 L 318 311 L 315 325 L 309 335 "/>
+		<path id="bjg"  d="M 358,147 L 362 154 L 362 166 L 366 170 L 373 171 L 388 179 L 403 179 L 418 190 L 425 197 L 430 199 L 437 198 L 450 186 L 454 189 L 459 187 L 465 193 L 476 197 L 489 196 L 488 193 L 486 191 L 482 188 L 480 186 L 475 183 L 472 177 L 472 175 L 475 170 L 477 169 L 478 166 L 477 164 L 474 164 L 468 166 L 467 169 L 463 166 L 457 159 L 457 155 L 459 149 L 449 148 L 449 145 L 453 137 L 454 132 L 452 125 L 448 121 L 441 120 L 437 116 L 436 113 L 432 110 L 418 126 L 410 126 L 392 145 L 358 147"/>
+		<path id="ber"  d="M 531,33 L 532 43 L 534 52 L 534 61 L 534 70 L 531 74 L 563 94 L 593 110 L 593 23 L 535 27 L 531 33 "/>
+		<path id="bla"  d="M 64,137 L 64 145 L 65 147 L 68 148 L 73 149 L 78 143 L 106 145 L 110 142 L 111 139 L 108 137 L 102 128 L 95 122 L 80 121 L 67 130 L 64 137 "/>
+		<path id="bom"  d="M 272,260 L 275 286 L 300 335 L 309 335 L 315 325 L 318 311 L 318 300 L 311 294 L 301 268 L 291 263 L 283 251 L 272 260 "/>
+		<path id="bor"  d="M 453,358 L 456 372 L 461 376 L 459 381 L 472 382 L 476 387 L 480 383 L 487 392 L 498 381 L 493 376 L 496 369 L 498 367 L 499 362 L 503 364 L 507 358 L 499 351 L 498 346 L 495 346 L 495 343 L 497 339 L 499 337 L 501 333 L 504 330 L 497 331 L 494 327 L 494 325 L 492 325 L 483 334 L 483 337 L 473 348 L 467 354 L 464 362 L 461 361 L 458 359 L 453 358 "/>
+		<path id="bur"  d="M 370,255 L 370 264 L 373 272 L 380 277 L 383 283 L 381 290 L 383 294 L 388 289 L 389 293 L 392 293 L 393 291 L 397 287 L 403 285 L 403 277 L 398 272 L 389 264 L 384 256 L 389 247 L 384 240 L 377 236 L 371 245 L 370 255 "/>
+		<path id="cal"  d="M 301,268 L 311 294 L 318 300 L 329 288 L 335 276 L 346 267 L 352 260 L 336 244 L 335 233 L 332 233 L 315 227 L 314 255 L 311 261 L 301 268 "/>
+		<path id="cam"  d="M 426,294 L 426 302 L 434 307 L 437 314 L 441 319 L 446 315 L 452 309 L 461 301 L 453 296 L 449 296 L 447 288 L 437 285 L 435 285 L 433 289 L 428 292 L 426 294 "/>
+		<path id="cas"  d="M 140,128 L 142 136 L 146 140 L 153 147 L 155 154 L 154 159 L 153 162 L 150 170 L 155 170 L 173 169 L 172 162 L 170 158 L 173 151 L 167 145 L 165 145 L 164 140 L 157 132 L 161 127 L 165 126 L 167 120 L 159 117 L 152 117 L 150 118 L 140 128 "/>
+		<path id="cau"  d="M 102,128 L 108 137 L 111 139 L 110 142 L 106 145 L 118 156 L 124 166 L 130 172 L 135 178 L 138 177 L 147 173 L 150 170 L 153 162 L 154 159 L 155 154 L 153 147 L 146 140 L 140 141 L 136 141 L 130 138 L 118 128 L 102 128 "/>
+		<path id="cel"  d="M 495,343 L 495 346 L 498 346 L 499 351 L 507 358 L 534 377 L 548 376 L 553 387 L 562 388 L 570 384 L 578 388 L 579 385 L 585 391 L 595 392 L 593 307 L 538 307 L 541 310 L 542 315 L 543 320 L 543 325 L 539 328 L 535 331 L 532 325 L 504 330 L 501 333 L 499 337 L 497 339 L 495 343 "/>
+		<path id="cio"  d="M 235,385 L 242 449 L 343 422 L 413 384 L 413 378 L 403 366 L 344 347 L 337 359 L 326 361 L 326 351 L 235 385 "/>
+		<path id="chq"  d="M 384,240 L 389 247 L 398 248 L 398 244 L 406 241 L 415 233 L 425 231 L 435 231 L 444 231 L 443 224 L 435 212 L 428 205 L 414 208 L 406 211 L 395 219 L 385 227 L 384 240 "/>
+		<path id="chu"  d="M 467,0 L 483 12 L 499 11 L 506 11 L 518 13 L 522 14 L 527 18 L 535 27 L 593 23 L 593 0 L 467 0 "/>
+		<path id="del"  d="M 266,225 L 283 251 L 291 263 L 301 268 L 311 261 L 314 255 L 315 227 L 305 221 L 286 201 L 286 194 L 279 193 L 277 195 L 271 205 L 267 215 L 266 225 "/>
+		<path id="eaf"  d="M 102,275 L 102 296 L 102 405 L 139 369 L 154 357 L 171 315 L 132 315 L 102 275 "/>
+		<path id="ecs"  d="M 476,240 L 505 257 L 510 250 L 514 251 L 518 251 L 519 256 L 522 261 L 518 265 L 514 269 L 518 274 L 522 278 L 526 283 L 527 285 L 528 290 L 531 296 L 538 307 L 593 307 L 592 240 L 593 110 L 563 94 L 554 112 L 556 113 L 558 119 L 561 125 L 556 130 L 556 141 L 560 142 L 563 147 L 563 152 L 565 156 L 563 162 L 564 169 L 560 173 L 555 174 L 552 177 L 548 182 L 546 217 L 489 221 L 483 230 L 476 240 "/>
+		<path id="esb"  d="M 318,43 L 400 43 L 421 40 L 416 21 L 352 18 L 336 23 L 318 43 "/>
+		<path id="eas"  d="M 64,475 L 124 475 L 145 450 L 164 441 L 155 414 L 139 369 L 102 405 L 64 475 "/>
+		<path id="eio"  d="M 343,422 L 372 437 L 492 467 L 517 463 L 529 459 L 533 452 L 537 447 L 540 445 L 493 413 L 484 415 L 476 415 L 462 415 L 452 411 L 443 413 L 441 414 L 439 413 L 430 412 L 440 408 L 445 406 L 439 401 L 435 404 L 431 403 L 424 396 L 414 390 L 413 384 L 343 422 "/>
+		<path id="eme"  d="M 0,142 L 0 215 L 7 214 L 7 205 L 19 203 L 49 203 L 59 213 L 76 210 L 79 209 L 88 207 L 97 177 L 57 177 L 50 156 L 42 147 L 32 168 L 20 177 L 0 142 "/>
+		<path id="egy"  d="M 19,203 L 32 296 L 102 296 L 102 275 L 81 223 L 82 220 L 76 210 L 59 213 L 49 203 L 19 203 "/>
+		<path id="eka"  d="M 194,94 L 200 117 L 225 119 L 238 107 L 238 88 L 226 80 L 202 86 L 194 94 "/>
+		<path id="hok"  d="M 534,130 L 537 130 L 538 135 L 542 137 L 543 132 L 546 129 L 551 131 L 556 130 L 561 125 L 558 119 L 556 113 L 554 112 L 547 113 L 536 107 L 539 112 L 542 116 L 540 120 L 535 125 L 534 130 "/>
+		<path id="hkg"  d="M 398,244 L 398 248 L 413 252 L 417 254 L 420 250 L 423 246 L 439 245 L 443 250 L 445 249 L 457 253 L 460 249 L 467 241 L 444 231 L 435 231 L 425 231 L 415 233 L 406 241 L 398 244 "/>
+		<path id="hon"  d="M 524,187 L 526 190 L 529 191 L 532 186 L 537 181 L 542 179 L 548 182 L 552 177 L 555 174 L 560 173 L 564 169 L 563 162 L 565 156 L 563 152 L 563 147 L 560 142 L 556 141 L 549 138 L 544 148 L 551 152 L 548 158 L 541 160 L 540 168 L 531 172 L 529 178 L 527 183 L 524 187 "/>
+		<path id="irn"  d="M 135,178 L 146 189 L 151 197 L 153 210 L 174 215 L 184 225 L 201 227 L 213 242 L 226 241 L 221 210 L 217 178 L 205 173 L 184 170 L 173 169 L 155 170 L 150 170 L 147 173 L 138 177 L 135 178 "/>
+		<path id="irq"  d="M 116,172 L 122 188 L 117 196 L 117 206 L 151 217 L 153 210 L 151 197 L 146 189 L 135 178 L 130 172 L 124 166 L 116 172 "/>
+		<path id="irk"  d="M 299,64 L 400 73 L 409 79 L 427 81 L 431 80 L 433 79 L 436 80 L 439 85 L 442 84 L 446 86 L 458 73 L 428 53 L 400 43 L 318 43 L 299 64 "/>
+		<path id="jav"  d="M 430,412 L 439 413 L 441 414 L 443 413 L 452 411 L 462 415 L 476 415 L 484 415 L 493 413 L 487 405 L 479 408 L 473 401 L 467 401 L 457 400 L 453 403 L 445 406 L 440 408 L 430 412 "/>
+		<path id="jvs"  d="M 431,376 L 440 388 L 439 401 L 445 406 L 453 403 L 457 400 L 467 401 L 473 401 L 479 408 L 487 405 L 493 413 L 540 445 L 547 441 L 553 447 L 557 442 L 581 441 L 581 448 L 595 453 L 595 427 L 584 426 L 582 417 L 575 409 L 568 407 L 556 402 L 551 397 L 547 402 L 544 397 L 543 391 L 547 387 L 540 385 L 534 377 L 507 358 L 503 364 L 499 362 L 498 367 L 496 369 L 493 376 L 498 381 L 487 392 L 480 383 L 476 387 L 472 382 L 459 381 L 461 376 L 456 372 L 431 376 "/>
+		<path id="kam"  d="M 416,21 L 421 40 L 480 43 L 486 41 L 493 35 L 508 33 L 514 34 L 520 37 L 525 43 L 525 51 L 524 58 L 524 64 L 527 70 L 531 74 L 534 70 L 534 61 L 534 52 L 532 43 L 531 33 L 535 27 L 527 18 L 522 14 L 518 13 L 506 11 L 499 11 L 483 12 L 455 14 L 416 21 "/>
+		<path id="kaz"  d="M 157,132 L 164 140 L 165 145 L 167 145 L 175 145 L 192 142 L 211 138 L 224 139 L 230 139 L 233 140 L 238 143 L 242 140 L 248 144 L 244 155 L 248 155 L 258 151 L 268 141 L 273 146 L 278 142 L 285 135 L 301 126 L 300 119 L 306 119 L 310 112 L 312 109 L 262 109 L 238 107 L 225 119 L 200 117 L 194 94 L 159 92 L 171 112 L 171 114 L 167 120 L 165 126 L 161 127 L 157 132 "/>
+		<path id="kor"  d="M 467,139 L 467 143 L 467 146 L 473 151 L 478 149 L 481 147 L 485 151 L 487 156 L 489 160 L 495 161 L 500 166 L 501 170 L 497 174 L 499 178 L 504 178 L 511 176 L 513 173 L 511 165 L 507 158 L 503 152 L 498 151 L 498 147 L 500 143 L 500 138 L 503 131 L 501 129 L 497 127 L 495 129 L 493 133 L 490 137 L 486 137 L 482 135 L 475 135 L 471 136 L 467 139 "/>
+		<path id="kun"  d="M 295,189 L 296 200 L 306 205 L 322 208 L 335 216 L 341 215 L 338 208 L 341 201 L 333 193 L 341 180 L 334 170 L 334 160 L 331 145 L 329 138 L 334 132 L 326 128 L 318 131 L 314 140 L 313 148 L 310 156 L 308 160 L 296 168 L 299 171 L 301 181 L 300 185 L 295 189 "/>
+		<path id="lao"  d="M 384,256 L 389 264 L 398 272 L 403 277 L 403 285 L 410 285 L 415 287 L 426 294 L 428 292 L 433 289 L 435 285 L 430 279 L 426 276 L 417 272 L 411 267 L 413 260 L 417 254 L 413 252 L 398 248 L 389 247 L 384 256 "/>
+		<path id="liv"  d="M 18,55 L 23 55 L 27 53 L 34 53 L 41 57 L 45 62 L 51 67 L 68 60 L 68 42 L 51 33 L 47 29 L 41 26 L 39 27 L 33 29 L 24 32 L 21 40 L 18 55 "/>
+		<path id="mad"  d="M 124,475 L 165 475 L 164 441 L 145 450 L 124 475 "/>
+		<path id="man"  d="M 416,95 L 416 102 L 420 103 L 426 103 L 432 98 L 436 104 L 432 110 L 436 113 L 437 116 L 441 120 L 448 121 L 452 125 L 454 132 L 453 137 L 449 145 L 449 148 L 459 149 L 464 145 L 467 143 L 467 139 L 471 136 L 475 135 L 482 135 L 486 137 L 490 137 L 493 133 L 495 129 L 497 127 L 494 123 L 494 119 L 498 114 L 501 108 L 500 105 L 498 101 L 494 98 L 491 100 L 489 101 L 487 95 L 484 96 L 474 106 L 472 104 L 470 104 L 466 102 L 463 100 L 459 93 L 446 86 L 442 84 L 439 85 L 436 80 L 433 79 L 431 80 L 427 81 L 426 83 L 426 89 L 421 93 L 416 95 "/>
+		<path id="mon"  d="M 300,119 L 301 126 L 308 130 L 318 131 L 326 128 L 334 132 L 339 133 L 340 139 L 348 145 L 358 147 L 392 145 L 410 126 L 418 126 L 432 110 L 436 104 L 432 98 L 426 103 L 420 103 L 416 102 L 416 95 L 412 95 L 407 98 L 401 99 L 381 100 L 374 102 L 370 101 L 367 99 L 366 96 L 360 100 L 351 98 L 344 95 L 342 99 L 336 105 L 333 107 L 328 106 L 324 102 L 316 101 L 312 109 L 310 112 L 306 119 L 300 119 "/>
+		<path id="mos"  d="M 51,67 L 52 78 L 56 78 L 61 82 L 71 82 L 78 86 L 86 91 L 96 91 L 101 95 L 104 102 L 119 101 L 128 103 L 135 108 L 150 118 L 152 117 L 159 117 L 167 120 L 171 114 L 171 112 L 159 92 L 151 85 L 145 76 L 134 68 L 117 54 L 105 52 L 95 48 L 84 45 L 78 44 L 68 42 L 68 60 L 51 67 "/>
+		<path id="new"  d="M 534,377 L 540 385 L 547 387 L 543 391 L 544 397 L 547 402 L 551 397 L 556 402 L 568 407 L 575 409 L 582 417 L 584 426 L 595 427 L 595 392 L 585 391 L 579 385 L 578 388 L 570 384 L 562 388 L 553 387 L 548 376 L 534 377 "/>
+		<path id="nov"  d="M 238,88 L 238 107 L 262 109 L 312 109 L 316 101 L 324 102 L 328 106 L 333 107 L 336 105 L 342 99 L 344 95 L 351 98 L 360 100 L 366 96 L 367 99 L 370 101 L 374 102 L 381 100 L 401 99 L 407 98 L 412 95 L 416 95 L 421 93 L 426 89 L 426 83 L 427 81 L 409 79 L 400 73 L 299 64 L 284 63 L 273 72 L 271 73 L 263 73 L 258 77 L 248 88 L 238 88 "/>
+		<path id="oma"  d="M 173,245 L 173 276 L 182 276 L 182 285 L 210 256 L 196 247 L 193 239 L 183 246 L 173 245 "/>
+		<path id="pak"  d="M 221,210 L 226 241 L 252 240 L 262 260 L 272 260 L 283 251 L 266 225 L 267 215 L 271 205 L 277 195 L 279 193 L 278 189 L 275 179 L 273 168 L 262 181 L 254 185 L 250 196 L 243 200 L 237 205 L 231 210 L 221 210 "/>
+		<path id="per"  d="M 151,217 L 170 236 L 173 245 L 183 246 L 193 239 L 196 247 L 210 256 L 213 242 L 201 227 L 184 225 L 174 215 L 153 210 L 151 217 "/>
+		<path id="phi"  d="M 502,261 L 502 265 L 504 268 L 504 275 L 505 277 L 511 276 L 515 280 L 515 282 L 510 286 L 507 286 L 516 295 L 522 303 L 528 310 L 525 313 L 523 315 L 521 319 L 520 321 L 520 324 L 523 323 L 528 319 L 532 325 L 535 331 L 539 328 L 543 325 L 543 320 L 542 315 L 541 310 L 538 307 L 531 296 L 528 290 L 527 285 L 526 283 L 522 278 L 518 274 L 514 269 L 518 265 L 522 261 L 519 256 L 518 251 L 514 251 L 510 250 L 505 257 L 502 261 "/>
+		<path id="red"  d="M 81,223 L 102 275 L 132 315 L 171 315 L 171 294 L 159 301 L 139 301 L 135 285 L 133 278 L 115 254 L 98 221 L 94 225 L 86 219 L 85 219 L 82 220 L 81 223 "/>
+		<path id="okh"  d="M 468,60 L 474 63 L 484 60 L 493 61 L 500 72 L 507 79 L 509 82 L 509 88 L 513 89 L 516 94 L 521 103 L 519 109 L 517 118 L 514 124 L 510 128 L 509 131 L 503 131 L 500 138 L 500 143 L 498 147 L 498 151 L 503 152 L 507 158 L 511 165 L 513 173 L 529 178 L 531 172 L 540 168 L 541 160 L 548 158 L 551 152 L 544 148 L 549 138 L 556 141 L 556 130 L 551 131 L 546 129 L 543 132 L 542 137 L 538 135 L 537 130 L 534 130 L 535 125 L 540 120 L 542 116 L 539 112 L 536 107 L 547 113 L 554 112 L 563 94 L 531 74 L 527 70 L 524 64 L 524 58 L 525 51 L 525 43 L 520 37 L 514 34 L 508 33 L 493 35 L 486 41 L 480 43 L 468 60 "/>
+		<path id="sev"  d="M 67,107 L 80 121 L 95 122 L 102 128 L 118 128 L 130 138 L 136 141 L 140 141 L 146 140 L 142 136 L 140 128 L 150 118 L 135 108 L 128 103 L 119 101 L 104 102 L 93 104 L 82 104 L 67 107 "/>
+		<path id="sey"  d="M 155,414 L 164 441 L 165 475 L 245 475 L 242 449 L 235 385 L 155 414 "/>
+		<path id="sha"  d="M 425,197 L 428 205 L 435 212 L 443 224 L 444 231 L 467 241 L 474 241 L 476 240 L 483 230 L 489 221 L 490 214 L 490 211 L 489 207 L 490 200 L 489 196 L 476 197 L 465 193 L 459 187 L 454 189 L 450 186 L 437 198 L 430 199 L 425 197 "/>
+		<path id="scs"  d="M 439,257 L 439 263 L 444 270 L 455 282 L 457 279 L 459 284 L 461 289 L 492 325 L 494 325 L 494 327 L 497 331 L 504 330 L 532 325 L 528 319 L 523 323 L 520 324 L 520 321 L 521 319 L 523 315 L 525 313 L 528 310 L 522 303 L 516 295 L 507 286 L 510 286 L 515 282 L 515 280 L 511 276 L 505 277 L 504 275 L 504 268 L 502 265 L 502 261 L 505 257 L 476 240 L 474 241 L 467 241 L 460 249 L 457 253 L 445 249 L 443 250 L 439 257 "/>
+		<path id="sio"  d="M 242,449 L 245 475 L 486 475 L 492 467 L 372 437 L 343 422 L 242 449 "/>
+		<path id="sri"  d="M 324,339 L 326 351 L 326 361 L 337 359 L 344 347 L 335 340 L 330 334 L 324 339 "/>
+		<path id="stp"  d="M 41,26 L 47 29 L 51 33 L 68 42 L 78 44 L 84 45 L 95 48 L 105 52 L 117 54 L 134 68 L 145 76 L 160 58 L 171 58 L 179 41 L 172 33 L 171 23 L 163 32 L 144 42 L 134 49 L 110 37 L 71 32 L 66 29 L 64 19 L 71 25 L 70 18 L 67 9 L 52 9 L 46 10 L 44 19 L 41 26 "/>
+		<path id="sum"  d="M 388,335 L 388 346 L 390 348 L 395 351 L 397 356 L 401 359 L 403 366 L 413 378 L 413 384 L 414 390 L 424 396 L 431 403 L 435 404 L 439 401 L 440 388 L 431 376 L 410 353 L 408 350 L 400 344 L 395 343 L 392 343 L 388 335 "/>
+		<path id="syr"  d="M 79,209 L 85 219 L 86 219 L 94 225 L 98 221 L 108 212 L 117 206 L 117 196 L 122 188 L 116 172 L 97 177 L 88 207 L 79 209 "/>
+		<path id="ths"  d="M 410,353 L 431 376 L 456 372 L 453 358 L 458 359 L 461 361 L 464 362 L 467 354 L 473 348 L 483 337 L 483 334 L 492 325 L 461 289 L 461 301 L 452 309 L 446 315 L 441 319 L 437 314 L 434 307 L 426 302 L 423 302 L 417 305 L 415 311 L 415 318 L 418 327 L 422 333 L 428 338 L 436 341 L 436 362 L 431 361 L 425 355 L 419 348 L 410 353 "/>
+		<path id="tha"  d="M 393,291 L 405 304 L 406 322 L 413 332 L 419 348 L 425 355 L 431 361 L 436 362 L 436 341 L 428 338 L 422 333 L 418 327 L 415 318 L 415 311 L 417 305 L 423 302 L 426 302 L 426 294 L 415 287 L 410 285 L 403 285 L 397 287 L 393 291 "/>
+		<path id="tib"  d="M 329,138 L 331 145 L 334 160 L 334 170 L 341 180 L 333 193 L 341 201 L 338 208 L 341 215 L 351 215 L 368 217 L 379 222 L 385 227 L 395 219 L 406 211 L 414 208 L 428 205 L 425 197 L 418 190 L 403 179 L 388 179 L 373 171 L 366 170 L 362 166 L 362 154 L 358 147 L 348 145 L 340 139 L 339 133 L 334 132 L 329 138 "/>
+		<path id="tia"  d="M 240,165 L 261 165 L 273 168 L 275 179 L 278 189 L 279 193 L 286 194 L 286 201 L 296 200 L 295 189 L 300 185 L 301 181 L 299 171 L 296 168 L 308 160 L 310 156 L 313 148 L 314 140 L 318 131 L 308 130 L 301 126 L 285 135 L 278 142 L 273 146 L 268 141 L 258 151 L 248 155 L 244 155 L 240 165 "/>
+		<path id="tur"  d="M 42,147 L 50 156 L 57 177 L 97 177 L 116 172 L 124 166 L 118 156 L 106 145 L 78 143 L 73 149 L 68 148 L 65 147 L 64 145 L 64 137 L 56 133 L 42 147 "/>
+		<path id="ukr"  d="M 43,85 L 44 89 L 47 93 L 47 102 L 61 101 L 67 107 L 82 104 L 93 104 L 104 102 L 101 95 L 96 91 L 86 91 L 78 86 L 71 82 L 61 82 L 56 78 L 52 78 L 48 80 L 43 85 "/>
+		<path id="ura"  d="M 145,76 L 151 85 L 159 92 L 194 94 L 202 86 L 226 80 L 230 71 L 230 38 L 215 39 L 179 41 L 171 58 L 160 58 L 145 76 "/>
+		<path id="uzb"  d="M 167,145 L 173 151 L 170 158 L 172 162 L 173 169 L 184 170 L 205 173 L 217 178 L 230 177 L 237 175 L 240 165 L 244 155 L 248 144 L 242 140 L 238 143 L 233 140 L 230 139 L 224 139 L 211 138 L 192 142 L 175 145 L 167 145 "/>
+		<path id="vie"  d="M 411,267 L 417 272 L 426 276 L 430 279 L 435 285 L 437 285 L 447 288 L 449 296 L 453 296 L 461 301 L 461 289 L 459 284 L 457 279 L 455 282 L 444 270 L 439 263 L 439 257 L 443 250 L 439 245 L 423 246 L 420 250 L 417 254 L 413 260 L 411 267 "/>
+		<path id="vla"  d="M 446,86 L 459 93 L 463 100 L 466 102 L 470 104 L 472 104 L 474 106 L 484 96 L 487 95 L 489 101 L 491 100 L 494 98 L 498 101 L 500 105 L 501 108 L 498 114 L 494 119 L 494 123 L 497 127 L 501 129 L 503 131 L 509 131 L 510 128 L 514 124 L 517 118 L 519 109 L 521 103 L 516 94 L 513 89 L 509 88 L 509 82 L 507 79 L 498 82 L 458 73 L 446 86 "/>
+		<path id="war"  d="M 9,86 L 11 98 L 11 102 L 47 102 L 47 93 L 44 89 L 43 85 L 48 80 L 52 78 L 51 67 L 45 62 L 41 57 L 34 53 L 27 53 L 23 55 L 18 55 L 11 68 L 9 86 "/>
+		<path id="wsb"  d="M 226,80 L 238 88 L 248 88 L 258 77 L 263 73 L 271 73 L 273 72 L 284 63 L 299 64 L 318 43 L 336 23 L 320 29 L 230 38 L 230 71 L 226 80 "/>
+		<path id="yak"  d="M 400,43 L 428 53 L 458 73 L 498 82 L 507 79 L 500 72 L 493 61 L 484 60 L 474 63 L 468 60 L 480 43 L 421 40 L 400 43 "/>
+		<path id="yel"  d="M 457,155 L 457 159 L 463 166 L 467 169 L 468 166 L 474 164 L 477 164 L 478 166 L 477 169 L 475 170 L 472 175 L 472 177 L 475 183 L 480 186 L 482 188 L 486 191 L 488 193 L 489 196 L 490 200 L 489 207 L 490 211 L 490 214 L 489 221 L 546 217 L 548 182 L 542 179 L 537 181 L 532 186 L 529 191 L 526 190 L 524 187 L 527 183 L 529 178 L 513 173 L 511 176 L 504 178 L 499 178 L 497 174 L 501 170 L 500 166 L 495 161 L 489 160 L 487 156 L 485 151 L 481 147 L 478 149 L 473 151 L 467 146 L 467 143 L 464 145 L 459 149 L 457 155 "/>
+		<path id="yem"  d="M 135,285 L 139 301 L 159 301 L 171 294 L 182 285 L 182 276 L 173 276 L 135 285 "/>
+		<!-- COASTS -->
+		<path id="ara-ec" d="M 117 206 L 151 217 170 236 173 245 173 276 z"/>
+		<path id="ara-wc" d="M 117 206 L 108 212 L 98,221 L 115 254 L 133 278 L 135 285 L 173 276 z"/>
+		<path id="bal-ec" d="M 42 147 L 56 133 L 64 137 L 67 130 L 80 121 L 67 107 L 61 101 L 47 102 L 11 102 z"/>
+		<path id="bal-sc" d="M 0,142 L 20 177 L 32 168 L 42 147 L 11 102 z"/>
+		<path id="irn-nc" d="M 135,178 L 146 189 L 151 197 L 153 210 L 217 178 L 205 173 L 184 170 L 173 169 L 155 170 L 150 170 L 147 173 L 138 177 z"/>
+		<path id="irn-sc" d="M 153 210 L 174 215 L 184 225 L 201 227 L 213 242 L 226 241 L 221 210 L 217 178 z"/>
+		<path id="sev-ec" d="M 102 128 L 118 128 L 130 138 L 136 141 L 140 141 L 146 140 L 142 136 L 140 128 L 150 118 L 135 108 L 128 103 L 119 101 z"/>
+		<path id="sev-wc" d="M 67,107 L 80 121 L 95 122 L 102 128 L 119 101 L 104 102 L 93 104 L 82 104 z"/>
+	</g>
+</svg>

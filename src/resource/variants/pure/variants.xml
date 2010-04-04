@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!DOCTYPE VARIANTS [
+	<!ELEMENT VARIANTS (DESCRIPTION, MAP_DEFINITION+, VARIANT+)>
+	
+	<!ELEMENT DESCRIPTION (#PCDATA)>
+	
+	<!ELEMENT MAP_DEFINITION (DESCRIPTION?)>
+	<!ATTLIST MAP_DEFINITION 
+		id ID #REQUIRED
+		title CDATA #REQUIRED
+		URI CDATA #REQUIRED
+		thumbURI CDATA #REQUIRED
+		preferredUnitStyle CDATA #IMPLIED
+		>
+	
+	<!ELEMENT VARIANT (DESCRIPTION, MAP, RULEOPTIONS?, POWER+, STARTINGTIME, VICTORYCONDITIONS, SUPPLYCENTER+, INITIALSTATE*)>
+	<!ATTLIST VARIANT
+			name CDATA #REQUIRED
+			default (true|false) "false"
+			version CDATA #REQUIRED
+			aliases CDATA #IMPLIED
+			>
+			
+	<!ELEMENT MAP (MAP_GRAPHIC*)>
+	<!ATTLIST MAP adjacencyURI CDATA #REQUIRED>
+	
+	<!ELEMENT MAP_GRAPHIC EMPTY>
+	<!ATTLIST MAP_GRAPHIC
+			ref IDREF #REQUIRED
+			default (true|false) "false"
+			preferredUnitStyle CDATA #IMPLIED
+			>
+	
+	<!ELEMENT RULEOPTIONS (RULEOPTION+)>
+	<!ELEMENT RULEOPTION EMPTY>
+	<!ATTLIST RULEOPTION	name CDATA #REQUIRED
+				value CDATA #REQUIRED>
+	
+	<!ELEMENT POWER EMPTY>
+	<!ATTLIST POWER name CDATA #REQUIRED
+			active (true|false) "true"
+			adjective CDATA #REQUIRED
+			altnames CDATA #IMPLIED
+			>
+	
+	<!ELEMENT STARTINGTIME EMPTY>
+	<!ATTLIST STARTINGTIME 	turn CDATA #REQUIRED
+				allowBCYears (true|false) "false"
+				>
+	
+	<!ELEMENT VICTORYCONDITIONS (WINNING_SUPPLY_CENTERS?, YEARS_WITHOUT_SC_CAPTURE?, GAME_LENGTH?)>
+	
+	<!ELEMENT WINNING_SUPPLY_CENTERS EMPTY>
+	<!ATTLIST WINNING_SUPPLY_CENTERS value CDATA #REQUIRED>
+	
+	<!ELEMENT YEARS_WITHOUT_SC_CAPTURE EMPTY>
+	<!ATTLIST YEARS_WITHOUT_SC_CAPTURE value CDATA #REQUIRED>
+	
+	<!ELEMENT GAME_LENGTH EMPTY>
+	<!ATTLIST GAME_LENGTH value CDATA #REQUIRED>
+	
+	<!ELEMENT SUPPLYCENTER EMPTY>
+	<!ATTLIST SUPPLYCENTER 	province CDATA #REQUIRED
+				homepower CDATA "none"
+				owner CDATA "none"
+				>
+				
+	<!ELEMENT INITIALSTATE EMPTY>
+	<!ATTLIST INITIALSTATE 	province CDATA #REQUIRED
+				power CDATA #REQUIRED
+				unit CDATA #REQUIRED
+				unitcoast CDATA #IMPLIED
+				>
+]>
+<!-- NOTE: it's very important that the name of the file will be variants.xml, in all lower case -->
+<!-- NOTE: for CDATA escapes, no space between tag and bracket!! -->
+<VARIANTS>
+	<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;">
+	Pure Variant
+	</div>]]></DESCRIPTION>
+	
+	<MAP_DEFINITION id="pure" title="Pure" 
+		URI="pure.svg" thumbURI="pure_thumb.png" preferredUnitStyle="period">
+		<DESCRIPTION>
+		A stylized map for the Pure variant.
+		</DESCRIPTION>
+	</MAP_DEFINITION>
+
+	
+	<VARIANT name="Pure" version="1.0">
+		<DESCRIPTION><![CDATA[
+		This is a simple traditional variant of diplomacy. There are the usual
+		seven countries. There are seven spaces on the board--one
+		corresponding to each country--its home supply center. These spaces
+		are all connected by land one with another. Initially, each player
+		begins with one army in his home supply center.
+		<p>
+		The objective of the game is to accumulate four supply centers
+		</p>
+		<p style="margin-top:21pt;">Author: Danny Loeb</p>]]></DESCRIPTION> 
+		<MAP adjacencyURI="pure_adjacency.xml">
+			<MAP_GRAPHIC ref="pure" default="true" />
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY" />
+		</RULEOPTIONS>
+		<POWER name="Austria" active="true" adjective="Austrian" /> 
+		<POWER name="England" active="true" adjective="English" altnames="Britain" /> 
+		<POWER name="France" active="true" adjective="French" /> 
+		<POWER name="Germany" active="true" adjective="German" /> 
+		<POWER name="Italy" active="true" adjective="Italian" />
+		<POWER name="Russia" active="true" adjective="Russian" /> 
+		<POWER name="Turkey" active="true" adjective="Turkish" /> 
+		<STARTINGTIME turn="Spring, 1914, Movement" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="4" />
+			<YEARS_WITHOUT_SC_CAPTURE value="7" />
+			<GAME_LENGTH value="35" />
+		</VICTORYCONDITIONS>
+ 	 	<!-- supply centers -->
+		<SUPPLYCENTER province="vie" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="lon" homepower="england" owner="england"/>
+		<SUPPLYCENTER province="par" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="ber" homepower="germany" owner="germany"/>
+		<SUPPLYCENTER province="rom" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="mos" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="con" homepower="turkey" owner="turkey"/>
+		<!-- unit placement -->
+		<INITIALSTATE province="vie" power="austria" unit="army" />
+		<INITIALSTATE province="lon" power="england" unit="army" />
+		<INITIALSTATE province="par" power="france" unit="army" />
+		<INITIALSTATE province="ber" power="germany" unit="army" />
+		<INITIALSTATE province="rom" power="italy" unit="army" />
+		<INITIALSTATE province="mos" power="russia" unit="army" />
+		<INITIALSTATE province="con" power="turkey" unit="army" />
+	</VARIANT>
+</VARIANTS>

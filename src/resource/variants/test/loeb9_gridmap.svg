@@ -1,0 +1,765 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" 
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"
+[
+	<!-- jDip-specific XML additions -->
+	<!-- PROVINCE_DATA -->
+	<!ENTITY % svgExt "| jdipNS:PROVINCE_DATA" >
+	
+	<!ELEMENT jdipNS:PROVINCE_DATA (jdipNS:PROVINCE)+>
+	<!ATTLIST jdipNS:PROVINCE_DATA
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  dislodgedUnitOffset CDATA #IMPLIED
+	  >
+	<!ELEMENT jdipNS:PROVINCE (jdipNS:UNIT, jdipNS:DISLODGED_UNIT, jdipNS:SUPPLY_CENTER?)+>
+	<!ATTLIST jdipNS:PROVINCE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  name CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:UNIT EMPTY>
+	<!ATTLIST jdipNS:UNIT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:DISLODGED_UNIT EMPTY>
+	<!ATTLIST jdipNS:DISLODGED_UNIT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:SUPPLY_CENTER EMPTY>
+	<!ATTLIST jdipNS:SUPPLY_CENTER
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	  
+	<!-- Display Parameters -->
+	<!ENTITY % svgExt "| jdipNS:DISPLAY" >
+	
+	<!ELEMENT jdipNS:DISPLAY (jdipNS:ZOOM, jdipNS:LABELS)>
+	<!ATTLIST jdipNS:DISPLAY
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	<!ELEMENT jdipNS:ZOOM EMPTY>
+	<!ATTLIST jdipNS:ZOOM
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  min CDATA #REQUIRED
+	  max CDATA #REQUIRED
+	  factor CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:LABELS EMPTY>
+	<!ATTLIST jdipNS:LABELS
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  brief (true|false) "true"
+	  full (true|false) "true"
+	  >
+	  
+	  <!-- Order Drawing Parameters -->
+	<!ENTITY % svgExt "| jdipNS:ORDERDRAWING" >
+	
+	<!ELEMENT jdipNS:ORDERDRAWING (jdipNS:POWERCOLORS, jdipNS:SYMBOLSIZE+, jdipNS:BUILD, jdipNS:REMOVE,  jdipNS:DISBAND, jdipNS:WAIVE, jdipNS:HOLD, jdipNS:MOVE, jdipNS:RETREAT, jdipNS:SUPPORT, jdipNS:CONVOY )>
+	<!ATTLIST jdipNS:ORDERDRAWING
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	
+	<!ELEMENT jdipNS:POWERCOLORS (jdipNS:POWERCOLOR+)>
+	<!ATTLIST jdipNS:POWERCOLORS
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	
+	<!ELEMENT jdipNS:POWERCOLOR EMPTY>
+	<!ATTLIST jdipNS:POWERCOLOR
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  power CDATA #REQUIRED
+	  color CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:SYMBOLSIZE EMPTY>
+	<!ATTLIST jdipNS:SYMBOLSIZE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  name CDATA #REQUIRED
+	  width CDATA #REQUIRED
+	  height CDATA #REQUIRED
+	  >
+	
+	  <!ELEMENT jdipNS:HOLD EMPTY>
+	<!ATTLIST jdipNS:HOLD
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  widths CDATA #REQUIRED
+	  shadowWidths CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:DISBAND EMPTY>
+	<!ATTLIST jdipNS:DISBAND
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:WAIVE EMPTY>
+	<!ATTLIST jdipNS:WAIVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	>
+	  
+	<!ELEMENT jdipNS:REMOVE EMPTY>
+	<!ATTLIST jdipNS:REMOVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:BUILD EMPTY>
+	<!ATTLIST jdipNS:BUILD
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:MOVE EMPTY>
+	<!ATTLIST jdipNS:MOVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  widths CDATA #REQUIRED
+	  shadowWidths CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:RETREAT EMPTY>
+	<!ATTLIST jdipNS:RETREAT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:SUPPORT EMPTY>
+	<!ATTLIST jdipNS:SUPPORT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:CONVOY EMPTY>
+	<!ATTLIST jdipNS:CONVOY
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+]>
+	<!-- the grid will be 50 x 50 unit increments. -->
+<svg width="500px" height="550px" viewBox="0 0 500 550"
+	xmlns="http://www.w3.org/2000/svg" version="1.0"
+	xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin">
+
+	
+	<jdipNS:DISPLAY>
+		<jdipNS:ZOOM min="5" max="1000" factor="1.2" />
+		<jdipNS:LABELS brief="false" full="false" />
+	</jdipNS:DISPLAY>
+	
+	<jdipNS:ORDERDRAWING>
+		<jdipNS:POWERCOLORS>
+			<jdipNS:POWERCOLOR power="austria" color="red" />
+			<jdipNS:POWERCOLOR power="england" color="blue" />
+			<jdipNS:POWERCOLOR power="france" color="deepskyblue" />
+			<jdipNS:POWERCOLOR power="germany" color="gray" />
+			<jdipNS:POWERCOLOR power="italy" color="olive" />
+			<jdipNS:POWERCOLOR power="russia" color="white" />
+			<jdipNS:POWERCOLOR power="turkey" color="yellow" />
+			<jdipNS:POWERCOLOR power="spain" color="salmon" />
+			<jdipNS:POWERCOLOR power="norway" color="violet" />
+		</jdipNS:POWERCOLORS>
+		
+		<jdipNS:SYMBOLSIZE name="Fleet" width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="Army" width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="Wing" width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedFleet" width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedArmy" width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedWing" width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="FailedOrder" width="25" height="25"/>
+		<jdipNS:SYMBOLSIZE name="SupplyCenter" width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="BuildUnit" width="30" height="30"/>
+		<jdipNS:SYMBOLSIZE name="RemoveUnit" width="30" height="30"/>
+		<jdipNS:SYMBOLSIZE name="WaivedBuild" width="25" height="25"/>
+		
+		<jdipNS:BUILD deltaRadius="0"/>
+		<jdipNS:REMOVE deltaRadius="2"/>
+		<jdipNS:DISBAND deltaRadius="2"/>
+		<jdipNS:WAIVE deltaRadius="0"/>
+		<jdipNS:HOLD deltaRadius="1" strokeCSSStyle="varwidthorder" hilightOffset="0" hilightCSSClass="varwidthshadow" widths="3" shadowWidths="5"/>
+		<jdipNS:MOVE deltaRadius="1" strokeCSSStyle="varwidthorder" markerID="arrow" hilightOffset="0"  hilightCSSClass="varwidthshadow" widths="3" shadowWidths="5" />
+		<jdipNS:RETREAT deltaRadius="1" strokeCSSStyle="defaultorder" markerID="arrow" hilightOffset="0"   hilightCSSClass="shadoworder" />
+		<jdipNS:SUPPORT deltaRadius="5" strokeCSSStyle="supportorder" markerID="arrow" hilightOffset="0"  hilightCSSClass="shadowdash" />
+		<jdipNS:CONVOY deltaRadius="5" strokeCSSStyle="convoyorder" markerID="arrow" hilightOffset="0"  hilightCSSClass="shadowdash"  />
+	</jdipNS:ORDERDRAWING>
+	
+	
+	<jdipNS:PROVINCE_DATA>
+		<!-- all 100 province locations are given for SC, units, and dislodged units. only name tags are required. -->
+		<!-- it is recommended that for grid map, coasts have their own grid space -->
+		<!-- row 1 -->
+		<jdipNS:PROVINCE name="adr"><jdipNS:UNIT x="25"  y="25"/><jdipNS:DISLODGED_UNIT  x="40" y="25"/><jdipNS:SUPPLY_CENTER x="25"  y="40"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="aeg"><jdipNS:UNIT x="75"  y="25"/><jdipNS:DISLODGED_UNIT  x="90" y="25"/><jdipNS:SUPPLY_CENTER x="75"  y="40"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="alb"><jdipNS:UNIT x="125" y="25"/><jdipNS:DISLODGED_UNIT x="140" y="25"/><jdipNS:SUPPLY_CENTER x="125" y="40"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ank"><jdipNS:UNIT x="175" y="25"/><jdipNS:DISLODGED_UNIT x="190" y="25"/><jdipNS:SUPPLY_CENTER x="175" y="40"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="apu"><jdipNS:UNIT x="225" y="25"/><jdipNS:DISLODGED_UNIT x="240" y="25"/><jdipNS:SUPPLY_CENTER x="225" y="40"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="arc"><jdipNS:UNIT x="275" y="25"/><jdipNS:DISLODGED_UNIT x="290" y="25"/><jdipNS:SUPPLY_CENTER x="275" y="40"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="arm"><jdipNS:UNIT x="325" y="25"/><jdipNS:DISLODGED_UNIT x="340" y="25"/><jdipNS:SUPPLY_CENTER x="325" y="40"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bal"><jdipNS:UNIT x="375" y="25"/><jdipNS:DISLODGED_UNIT x="390" y="25"/><jdipNS:SUPPLY_CENTER x="375" y="40"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bar"><jdipNS:UNIT x="425" y="25"/><jdipNS:DISLODGED_UNIT x="440" y="25"/><jdipNS:SUPPLY_CENTER x="425" y="40"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bel"><jdipNS:UNIT x="475" y="25"/><jdipNS:DISLODGED_UNIT x="490" y="25"/><jdipNS:SUPPLY_CENTER x="475" y="40"/></jdipNS:PROVINCE>
+		<!-- row 2 -->
+		<jdipNS:PROVINCE name="ber"><jdipNS:UNIT x="25"  y="75"/><jdipNS:DISLODGED_UNIT  x="40" y="75"/><jdipNS:SUPPLY_CENTER x="25"  y="90"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bla"><jdipNS:UNIT x="75"  y="75"/><jdipNS:DISLODGED_UNIT  x="90" y="75"/><jdipNS:SUPPLY_CENTER x="75"  y="90"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="boh"><jdipNS:UNIT x="125" y="75"/><jdipNS:DISLODGED_UNIT x="140" y="75"/><jdipNS:SUPPLY_CENTER x="125" y="90"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bot"><jdipNS:UNIT x="175" y="75"/><jdipNS:DISLODGED_UNIT x="190" y="75"/><jdipNS:SUPPLY_CENTER x="175" y="90"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bre"><jdipNS:UNIT x="225" y="75"/><jdipNS:DISLODGED_UNIT x="240" y="75"/><jdipNS:SUPPLY_CENTER x="225" y="90"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bud"><jdipNS:UNIT x="275" y="75"/><jdipNS:DISLODGED_UNIT x="290" y="75"/><jdipNS:SUPPLY_CENTER x="275" y="90"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bul"><jdipNS:UNIT x="325" y="75"/><jdipNS:DISLODGED_UNIT x="340" y="75"/><jdipNS:SUPPLY_CENTER x="325" y="90"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bul-ec"><jdipNS:UNIT x="375" y="75"/><jdipNS:DISLODGED_UNIT x="390" y="75"/><jdipNS:SUPPLY_CENTER x="375" y="90"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bul-sc"><jdipNS:UNIT x="425" y="75"/><jdipNS:DISLODGED_UNIT x="440" y="75"/><jdipNS:SUPPLY_CENTER x="425" y="90"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bur"><jdipNS:UNIT x="475" y="75"/><jdipNS:DISLODGED_UNIT x="490" y="75"/><jdipNS:SUPPLY_CENTER x="475" y="90"/></jdipNS:PROVINCE>
+		<!-- row 3 -->
+		<jdipNS:PROVINCE name="cat"><jdipNS:UNIT x="25"  y="125"/><jdipNS:DISLODGED_UNIT  x="40" y="125"/><jdipNS:SUPPLY_CENTER x="25"  y="140"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="cly"><jdipNS:UNIT x="75"  y="125"/><jdipNS:DISLODGED_UNIT  x="90" y="125"/><jdipNS:SUPPLY_CENTER x="75"  y="140"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="con"><jdipNS:UNIT x="125" y="125"/><jdipNS:DISLODGED_UNIT x="140" y="125"/><jdipNS:SUPPLY_CENTER x="125" y="140"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="cor"><jdipNS:UNIT x="175" y="125"/><jdipNS:DISLODGED_UNIT x="190" y="125"/><jdipNS:SUPPLY_CENTER x="175" y="140"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="crs"><jdipNS:UNIT x="225" y="125"/><jdipNS:DISLODGED_UNIT x="240" y="125"/><jdipNS:SUPPLY_CENTER x="225" y="140"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="den"><jdipNS:UNIT x="275" y="125"/><jdipNS:DISLODGED_UNIT x="290" y="125"/><jdipNS:SUPPLY_CENTER x="275" y="140"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="eas"><jdipNS:UNIT x="325" y="125"/><jdipNS:DISLODGED_UNIT x="340" y="125"/><jdipNS:SUPPLY_CENTER x="325" y="140"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="edi"><jdipNS:UNIT x="375" y="125"/><jdipNS:DISLODGED_UNIT x="390" y="125"/><jdipNS:SUPPLY_CENTER x="375" y="140"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="eng"><jdipNS:UNIT x="425" y="125"/><jdipNS:DISLODGED_UNIT x="440" y="125"/><jdipNS:SUPPLY_CENTER x="425" y="140"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="fin"><jdipNS:UNIT x="475" y="125"/><jdipNS:DISLODGED_UNIT x="490" y="125"/><jdipNS:SUPPLY_CENTER x="475" y="140"/></jdipNS:PROVINCE>
+		<!-- row 4 -->
+		<jdipNS:PROVINCE name="gal"><jdipNS:UNIT x="25"  y="175"/><jdipNS:DISLODGED_UNIT  x="40" y="175"/><jdipNS:SUPPLY_CENTER x="25"  y="190"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="gas"><jdipNS:UNIT x="75"  y="175"/><jdipNS:DISLODGED_UNIT  x="90" y="175"/><jdipNS:SUPPLY_CENTER x="75"  y="190"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="gre"><jdipNS:UNIT x="125" y="175"/><jdipNS:DISLODGED_UNIT x="140" y="175"/><jdipNS:SUPPLY_CENTER x="125" y="190"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="hel"><jdipNS:UNIT x="175" y="175"/><jdipNS:DISLODGED_UNIT x="190" y="175"/><jdipNS:SUPPLY_CENTER x="175" y="190"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="hol"><jdipNS:UNIT x="225" y="175"/><jdipNS:DISLODGED_UNIT x="240" y="175"/><jdipNS:SUPPLY_CENTER x="225" y="190"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ice"><jdipNS:UNIT x="275" y="175"/><jdipNS:DISLODGED_UNIT x="290" y="175"/><jdipNS:SUPPLY_CENTER x="275" y="190"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ion"><jdipNS:UNIT x="325" y="175"/><jdipNS:DISLODGED_UNIT x="340" y="175"/><jdipNS:SUPPLY_CENTER x="325" y="190"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ire"><jdipNS:UNIT x="375" y="175"/><jdipNS:DISLODGED_UNIT x="390" y="175"/><jdipNS:SUPPLY_CENTER x="375" y="190"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="iri"><jdipNS:UNIT x="425" y="175"/><jdipNS:DISLODGED_UNIT x="440" y="175"/><jdipNS:SUPPLY_CENTER x="425" y="190"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="kaz"><jdipNS:UNIT x="475" y="175"/><jdipNS:DISLODGED_UNIT x="490" y="175"/><jdipNS:SUPPLY_CENTER x="475" y="190"/></jdipNS:PROVINCE>
+		<!-- row 5 -->
+		<jdipNS:PROVINCE name="kie"><jdipNS:UNIT x="25"  y="225"/><jdipNS:DISLODGED_UNIT  x="40" y="225"/><jdipNS:SUPPLY_CENTER x="25"  y="240"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="lon"><jdipNS:UNIT x="75"  y="225"/><jdipNS:DISLODGED_UNIT  x="90" y="225"/><jdipNS:SUPPLY_CENTER x="75"  y="240"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="lvn"><jdipNS:UNIT x="125" y="225"/><jdipNS:DISLODGED_UNIT x="140" y="225"/><jdipNS:SUPPLY_CENTER x="125" y="240"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="lvp"><jdipNS:UNIT x="175" y="225"/><jdipNS:DISLODGED_UNIT x="190" y="225"/><jdipNS:SUPPLY_CENTER x="175" y="240"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="lyo"><jdipNS:UNIT x="225" y="225"/><jdipNS:DISLODGED_UNIT x="240" y="225"/><jdipNS:SUPPLY_CENTER x="225" y="240"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mad"><jdipNS:UNIT x="275" y="225"/><jdipNS:DISLODGED_UNIT x="290" y="225"/><jdipNS:SUPPLY_CENTER x="275" y="240"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mao"><jdipNS:UNIT x="325" y="225"/><jdipNS:DISLODGED_UNIT x="340" y="225"/><jdipNS:SUPPLY_CENTER x="325" y="240"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mar"><jdipNS:UNIT x="375" y="225"/><jdipNS:DISLODGED_UNIT x="390" y="225"/><jdipNS:SUPPLY_CENTER x="375" y="240"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mos"><jdipNS:UNIT x="425" y="225"/><jdipNS:DISLODGED_UNIT x="440" y="225"/><jdipNS:SUPPLY_CENTER x="425" y="240"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mun"><jdipNS:UNIT x="475" y="225"/><jdipNS:DISLODGED_UNIT x="490" y="225"/><jdipNS:SUPPLY_CENTER x="475" y="240"/></jdipNS:PROVINCE>
+		<!-- row 6 -->
+		<jdipNS:PROVINCE name="naf"><jdipNS:UNIT x="25"  y="275"/><jdipNS:DISLODGED_UNIT  x="40" y="275"/><jdipNS:SUPPLY_CENTER x="25"  y="290"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nao"><jdipNS:UNIT x="75"  y="275"/><jdipNS:DISLODGED_UNIT  x="90" y="275"/><jdipNS:SUPPLY_CENTER x="75"  y="290"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nap"><jdipNS:UNIT x="125" y="275"/><jdipNS:DISLODGED_UNIT x="140" y="275"/><jdipNS:SUPPLY_CENTER x="125" y="290"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nav"><jdipNS:UNIT x="175" y="275"/><jdipNS:DISLODGED_UNIT x="190" y="275"/><jdipNS:SUPPLY_CENTER x="175" y="290"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nwy"><jdipNS:UNIT x="225" y="275"/><jdipNS:DISLODGED_UNIT x="240" y="275"/><jdipNS:SUPPLY_CENTER x="225" y="290"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nth"><jdipNS:UNIT x="275" y="275"/><jdipNS:DISLODGED_UNIT x="290" y="275"/><jdipNS:SUPPLY_CENTER x="275" y="290"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nwg"><jdipNS:UNIT x="325" y="275"/><jdipNS:DISLODGED_UNIT x="340" y="275"/><jdipNS:SUPPLY_CENTER x="325" y="290"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="par"><jdipNS:UNIT x="375" y="275"/><jdipNS:DISLODGED_UNIT x="390" y="275"/><jdipNS:SUPPLY_CENTER x="375" y="290"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="pic"><jdipNS:UNIT x="425" y="275"/><jdipNS:DISLODGED_UNIT x="440" y="275"/><jdipNS:SUPPLY_CENTER x="425" y="290"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="pie"><jdipNS:UNIT x="475" y="275"/><jdipNS:DISLODGED_UNIT x="490" y="275"/><jdipNS:SUPPLY_CENTER x="475" y="290"/></jdipNS:PROVINCE>
+		<!-- row 7 -->
+		<jdipNS:PROVINCE name="por"><jdipNS:UNIT x="25"  y="325"/><jdipNS:DISLODGED_UNIT  x="40" y="325"/><jdipNS:SUPPLY_CENTER x="25"  y="340"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="pru"><jdipNS:UNIT x="75"  y="325"/><jdipNS:DISLODGED_UNIT  x="90" y="325"/><jdipNS:SUPPLY_CENTER x="75"  y="340"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="rom"><jdipNS:UNIT x="125" y="325"/><jdipNS:DISLODGED_UNIT x="140" y="325"/><jdipNS:SUPPLY_CENTER x="125" y="340"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ruh"><jdipNS:UNIT x="175" y="325"/><jdipNS:DISLODGED_UNIT x="190" y="325"/><jdipNS:SUPPLY_CENTER x="175" y="340"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="rum"><jdipNS:UNIT x="225" y="325"/><jdipNS:DISLODGED_UNIT x="240" y="325"/><jdipNS:SUPPLY_CENTER x="225" y="340"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sar"><jdipNS:UNIT x="275" y="325"/><jdipNS:DISLODGED_UNIT x="290" y="325"/><jdipNS:SUPPLY_CENTER x="275" y="340"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ser"><jdipNS:UNIT x="325" y="325"/><jdipNS:DISLODGED_UNIT x="340" y="325"/><jdipNS:SUPPLY_CENTER x="325" y="340"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sev"><jdipNS:UNIT x="375" y="325"/><jdipNS:DISLODGED_UNIT x="390" y="325"/><jdipNS:SUPPLY_CENTER x="375" y="340"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sib"><jdipNS:UNIT x="425" y="325"/><jdipNS:DISLODGED_UNIT x="440" y="325"/><jdipNS:SUPPLY_CENTER x="425" y="340"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sic"><jdipNS:UNIT x="475" y="325"/><jdipNS:DISLODGED_UNIT x="490" y="325"/><jdipNS:SUPPLY_CENTER x="475" y="340"/></jdipNS:PROVINCE>
+		<!-- row 8 -->
+		<jdipNS:PROVINCE name="sil"><jdipNS:UNIT x="25"  y="375"/><jdipNS:DISLODGED_UNIT  x="40" y="375"/><jdipNS:SUPPLY_CENTER x="25"  y="390"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ska"><jdipNS:UNIT x="75"  y="375"/><jdipNS:DISLODGED_UNIT  x="90" y="375"/><jdipNS:SUPPLY_CENTER x="75"  y="390"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="smy"><jdipNS:UNIT x="125" y="375"/><jdipNS:DISLODGED_UNIT x="140" y="375"/><jdipNS:SUPPLY_CENTER x="125" y="390"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="stp"><jdipNS:UNIT x="175" y="375"/><jdipNS:DISLODGED_UNIT x="190" y="375"/><jdipNS:SUPPLY_CENTER x="175" y="390"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="stp-nc"><jdipNS:UNIT x="225" y="375"/><jdipNS:DISLODGED_UNIT x="240" y="375"/><jdipNS:SUPPLY_CENTER x="225" y="390"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="stp-sc"><jdipNS:UNIT x="275" y="375"/><jdipNS:DISLODGED_UNIT x="290" y="375"/><jdipNS:SUPPLY_CENTER x="275" y="390"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="swe"><jdipNS:UNIT x="325" y="375"/><jdipNS:DISLODGED_UNIT x="340" y="375"/><jdipNS:SUPPLY_CENTER x="325" y="390"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="syr"><jdipNS:UNIT x="375" y="375"/><jdipNS:DISLODGED_UNIT x="390" y="375"/><jdipNS:SUPPLY_CENTER x="375" y="390"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tri"><jdipNS:UNIT x="425" y="375"/><jdipNS:DISLODGED_UNIT x="440" y="375"/><jdipNS:SUPPLY_CENTER x="425" y="390"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tun"><jdipNS:UNIT x="475" y="375"/><jdipNS:DISLODGED_UNIT x="490" y="375"/><jdipNS:SUPPLY_CENTER x="475" y="390"/></jdipNS:PROVINCE>
+		<!-- row 9 -->
+		<jdipNS:PROVINCE name="tus"><jdipNS:UNIT x="25"  y="425"/><jdipNS:DISLODGED_UNIT  x="40" y="425"/><jdipNS:SUPPLY_CENTER x="25"  y="440"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tyr"><jdipNS:UNIT x="75"  y="425"/><jdipNS:DISLODGED_UNIT  x="90" y="425"/><jdipNS:SUPPLY_CENTER x="75"  y="440"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tys"><jdipNS:UNIT x="125" y="425"/><jdipNS:DISLODGED_UNIT x="140" y="425"/><jdipNS:SUPPLY_CENTER x="125" y="440"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ukr"><jdipNS:UNIT x="175" y="425"/><jdipNS:DISLODGED_UNIT x="190" y="425"/><jdipNS:SUPPLY_CENTER x="175" y="440"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ven"><jdipNS:UNIT x="225" y="425"/><jdipNS:DISLODGED_UNIT x="240" y="425"/><jdipNS:SUPPLY_CENTER x="225" y="440"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="vie"><jdipNS:UNIT x="275" y="425"/><jdipNS:DISLODGED_UNIT x="290" y="425"/><jdipNS:SUPPLY_CENTER x="275" y="440"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="wal"><jdipNS:UNIT x="325" y="425"/><jdipNS:DISLODGED_UNIT x="340" y="425"/><jdipNS:SUPPLY_CENTER x="325" y="440"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="war"><jdipNS:UNIT x="375" y="425"/><jdipNS:DISLODGED_UNIT x="390" y="425"/><jdipNS:SUPPLY_CENTER x="375" y="440"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="wes"><jdipNS:UNIT x="425" y="425"/><jdipNS:DISLODGED_UNIT x="440" y="425"/><jdipNS:SUPPLY_CENTER x="425" y="440"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="yor"><jdipNS:UNIT x="475" y="425"/><jdipNS:DISLODGED_UNIT x="490" y="425"/><jdipNS:SUPPLY_CENTER x="475" y="440"/></jdipNS:PROVINCE>
+		<!-- row 10 UNUSED-->
+	</jdipNS:PROVINCE_DATA>
+	
+	
+	<desc>GRID Map</desc>
+	<defs>
+		<style type="text/css"><![CDATA[
+		
+		/* text */
+		.titletext			{text-anchor:middle;stroke-width:0.25;font-family:sansserif;font-size:18;stroke:black;fill:black;}
+		.provtext 			{text-anchor:middle;stroke-width:0.2;font-family:sansserif;font-size:14;stroke:black;fill:black;}
+		.labeltext			{stroke-width:0.1;stroke:black;fill:black;}
+		.icon				 {stroke:black;fill:black;stroke-width:1;}
+		.iconborder			 {stroke:black;stroke-width:1;}
+		.dislodgediconborder {stroke:red;stroke-width:1;}
+		.unordered 			 {fill:red; stroke:black; stroke-width:1;fill-opacity:0.90;}
+		
+		/* map and object features */
+		
+		.seapoly			{stroke:#000000;stroke-width:1;fill:#B5DEF8}
+		.dashline			{stroke:darkslateblue;stroke-width:3;stroke-linecap:round;stroke-dasharray:5,6;}
+		.shadow				{stroke:black;fill:black;stroke-width:1;opacity:0.40;}
+		.dislodgedshadow	{stroke:black;fill:black;stroke-width:1;opacity:0.30;}
+		.impassable 		{fill:#A69F8F;stroke:#000000;stroke-width:1}
+		.sealine 			{stroke:#B5DEFF;stroke-width:3;}
+		
+		/* invisible click rects fill:none does not work */
+		
+		.invisible	{stroke:#000000;fill:#000000;fill-opacity:0.0;opacity:0.0}
+		
+		/* default region coloring, by power */
+		
+		.nopower 	{fill:antiquewhite;stroke:#000000;stroke-width:3}
+		.water		{fill:lightblue;stroke:#000000;stroke-width:3}
+		
+		.neutral	{fill:lightgray;stroke:#000000;stroke-width:3}
+
+		.austria 	{fill:indianred;		stroke:#000000;stroke-width:3}
+		.england 	{fill:mediumslateblue;	stroke:#000000;stroke-width:3}
+		.france 	{fill:skyblue;			stroke:#000000;stroke-width:3}
+		.germany 	{fill:dimgray;			stroke:#000000;stroke-width:3}
+		.italy 		{fill:olivedrab;		stroke:#000000;stroke-width:3}
+		.russia 	{fill:whitesmoke;		stroke:#000000;stroke-width:3}
+		.turkey 	{fill:gold;				stroke:#000000;stroke-width:3}
+		.spain		{fill:lightsalmon;		stroke:#000000;stroke-width:3}
+		.norway		{fill:indigo;			stroke:#000000;stroke-width:3}
+		
+		/* unit colors, by power note that underscores are not supported */
+		
+		.unitaustria	{fill:red;			fill-opacity:0.85}
+		.unitengland 	{fill:blue;			fill-opacity:0.85}
+		.unitfrance 	{fill:deepskyblue;	fill-opacity:0.85}
+		.unitgermany 	{fill:gray;			fill-opacity:0.85}
+		.unititaly 		{fill:olive;		fill-opacity:0.85}
+		.unitrussia 	{fill:white;		fill-opacity:1.0}
+		.unitturkey 	{fill:yellow;		fill-opacity:0.85}
+		.unitspain 		{fill:salmon;		fill-opacity:0.85}
+		.unitnorway		{fill:violet;		fill-opacity:0.85}
+		
+		/* supply center styles */
+		
+		.scnopower	{fill:black;stroke:black;}
+		
+		.scaustria	{fill:black;stroke:black;}
+		.scengland	{fill:black;stroke:black;}
+		.scfrance	{fill:black;stroke:black;}
+		.scgermany	{fill:black;stroke:black;}
+		.scitaly 	{fill:black;stroke:black;}
+		.scrussia	{fill:black;stroke:black;}
+		.scturkey	{fill:black;stroke:black;}
+		.scnorway	{fill:black;stroke:black;}
+		.scspain	{fill:black;stroke:black;}
+		
+		/* order drawing styles, stroke and fill colors should not be specified */
+		
+		.defaultorder	{stroke-width:3;fill:none;}
+		.supportorder	{stroke-width:3;fill:none;stroke-dasharray:3,3;}
+		.convoyorder	{stroke-dasharray:9,4;stroke-width:3;fill:none;}
+		.buildorder		{stroke-width:3;fill:none;}
+		
+		.shadoworder	{stroke-width:5;fill:none;stroke:black;}
+		.shadowdash		{stroke-width:5;fill:none;stroke:black;opacity:0.45;}
+		
+		.varwidthorder  {fill:none;}
+		.varwidthshadow {fill:none;stroke:black;}
+		
+		]]></style>
+		
+		<!-- 
+		<filter id="DropShadow" filterUnits="userSpaceOnUse">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
+			<feOffset in="blur" dx="4" dy="4" result="offsetBlurredAlpha"/>
+			<feMerge>
+				<feMergeNode in="offsetBlurredAlpha"/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+		-->
+		
+		<marker id="arrow"
+			viewBox="0 0 10 10" refX="5" refY="5" 
+			markerUnits="strokeWidth"
+			markerWidth="4" markerHeight="3"
+			orient="auto">
+			<path d="M 0 0 L 10 5 L 0 10 z" />
+		</marker>
+		
+</defs>
+	
+	<g id="MapLayer">
+		<!--Backdrop -->
+		<rect x="0" y="0" width="500" height="550" fill="beige" />
+		
+		<!-- Provinces (class should be nopower or water). IDs should be prefixed by an underscore. -->
+		<!-- Row 1 -->
+		<rect id="_adr" class="water" 	x="1" 	y="1" 	width="48" height="48" />
+		<rect id="_aeg" class="water" 	x="51" 	y="1" 	width="48" height="48" />
+		<rect id="_alb" class="nopower" 	x="101" y="1" 	width="48" height="48" />
+		<rect id="_ank" class="nopower" 	x="151" y="1" 	width="48" height="48" />
+		<rect id="_apu" class="nopower" 	x="201" y="1" 	width="48" height="48" />
+		<rect id="_arc" class="water" 	x="251" y="1" 	width="48" height="48" />
+		<rect id="_arm" class="nopower" 	x="301" y="1" 	width="48" height="48" />
+		<rect id="_bal" class="water" 	x="351" y="1" 	width="48" height="48" />
+		<rect id="_bar" class="water" 	x="401" y="1" 	width="48" height="48" />
+		<rect id="_bel" class="nopower" 	x="451" y="1" 	width="48" height="48" />
+		<!-- Row 2 -->
+		<rect id="_ber" class="nopower" 	x="1" 	y="51" 	width="48" height="48" />
+		<rect id="_bla" class="water" 	x="51" 	y="51" 	width="48" height="48" />
+		<rect id="_boh" class="nopower" 	x="101" y="51" 	width="48" height="48" />
+		<rect id="_bot" class="water" 	x="151" y="51" 	width="48" height="48" />
+		<rect id="_bre" class="nopower" 	x="201" y="51" 	width="48" height="48" />
+		<rect id="_bud" class="nopower" 	x="251" y="51" 	width="48" height="48" />
+		<rect id="_bul" class="nopower" 	x="301" y="51" 	width="148" height="48" />
+		<rect id="_bur" class="nopower" 	x="451" y="51" 	width="48" height="48" />
+		<!-- Row 3 -->
+		<rect id="_cat" class="nopower" 	x="1" 	y="101" 	width="48" height="48" />
+		<rect id="_cly" class="nopower" 	x="51" 	y="101" 	width="48" height="48" />
+		<rect id="_con" class="nopower" 	x="101" y="101" 	width="48" height="48" />
+		<rect id="_cor" class="nopower" 	x="151" y="101" 	width="48" height="48" />
+		<rect id="_crs" class="nopower" 	x="201" y="101" 	width="48" height="48" />
+		<rect id="_den" class="nopower" 	x="251" y="101" 	width="48" height="48" />
+		<rect id="_eas" class="water" 	x="301" y="101" 	width="48" height="48" />
+		<rect id="_edi" class="nopower" 	x="351" y="101" 	width="48" height="48" />
+		<rect id="_eng" class="water" 	x="401" y="101" 	width="48" height="48" />
+		<rect id="_fin" class="nopower" 	x="451" y="101" 	width="48" height="48" />
+		<!-- Row 4 -->
+		<rect id="_gal" class="nopower" 	x="1" 	y="151" 	width="48" height="48" />
+		<rect id="_gas" class="nopower" 	x="51" 	y="151" 	width="48" height="48" />
+		<rect id="_gre" class="nopower" 	x="101" y="151" 	width="48" height="48" />
+		<rect id="_hel" class="nopower" 	x="151" y="151" 	width="48" height="48" />
+		<rect id="_hol" class="nopower" 	x="201" y="151" 	width="48" height="48" />
+		<rect id="_ice" class="nopower" 	x="251" y="151" 	width="48" height="48" />
+		<rect id="_ion" class="water" 	x="301" y="151" 	width="48" height="48" />
+		<rect id="_ire" class="nopower" 	x="351" y="151" 	width="48" height="48" />
+		<rect id="_iri" class="water" 	x="401" y="151" 	width="48" height="48" />
+		<rect id="_kaz" class="nopower" 	x="451" y="151" 	width="48" height="48" />
+		<!-- Row 5 -->
+		<rect id="_kie" class="nopower" 	x="1" 	y="201" 	width="48" height="48" />
+		<rect id="_lon" class="nopower" 	x="51" 	y="201" 	width="48" height="48" />
+		<rect id="_lvn" class="nopower" 	x="101" y="201" 	width="48" height="48" />
+		<rect id="_lvp" class="nopower" 	x="151" y="201" 	width="48" height="48" />
+		<rect id="_lyo" class="water" 	x="201" y="201" 	width="48" height="48" />
+		<rect id="_mad" class="nopower" 	x="251" y="201" 	width="48" height="48" />
+		<rect id="_mao" class="water" 	x="301" y="201" 	width="48" height="48" />
+		<rect id="_mar" class="nopower" 	x="351" y="201" 	width="48" height="48" />
+		<rect id="_mos" class="nopower" 	x="401" y="201" 	width="48" height="48" />
+		<rect id="_mun" class="nopower" 	x="451" y="201" 	width="48" height="48" />
+		<!-- Row 6 -->
+		<rect id="_naf" class="nopower" 	x="1" 	y="251" 	width="48" height="48" />
+		<rect id="_nao" class="water" 	x="51" 	y="251" 	width="48" height="48" />
+		<rect id="_nap" class="nopower" 	x="101" y="251" 	width="48" height="48" />
+		<rect id="_nav" class="nopower" 	x="151" y="251" 	width="48" height="48" />
+		<rect id="_nwy" class="nopower" 	x="201" y="251" 	width="48" height="48" />
+		<rect id="_nth" class="water" 	x="251" y="251" 	width="48" height="48" />
+		<rect id="_nwg" class="water" 	x="301" y="251" 	width="48" height="48" />
+		<rect id="_par" class="nopower" 	x="351" y="251" 	width="48" height="48" />
+		<rect id="_pic" class="nopower" 	x="401" y="251" 	width="48" height="48" />
+		<rect id="_pie" class="nopower" 	x="451" y="251" 	width="48" height="48" />
+		<!-- Row 7 -->
+		<rect id="_por" class="nopower" 	x="1" 	y="301" 	width="48" height="48" />
+		<rect id="_pru" class="nopower" 	x="51" 	y="301" 	width="48" height="48" />
+		<rect id="_rom" class="nopower" 	x="101" y="301" 	width="48" height="48" />
+		<rect id="_ruh" class="nopower" 	x="151" y="301" 	width="48" height="48" />
+		<rect id="_rum" class="nopower" 	x="201" y="301" 	width="48" height="48" />
+		<rect id="_sar" class="nopower" 	x="251" y="301" 	width="48" height="48" />
+		<rect id="_ser" class="nopower" 	x="301" y="301" 	width="48" height="48" />
+		<rect id="_sev" class="nopower" 	x="351" y="301" 	width="48" height="48" />
+		<rect id="_sib" class="nopower" 	x="401" y="301" 	width="48" height="48" />
+		<rect id="_sic" class="nopower" 	x="451" y="301" 	width="48" height="48" />
+		<!-- Row 8 -->
+		<rect id="_sil" class="nopower" 	x="1" 	y="351" 	width="48" height="48" />
+		<rect id="_ska" class="water" 	x="51" 	y="351" 	width="48" height="48" />
+		<rect id="_smy" class="nopower" 	x="101" y="351" 	width="48" height="48" />
+		<rect id="_stp" class="nopower" 	x="151" y="351" 	width="148" height="48" />
+		<rect id="_swe" class="nopower" 	x="301" y="351" 	width="48" height="48" />
+		<rect id="_syr" class="nopower" 	x="351" y="351" 	width="48" height="48" />
+		<rect id="_tri" class="nopower" 	x="401" y="351" 	width="48" height="48" />
+		<rect id="_tun" class="nopower" 	x="451" y="351" 	width="48" height="48" />
+		<!-- Row 9 -->
+		<rect id="_tus" class="nopower" 	x="1" 	y="401" 	width="48" height="48" />
+		<rect id="_tyr" class="nopower" 	x="51" 	y="401" 	width="48" height="48" />
+		<rect id="_tys" class="water" 	x="101" y="401" 	width="48" height="48" />
+		<rect id="_ukr" class="nopower" 	x="151" y="401" 	width="48" height="48" />
+		<rect id="_ven" class="nopower" 	x="201" y="401" 	width="48" height="48" />
+		<rect id="_vie" class="nopower" 	x="251" y="401" 	width="48" height="48" />
+		<rect id="_wal" class="nopower" 	x="301" y="401" 	width="48" height="48" />
+		<rect id="_war" class="nopower" 	x="351" y="401" 	width="48" height="48" />
+		<rect id="_wes" class="water" 	x="401" y="401" 	width="48" height="48" />
+		<rect id="_yor" class="nopower" 	x="451" y="401" 	width="48" height="48" />
+		<!-- End Provinces -->
+		
+		<!-- map title block -->
+		<g>
+			<rect stroke="black" fill="none" x="1" y="451" width="498" height="98" stroke-width="3"/>
+			<text class="titletext" x="250" y="480">Loeb9</text>
+			<text class="titletext" x="250" y="510">[Grid Test Map]</text>
+		</g>
+		
+		<!-- text abbreviations. NOTE: this layer is always displayed. -->
+		<g class="provtext">
+			<!-- Row 1 -->
+			<text x="25"    y="15">adr</text>
+			<text x="75"    y="15">aeg</text>
+			<text x="125"   y="15">alb</text>
+			<text x="175"   y="15">ank</text>
+			<text x="225"   y="15">apu</text>
+			<text x="275"   y="15">arc</text>
+			<text x="325"   y="15">arm</text>
+			<text x="375"   y="15">bal</text>
+			<text x="425"   y="15">bar</text>
+			<text x="475"   y="15">bel</text>
+			<!-- Row 2 -->
+			<text x="25"    y="65">ber</text>
+			<text x="75"    y="65">bla</text>
+			<text x="125"   y="65">boh</text>
+			<text x="175"   y="65">bot</text>
+			<text x="225"   y="65">bre</text>
+			<text x="275"   y="65">bud</text>
+			<text x="325"   y="65">bul</text>
+			<text x="375"   y="65">(ec)</text>
+			<text x="425"   y="65">(sc)</text>
+			<text x="475"   y="65">bur</text>
+			<!-- Row 3 -->
+			<text x="25"   y="115">cat</text>
+			<text x="75"   y="115">cly</text>
+			<text x="125"  y="115">con</text>
+			<text x="175"  y="115">cor</text>
+			<text x="225"  y="115">crs</text>
+			<text x="275"  y="115">den</text>
+			<text x="325"  y="115">eas</text>
+			<text x="375"  y="115">edi</text>
+			<text x="425"  y="115">eng</text>
+			<text x="475"  y="115">fin</text>
+			<!-- Row 4 -->
+			<text x="25"   y="165">gal</text>
+			<text x="75"   y="165">gas</text>
+			<text x="125"  y="165">gre</text>
+			<text x="175"  y="165">hel</text>
+			<text x="225"  y="165">hol</text>
+			<text x="275"  y="165">ice</text>
+			<text x="325"  y="165">ion</text>
+			<text x="375"  y="165">ire</text>
+			<text x="425"  y="165">iri</text>
+			<text x="475"  y="165">kaz</text>
+			<!-- Row 5 -->
+			<text x="25"   y="215">kie</text>
+			<text x="75"   y="215">lon</text>
+			<text x="125"  y="215">lvn</text>
+			<text x="175"  y="215">lvp</text>
+			<text x="225"  y="215">lyo</text>
+			<text x="275"  y="215">mad</text>
+			<text x="325"  y="215">mao</text>
+			<text x="375"  y="215">mar</text>
+			<text x="425"  y="215">mos</text>
+			<text x="475"  y="215">mun</text>
+			<!-- Row 6 -->
+			<text x="25"   y="265">naf</text>
+			<text x="75"   y="265">nao</text>
+			<text x="125"  y="265">nap</text>
+			<text x="175"  y="265">nav</text>
+			<text x="225"  y="265">nwy</text>
+			<text x="275"  y="265">nth</text>
+			<text x="325"  y="265">nwg</text>
+			<text x="375"  y="265">par</text>
+			<text x="425"  y="265">pic</text>
+			<text x="475"  y="265">pie</text>
+			<!-- Row 7 -->
+			<text x="25"   y="315">por</text>
+			<text x="75"   y="315">pru</text>
+			<text x="125"  y="315">rom</text>
+			<text x="175"  y="315">ruh</text>
+			<text x="225"  y="315">rum</text>
+			<text x="275"  y="315">sar</text>
+			<text x="325"  y="315">ser</text>
+			<text x="375"  y="315">sev</text>
+			<text x="425"  y="315">sib</text>
+			<text x="475"  y="315">sic</text>
+			<!-- Row 8 -->
+			<text x="25"   y="365">sil</text>
+			<text x="75"   y="365">ska</text>
+			<text x="125"  y="365">smy</text>
+			<text x="175"  y="365">stp</text>
+			<text x="225"  y="365">(nc)</text>
+			<text x="275"  y="365">(sc)</text>
+			<text x="325"  y="365">swe</text>
+			<text x="375"  y="365">syr</text>
+			<text x="425"  y="365">tri</text>
+			<text x="475"  y="365">tun</text>
+			<!-- Row 9 -->
+			<text x="25"   y="415">tus</text>
+			<text x="75"   y="415">tyr</text>
+			<text x="125"  y="415">tys</text>
+			<text x="175"  y="415">ukr</text>
+			<text x="225"  y="415">ven</text>
+			<text x="275"  y="415">vie</text>
+			<text x="325"  y="415">wal</text>
+			<text x="375"  y="415">war</text>
+			<text x="425"  y="415">wes</text>
+			<text x="475"  y="415">yor</text>
+		</g>
+	</g>
+	
+	<!-- drawing layer: supply centers -->
+	<g id="SupplyCenterLayer"/>
+	
+	<!-- drawing layer: orders -->
+	<g id="OrderLayer"/>
+	
+	<!-- drawing layer: units -->
+	<g id="UnitLayer"/>
+	
+	<!-- drawing layer: dislodged units -->
+	<g id="DislodgedUnitLayer"/>
+	
+	<!-- drawing layer -->
+	<g id="HighestOrderLayer"/>
+	
+
+	<g id="FullLabelLayer" class="labeltext" visibility="hidden"/>
+	
+	
+	<g id="BriefLabelLayer" class="labeltext" visibility="hidden" />
+	
+	<g id="MouseLayer" class="invisible">
+		<!-- These can be copied from above, but the 'class' attribute!!! must be removed! -->
+	<!-- Row 1 -->
+		<rect id="adr"  	x="1" 	y="1" 	width="48" height="48" />
+		<rect id="aeg"  	x="51" 	y="1" 	width="48" height="48" />
+		<rect id="alb"  	x="101" y="1" 	width="48" height="48" />
+		<rect id="ank"  	x="151" y="1" 	width="48" height="48" />
+		<rect id="apu"  	x="201" y="1" 	width="48" height="48" />
+		<rect id="arc"  	x="251" y="1" 	width="48" height="48" />
+		<rect id="arm"  	x="301" y="1" 	width="48" height="48" />
+		<rect id="bal"  	x="351" y="1" 	width="48" height="48" />
+		<rect id="bar"  	x="401" y="1" 	width="48" height="48" />
+		<rect id="bel"  	x="451" y="1" 	width="48" height="48" />
+		<!-- Row 2 -->
+		<rect id="ber"  	x="1" 	y="51" 	width="48" height="48" />
+		<rect id="bla"  	x="51" 	y="51" 	width="48" height="48" />
+		<rect id="boh"  	x="101" y="51" 	width="48" height="48" />
+		<rect id="bot"  	x="151" y="51" 	width="48" height="48" />
+		<rect id="bre"  	x="201" y="51" 	width="48" height="48" />
+		<rect id="bud"  	x="251" y="51" 	width="48" height="48" />
+		<rect id="bul"  	x="301" y="51" 	width="48" height="48" />
+		<rect id="bul-ec"  	x="351" y="51" 	width="48" height="48" />
+		<rect id="bul-sc"  	x="401" y="51" 	width="48" height="48" />
+		<rect id="bur"  	x="451" y="51" 	width="48" height="48" />
+		<!-- Row 3 -->
+		<rect id="cat"  	x="1" 	y="101" 	width="48" height="48" />
+		<rect id="cly"  	x="51" 	y="101" 	width="48" height="48" />
+		<rect id="con"  	x="101" y="101" 	width="48" height="48" />
+		<rect id="cor"  	x="151" y="101" 	width="48" height="48" />
+		<rect id="crs"  	x="201" y="101" 	width="48" height="48" />
+		<rect id="den"  	x="251" y="101" 	width="48" height="48" />
+		<rect id="eas"  	x="301" y="101" 	width="48" height="48" />
+		<rect id="edi"  	x="351" y="101" 	width="48" height="48" />
+		<rect id="eng"  	x="401" y="101" 	width="48" height="48" />
+		<rect id="fin"  	x="451" y="101" 	width="48" height="48" />
+		<!-- Row 4 -->
+		<rect id="gal"  	x="1" 	y="151" 	width="48" height="48" />
+		<rect id="gas"  	x="51" 	y="151" 	width="48" height="48" />
+		<rect id="gre"  	x="101" y="151" 	width="48" height="48" />
+		<rect id="hel"  	x="151" y="151" 	width="48" height="48" />
+		<rect id="hol"  	x="201" y="151" 	width="48" height="48" />
+		<rect id="ice"  	x="251" y="151" 	width="48" height="48" />
+		<rect id="ion"  	x="301" y="151" 	width="48" height="48" />
+		<rect id="ire"  	x="351" y="151" 	width="48" height="48" />
+		<rect id="iri"  	x="401" y="151" 	width="48" height="48" />
+		<rect id="kaz"  	x="451" y="151" 	width="48" height="48" />
+		<!-- Row 5 -->
+		<rect id="kie"  	x="1" 	y="201" 	width="48" height="48" />
+		<rect id="lon"  	x="51" 	y="201" 	width="48" height="48" />
+		<rect id="lvn"  	x="101" y="201" 	width="48" height="48" />
+		<rect id="lvp"  	x="151" y="201" 	width="48" height="48" />
+		<rect id="lyo"  	x="201" y="201" 	width="48" height="48" />
+		<rect id="mad"  	x="251" y="201" 	width="48" height="48" />
+		<rect id="mao"  	x="301" y="201" 	width="48" height="48" />
+		<rect id="mar"  	x="351" y="201" 	width="48" height="48" />
+		<rect id="mos"  	x="401" y="201" 	width="48" height="48" />
+		<rect id="mun"  	x="451" y="201" 	width="48" height="48" />
+		<!-- Row 6 -->
+		<rect id="naf"  	x="1" 	y="251" 	width="48" height="48" />
+		<rect id="nao"  	x="51" 	y="251" 	width="48" height="48" />
+		<rect id="nap"  	x="101" y="251" 	width="48" height="48" />
+		<rect id="nav"  	x="151" y="251" 	width="48" height="48" />
+		<rect id="nwy"  	x="201" y="251" 	width="48" height="48" />
+		<rect id="nth"  	x="251" y="251" 	width="48" height="48" />
+		<rect id="nwg"  	x="301" y="251" 	width="48" height="48" />
+		<rect id="par"  	x="351" y="251" 	width="48" height="48" />
+		<rect id="pic"  	x="401" y="251" 	width="48" height="48" />
+		<rect id="pie"  	x="451" y="251" 	width="48" height="48" />
+		<!-- Row 7 -->
+		<rect id="por"  	x="1" 	y="301" 	width="48" height="48" />
+		<rect id="pru"  	x="51" 	y="301" 	width="48" height="48" />
+		<rect id="rom"  	x="101" y="301" 	width="48" height="48" />
+		<rect id="ruh"  	x="151" y="301" 	width="48" height="48" />
+		<rect id="rum"  	x="201" y="301" 	width="48" height="48" />
+		<rect id="sar"  	x="251" y="301" 	width="48" height="48" />
+		<rect id="ser"  	x="301" y="301" 	width="48" height="48" />
+		<rect id="sev"  	x="351" y="301" 	width="48" height="48" />
+		<rect id="sib"  	x="401" y="301" 	width="48" height="48" />
+		<rect id="sic"  	x="451" y="301" 	width="48" height="48" />
+		<!-- Row 8 -->
+		<rect id="sil"  	x="1" 	y="351" 	width="48" height="48" />
+		<rect id="ska"  	x="51" 	y="351" 	width="48" height="48" />
+		<rect id="smy"  	x="101" y="351" 	width="48" height="48" />
+		<rect id="stp"  	x="151" y="351" 	width="48" height="48" />
+		<rect id="stp-nc"  	x="201" y="351" 	width="48" height="48" />
+		<rect id="stp-sc"  	x="251" y="351" 	width="48" height="48" />
+		<rect id="swe"  	x="301" y="351" 	width="48" height="48" />
+		<rect id="syr"  	x="351" y="351" 	width="48" height="48" />
+		<rect id="tri"  	x="401" y="351" 	width="48" height="48" />
+		<rect id="tun"  	x="451" y="351" 	width="48" height="48" />
+		<!-- Row 9 -->
+		<rect id="tus"  	x="1" 	y="401" 	width="48" height="48" />
+		<rect id="tyr"  	x="51" 	y="401" 	width="48" height="48" />
+		<rect id="tys"  	x="101" y="401" 	width="48" height="48" />
+		<rect id="ukr"  	x="151" y="401" 	width="48" height="48" />
+		<rect id="ven"  	x="201" y="401" 	width="48" height="48" />
+		<rect id="vie"  	x="251" y="401" 	width="48" height="48" />
+		<rect id="wal"  	x="301" y="401" 	width="48" height="48" />
+		<rect id="war"  	x="351" y="401" 	width="48" height="48" />
+		<rect id="wes"  	x="401" y="401" 	width="48" height="48" />
+		<rect id="yor"  	x="451" y="401" 	width="48" height="48" />
+	</g>
+
+</svg>

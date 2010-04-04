@@ -1,0 +1,36 @@
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+
+
+
+
+
+<head>
+	<title>General Troubleshooting</title>
+	<link rel="StyleSheet" href="../application_help.css">
+</head>
+
+
+
+
+<body>
+
+<h1>General Troubleshooting</h1>
+
+ <h2>I get a <i>StackOverflowError</i> when saving</h2>
+ <p>
+ This is a known problem when saving large maps, such as Youngstown. To fix the
+ problem, increase the heap and (more importantly) stack size that Java needs 
+ to run jDip. This may be done using the <code>-Xss512k</code> command-line option. 
+ For example: <code>java -Xss512k jdip.jar</code>. If the StackOverFlowError occurs
+ with this setting, try increasing the stack size to 1MB via -Xss1M or -Xss1024k.
+ </p>
+ <p>
+ Please submit a bug report or email if this does occur with your system configuration.
+ </p>
+ <p>&nbsp;</p>
+
+</body>
+
+</html>

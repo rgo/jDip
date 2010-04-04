@@ -1,0 +1,500 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" 
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"
+[
+	<!-- jDip-specific XML additions -->
+	<!-- PROVINCE_DATA -->
+	<!ENTITY % svgExt "| jdipNS:PROVINCE_DATA" >
+	
+	<!ELEMENT jdipNS:PROVINCE_DATA (jdipNS:PROVINCE)+>
+	<!ATTLIST jdipNS:PROVINCE_DATA
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  dislodgedUnitOffset CDATA #IMPLIED
+	  >
+	<!ELEMENT jdipNS:PROVINCE (jdipNS:UNIT, jdipNS:DISLODGED_UNIT, jdipNS:SUPPLY_CENTER?)+>
+	<!ATTLIST jdipNS:PROVINCE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  name CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:UNIT EMPTY>
+	<!ATTLIST jdipNS:UNIT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:DISLODGED_UNIT EMPTY>
+	<!ATTLIST jdipNS:DISLODGED_UNIT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:SUPPLY_CENTER EMPTY>
+	<!ATTLIST jdipNS:SUPPLY_CENTER
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	  
+	<!-- Display Parameters -->
+	<!ENTITY % svgExt "| jdipNS:DISPLAY" >
+	
+	<!ELEMENT jdipNS:DISPLAY (jdipNS:ZOOM, jdipNS:LABELS)>
+	<!ATTLIST jdipNS:DISPLAY
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	<!ELEMENT jdipNS:ZOOM EMPTY>
+	<!ATTLIST jdipNS:ZOOM
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  min CDATA #REQUIRED
+	  max CDATA #REQUIRED
+	  factor CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:LABELS EMPTY>
+	<!ATTLIST jdipNS:LABELS
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  brief (true|false) "true"
+	  full (true|false) "true"
+	  >
+	  
+	  <!-- Order Drawing Parameters -->
+	<!ENTITY % svgExt "| jdipNS:ORDERDRAWING" >
+	
+	<!ELEMENT jdipNS:ORDERDRAWING (jdipNS:POWERCOLORS, jdipNS:SYMBOLSIZE+, jdipNS:BUILD, jdipNS:REMOVE,  jdipNS:DISBAND, jdipNS:WAIVE, jdipNS:HOLD, jdipNS:MOVE, jdipNS:RETREAT, jdipNS:SUPPORT, jdipNS:CONVOY )>
+	<!ATTLIST jdipNS:ORDERDRAWING
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	
+	<!ELEMENT jdipNS:POWERCOLORS (jdipNS:POWERCOLOR+)>
+	<!ATTLIST jdipNS:POWERCOLORS
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	
+	<!ELEMENT jdipNS:POWERCOLOR EMPTY>
+	<!ATTLIST jdipNS:POWERCOLOR
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  power CDATA #REQUIRED
+	  color CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:SYMBOLSIZE EMPTY>
+	<!ATTLIST jdipNS:SYMBOLSIZE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  name CDATA #REQUIRED
+	  width CDATA #REQUIRED
+	  height CDATA #REQUIRED
+	  >
+	
+	  <!ELEMENT jdipNS:HOLD EMPTY>
+	<!ATTLIST jdipNS:HOLD
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  widths CDATA #REQUIRED
+	  shadowWidths CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:DISBAND EMPTY>
+	<!ATTLIST jdipNS:DISBAND
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:WAIVE EMPTY>
+	<!ATTLIST jdipNS:WAIVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	>
+	  
+	<!ELEMENT jdipNS:REMOVE EMPTY>
+	<!ATTLIST jdipNS:REMOVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:BUILD EMPTY>
+	<!ATTLIST jdipNS:BUILD
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:MOVE EMPTY>
+	<!ATTLIST jdipNS:MOVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  widths CDATA #REQUIRED
+	  shadowWidths CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:RETREAT EMPTY>
+	<!ATTLIST jdipNS:RETREAT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:SUPPORT EMPTY>
+	<!ATTLIST jdipNS:SUPPORT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:CONVOY EMPTY>
+	<!ATTLIST jdipNS:CONVOY
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+]>
+<!-- ==================================================================================================	-->
+<!-- PURE variant by Danny Loeb																			-->
+<!-- SVG version by Zachary DelProposto	(Copyright 2002, Zachary DelProposto)							-->
+<!-- ==================================================================================================	-->
+<svg width="500px" height="500px" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" text-rendering="optimizeLegibility"
+	preserveAspectRatio="xMinYMin">
+	
+	<jdipNS:DISPLAY>
+		<jdipNS:ZOOM min="5" max="1000" factor="1.2" />
+		<jdipNS:LABELS brief="false" full="false" />
+	</jdipNS:DISPLAY>
+	
+	<jdipNS:ORDERDRAWING>
+		<jdipNS:POWERCOLORS>
+			<jdipNS:POWERCOLOR power="austria" color="#DA251D" />
+			<jdipNS:POWERCOLOR power="england" color="#2D77B2" />
+			<jdipNS:POWERCOLOR power="france"  color="#8E85B7" />
+			<jdipNS:POWERCOLOR power="germany" color="#666666" />
+			<jdipNS:POWERCOLOR power="italy"   color="#40A340" />
+			<jdipNS:POWERCOLOR power="russia"  color="#EEF0E9" />
+			<jdipNS:POWERCOLOR power="turkey"  color="#E9F507" />
+		</jdipNS:POWERCOLORS>
+		
+		<jdipNS:SYMBOLSIZE name="Fleet" width="40" height="40"/>
+		<jdipNS:SYMBOLSIZE name="Army" width="40" height="40"/>
+		<jdipNS:SYMBOLSIZE name="Wing" width="40" height="40"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedFleet" width="40" height="40"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedArmy" width="40" height="40"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedWing" width="40" height="40"/>
+		<jdipNS:SYMBOLSIZE name="FailedOrder" width="30" height="30"/>
+		<jdipNS:SYMBOLSIZE name="SupplyCenter" width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="BuildUnit" width="60" height="60"/>
+		<jdipNS:SYMBOLSIZE name="RemoveUnit" width="50" height="50"/>
+		<jdipNS:SYMBOLSIZE name="WaivedBuild" width="40" height="40"/>
+		
+		<jdipNS:BUILD deltaRadius="0"/>
+		<jdipNS:REMOVE deltaRadius="5"/>
+		<jdipNS:DISBAND deltaRadius="5"/>
+		<jdipNS:WAIVE deltaRadius="0"/>
+		<jdipNS:HOLD deltaRadius="5" strokeCSSStyle="varwidthorder" hilightOffset="0" hilightCSSClass="varwidthshadow" widths="5,8,11,14" shadowWidths="9,12,15,18"/>
+		<jdipNS:MOVE deltaRadius="5" strokeCSSStyle="varwidthorder" markerID="arrow" hilightOffset="0" hilightCSSClass="varwidthshadow" widths="5,8,11,14" shadowWidths="9,12,15,18"/>
+		<jdipNS:RETREAT deltaRadius="5" strokeCSSStyle="defaultorder" markerID="arrow" hilightOffset="0" hilightCSSClass="shadoworder"/>
+		<jdipNS:SUPPORT deltaRadius="10" strokeCSSStyle="supportorder" markerID="arrow" hilightOffset="0" hilightCSSClass="shadowdash"/>
+		<jdipNS:CONVOY deltaRadius="10" strokeCSSStyle="convoyorder" markerID="arrow" hilightOffset="0" hilightCSSClass="shadowdash"/>
+	</jdipNS:ORDERDRAWING>
+	
+	<jdipNS:PROVINCE_DATA>
+		<jdipNS:PROVINCE name="vie"><jdipNS:UNIT x="762" y="205"/><jdipNS:DISLODGED_UNIT x="777" y="190"/><jdipNS:SUPPLY_CENTER x="664" y="149"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="lon"><jdipNS:UNIT x="890" y="524"/><jdipNS:DISLODGED_UNIT x="905" y="509"/><jdipNS:SUPPLY_CENTER x="874" y="404"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="par"><jdipNS:UNIT x="719" y="825"/><jdipNS:DISLODGED_UNIT x="734" y="810"/><jdipNS:SUPPLY_CENTER x="800" y="734"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ber"><jdipNS:UNIT x="374" y="874"/><jdipNS:DISLODGED_UNIT x="389" y="859"/><jdipNS:SUPPLY_CENTER x="497" y="885"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="rom"><jdipNS:UNIT x="128" y="638"/><jdipNS:DISLODGED_UNIT x="143" y="623"/><jdipNS:SUPPLY_CENTER x="193" y="738"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mos"><jdipNS:UNIT x="152" y="299"/><jdipNS:DISLODGED_UNIT x="167" y="384"/><jdipNS:SUPPLY_CENTER x="119" y="409"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="con"><jdipNS:UNIT x="424" y="108"/><jdipNS:DISLODGED_UNIT x="439" y="93"/><jdipNS:SUPPLY_CENTER x="331" y="147"/></jdipNS:PROVINCE>
+	</jdipNS:PROVINCE_DATA>
+	
+	<title>Pure</title>
+  	<defs>
+		<style type="text/css"><![CDATA[
+		
+		/* text */
+		
+		/* map and unit features */
+		
+		.nopower 			 {fill:#F7DB94;stroke:black;stroke-width:3;}
+		.shadow				 {stroke:black;fill:black;stroke-width:1;opacity:0.40;}
+		.dislodgedshadow	 {stroke:black;fill:black;stroke-width:1;opacity:0.30;}
+		.icon				 {stroke:black;fill:black;stroke-width:1;}
+		.iconborder			 {stroke:black;stroke-width:1;}
+		.dislodgediconborder {stroke:red;stroke-width:1;}
+		.unordered 			 {fill:red; stroke:black; stroke-width:1;fill-opacity:0.90;}
+		
+		/* invisible click rects fill:none does not work */
+		
+		.invisible	{stroke:#000000;fill:#000000;fill-opacity:0.0;opacity:0.0;}
+		
+		/* default region coloring, by power */
+		
+		.austria 	{fill:#DA251D;stroke:black;stroke-width:3}
+		.england 	{fill:#2D77B2;stroke:black;stroke-width:3}
+		.france 	{fill:#8E85B7;stroke:black;stroke-width:3}
+		.germany 	{fill:#666666;stroke:black;stroke-width:3}
+		.italy 		{fill:#40A340;stroke:black;stroke-width:3}
+		.russia 	{fill:#EEF0E9;stroke:black;stroke-width:3}
+		.turkey 	{fill:#E9F507;stroke:black;stroke-width:3}
+		
+		/* unit colors, by power note that underscores are not supported */
+		
+		.unitaustria	{fill:#DA251D;}
+		.unitengland 	{fill:#2D77B2;}
+		.unitfrance 	{fill:#8E85B7;}
+		.unitgermany 	{fill:#666666;}
+		.unititaly 		{fill:#40A340;}
+		.unitrussia 	{fill:#EEF0E9;}
+		.unitturkey 	{fill:#E9F507;}
+		
+		/* supply center styles */
+		
+		.scnopower	{fill:black;stroke:black;}
+		.scaustria	{fill:black;stroke:black;}
+		.scengland	{fill:black;stroke:black;}
+		.scfrance	{fill:black;stroke:black;}	
+		.scgermany	{fill:black;stroke:black;}
+		.scitaly 	{fill:black;stroke:black;}	
+		.scrussia	{fill:black;stroke:black;} 
+		.scturkey	{fill:black;stroke:black;} 
+		
+		/* order drawing styles, stroke and fill colors should not be specified */
+		
+		.defaultorder	{stroke-width:5;fill:none;}
+		.supportorder	{stroke-width:5;fill:none;stroke-dasharray:5,5;}
+		.convoyorder	{stroke-dasharray:15,5;stroke-width:6;fill:none;}
+		.buildorder		{stroke-width:3;fill:none;}
+		
+		.shadoworder	{stroke-width:9;fill:none;stroke:black;}
+		.shadowdash		{stroke-width:9;fill:none;stroke:black;opacity:0.45;}
+		.shadowbuild	{stroke-width:5;fill:none;stroke:black;}
+		.varwidthorder  {fill:none;}
+		.varwidthshadow {fill:none;stroke:black;}
+		
+		]]></style>
+		
+			
+		<!--
+		<filter id="DropShadow" filterUnits="userSpaceOnUse">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
+			<feOffset in="blur" dx="4" dy="4" result="offsetBlurredAlpha"/>
+			<feMerge>
+				<feMergeNode in="offsetBlurredAlpha"/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+		-->
+		
+		<marker id="arrow"
+			viewBox="0 0 10 10" refX="5" refY="5" 
+			markerUnits="strokeWidth"
+			markerWidth="4" markerHeight="3"
+			orient="auto">
+			<path d="M 0 0 L 10 5 L 0 10 z" />
+		</marker>
+	</defs>    
+	
+	
+	<g id="MapLayer">
+		<rect fill="rgb(240,237,168)" stroke="black" stroke-width="5" x="0" y="0"
+			width="995" height="995"/>
+		<path fill="none" stroke="black" stroke-width="3"
+			d="M497.619 30.1868 L866.51 207.835 L957.619 607.008 L702.338 927.12 L292.9 927.12 L37.6191
+				607.008 L128.728 207.835 z"/>
+		<path fill="rgb(240,237,168)" stroke="black" stroke-width="3"
+			d="M497.619 142.283 L650.619 176.571 L774.287 275.519 L842.619 416.571 L842.619 574.899
+				L773.619 715.571 L651.158 814.983 L497.619 849.571 L344.08 814.983 L220.619
+				716.571 L152.619 574.899 L152.619 416.571 L220.951 275.519 L343.619 176.571
+				z"/>
+		<line fill="none" stroke="black" stroke-width="3" x1="497.619"
+			y1="30.5714" x2="497.619" y2="141.571"/>
+		<line fill="none" stroke="black" stroke-width="3" x1="772.619"
+			y1="274.571" x2="866.619" y2="207.571"/>
+		<line fill="none" stroke="black" stroke-width="3" x1="957.619"
+			y1="607.571" x2="841.619" y2="574.571"/>
+		<line fill="none" stroke="black" stroke-width="3" x1="649.619"
+			y1="814.571" x2="701.619" y2="929.571"/>
+		<line fill="none" stroke="black" stroke-width="3" x1="291.619"
+			y1="926.571" x2="344.619" y2="814.571"/>
+		<line fill="none" stroke="black" stroke-width="3" x1="150.619"
+			y1="574.571" x2="36.6191" y2="606.571"/>
+		<line fill="none" stroke="black" stroke-width="3" x1="220.619"
+			y1="274.571" x2="128.619" y2="207.571"/>
+		<g transform="translate(-2.38095 -21.4286)">
+			<line fill="none" stroke="black" stroke-width="6" x1="346" y1="198"
+				x2="845" y2="438"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="346" y1="198"
+				x2="776" y2="737"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="346" y1="198"
+				x2="500" y2="871"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="346" y1="198"
+				x2="223" y2="738"/>
+		</g>
+		<g transform="translate(-2.38095 -21.4286)">
+			<line fill="none" stroke="black" stroke-width="6" x1="653" y1="198"
+				x2="776" y2="737"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="653" y1="198"
+				x2="500" y2="871"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="653" y1="198"
+				x2="223" y2="738"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="653" y1="198"
+				x2="155" y2="438"/>
+		</g>
+		<g transform="translate(-2.38095 -21.4286)">
+			<line fill="none" stroke="black" stroke-width="6" x1="845" y1="438"
+				x2="500" y2="871"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="845" y1="438"
+				x2="223" y2="738"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="845" y1="438"
+				x2="155" y2="438"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="845" y1="438"
+				x2="346" y2="198"/>
+		</g>
+		<g transform="translate(-2.38095 -21.4286)">
+			<line fill="none" stroke="black" stroke-width="6" x1="776" y1="737"
+				x2="223" y2="738"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="776" y1="737"
+				x2="155" y2="438"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="776" y1="737"
+				x2="346" y2="198"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="776" y1="737"
+				x2="653" y2="198"/>
+		</g>
+		<g transform="translate(-2.38095 -21.4286)">
+			<line fill="none" stroke="black" stroke-width="6" x1="500" y1="871"
+				x2="155" y2="438"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="500" y1="871"
+				x2="346" y2="198"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="500" y1="871"
+				x2="653" y2="198"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="500" y1="871"
+				x2="845" y2="438"/>
+		</g>
+		<g>
+			<g transform="translate(-2.38095 -21.4286)">
+				<line fill="none" stroke="black" stroke-width="6" x1="223" y1="738"
+					x2="346" y2="198"/>
+				<line fill="none" stroke="black" stroke-width="6" x1="223" y1="738"
+					x2="653" y2="198"/>
+				<line fill="none" stroke="black" stroke-width="6" x1="223" y1="738"
+					x2="845" y2="438"/>
+				<line fill="none" stroke="black" stroke-width="6" x1="223" y1="738"
+					x2="776" y2="737"/>
+			</g>
+		</g>
+		<g transform="translate(-2.38095 -21.4286)">
+			<line fill="none" stroke="black" stroke-width="6" x1="155" y1="438"
+				x2="653" y2="198"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="155" y1="438"
+				x2="845" y2="438"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="155" y1="438"
+				x2="776" y2="737"/>
+			<line fill="none" stroke="black" stroke-width="6" x1="155" y1="438"
+				x2="500" y2="871"/>
+		</g>
+		<text fill="black" x="-278px" y="138px" font-family="sansserif" font-size="36"
+			transform="translate(-123.913 110.87) translate(1263.04 589.13) translate(-32.6087 2.17391) rotate(309.832 -221.264 125.31) translate(-7.1597 -41.6087) translate(14.9305 -15.5542)"
+			>Paris</text>
+		<text fill="black" font-size="36" font-family="sansserif" x="-287px" y="205px"
+			transform="translate(-119.565 -19.5652) translate(1354.35 219.565) translate(-64.1975 1.23457) rotate(75.7072 -220.85 195.892) translate(26.8838 14.493) translate(-21.3531 -2.98297) translate(0.45683 6.30804)"
+			>London</text>
+		<text fill="black" font-size="36" font-family="sansserif" x="-274px" y="308px"
+			transform="translate(-132.609 -197.826) translate(2.17391 6.52174) translate(1069.57 -10.8696) rotate(29.8179 -218.768 295.31) translate(10.2944 29.5644) rotate(358.562 -220.214 298.775) rotate(359.007 -220.285 298.603) rotate(357.849 -220.329 298.482) translate(0.720196 6.03851) translate(-8.46365 -1.53838) translate(-11.2897 -18.3683)"
+			>Vienna</text>
+		<text fill="black" font-size="36" font-family="sansserif"
+			x="-313px" y="390px"
+			transform="translate(-93.4783 -84.7826) translate(839.13 676.087) translate(-8.69565 -2.17391) translate(0 2.17391) translate(-2.38095 -21.4286) translate(0 5.76923) translate(23 -2) translate(7 0)"
+			>Berlin</text>
+		<text fill="black" font-size="36" font-family="sansserif"
+			x="-333px" y="475px"
+			transform="translate(-60.8696 0) translate(586.957 -369.565) translate(32.6923 23.0769) rotate(335.957 -277.737 465.894) translate(17.1839 -0.756818) translate(-1.37782 7.80842) translate(0.972716 2.53974) translate(6.55609 -20.5395) rotate(358.255 -213.197 464.84) translate(-50.1197 -2.00399) translate(-10.8147 -1.39563) translate(-2.30251 0.802347) translate(2.35477 3.05259)"
+			>Constantinople</text>
+		<text fill="black" font-size="36" font-family="sansserif"
+			x="-322px" y="551px"
+			transform="translate(-71.7391 -130.435) translate(6.52174 0) translate(6.52174 2.17391) translate(330.435 6.52174) translate(1.92308 0) translate(50 0) translate(-7.69231 0) rotate(285.776 -266.269 538.335) translate(1.28651 11.6267) rotate(357.124 -268.227 538.669) translate(20.3562 -7.10479)"
+			>Moscow</text>
+		<text fill="black" font-size="36" font-family="sansserif"
+			x="-315px" y="601px"
+			transform="translate(-82.6087 -241.304) translate(476.087 471.739) translate(5.76923 -9.61538) rotate(49.7338 -280.476 591.894) translate(3.62518 -22.1318) translate(-17.89 -12.0334)"
+			>Rome</text>
+		
+		<path id="_vie" class="nopower"
+			d="M497.619 142.283 L650.619 176.571 L774.287 275.519 L866.51 207.835 L497.619 30.1868
+				z"/>
+		<path id="_lon" class="nopower"
+			d="M774.287 275.519 L842.619 416.571 L842.619 574.899 L957.619 607.008 L866.51 207.835
+				z"/>
+		<path id="_par" class="nopower"
+			d="M842.619 574.899 L773.619 715.571 L651.158 814.983 L702.338 927.12 L957.619 607.008
+				z"/>
+		<path id="_ber" class="nopower"
+			d="M651.158 814.983 L497.619 849.571 L344.08 814.983 L292.9 927.12 L702.338 927.12 z"
+			/>
+		<path id="_rom" class="nopower"
+			d="M344.08 814.983 L220.619 716.571 L152.619 574.899 L37.6191 607.008 L292.9 927.12
+				z"/>
+		<path id="_mos" class="nopower"
+			d="M152.619 574.899 L152.619 416.571 L220.951 275.519 L128.728 207.835 L37.6191 607.008
+				z"/>
+		<path id="_con" class="nopower"
+			d="M220.951 275.519 L343.619 176.571 L497.619 142.283 L497.619 30.1868 L128.728 207.835
+				z"/>	
+	</g>
+	
+	
+	<!-- drawing layer: supply centers -->
+	<g id="SupplyCenterLayer"/>
+ 	<!-- drawing layer: orders -->
+	<g id="OrderLayer"/>
+	<!-- drawing layer: units -->
+	<g id="UnitLayer"/>
+	<!-- drawing layer: dislodged units -->
+	<g id="DislodgedUnitLayer"/>
+	<!-- drawing layer -->
+	<g id="HighestOrderLayer"/>
+	<!-- abbreviated name layer (not used) -->
+	<g id="BriefLabelLayer" class="labeltext" visibility="hidden"/>
+	<!-- full name layer (not used) -->
+	<g id="FullLabelLayer" class="labeltext" visibility="hidden"/>
+	
+	<!-- Invisible shapes for click detection -->
+	<g id="MouseLayer" class="invisible">
+		<path id="vie" 
+			d="M497.619 142.283 L650.619 176.571 L774.287 275.519 L866.51 207.835 L497.619 30.1868
+				z"/>
+		<path id="lon" 
+			d="M774.287 275.519 L842.619 416.571 L842.619 574.899 L957.619 607.008 L866.51 207.835
+				z"/>
+		<path id="par" 
+			d="M842.619 574.899 L773.619 715.571 L651.158 814.983 L702.338 927.12 L957.619 607.008
+				z"/>
+		<path id="ber" 
+			d="M651.158 814.983 L497.619 849.571 L344.08 814.983 L292.9 927.12 L702.338 927.12 z"
+			/>
+		<path id="rom" 
+			d="M344.08 814.983 L220.619 716.571 L152.619 574.899 L37.6191 607.008 L292.9 927.12
+				z"/>
+		<path id="mos" 
+			d="M152.619 574.899 L152.619 416.571 L220.951 275.519 L128.728 207.835 L37.6191 607.008
+				z"/>
+		<path id="con" 
+			d="M220.951 275.519 L343.619 176.571 L497.619 142.283 L497.619 30.1868 L128.728 207.835
+				z"/>	
+	</g>
+</svg>

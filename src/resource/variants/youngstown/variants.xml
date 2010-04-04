@@ -1,0 +1,350 @@
+<?xml version="1.0"?>
+<!DOCTYPE VARIANTS [
+	<!ELEMENT VARIANTS (DESCRIPTION, MAP_DEFINITION+, VARIANT+)>
+	
+	<!ELEMENT DESCRIPTION (#PCDATA)>
+	
+	<!ELEMENT MAP_DEFINITION (DESCRIPTION?)>
+	<!ATTLIST MAP_DEFINITION 
+		id ID #REQUIRED
+		title CDATA #REQUIRED
+		URI CDATA #REQUIRED
+		thumbURI CDATA #REQUIRED
+		preferredUnitStyle CDATA #IMPLIED
+		>
+	
+	<!ELEMENT VARIANT (DESCRIPTION, MAP, RULEOPTIONS?, POWER+, STARTINGTIME, VICTORYCONDITIONS, SUPPLYCENTER+, INITIALSTATE*)>
+	<!ATTLIST VARIANT
+			name CDATA #REQUIRED
+			default (true|false) "false"
+			version CDATA #REQUIRED
+			aliases CDATA #IMPLIED
+			>
+			
+	<!ELEMENT MAP (MAP_GRAPHIC*)>
+	<!ATTLIST MAP adjacencyURI CDATA #REQUIRED>
+	
+	<!ELEMENT MAP_GRAPHIC EMPTY>
+	<!ATTLIST MAP_GRAPHIC
+			ref IDREF #REQUIRED
+			default (true|false) "false"
+			preferredUnitStyle CDATA #IMPLIED
+			>
+	
+	<!ELEMENT RULEOPTIONS (RULEOPTION+)>
+	<!ELEMENT RULEOPTION EMPTY>
+	<!ATTLIST RULEOPTION	name CDATA #REQUIRED
+				value CDATA #REQUIRED>
+	
+	<!ELEMENT POWER EMPTY>
+	<!ATTLIST POWER name CDATA #REQUIRED
+			active (true|false) "true"
+			adjective CDATA #REQUIRED
+			altnames CDATA #IMPLIED
+			>
+	
+	<!ELEMENT STARTINGTIME EMPTY>
+	<!ATTLIST STARTINGTIME 	turn CDATA #REQUIRED
+				allowBCYears (true|false) "false"
+				>
+	
+	<!ELEMENT VICTORYCONDITIONS (WINNING_SUPPLY_CENTERS?, YEARS_WITHOUT_SC_CAPTURE?, GAME_LENGTH?)>
+	
+	<!ELEMENT WINNING_SUPPLY_CENTERS EMPTY>
+	<!ATTLIST WINNING_SUPPLY_CENTERS value CDATA #REQUIRED>
+	
+	<!ELEMENT YEARS_WITHOUT_SC_CAPTURE EMPTY>
+	<!ATTLIST YEARS_WITHOUT_SC_CAPTURE value CDATA #REQUIRED>
+	
+	<!ELEMENT GAME_LENGTH EMPTY>
+	<!ATTLIST GAME_LENGTH value CDATA #REQUIRED>
+	
+	<!ELEMENT SUPPLYCENTER EMPTY>
+	<!ATTLIST SUPPLYCENTER 	province CDATA #REQUIRED
+				homepower CDATA "none"
+				owner CDATA "none"
+				>
+				
+	<!ELEMENT INITIALSTATE EMPTY>
+	<!ATTLIST INITIALSTATE 	province CDATA #REQUIRED
+				power CDATA #REQUIRED
+				unit CDATA #REQUIRED
+				unitcoast CDATA #IMPLIED
+				>
+]>
+<!-- NOTE: it's very important that the name of the file will be variants.xml, in all lower case -->
+<!-- NOTE: for CDATA escapes, no space between tag and bracket!! -->
+<VARIANTS>
+	<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;">
+	Youngstown Variants
+	</p>]]></DESCRIPTION>
+	
+	
+	<MAP_DEFINITION id="yt" title="Youngstown" 
+		URI="youngstown.svg" thumbURI="youngstown_thumb.png" preferredUnitStyle="period">
+		<DESCRIPTION>
+		The Youngstown map.
+		</DESCRIPTION>
+	</MAP_DEFINITION>
+	
+	<VARIANT name="Youngstown" version="1.0">
+		<DESCRIPTION><![CDATA[
+		The Youngstown variant of diplomacy follows the same rules as standard
+		diplomacy with an expanded map.  Three new powers are added: China,
+		India and Japan. Changes to the rules are detailed below.
+		
+		<h2>Impassable areas</h2>
+		<div class="indent1cm">
+			No unit may enter Switzerland or the Himalayas.  The body of water in
+			the center of the map is the Caspian Sea and is intentionally left
+			unlabelled and cannot be entered.  No unit may enter the zone marked
+			"Impassable" north of Russia.  Fleets may move along the coast of Omsk
+			as they did have icebreakers back then.  Some subvariants disallow
+			this.  If specifically disallowed by mutual consent of the players or
+			by decree of the game's master you should not order fleets to Omsk.
+			The adjudicator will permit such a move, however.
+		</div>
+		
+		<h2>Off-board areas</h2>
+		<div class="indent1cm">
+			Surrounding the edge of the map are "off-board" boxes.  Various maps
+			differ in how they are identified.  The adjudicator refers to the box
+			in the North Atlantic as "Offboard A", the Mid-Atlantic as "Offboard
+			B", etc. counterclockwise to "Offboard L" in the North Pacific.  The
+			off-board boxes allow a circular map to be represented on a flat sheet
+			of paper.  There are several interpretations on how movement between
+			the off-board areas is intended to work.  This adjudicator interprets
+			them based mainly on Jon Monsarrat's description:
+			<ol>
+				<li>
+				Any unit in a land or sea area that contains an off-board box may
+				move into the box as though moving to a normal sea area or
+				province.  Any unit in an off-board box may move into the sea area
+				or province which contains the off-board box. For example:
+					<div style="margin:0.15cm 0px 0.2cm 1cm;font-family:monospace;">
+						<b>England:</b>  F NAt &#8594; ObA<br>
+						<b>Japan:</b>    F ObK &#8594; SPO
+					</p>
+				</li>
+				
+				<li>
+				A unit in an off-board box may move to an adjacent off-board box. For example:
+					<div style="margin:0.15cm 0px 0.2cm 1cm;font-family:monospace;">
+						<b>France:</b>   F ObB &#8594; ObC<br>
+						<b>India:</b>    F ObH &#8594; ObG
+					</div>
+				</li>
+				
+				<li>
+				A unit in an off-board box may move to the off-board box within the
+				sea area or province whose name appears in the unit's off-board box.
+				For example:
+					<div style="margin:0.15cm 0px 0.2cm 1cm;font-family:monospace;">
+						<b>France:</b>   F ObB &#8594; ObK<br>
+						<b>India:</b>    F ObH &#8594; ObC
+					</div>
+				</li>
+				
+				<li>
+				Off-board boxes are treated as sea areas or provinces and hence,
+				only one unit may be present in an off-board box.
+				</li>
+				
+				<li>
+				Support orders and convoy orders apply to off-board boxes.
+				Examples:
+					<div style="margin:0.15cm 0px 0.2cm 1cm;font-family:monospace;">
+					<b>Japan:</b>    	
+						<div style="margin:0px 0px 0.1cm 1cm;font-family:monospace;">
+								F NPa C A Tok &#8594; Ire<br>
+								F ObL C A Tok &#8594; Ire<br>
+								F ObA C A Tok &#8594; Ire<br>
+								F NAt C A Tok &#8594; Ire<br>
+								A Tok &#8594; Ire
+						</div>
+					<b>England:</b>
+						<div style="margin:0px 0px 0.1cm 1cm;font-family:monospace;">
+								F ObB &#8594; ObK<br>
+								F ObJ S F ObB &#8594; ObK
+						</div>
+					</div>
+				</li>
+				
+				<li>
+				A fleet may move to the African off-board boxes and is on the coast
+				of the African continent.  Fleets cannot move to the inland off-board
+				boxes in Sudan and the Sahara (boxes E and F).
+				</li>
+			</ol>
+		</div>
+		
+		<h2>The Suez</h2>
+		<div class="indent1cm">
+			The Suez is a water territory contained within Egypt.  It is adjacent
+			to the Eastern Mediterranean, the Red Sea and the north and east coasts
+			of Egypt.  It is not adjacent to either coast of Jordan.  Jordan's
+			north coast is adjacent to Egypt's north coast and Jordan's west coast
+			is adjacent to Egypt's east coast.  Other units can move between Egypt
+			and Jordan whether or not there is a fleet in the Suez and fleets can
+			move into the Suez whether or not there is a unit present in Egypt.
+			Fleets in the Suez can convoy armies.
+		</div>
+		
+		<h2>Victory Conditions</h2>
+		<div class="indent1cm">
+			There are a total of 72 supply centers on the board. A majority of
+			pieces therefore would be 37 centers for victory by a single country.
+		</div>
+		
+		<h2>Colony Unit Building</h2>
+		<div class="indent1cm">
+			England, France and Italy are free to build new units at their respective
+			colony territories with the same restrictions as regular home centers		
+		</div>
+		
+		<p style="margin-top:21pt;">
+				Authors: Rod Walker, 
+				and others for later versions. Rules by Jon Monsarrat.
+		</p>]]></DESCRIPTION> 
+		<MAP adjacencyURI="youngstown_adjacency.xml">
+			<MAP_GRAPHIC ref="yt" default="true" />
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY" />
+		</RULEOPTIONS>
+		<POWER name="Austria" active="true" adjective="Austrian" /> 
+		<POWER name="England" active="true" adjective="English" altnames="Britain" /> 
+		<POWER name="France" active="true" adjective="French" /> 
+		<POWER name="Germany" active="true" adjective="German" /> 
+		<POWER name="Italy" active="true" adjective="Italian" />
+		<POWER name="Russia" active="true" adjective="Russian" /> 
+		<POWER name="Turkey" active="true" adjective="Turkish" /> 
+		<POWER name="China" active="true" adjective="Chinese" /> 
+		<POWER name="India" active="true" adjective="Indian" /> 
+		<POWER name="Japan" active="true" adjective="Japanese" /> 
+		
+		<STARTINGTIME turn="Spring, 1901, Movement" />
+		
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="37" />
+		</VICTORYCONDITIONS>
+ 	 	
+		<!-- owned supply centers -->
+		<SUPPLYCENTER province="bud" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="klu" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="tri" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="vie" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="can" homepower="china" owner="china"/>
+		<SUPPLYCENTER province="han" homepower="china" owner="china"/>
+		<SUPPLYCENTER province="pek" homepower="china" owner="china"/>
+		<SUPPLYCENTER province="edi" homepower="england" owner="england"/>
+		<SUPPLYCENTER province="joh" homepower="england" owner="england"/>
+		<SUPPLYCENTER province="liv" homepower="england" owner="england"/>
+		<SUPPLYCENTER province="lon" homepower="england" owner="england"/>
+		<SUPPLYCENTER province="bre" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="mar" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="par" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="sai" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="ber" homepower="germany" owner="germany"/>
+		<SUPPLYCENTER province="kie" homepower="germany" owner="germany"/>
+		<SUPPLYCENTER province="mun" homepower="germany" owner="germany"/>
+		<SUPPLYCENTER province="pos" homepower="germany" owner="germany"/>
+		<SUPPLYCENTER province="mag" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="nap" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="rom" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="ven" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="kyo" homepower="japan" owner="japan"/>
+		<SUPPLYCENTER province="osa" homepower="japan" owner="japan"/>
+		<SUPPLYCENTER province="tok" homepower="japan" owner="japan"/>
+		<SUPPLYCENTER province="cal" homepower="india" owner="india"/>
+		<SUPPLYCENTER province="del" homepower="india" owner="india"/>
+		<SUPPLYCENTER province="mad" homepower="india" owner="india"/>
+		<SUPPLYCENTER province="mos" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="oms" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="sev" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="stp" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="vla" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="war" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="ank" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="bag" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="con" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="smy" homepower="turkey" owner="turkey"/>
+		
+		<!-- neutral supply centers -->
+		<SUPPLYCENTER province="bel" />
+		<SUPPLYCENTER province="bor" />
+		<SUPPLYCENTER province="brm" />
+		<SUPPLYCENTER province="bul" />
+		<SUPPLYCENTER province="cam" />
+		<SUPPLYCENTER province="cey" />
+		<SUPPLYCENTER province="den" />
+		<SUPPLYCENTER province="egy" />
+		<SUPPLYCENTER province="eth" />
+		<SUPPLYCENTER province="for" />
+		<SUPPLYCENTER province="gre" />
+		<SUPPLYCENTER province="hol" />
+		<SUPPLYCENTER province="ira" />
+		<SUPPLYCENTER province="ire" />
+		<SUPPLYCENTER province="jav" />
+		<SUPPLYCENTER province="kar" />
+		<SUPPLYCENTER province="kor" />
+		<SUPPLYCENTER province="man" />
+		<SUPPLYCENTER province="mor" />
+		<SUPPLYCENTER province="nwy" />
+		<SUPPLYCENTER province="omo" />
+		<SUPPLYCENTER province="pen" />
+		<SUPPLYCENTER province="phi" />
+		<SUPPLYCENTER province="por" />
+		<SUPPLYCENTER province="rum" />
+		<SUPPLYCENTER province="ser" />
+		<SUPPLYCENTER province="sin" />
+		<SUPPLYCENTER province="spa" />
+		<SUPPLYCENTER province="swe" />
+		<SUPPLYCENTER province="tha" />
+		<SUPPLYCENTER province="tun" />
+		<SUPPLYCENTER province="vtn" />
+		<SUPPLYCENTER province="yem" />
+		
+		<!-- unit placement -->
+		<INITIALSTATE province="bud" power="austria" unit="army" />
+		<INITIALSTATE province="klu" power="austria" unit="army" /> 
+		<INITIALSTATE province="tri" power="austria" unit="fleet" />
+		<INITIALSTATE province="vie" power="austria" unit="army" />
+		<INITIALSTATE province="can" power="china"   unit="fleet" /> 
+		<INITIALSTATE province="han" power="china"   unit="army" />
+		<INITIALSTATE province="pek" power="china"   unit="army" />
+		<INITIALSTATE province="edi" power="england" unit="fleet" />
+		<INITIALSTATE province="joh" power="england" unit="fleet" />
+		<INITIALSTATE province="liv" power="england" unit="fleet" />
+		<INITIALSTATE province="lon" power="england" unit="fleet" />
+		<INITIALSTATE province="bre" power="france"  unit="fleet" />
+		<INITIALSTATE province="mar" power="france"  unit="army" />
+		<INITIALSTATE province="par" power="france"  unit="army" />
+		<INITIALSTATE province="sai" power="france"  unit="fleet" />
+		<INITIALSTATE province="ber" power="germany" unit="army" />
+		<INITIALSTATE province="kie" power="germany" unit="fleet" />
+		<INITIALSTATE province="mun" power="germany" unit="army" />
+		<INITIALSTATE province="pos" power="germany" unit="army" />
+		<INITIALSTATE province="mag" power="italy"   unit="fleet" />
+		<INITIALSTATE province="nap" power="italy"   unit="fleet" />
+		<INITIALSTATE province="rom" power="italy"   unit="army" />
+		<INITIALSTATE province="ven" power="italy"   unit="army" />
+		<INITIALSTATE province="kyo" power="japan"   unit="fleet" />
+		<INITIALSTATE province="osa" power="japan"   unit="fleet" />
+		<INITIALSTATE province="tok" power="japan"   unit="fleet" />
+		<INITIALSTATE province="cal" power="india"   unit="army" />
+		<INITIALSTATE province="del" power="india"   unit="army" />
+		<INITIALSTATE province="mad" power="india"   unit="fleet" />
+		<INITIALSTATE province="mos" power="russia"  unit="army" />
+		<INITIALSTATE province="oms" power="russia"  unit="army" />
+		<INITIALSTATE province="sev" power="russia"  unit="fleet" />
+		<INITIALSTATE province="stp" power="russia"  unit="fleet" unitcoast="sc"/>
+		<INITIALSTATE province="vla" power="russia"  unit="fleet" />
+		<INITIALSTATE province="war" power="russia"  unit="army" />
+		<INITIALSTATE province="ank" power="turkey"  unit="fleet" />
+		<INITIALSTATE province="bag" power="turkey"  unit="army" />
+		<INITIALSTATE province="con" power="turkey"  unit="army" />
+		<INITIALSTATE province="smy" power="turkey"  unit="army" />
+	</VARIANT>
+</VARIANTS>
+

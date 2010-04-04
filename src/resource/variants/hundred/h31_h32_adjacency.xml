@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<!DOCTYPE PROVINCES [
+	<!ELEMENT PROVINCES (BORDER_DEFINITIONS?, PROVINCE+)>
+	
+	<!-- ===================================================================== -->
+	<!ELEMENT BORDER_DEFINITIONS (BORDER+)>
+	
+	<!ELEMENT BORDER EMPTY>
+	<!ATTLIST BORDER	
+				id ID #REQUIRED
+				description CDATA #REQUIRED
+				from CDATA #IMPLIED
+				unitTypes CDATA #IMPLIED
+				orderTypes CDATA #IMPLIED
+				year CDATA #IMPLIED
+				season CDATA #IMPLIED
+				phase CDATA #IMPLIED
+				baseMoveModifier CDATA #IMPLIED
+				>
+				
+	<!-- ===================================================================== -->
+	<!ELEMENT PROVINCE (UNIQUENAME*, ADJACENCY+)>
+	<!ATTLIST PROVINCE 	
+				shortname CDATA #REQUIRED
+				fullname CDATA #REQUIRED
+				isConvoyableCoast (true|false) "false"
+				borders IDREFS #IMPLIED
+				>	
+	
+				
+	<!ELEMENT UNIQUENAME EMPTY>
+	<!ATTLIST UNIQUENAME name CDATA #REQUIRED>
+	
+	<!ELEMENT ADJACENCY EMPTY>
+	<!ATTLIST ADJACENCY 	
+				type (mv|xc|nc|sc|wc|ec) "mv"
+				refs CDATA #REQUIRED
+				>
+]>
+<!-- Adjacency for H31 and H32 -->
+<PROVINCES>
+	<PROVINCE fullname="Alsace" shortname="als">
+		<ADJACENCY type="mv" refs="can lor"/>
+	</PROVINCE>
+	<PROVINCE fullname="Anglia" shortname="ang">
+		<ADJACENCY type="mv" refs="lon dev num"/>
+		<ADJACENCY type="xc" refs="nth was dov lon num/ec"/>
+	</PROVINCE>
+	<PROVINCE fullname="Anjou" shortname="anj">
+		<ADJACENCY type="mv" refs="nmd orl brt"/>
+	</PROVINCE>
+	<PROVINCE fullname="Aragon" shortname="ara">
+		<UNIQUENAME name="cat" />
+		<UNIQUENAME name="catalonia" />
+		<ADJACENCY type="mv" refs="guy tou cas"/>
+		<ADJACENCY type="nc" refs="cas bis guy"/>
+		<ADJACENCY type="sc" refs="tou med cas"/>
+	</PROVINCE>
+	<PROVINCE fullname="Atlantic" shortname="atl">
+		<ADJACENCY type="xc" refs="iri bch bis cas med pal"/>
+	</PROVINCE>
+	<PROVINCE fullname="Biscay" shortname="bis">
+		<UNIQUENAME name="bob" />
+		<ADJACENCY type="xc" refs="brt guy ara/nc cas atl bch"/>
+	</PROVINCE>
+	<PROVINCE fullname="Bristol Channel" shortname="bch">
+		<UNIQUENAME name="bristol" />
+		<ADJACENCY type="xc" refs="wal dev ech brt bis atl iri"/>
+	</PROVINCE>
+	<PROVINCE fullname="Brittany" shortname="brt">
+		<UNIQUENAME name="bri" />
+		<ADJACENCY type="mv" refs="nmd anj orl poi guy"/>
+		<ADJACENCY type="xc" refs="ech nmd guy bis bch"/>
+	</PROVINCE>
+	<PROVINCE fullname="Calais" shortname="cal">
+		<UNIQUENAME name="artois" />
+		<UNIQUENAME name="art" />
+		<ADJACENCY type="mv" refs="fla dij par nmd lon"/>
+		<ADJACENCY type="xc" refs="fla nmd dov lon"/>
+	</PROVINCE>
+	<PROVINCE fullname="Cantons" shortname="can">
+		<UNIQUENAME name="swiss" />
+		<UNIQUENAME name="swi" />
+		<UNIQUENAME name="switz" />
+		<ADJACENCY type="mv" refs="dij lor als sav dau"/>
+	</PROVINCE>
+	<PROVINCE fullname="Castile" shortname="cas">
+		<UNIQUENAME name="iberia" />
+		<UNIQUENAME name="ibi" />
+		<UNIQUENAME name="ibe" />
+		<UNIQUENAME name="castille" />
+		<ADJACENCY type="mv" refs="ara"/>
+		<ADJACENCY type="xc" refs="ara/nc ara/sc med atl bis"/>
+	</PROVINCE>
+	<PROVINCE fullname="Charolais" shortname="cha">
+		<UNIQUENAME name="char" />
+		<ADJACENCY type="mv" refs="dij dau par"/>
+	</PROVINCE>
+	<PROVINCE fullname="Dauphine" shortname="dau">
+		<ADJACENCY type="mv" refs="par cha dij can sav pro lim orl"/>
+	</PROVINCE>
+	<PROVINCE fullname="Devon" shortname="dev">
+		<UNIQUENAME name="plymouth" />
+		<UNIQUENAME name="ply" />
+		<ADJACENCY type="mv" refs="num ang lon wal"/>
+		<ADJACENCY type="xc" refs="lon ech bch wal"/>
+	</PROVINCE>
+	<PROVINCE fullname="Dijon" shortname="dij">
+		<ADJACENCY type="mv" refs="fla lux lor can dau cha par cal"/>
+	</PROVINCE>
+	<PROVINCE fullname="English Channel" shortname="ech">
+		<UNIQUENAME name="english" />
+		<ADJACENCY type="xc" refs="dev lon dov nmd brt bch"/>
+	</PROVINCE>
+	<PROVINCE fullname="Flanders" shortname="fla">
+		<UNIQUENAME name="ant" />
+		<UNIQUENAME name="antwep" />
+		<ADJACENCY type="mv" refs="hol lux dij cal"/>
+		<ADJACENCY type="xc" refs="hol cal dov"/>
+	</PROVINCE>
+	<PROVINCE fullname="Friesland" shortname="fri">
+		<ADJACENCY type="mv" refs="lux hol"/>
+		<ADJACENCY type="xc" refs="hol was"/>
+	</PROVINCE>
+	<PROVINCE fullname="Guyenne" shortname="guy">
+		<UNIQUENAME name="aqu" />
+		<UNIQUENAME name="aqui" />
+		<UNIQUENAME name="aquitaine" />
+		<ADJACENCY type="mv" refs="brt poi tou ara"/>
+		<ADJACENCY type="xc" refs="brt ara/nc bis"/>
+	</PROVINCE>
+	<PROVINCE fullname="Holland" shortname="hol">
+		<UNIQUENAME name="amsterdam" />
+		<UNIQUENAME name="ams" />
+		<ADJACENCY type="mv" refs="fri lux fla"/>
+		<ADJACENCY type="xc" refs="fri fla dov was"/>
+	</PROVINCE>
+	<PROVINCE fullname="Irish Sea" shortname="iri">
+		<UNIQUENAME name="irs" />
+		<UNIQUENAME name="irish" />
+		<ADJACENCY type="xc" refs="min sco num/wc wal bch atl pal"/>
+	</PROVINCE>
+	<PROVINCE fullname="Limousin" shortname="lim">
+		<ADJACENCY type="mv" refs="orl dau pro tou poi"/>
+	</PROVINCE>
+	<PROVINCE fullname="London" shortname="lon">
+		<ADJACENCY type="mv" refs="dev ang cal"/>
+		<ADJACENCY type="xc" refs="dov ech dev ang cal"/>
+	</PROVINCE>
+	<PROVINCE fullname="Lorraine" shortname="lor">
+		<UNIQUENAME name="swa" />
+		<UNIQUENAME name="swabia" />
+		<ADJACENCY type="mv" refs="als can dij lux"/>
+	</PROVINCE>
+	<PROVINCE fullname="Luxembourg" shortname="lux">
+		<ADJACENCY type="mv" refs="hol fri lor dij fla"/>
+	</PROVINCE>
+	<PROVINCE fullname="Mediterranean Sea" shortname="med">
+		<ADJACENCY type="xc" refs="cas ara/sc tou pro sav atl"/>
+	</PROVINCE>
+	<PROVINCE fullname="Minch" shortname="min">
+		<ADJACENCY type="xc" refs="sco iri pal nth"/>
+	</PROVINCE>
+	<PROVINCE fullname="Normandy" shortname="nmd">
+		<UNIQUENAME name="nrm" />
+		<ADJACENCY type="mv" refs="cal par orl anj brt"/>
+		<ADJACENCY type="xc" refs="cal brt ech dov"/>
+	</PROVINCE>
+	<PROVINCE fullname="North Sea" shortname="nth">
+		<UNIQUENAME name="nos" />
+		<ADJACENCY type="xc" refs="ang num/ec sco min was"/>
+	</PROVINCE>
+	<PROVINCE fullname="Northumbria" shortname="num">
+		<UNIQUENAME name="northumberland" />
+		<ADJACENCY type="ec" refs="sco nth ang"/>
+		<ADJACENCY type="mv" refs="ang dev wal sco"/>
+		<ADJACENCY type="wc" refs="wal iri sco"/>
+	</PROVINCE>
+	<PROVINCE fullname="Orleanais" shortname="orl">
+		<UNIQUENAME name="orleans" />
+		<ADJACENCY type="mv" refs="anj nmd par dau lim poi brt"/>
+	</PROVINCE>
+	<PROVINCE fullname="Paris" shortname="par">
+		<ADJACENCY type="mv" refs="cal dij cha dau orl nmd"/>
+	</PROVINCE>
+	<PROVINCE fullname="Poitou" shortname="poi">
+		<ADJACENCY type="mv" refs="orl lim tou guy brt"/>
+	</PROVINCE>
+	<PROVINCE fullname="Provence" shortname="pro">
+		<ADJACENCY type="mv" refs="dau sav tou lim"/>
+		<ADJACENCY type="xc" refs="sav med tou"/>
+	</PROVINCE>
+	<PROVINCE fullname="Savoy" shortname="sav">
+		<ADJACENCY type="mv" refs="dau can pro"/>
+		<ADJACENCY type="xc" refs="med pro"/>
+	</PROVINCE>
+	<PROVINCE fullname="Scotland" shortname="sco">
+		<ADJACENCY type="mv" refs="num"/>
+		<ADJACENCY type="xc" refs="nth num/ec num/wc iri min"/>
+	</PROVINCE>
+	<PROVINCE fullname="Strait of Dover" shortname="dov">
+		<UNIQUENAME name="str" />
+		<UNIQUENAME name="strait" />
+		<UNIQUENAME name="dover" />
+		<ADJACENCY type="xc" refs="ang was hol fla cal nmd ech lon"/>
+	</PROVINCE>
+	<PROVINCE fullname="The Pale" shortname="pal">
+		<ADJACENCY type="mv" refs="pal"/>
+		<ADJACENCY type="xc" refs="iri atl min"/>
+	</PROVINCE>
+	<PROVINCE fullname="The Wash" shortname="was">
+		<UNIQUENAME name="wash" />
+		<ADJACENCY type="xc" refs="fri hol dov ang nth"/>
+	</PROVINCE>
+	<PROVINCE fullname="Toulouse" shortname="tou">
+		<ADJACENCY type="mv" refs="poi lim pro ara guy"/>
+		<ADJACENCY type="xc" refs="pro med ara/sc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Wales" shortname="wal">
+		<ADJACENCY type="mv" refs="num dev"/>
+		<ADJACENCY type="xc" refs="num/wc dev bch iri"/>
+	</PROVINCE>
+</PROVINCES>

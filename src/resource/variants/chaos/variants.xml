@@ -1,0 +1,201 @@
+<?xml version="1.0" standalone="yes"?>
+<!DOCTYPE VARIANTS [
+	<!ELEMENT VARIANTS (DESCRIPTION, MAP_DEFINITION+, VARIANT+)>
+	
+	<!ELEMENT DESCRIPTION (#PCDATA)>
+	
+	<!ELEMENT MAP_DEFINITION (DESCRIPTION?)>
+	<!ATTLIST MAP_DEFINITION 
+		id ID #REQUIRED
+		title CDATA #REQUIRED
+		URI CDATA #REQUIRED
+		thumbURI CDATA #REQUIRED
+		preferredUnitStyle CDATA #IMPLIED
+		>
+	
+	<!ELEMENT VARIANT (DESCRIPTION, MAP, RULEOPTIONS?, POWER+, STARTINGTIME, VICTORYCONDITIONS, SUPPLYCENTER+, INITIALSTATE*)>
+	<!ATTLIST VARIANT
+			name CDATA #REQUIRED
+			default (true|false) "false"
+			version CDATA #REQUIRED
+			aliases CDATA #IMPLIED
+			>
+			
+	<!ELEMENT MAP (MAP_GRAPHIC*)>
+	<!ATTLIST MAP adjacencyURI CDATA #REQUIRED>
+	
+	<!ELEMENT MAP_GRAPHIC EMPTY>
+	<!ATTLIST MAP_GRAPHIC
+			ref IDREF #REQUIRED
+			default (true|false) "false"
+			preferredUnitStyle CDATA #IMPLIED
+			>
+	
+	<!ELEMENT RULEOPTIONS (RULEOPTION+)>
+	<!ELEMENT RULEOPTION EMPTY>
+	<!ATTLIST RULEOPTION	name CDATA #REQUIRED
+				value CDATA #REQUIRED>
+	
+	<!ELEMENT POWER EMPTY>
+	<!ATTLIST POWER name CDATA #REQUIRED
+			active (true|false) "true"
+			adjective CDATA #REQUIRED
+			altnames CDATA #IMPLIED
+			>
+	
+	<!ELEMENT STARTINGTIME EMPTY>
+	<!ATTLIST STARTINGTIME 	turn CDATA #REQUIRED
+				allowBCYears (true|false) "false"
+				>
+	
+	<!ELEMENT VICTORYCONDITIONS (WINNING_SUPPLY_CENTERS?, YEARS_WITHOUT_SC_CAPTURE?, GAME_LENGTH?)>
+	
+	<!ELEMENT WINNING_SUPPLY_CENTERS EMPTY>
+	<!ATTLIST WINNING_SUPPLY_CENTERS value CDATA #REQUIRED>
+	
+	<!ELEMENT YEARS_WITHOUT_SC_CAPTURE EMPTY>
+	<!ATTLIST YEARS_WITHOUT_SC_CAPTURE value CDATA #REQUIRED>
+	
+	<!ELEMENT GAME_LENGTH EMPTY>
+	<!ATTLIST GAME_LENGTH value CDATA #REQUIRED>
+	
+	<!ELEMENT SUPPLYCENTER EMPTY>
+	<!ATTLIST SUPPLYCENTER 	province CDATA #REQUIRED
+				homepower CDATA "none"
+				owner CDATA "none"
+				>
+				
+	<!ELEMENT INITIALSTATE EMPTY>
+	<!ATTLIST INITIALSTATE 	province CDATA #REQUIRED
+				power CDATA #REQUIRED
+				unit CDATA #REQUIRED
+				unitcoast CDATA #IMPLIED
+				>
+]>
+<!-- NOTE: it's very important that the name of the file will be variants.xml, in all lower case -->
+<!-- NOTE: for CDATA escapes, no space between tag and bracket!! -->
+<VARIANTS>
+	<DESCRIPTION><![CDATA[The main variant list for jDip]]></DESCRIPTION> 
+	
+	<MAP_DEFINITION id="chaos" title="Standard"  preferredUnitStyle="modern"
+		URI="chaos.svg" thumbURI="chaos_thumb.png">
+		<DESCRIPTION>
+		The traditional map, optimized for Chaos games.
+		</DESCRIPTION>
+	</MAP_DEFINITION>
+	
+	
+	<VARIANT name="Chaos" version="1.0" default="false">
+		<DESCRIPTION><![CDATA[ 
+		<p>
+			This version of Chaos is compatible with <b>nJudge</b>. 
+			It is <b>not</b> compatible with DPJudge (USDP and UKDP). 
+			The DPJudge-compatible version of Chaos must be installed 
+			separately.
+		</p>
+		<p>
+			The chaos variant is played by 34 players, each owning a single supply
+			center on the standard map.  The game starts in Winter of
+			1900 at the adjustment phase.  Each player starts out choosing which
+			type of unit they wish to build and progressing from there.  When
+			building units, a unit may be built at any owned supply center.
+		</p>
+		<p>
+			Due to the number of players, power names are a single character
+			followed by the three letter abbreviation of your initial center.
+			These are:
+		</p>
+		<div class="indent1cm" style="margin-top:7pt;">
+				     A-Ank, B-Bel, C-Ber, D-Bre, E-Bud, F-Bul, G-Con,<br>
+				     H-Den, I-Edi, J-Gre, K-Hol, L-Kie, N-Lvp, P-Lon,<br>
+				     Q-Mar, R-Mos, S-Mun, T-Nap, U-Nor, V-Par, W-Por,<br>
+				     X-Rom, Y-Rum, Z-Ser, 0-Sev, 1-Smy, 2-Spa, 3-StP,<br>
+				     4-Swe, 5-Tri, 6-Tun, 7-Ven, 8-Vie, 9-War.<br>
+		</div>
+		<p>
+			Author: Michel Ferion
+		</p>]]></DESCRIPTION> 
+		<MAP adjacencyURI="chaos_adjacency.xml">
+			<MAP_GRAPHIC ref="chaos" default="true" />
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_ANY_OWNED" />
+		</RULEOPTIONS>
+		<POWER name="A-Ank"  active="true" adjective="A-Ank"/>
+		<POWER name="B-Bel"  active="true" adjective="B-Bel"/>
+		<POWER name="C-Ber"  active="true" adjective="C-Ber"/>
+		<POWER name="D-Bre"  active="true" adjective="D-Bre"/>
+		<POWER name="E-Bud"  active="true" adjective="E-Bud"/>
+		<POWER name="F-Bul"  active="true" adjective="F-Bul"/>
+		<POWER name="G-Con"  active="true" adjective="G-Con"/>
+		<POWER name="H-Den"  active="true" adjective="H-Den"/>
+		<POWER name="I-Edi"  active="true" adjective="I-Edi"/>
+		<POWER name="J-Gre"  active="true" adjective="J-Gre"/>
+		<POWER name="K-Hol"  active="true" adjective="K-Hol"/>
+		<POWER name="L-Kie"  active="true" adjective="L-Kie"/>
+		<POWER name="N-Lvp"  active="true" adjective="N-Lvp"/>
+		<POWER name="P-Lon"  active="true" adjective="P-Lon"/>
+		<POWER name="Q-Mar"  active="true" adjective="Q-Mar"/>
+		<POWER name="R-Mos"  active="true" adjective="R-Mos"/>
+		<POWER name="S-Mun"  active="true" adjective="S-Mun"/>
+		<POWER name="T-Nap"  active="true" adjective="T-Nap"/>
+		<POWER name="U-Nor"  active="true" adjective="U-Nor"/>
+		<POWER name="V-Par"  active="true" adjective="V-Par"/>
+		<POWER name="W-Por"  active="true" adjective="W-Por"/>
+		<POWER name="X-Rom"  active="true" adjective="X-Rom"/>
+		<POWER name="Y-Rum"  active="true" adjective="Y-Rum"/>
+		<POWER name="Z-Ser"  active="true" adjective="Z-Ser"/>
+		<POWER name="0-Sev"  active="true" adjective="0-Sev"/>
+		<POWER name="1-Smy"  active="true" adjective="1-Smy"/>
+		<POWER name="2-Spa"  active="true" adjective="2-Spa"/>
+		<POWER name="3-StP"  active="true" adjective="3-StP"/>
+		<POWER name="4-Swe"  active="true" adjective="4-Swe"/>
+		<POWER name="5-Tri"  active="true" adjective="5-Tri"/>
+		<POWER name="6-Tun"  active="true" adjective="6-Tun"/>
+		<POWER name="7-Ven"  active="true" adjective="7-Ven"/>
+		<POWER name="8-Vie"  active="true" adjective="8-Vie"/>
+		<POWER name="9-War"  active="true" adjective="9-War"/>
+		<STARTINGTIME turn="Fall, 1900, Adjustment" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="18" />
+			<YEARS_WITHOUT_SC_CAPTURE value="7" />
+			<GAME_LENGTH value="35" />
+		</VICTORYCONDITIONS>
+ 	 	<!-- supply centers -->
+		<SUPPLYCENTER province="ank" owner="A-Ank"/>
+		<SUPPLYCENTER province="bel" owner="B-Bel"/>
+		<SUPPLYCENTER province="ber" owner="C-Ber"/>
+	 	<SUPPLYCENTER province="bre" owner="D-Bre"/>
+		<SUPPLYCENTER province="bud" owner="E-Bud"/>
+		<SUPPLYCENTER province="bul" owner="F-Bul"/>
+	 	<SUPPLYCENTER province="con" owner="G-Con"/>
+		<SUPPLYCENTER province="den" owner="H-Den"/>
+		<SUPPLYCENTER province="edi" owner="I-Edi"/>
+		<SUPPLYCENTER province="gre" owner="J-Gre"/>
+		<SUPPLYCENTER province="hol" owner="K-Hol"/>
+		<SUPPLYCENTER province="kie" owner="L-Kie"/>
+		<SUPPLYCENTER province="lvp" owner="N-Lvp"/>
+		<SUPPLYCENTER province="lon" owner="P-Lon"/>
+	 	<SUPPLYCENTER province="mar" owner="Q-Mar"/>
+	 	<SUPPLYCENTER province="mos" owner="R-Mos"/>
+		<SUPPLYCENTER province="mun" owner="S-Mun"/>
+	 	<SUPPLYCENTER province="nap" owner="T-Nap"/>
+		<SUPPLYCENTER province="nor" owner="U-Nor"/>
+	 	<SUPPLYCENTER province="par" owner="V-Par"/>
+		<SUPPLYCENTER province="por" owner="W-Por"/>
+	 	<SUPPLYCENTER province="rom" owner="X-Rom"/>
+		<SUPPLYCENTER province="rum" owner="Y-Rum"/>
+		<SUPPLYCENTER province="ser" owner="Z-Ser"/>
+	 	<SUPPLYCENTER province="sev" owner="0-Sev"/>
+	 	<SUPPLYCENTER province="smy" owner="1-Smy"/>
+		<SUPPLYCENTER province="spa" owner="2-Spa"/>
+	 	<SUPPLYCENTER province="stp" owner="3-StP"/>
+		<SUPPLYCENTER province="swe" owner="4-Swe"/>
+		<SUPPLYCENTER province="tri" owner="5-Tri"/>
+		<SUPPLYCENTER province="tun" owner="6-Tun"/>
+	 	<SUPPLYCENTER province="ven" owner="7-Ven"/>
+		<SUPPLYCENTER province="vie" owner="8-Vie"/>
+	 	<SUPPLYCENTER province="war" owner="9-War"/>
+		<!-- no units placed; adjustment phase; we get to pick -->
+	</VARIANT>
+</VARIANTS>

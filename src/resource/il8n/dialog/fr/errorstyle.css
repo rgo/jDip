@@ -1,0 +1,38 @@
+/* 
+	error dialog stylesheet 
+	uses slightly larger fonts
+*/
+body { font-family:arial, helvetica, sans-serif; font-size:14pt; }
+
+/* paragraphs (these have pre-spacing) */
+p { margin-top:9pt; font-family:helvetica, arial, sans-serif; font-size:14pt; margin-bottom:0pt;  }
+p.mono { font-family:monospace,courier; font-size:small; }
+
+/* indented paragraphs */
+p.indent1cm 	{ margin-left:1cm; }
+p.indent05cm	{ margin-left:0.5cm; }
+p.indent15cm	{ margin-left:1.5cm; }
+
+/* divisions: these have no top/bottom margins */
+div { margin-top:0pt; font-family:helvetica, arial, sans-serif; font-size:14pt; margin-bottom:0pt; }
+
+/* indented divisions */
+div.indent1cm 	{ margin-left:1cm; }
+div.indent05cm	{ margin-left:0.5cm; }
+div.indent15cm	{ margin-left:1.5cm; }
+
+/* simple header */
+div.header	{ font-weight:bold; }
+
+/* monospace division */
+div.mono { font-family:monospace,courier; font-size:small; }
+
+
+/* modified headers */
+h1 { font-family:arial, helvetica, sans-serif; }
+h2 { font-family:arial, helvetica, sans-serif; }
+h3 { font-family:arial, helvetica, sans-serif; }
+
+h1.centered { text-align:center; }
+h2.centered { text-align:center; }
+h3.centered { text-align:center; }

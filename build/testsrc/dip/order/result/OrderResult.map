@@ -1,9 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" href="./DislodgedResult.html" title="dip.order.result.DislodgedResult" alt="" coords="16,416,320,616"/>
-<area shape="rect" href="./SubstitutedResult.html" title="dip.order.result.SubstitutedResult" alt="" coords="365,472,589,560"/>
-<area shape="rect" href="./ConvoyPathResult.html" title="dip.order.result.ConvoyPathResult" alt="" coords="635,464,939,568"/>
-<area shape="rect" href="./DependentMoveFailedResult.html" title="dip.order.result.DependentMoveFailedResult" alt="" coords="984,464,1288,568"/>
-<area shape="rect" href="./Result.html" title="dip.order.result.Result" alt="" coords="635,11,939,163"/>
-<area shape="rect" href="./OrderResult.html" title="dip.order.result.OrderResult" alt="" coords="649,221,924,357"/>
-<area shape="rect" href="./BouncedResult.html" title="dip.order.result.BouncedResult" alt="" coords="1333,424,1637,608"/>
-</map>

@@ -1,0 +1,456 @@
+<?xml version="1.0"?>
+<!DOCTYPE PROVINCES [
+	<!ELEMENT PROVINCES (BORDER_DEFINITIONS?, PROVINCE+)>
+	
+	<!-- ===================================================================== -->
+	<!ELEMENT BORDER_DEFINITIONS (BORDER+)>
+	
+	<!ELEMENT BORDER EMPTY>
+	<!ATTLIST BORDER	
+				id ID #REQUIRED
+				description CDATA #REQUIRED
+				from CDATA #IMPLIED
+				unitTypes CDATA #IMPLIED
+				orderTypes CDATA #IMPLIED
+				year CDATA #IMPLIED
+				season CDATA #IMPLIED
+				phase CDATA #IMPLIED
+				baseMoveModifier CDATA #IMPLIED
+				>
+				
+	<!-- ===================================================================== -->
+	<!ELEMENT PROVINCE (UNIQUENAME*, ADJACENCY+)>
+	<!ATTLIST PROVINCE 	
+				shortname CDATA #REQUIRED
+				fullname CDATA #REQUIRED
+				isConvoyableCoast (true|false) "false"
+				borders IDREFS #IMPLIED
+				>	
+	
+				
+	<!ELEMENT UNIQUENAME EMPTY>
+	<!ATTLIST UNIQUENAME name CDATA #REQUIRED>
+	
+	<!ELEMENT ADJACENCY EMPTY>
+	<!ATTLIST ADJACENCY 	
+				type (mv|xc|nc|sc|wc|ec) "mv"
+				refs CDATA #REQUIRED
+				>
+]>
+<PROVINCES>
+	<PROVINCE fullname="Afghanistan" shortname="afg">
+		<ADJACENCY type="mv" refs="irn pak tia uzb"/>
+	</PROVINCE>
+	<PROVINCE fullname="Arabia" shortname="ara">
+		<UNIQUENAME name="arab" />
+		<ADJACENCY type="mv" refs="irq oma syr yem"/>
+		<ADJACENCY type="ec" refs="per irq oma"/>
+		<ADJACENCY type="wc" refs="red syr yem"/>
+	</PROVINCE>
+	<PROVINCE fullname="Arabian Sea" shortname="ars">
+		<UNIQUENAME name="arabian" />
+		<ADJACENCY type="xc" refs="bom eaf oma pak sri yem bob cio eas per red sey irn-sc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Arctic Sea" shortname="arc">
+		<UNIQUENAME name="art" />
+		<UNIQUENAME name="arctic" />
+		<UNIQUENAME name="artic" />
+		<ADJACENCY type="xc" refs="esb kam stp ura wsb bar chu"/>
+	</PROVINCE>
+	<PROVINCE fullname="Australia" shortname="aus">
+		<UNIQUENAME name="oz" />
+		<ADJACENCY type="xc" refs="eio jvs sio"/>
+		<ADJACENCY type="mv" refs="aus"/>
+	</PROVINCE>
+	<PROVINCE fullname="Black Sea" shortname="bla">
+		<UNIQUENAME name="bls" />
+		<UNIQUENAME name="black" />
+		<ADJACENCY type="xc" refs="cau tur bal-ec sev-wc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Balkans" shortname="bal">
+		<UNIQUENAME name="balkan" />
+		<ADJACENCY type="mv" refs="sev tur ukr war"/>
+		<ADJACENCY type="ec" refs="bla tur sev-wc"/>
+		<ADJACENCY type="sc" refs="eme tur"/>
+	</PROVINCE>
+	<PROVINCE fullname="Barents Sea" shortname="bar">
+		<UNIQUENAME name="bas" />
+		<UNIQUENAME name="barent" />
+		<UNIQUENAME name="barents" />
+		<ADJACENCY type="xc" refs="stp arc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Bangladesh" shortname="ban">
+		<ADJACENCY type="mv" refs="bur cal"/>
+		<ADJACENCY type="xc" refs="bur cal bob"/>
+	</PROVINCE>
+	<PROVINCE fullname="Bay of Bengal" shortname="bob">
+		<UNIQUENAME name="bay" />
+		<UNIQUENAME name="bengal" />
+		<ADJACENCY type="xc" refs="ban bom bur cal sri sum ars cio ths tha"/>
+	</PROVINCE>
+	<PROVINCE fullname="Beijing" shortname="bjg">
+		<UNIQUENAME name="bei" />
+		<UNIQUENAME name="pek" />
+		<UNIQUENAME name="peking" />
+		<UNIQUENAME name="biejing" />
+		<ADJACENCY type="mv" refs="man mon sha tib"/>
+		<ADJACENCY type="xc" refs="man sha yel"/>
+	</PROVINCE>
+	<PROVINCE fullname="Bering Strait" shortname="ber">
+		<UNIQUENAME name="bes" />
+		<UNIQUENAME name="bering" />
+		<ADJACENCY type="xc" refs="hok kam chu ecs okh"/>
+	</PROVINCE>
+	<PROVINCE fullname="Bombay" shortname="bom">
+		<ADJACENCY type="mv" refs="cal del pak"/>
+		<ADJACENCY type="xc" refs="cal pak ars bob"/>
+	</PROVINCE>
+	<PROVINCE fullname="Borneo" shortname="bor">
+		<UNIQUENAME name="kal" />
+		<UNIQUENAME name="kalimantan" />
+		<ADJACENCY type="xc" refs="cel jvs scs ths"/>
+		<ADJACENCY type="mv" refs="bor"/>
+	</PROVINCE>
+	<PROVINCE fullname="Burma" shortname="bur">
+		<ADJACENCY type="mv" refs="ban chq lao tha"/>
+		<ADJACENCY type="xc" refs="ban tha bob"/>
+	</PROVINCE>
+	<PROVINCE fullname="Calcutta" shortname="cal">
+		<ADJACENCY type="mv" refs="ban bom del"/>
+		<ADJACENCY type="xc" refs="ban bom bob"/>
+	</PROVINCE>
+	<PROVINCE fullname="Cambodia" shortname="cam">
+		<ADJACENCY type="mv" refs="lao tha vie"/>
+		<ADJACENCY type="xc" refs="tha vie ths"/>
+	</PROVINCE>
+	<PROVINCE fullname="Caspian Sea" shortname="cas">
+		<UNIQUENAME name="caspian" />
+		<ADJACENCY type="xc" refs="cau kaz mos uzb irn-nc sev-ec"/>
+	</PROVINCE>
+	<PROVINCE fullname="Caucasus" shortname="cau">
+		<UNIQUENAME name="cauc" />
+		<ADJACENCY type="mv" refs="irn irq tur sev"/>
+		<ADJACENCY type="xc" refs="tur bla cas sev-ec sev-wc irn-nc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Celebes Sea" shortname="cel">
+		<UNIQUENAME name="ces" />
+		<UNIQUENAME name="celebes" />
+		<ADJACENCY type="xc" refs="bor new phi ecs jvs scs"/>
+	</PROVINCE>
+	<PROVINCE fullname="Central Indian Ocean" shortname="cio">
+		<UNIQUENAME name="cen" />
+		<UNIQUENAME name="central" />
+		<UNIQUENAME name="indian" />
+		<UNIQUENAME name="centralindian" />
+		<ADJACENCY type="xc" refs="sri sum ars bob eio sey sio"/>
+	</PROVINCE>
+	<PROVINCE fullname="Chongqing" shortname="chq">
+		<UNIQUENAME name="cho" />
+		<UNIQUENAME name="ckg" />
+		<UNIQUENAME name="chon" />
+		<UNIQUENAME name="chong" />
+		<ADJACENCY type="mv" refs="bur hkg lao sha tib"/>
+	</PROVINCE>
+	<PROVINCE fullname="Chucki Sea" shortname="chu">
+		<UNIQUENAME name="chs" />
+		<UNIQUENAME name="chukchi" />
+		<UNIQUENAME name="chucki" />
+		<UNIQUENAME name="chuckisea" />
+		<ADJACENCY type="xc" refs="kam arc ber"/>
+	</PROVINCE>
+	<PROVINCE fullname="Delhi" shortname="del">
+		<ADJACENCY type="mv" refs="bom cal pak tia"/>
+	</PROVINCE>
+	<PROVINCE fullname="East Africa" shortname="eaf">
+		<UNIQUENAME name="eafrica" />
+		<UNIQUENAME name="africa" />
+		<ADJACENCY type="mv" refs="egy"/>
+		<ADJACENCY type="xc" refs="egy ars eas red"/>
+	</PROVINCE>
+	<PROVINCE fullname="Eastern African Sea" shortname="eas">
+		<UNIQUENAME name="eae" />
+		<UNIQUENAME name="african" />
+		<UNIQUENAME name="eastafrican" />
+		<ADJACENCY type="xc" refs="eaf mad ars sey"/>
+	</PROVINCE>
+	<PROVINCE fullname="East China Sea" shortname="ecs">
+		<UNIQUENAME name="eac" />
+		<UNIQUENAME name="ech" />
+		<UNIQUENAME name="eastchina" />
+		<ADJACENCY type="xc" refs="hok hon phi sha ber cel okh scs yel"/>
+	</PROVINCE>
+	<PROVINCE fullname="East Siberia" shortname="esb">
+		<UNIQUENAME name="esib" />
+		<UNIQUENAME name="esiberia" />
+		<ADJACENCY type="mv" refs="irk kam wsb yak"/>
+		<ADJACENCY type="xc" refs="arc wsb kam"/>
+	</PROVINCE>
+	<PROVINCE fullname="Eastern Indian Ocean" shortname="eio">
+		<UNIQUENAME name="eind" />
+		<ADJACENCY type="xc" refs="aus jav sum cio jvs sio"/>
+	</PROVINCE>
+	<PROVINCE fullname="Eastern Mediterranean" shortname="eme">
+		<UNIQUENAME name="emed" />
+		<UNIQUENAME name="ems" />
+		<UNIQUENAME name="eme" />
+		<UNIQUENAME name="easternmediterranean" />
+		<ADJACENCY type="xc" refs="egy syr tur bal-sc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Egypt" shortname="egy">
+		<ADJACENCY type="mv" refs="eaf syr"/>
+		<ADJACENCY type="xc" refs="eaf syr eme red"/>
+	</PROVINCE>
+	<PROVINCE fullname="Ekaterinburg" shortname="eka">
+		<ADJACENCY type="mv" refs="kaz nov ura wsb"/>
+	</PROVINCE>
+	<PROVINCE fullname="Hokkaido" shortname="hok">
+		<ADJACENCY type="xc" refs="ber ecs okh"/>
+		<ADJACENCY type="mv" refs="hok"/>
+	</PROVINCE>
+	<PROVINCE fullname="Hong Kong" shortname="hkg">
+		<UNIQUENAME name="hong" />
+		<UNIQUENAME name="kong" />
+		<UNIQUENAME name="hk" />
+		<ADJACENCY type="mv" refs="chq lao sha vie"/>
+		<ADJACENCY type="xc" refs="sha vie scs"/>
+	</PROVINCE>
+	<PROVINCE fullname="Honshu" shortname="hon">
+		<ADJACENCY type="xc" refs="ecs okh yel"/>
+		<ADJACENCY type="mv" refs="hon"/>
+	</PROVINCE>
+	<PROVINCE fullname="Irkutsk" shortname="irk">
+		<ADJACENCY type="mv" refs="esb man nov vla wsb yak"/>
+	</PROVINCE>
+	<PROVINCE fullname="Iran" shortname="irn">
+		<UNIQUENAME name="teh" />
+		<UNIQUENAME name="tehran" />
+		<ADJACENCY type="mv" refs="afg cau irq pak uzb"/>
+		<ADJACENCY type="nc" refs="cau uzb cas"/>
+		<ADJACENCY type="sc" refs="irq pak ars per"/>
+	</PROVINCE>
+	<PROVINCE fullname="Iraq" shortname="irq">
+		<UNIQUENAME name="bag" />
+		<UNIQUENAME name="baghdad" />
+		<ADJACENCY type="mv" refs="ara cau irn syr tur"/>
+		<ADJACENCY type="xc" refs="per ara-ec irn-sc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Java" shortname="jav">
+		<ADJACENCY type="xc" refs="eio jvs"/>
+		<ADJACENCY type="mv" refs="jav"/>
+	</PROVINCE>
+	<PROVINCE fullname="Jawan Sea" shortname="jvs">
+		<UNIQUENAME name="jws" />
+		<UNIQUENAME name="jawasea" />
+		<UNIQUENAME name="jawansea" />
+		<ADJACENCY type="xc" refs="aus bor jav new sum cel eio ths"/>
+	</PROVINCE>
+	<PROVINCE fullname="Kamchatka" shortname="kam">
+		<ADJACENCY type="mv" refs="esb yak"/>
+		<ADJACENCY type="xc" refs="esb yak arc ber chu okh"/>
+	</PROVINCE>
+	<PROVINCE fullname="Kazakhstan" shortname="kaz">
+		<UNIQUENAME name="kas" />
+		<UNIQUENAME name="kazakstan" />
+		<ADJACENCY type="mv" refs="eka mon mos nov tia ura uzb"/>
+		<ADJACENCY type="xc" refs="mos uzb cas"/>
+	</PROVINCE>
+	<PROVINCE fullname="Korea" shortname="kor">
+		<UNIQUENAME name="cor" />
+		<UNIQUENAME name="corea" />
+		<ADJACENCY type="mv" refs="man vla"/>
+		<ADJACENCY type="xc" refs="man vla okh yel"/>
+	</PROVINCE>
+	<PROVINCE fullname="Kunlun" shortname="kun">
+		<ADJACENCY type="mv" refs="mon tia tib"/>
+	</PROVINCE>
+	<PROVINCE fullname="Laos" shortname="lao">
+		<ADJACENCY type="mv" refs="bur cam chq hkg tha vie"/>
+	</PROVINCE>
+	<PROVINCE fullname="Livonia" shortname="liv">
+		<UNIQUENAME name="lvn" />
+		<UNIQUENAME name="livo" />
+		<UNIQUENAME name="lvo" />
+		<UNIQUENAME name="lva" />
+		<ADJACENCY type="mv" refs="mos stp war"/>
+	</PROVINCE>
+	<PROVINCE fullname="Madagascar" shortname="mad">
+		<ADJACENCY type="xc" refs="eas sey"/>
+		<ADJACENCY type="mv" refs="mad"/>
+	</PROVINCE>
+	<PROVINCE fullname="Manchuria" shortname="man">
+		<ADJACENCY type="mv" refs="bjg irk kor mon nov vla"/>
+		<ADJACENCY type="xc" refs="bjg kor yel"/>
+	</PROVINCE>
+	<PROVINCE fullname="Mongolia" shortname="mon">
+		<UNIQUENAME name="mongol" />
+		<ADJACENCY type="mv" refs="bjg kaz kun man nov tia tib"/>
+	</PROVINCE>
+	<PROVINCE fullname="Moscow" shortname="mos">
+		<UNIQUENAME name="mus" />
+		<ADJACENCY type="mv" refs="kaz liv sev stp ukr ura war"/>
+		<ADJACENCY type="xc" refs="kaz cas sev-ec"/>
+	</PROVINCE>
+	<PROVINCE fullname="New Guinea" shortname="new">
+		<UNIQUENAME name="newguinea" />
+		<UNIQUENAME name="guinea" />
+		<UNIQUENAME name="iri" />
+		<UNIQUENAME name="irian" />
+		<UNIQUENAME name="irianjaya" />
+		<ADJACENCY type="xc" refs="cel jvs"/>
+		<ADJACENCY type="mv" refs="new"/>
+	</PROVINCE>
+	<PROVINCE fullname="Novosibirsk" shortname="nov">
+		<ADJACENCY type="mv" refs="eka irk kaz man mon wsb"/>
+	</PROVINCE>
+	<PROVINCE fullname="Oman" shortname="oma">
+		<ADJACENCY type="mv" refs="ara yem"/>
+		<ADJACENCY type="xc" refs="yem ars per ara-ec"/>
+	</PROVINCE>
+	<PROVINCE fullname="Pakistan" shortname="pak">
+		<ADJACENCY type="mv" refs="afg bom del irn tia"/>
+		<ADJACENCY type="xc" refs="bom ars irn-sc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Persian Gulf" shortname="per">
+		<UNIQUENAME name="persian" />
+		<ADJACENCY type="xc" refs="irq oma ars ara-ec irn-sc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Philippines" shortname="phi">
+		<UNIQUENAME name="phil" />
+		<UNIQUENAME name="philippines" />
+		<UNIQUENAME name="philipines" />
+		<UNIQUENAME name="phillippines" />
+		<ADJACENCY type="xc" refs="cel ecs scs"/>
+		<ADJACENCY type="mv" refs="phi"/>
+	</PROVINCE>
+	<PROVINCE fullname="Red Sea" shortname="red">
+		<UNIQUENAME name="redsea" />
+		<ADJACENCY type="xc" refs="eaf egy yem ars ara-wc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Sea of Okhotsk" shortname="okh">
+		<UNIQUENAME name="sea" />
+		<UNIQUENAME name="soo" />
+		<UNIQUENAME name="okhotsk" />
+		<UNIQUENAME name="seaofokutsk" />
+		<UNIQUENAME name="seaofokhutsk" />
+		<UNIQUENAME name="oku" />
+		<UNIQUENAME name="okutsk" />
+		<ADJACENCY type="xc" refs="kam kor hok hon vla yak ber ecs yel"/>
+	</PROVINCE>
+	<PROVINCE fullname="Sevastopol" shortname="sev">
+		<UNIQUENAME name="sevastapol" />
+		<ADJACENCY type="mv" refs="bal cau mos ukr"/>
+		<ADJACENCY type="ec" refs="cau mos cas"/>
+		<ADJACENCY type="wc" refs="cau bla bal-ec"/>
+	</PROVINCE>
+	<PROVINCE fullname="South China Sea" shortname="scs">
+		<UNIQUENAME name="sch" />
+		<UNIQUENAME name="southchina" />
+		<ADJACENCY type="xc" refs="bor hkg phi sha vie ecs cel ths"/>
+	</PROVINCE>
+	<PROVINCE fullname="Seychelles" shortname="sey">
+		<ADJACENCY type="xc" refs="mad ars cio eas sio"/>
+	</PROVINCE>
+	<PROVINCE fullname="Shanghai" shortname="sha">
+		<ADJACENCY type="mv" refs="bjg chq hkg tib"/>
+		<ADJACENCY type="xc" refs="bjg hkg ecs scs yel"/>
+	</PROVINCE>
+	<PROVINCE fullname="South Indian Ocean" shortname="sio">
+		<UNIQUENAME name="southindian" />
+		<ADJACENCY type="xc" refs="aus cio eio sey"/>
+	</PROVINCE>
+	<PROVINCE fullname="Sri Lanka" shortname="sri">
+		<UNIQUENAME name="lanka" />
+		<UNIQUENAME name="cey" />
+		<UNIQUENAME name="ceylon" />
+		<ADJACENCY type="xc" refs="ars bob cio"/>
+		<ADJACENCY type="mv" refs="sri"/>
+	</PROVINCE>
+	<PROVINCE fullname="St Petersburg" shortname="stp">
+		<UNIQUENAME name="sai" />
+		<UNIQUENAME name="saint" />
+		<UNIQUENAME name="st" />
+		<ADJACENCY type="mv" refs="liv mos ura"/>
+		<ADJACENCY type="xc" refs="ura arc bar"/>
+	</PROVINCE>
+	<PROVINCE fullname="Sumatra" shortname="sum">
+		<UNIQUENAME name="sumatera" />
+		<ADJACENCY type="xc" refs="bob cio eio jvs ths"/>
+		<ADJACENCY type="mv" refs="sum"/>
+	</PROVINCE>
+	<PROVINCE fullname="Syria" shortname="syr">
+		<ADJACENCY type="mv" refs="ara egy irq tur"/>
+		<ADJACENCY type="xc" refs="egy tur eme ara-wc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Thai Sea" shortname="ths">
+		<UNIQUENAME name="thai" />
+		<ADJACENCY type="xc" refs="bor cam sum tha vie bob scs jvs"/>
+	</PROVINCE>
+	<PROVINCE fullname="Thailand" shortname="tha">
+		<UNIQUENAME name="sia" />
+		<UNIQUENAME name="siam" />
+		<ADJACENCY type="mv" refs="bur cam lao"/>
+		<ADJACENCY type="xc" refs="bur cam bob ths"/>
+	</PROVINCE>
+	<PROVINCE fullname="Tien Shan" shortname="tia">
+		<UNIQUENAME name="tie" />
+		<UNIQUENAME name="tya" />
+		<UNIQUENAME name="tienshan" />
+		<UNIQUENAME name="tian" />
+		<UNIQUENAME name="tien" />
+		<UNIQUENAME name="tyen" />
+		<UNIQUENAME name="tienshan" />
+		<ADJACENCY type="mv" refs="afg del kaz kun mon pak uzb"/>
+	</PROVINCE>
+	<PROVINCE fullname="Tibet" shortname="tib">
+		<ADJACENCY type="mv" refs="bjg chq kun mon sha"/>
+	</PROVINCE>
+	<PROVINCE fullname="Turkey" shortname="tur">
+		<UNIQUENAME name="turk" />
+		<ADJACENCY type="mv" refs="bal cau irq syr"/>
+		<ADJACENCY type="xc" refs="cau syr bla eme bal-ec bal-sc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Urals" shortname="ura">
+		<UNIQUENAME name="ural" />
+		<ADJACENCY type="mv" refs="eka kaz mos stp wsb"/>
+		<ADJACENCY type="xc" refs="stp wsb arc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Ukraine" shortname="ukr">
+		<ADJACENCY type="mv" refs="bal mos sev war"/>
+	</PROVINCE>
+	<PROVINCE fullname="Uzbekistan" shortname="uzb">
+		<ADJACENCY type="mv" refs="afg irn kaz tia"/>
+		<ADJACENCY type="xc" refs="kaz cas irn-nc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Vietnam" shortname="vie">
+		<UNIQUENAME name="viet" />
+		<ADJACENCY type="mv" refs="cam hkg lao"/>
+		<ADJACENCY type="xc" refs="cam hkg scs ths"/>
+	</PROVINCE>
+	<PROVINCE fullname="Vladivostok" shortname="vla">
+		<ADJACENCY type="mv" refs="irk kor man yak"/>
+		<ADJACENCY type="xc" refs="kor yak okh"/>
+	</PROVINCE>
+	<PROVINCE fullname="Warsaw" shortname="war">
+		<ADJACENCY type="mv" refs="bal liv mos ukr"/>
+	</PROVINCE>
+	<PROVINCE fullname="West Siberia" shortname="wsb">
+		<UNIQUENAME name="wes" />
+		<UNIQUENAME name="wsib" />
+		<UNIQUENAME name="wsiberia" />
+		<ADJACENCY type="mv" refs="eka esb irk nov ura"/>
+		<ADJACENCY type="xc" refs="esb ura arc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Yakutsk" shortname="yak">
+		<ADJACENCY type="mv" refs="esb irk kam vla"/>
+		<ADJACENCY type="xc" refs="kam vla okh"/>
+	</PROVINCE>
+	<PROVINCE fullname="Yellow Sea" shortname="yel">
+		<UNIQUENAME name="yellow" />
+		<ADJACENCY type="xc" refs="hon kor man bjg sha ecs okh"/>
+	</PROVINCE>
+	<PROVINCE fullname="Yemen" shortname="yem">
+		<ADJACENCY type="mv" refs="ara oma"/>
+		<ADJACENCY type="xc" refs="oma ars red ara-wc"/>
+	</PROVINCE>
+
+</PROVINCES>

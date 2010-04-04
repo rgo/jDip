@@ -1,0 +1,665 @@
+<?xml version="1.0"?>
+<!DOCTYPE VARIANTS [
+	<!ELEMENT VARIANTS (DESCRIPTION, MAP_DEFINITION+, VARIANT+)>
+	
+	<!ELEMENT DESCRIPTION (#PCDATA)>
+	
+	<!ELEMENT MAP_DEFINITION (DESCRIPTION?)>
+	<!ATTLIST MAP_DEFINITION 
+		id ID #REQUIRED
+		title CDATA #REQUIRED
+		URI CDATA #REQUIRED
+		thumbURI CDATA #REQUIRED
+		preferredUnitStyle CDATA #IMPLIED
+		>
+	
+	<!ELEMENT VARIANT (DESCRIPTION, MAP, RULEOPTIONS?, POWER+, STARTINGTIME, VICTORYCONDITIONS, SUPPLYCENTER+, INITIALSTATE*)>
+	<!ATTLIST VARIANT
+			name CDATA #REQUIRED
+			default (true|false) "false"
+			version CDATA #REQUIRED
+			aliases CDATA #IMPLIED
+			>
+			
+	<!ELEMENT MAP (MAP_GRAPHIC*)>
+	<!ATTLIST MAP adjacencyURI CDATA #REQUIRED>
+	
+	<!ELEMENT MAP_GRAPHIC EMPTY>
+	<!ATTLIST MAP_GRAPHIC
+			ref IDREF #REQUIRED
+			default (true|false) "false"
+			preferredUnitStyle CDATA #IMPLIED
+			>
+	
+	<!ELEMENT RULEOPTIONS (RULEOPTION+)>
+	<!ELEMENT RULEOPTION EMPTY>
+	<!ATTLIST RULEOPTION	name CDATA #REQUIRED
+				value CDATA #REQUIRED>
+	
+	<!ELEMENT POWER EMPTY>
+	<!ATTLIST POWER name CDATA #REQUIRED
+			active (true|false) "true"
+			adjective CDATA #REQUIRED
+			altnames CDATA #IMPLIED
+			>
+	
+	<!ELEMENT STARTINGTIME EMPTY>
+	<!ATTLIST STARTINGTIME 	turn CDATA #REQUIRED
+				allowBCYears (true|false) "false"
+				>
+	
+	<!ELEMENT VICTORYCONDITIONS (WINNING_SUPPLY_CENTERS?, YEARS_WITHOUT_SC_CAPTURE?, GAME_LENGTH?)>
+	
+	<!ELEMENT WINNING_SUPPLY_CENTERS EMPTY>
+	<!ATTLIST WINNING_SUPPLY_CENTERS value CDATA #REQUIRED>
+	
+	<!ELEMENT YEARS_WITHOUT_SC_CAPTURE EMPTY>
+	<!ATTLIST YEARS_WITHOUT_SC_CAPTURE value CDATA #REQUIRED>
+	
+	<!ELEMENT GAME_LENGTH EMPTY>
+	<!ATTLIST GAME_LENGTH value CDATA #REQUIRED>
+	
+	<!ELEMENT SUPPLYCENTER EMPTY>
+	<!ATTLIST SUPPLYCENTER 	province CDATA #REQUIRED
+				homepower CDATA "none"
+				owner CDATA "none"
+				>
+				
+	<!ELEMENT INITIALSTATE EMPTY>
+	<!ATTLIST INITIALSTATE 	province CDATA #REQUIRED
+				power CDATA #REQUIRED
+				unit CDATA #REQUIRED
+				unitcoast CDATA #IMPLIED
+				>
+]>
+<!-- NOTE: it's very important that the name of the file will be variants.xml, in all lower case -->
+<!-- NOTE: for CDATA escapes, no space between tag and bracket!! -->
+<VARIANTS>
+	<DESCRIPTION><![CDATA[Modern variants.]]></DESCRIPTION> 
+	
+	<MAP_DEFINITION id="defaultMap" title="Modern" preferredUnitStyle="modern"
+		URI="modern.svg" thumbURI="modern_thumb.jpg">
+		<DESCRIPTION><![CDATA[
+			Map for the Modern variant.
+		]]></DESCRIPTION> 
+	</MAP_DEFINITION>
+	
+	<VARIANT name="Modern" version="1.0">
+		<DESCRIPTION><![CDATA[
+		<p>
+			The Modern variant uses a map that is a representation of Europe, 
+			western Asia, and northern Africa as the region was politically 
+			divided in the 1990's. The map is similar in geography to the 
+			standard map, but includes more of Africa and the middle east.
+		</p>
+		<p>
+			There are 38 home centers and 26 neutral centers on the board, 
+			making 64 total supply centers. To win the game, control of 33 
+			centers is needed.
+		</p>	
+		<p>
+			The Modern variant has been tested to play well both 
+			with and without a new type of unit&#8212;Wings. Wing units may
+			be enabled from the <b>Rule Options</b> tab. If Wing units are 
+			enabled in this game, powers will not start with Wing units, but 
+			have the option of building them. To start powers with wing units,
+			and for a better explanation, see the <i>Modern (Wings)</i> variant.
+		</p>
+		<h2>Map Notes:</h2>
+		<div class="indent1cm">
+			<p>
+			Cairo, Hamburg and Istanbul behave as Kiel and Constantinople did in the
+			original game: they have no coasts but fleets can pass through them to
+			bodies of water of both sides.
+			</p>
+			<p>
+			There is another canal linking Rostov and Volga, thus permitting
+			access to the Caspian Sea to ships. Rostov is situated along the
+			Don River which empties into the Black Sea, while the Volga empties
+			into the Caspian Sea. In the real world there is a canal at Volgograd
+			linking the two rivers, somewhere in the southern Volga region on
+			the map. This is the only way to get ships into and out of the
+			Caspian Sea.
+			</p>
+			<p>
+			Iran is the only territory with multiple coasts in the game - the south
+			coast touches the Arabian Sea and the Persian Gulf, while the north coast
+			touches the Caspian Sea.
+			</p>
+		</div>
+		<p>
+		The Modern variant was created by Vincent Mous, and is described in a 
+		series of articles for <i>The Diplomatic Pouch Zine</i> (www.diplom.org),
+		beginning with <i>Modern Times</i>.
+		</p>
+		<p>
+			Author: Vincent Mous<br>
+			Electronic map by Martin Asal
+		</p>]]></DESCRIPTION> 
+		
+		<MAP adjacencyURI="modern_adjacency.xml">
+			<MAP_GRAPHIC ref="defaultMap" default="true" />
+		</MAP>
+		
+		<!-- ruleoptions -->
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY"/>
+		</RULEOPTIONS>
+		
+		<!-- powers -->
+		<POWER name="Britain" active="true" adjective="British"/>
+		<POWER name="Egypt" active="true" adjective="Egyptian"/>
+		<POWER name="France" active="true" adjective="French"/>
+		<POWER name="Germany" active="true" adjective="German"/>
+		<POWER name="Italy" active="true" adjective="Italian"/>
+		<POWER name="Poland" active="true" adjective="Polish"/>
+		<POWER name="Russia" active="true" adjective="Russian"/>
+		<POWER name="Spain" active="true" adjective="Spanish"/>
+		<POWER name="Turkey" active="true" adjective="Turkish"/>
+		<POWER name="Ukraine" active="true" adjective="Ukranian"/>
+		
+		<!-- starting time -->
+		<STARTINGTIME turn="Spring 1994 Movement" />
+		
+		<!-- victory conditions -->
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="33" />
+		</VICTORYCONDITIONS>
+ 	 	
+		<!-- supply centers -->
+		<SUPPLYCENTER province="ada" homepower="Turkey" owner="Turkey"/>
+		<SUPPLYCENTER province="ale" homepower="Egypt" owner="Egypt"/>
+		<SUPPLYCENTER province="ank" homepower="Turkey" owner="Turkey"/>
+		<SUPPLYCENTER province="asw" homepower="Egypt" owner="Egypt"/>
+		<SUPPLYCENTER province="aus"/>
+		<SUPPLYCENTER province="bar" homepower="Spain" owner="Spain"/>
+		<SUPPLYCENTER province="bel"/>
+		<SUPPLYCENTER province="ber" homepower="Germany" owner="Germany"/>
+		<SUPPLYCENTER province="bie"/>
+		<SUPPLYCENTER province="bor" homepower="France" owner="France"/>
+		<SUPPLYCENTER province="bul"/>
+		<SUPPLYCENTER province="cai" homepower="Egypt" owner="Egypt"/>
+		<SUPPLYCENTER province="cro"/>
+		<SUPPLYCENTER province="cze"/>
+		<SUPPLYCENTER province="den"/>
+		<SUPPLYCENTER province="edi" homepower="Britain" owner="Britain"/>
+		<SUPPLYCENTER province="fra" homepower="Germany" owner="Germany"/>
+		<SUPPLYCENTER province="gda" homepower="Poland" owner="Poland"/>
+		<SUPPLYCENTER province="geo"/>
+		<SUPPLYCENTER province="gib" homepower="Britain" owner="Britain"/>
+		<SUPPLYCENTER province="gor" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="gre"/>
+		<SUPPLYCENTER province="ham" homepower="Germany" owner="Germany"/>
+		<SUPPLYCENTER province="hol"/>
+		<SUPPLYCENTER province="hun"/>
+		<SUPPLYCENTER province="irn"/>
+		<SUPPLYCENTER province="ire"/>
+		<SUPPLYCENTER province="isr"/>
+		<SUPPLYCENTER province="ist" homepower="Turkey" owner="Turkey"/>
+		<SUPPLYCENTER province="izm" homepower="Turkey" owner="Turkey"/>
+		<SUPPLYCENTER province="kha" homepower="Ukraine" owner="Ukraine"/>
+		<SUPPLYCENTER province="kie" homepower="Ukraine" owner="Ukraine"/>
+		<SUPPLYCENTER province="kra" homepower="Poland" owner="Poland"/>
+		<SUPPLYCENTER province="lib"/>
+		<SUPPLYCENTER province="lit"/>
+		<SUPPLYCENTER province="liv" homepower="Britain" owner="Britain"/>
+		<SUPPLYCENTER province="lon" homepower="Britain" owner="Britain"/>
+		<SUPPLYCENTER province="lyo" homepower="France" owner="France"/>
+		<SUPPLYCENTER province="mad" homepower="Spain" owner="Spain"/>
+		<SUPPLYCENTER province="mar" homepower="France" owner="France"/>
+		<SUPPLYCENTER province="mil" homepower="Italy" owner="Italy"/>
+		<SUPPLYCENTER province="mon"/>
+		<SUPPLYCENTER province="mor"/>
+		<SUPPLYCENTER province="mos" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="mun" homepower="Germany" owner="Germany"/>
+		<SUPPLYCENTER province="mur" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="nap" homepower="Italy" owner="Italy"/>
+		<SUPPLYCENTER province="nor"/>
+		<SUPPLYCENTER province="ode" homepower="Ukraine" owner="Ukraine"/>
+		<SUPPLYCENTER province="par" homepower="France" owner="France"/>
+		<SUPPLYCENTER province="por"/>
+		<SUPPLYCENTER province="rom" homepower="Italy" owner="Italy"/>
+		<SUPPLYCENTER province="ros" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="rum"/>
+		<SUPPLYCENTER province="sau"/>
+		<SUPPLYCENTER province="ser"/>
+		<SUPPLYCENTER province="sev" homepower="Ukraine" owner="Ukraine"/>
+		<SUPPLYCENTER province="sve" homepower="Spain" owner="Spain"/>
+		<SUPPLYCENTER province="stp" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="swe"/>
+		<SUPPLYCENTER province="swi"/>
+		<SUPPLYCENTER province="tun"/>
+		<SUPPLYCENTER province="ven" homepower="Italy" owner="Italy"/>
+		<SUPPLYCENTER province="war" homepower="Poland" owner="Poland"/>
+
+		
+		<!-- unit placement -->
+		<INITIALSTATE province="edi" power="Britain" unit="fleet"/>
+		<INITIALSTATE province="gib" power="Britain" unit="fleet"/>
+		<INITIALSTATE province="liv" power="Britain" unit="fleet"/>
+		<INITIALSTATE province="lon" power="Britain" unit="fleet"/>
+		<INITIALSTATE province="ale" power="Egypt" unit="fleet"/>
+		<INITIALSTATE province="asw" power="Egypt" unit="army"/>
+		<INITIALSTATE province="cai" power="Egypt" unit="fleet"/>
+		<INITIALSTATE province="bor" power="France" unit="fleet"/>
+		<INITIALSTATE province="lyo" power="France" unit="army"/>
+		<INITIALSTATE province="mar" power="France" unit="army"/>
+		<INITIALSTATE province="par" power="France" unit="army"/>
+		<INITIALSTATE province="ber" power="Germany" unit="fleet"/>
+		<INITIALSTATE province="fra" power="Germany" unit="army"/>
+		<INITIALSTATE province="ham" power="Germany" unit="fleet"/>
+		<INITIALSTATE province="mun" power="Germany" unit="army"/>
+		<INITIALSTATE province="mil" power="Italy" unit="army"/>
+		<INITIALSTATE province="nap" power="Italy" unit="fleet"/>
+		<INITIALSTATE province="rom" power="Italy" unit="army"/>
+		<INITIALSTATE province="ven" power="Italy" unit="fleet"/>
+		<INITIALSTATE province="gda" power="Poland" unit="fleet"/>
+		<INITIALSTATE province="kra" power="Poland" unit="army"/>
+		<INITIALSTATE province="war" power="Poland" unit="army"/>
+		<INITIALSTATE province="gor" power="Russia" unit="army"/>
+		<INITIALSTATE province="mos" power="Russia" unit="army"/>
+		<INITIALSTATE province="mur" power="Russia" unit="army"/>
+		<INITIALSTATE province="ros" power="Russia" unit="fleet"/>
+		<INITIALSTATE province="stp" power="Russia" unit="fleet"/>
+		<INITIALSTATE province="bar" power="Spain" unit="fleet"/>
+		<INITIALSTATE province="mad" power="Spain" unit="army"/>
+		<INITIALSTATE province="sve" power="Spain" unit="army"/>
+		<INITIALSTATE province="ada" power="Turkey" unit="army"/>
+		<INITIALSTATE province="ank" power="Turkey" unit="fleet"/>
+		<INITIALSTATE province="ist" power="Turkey" unit="army"/>
+		<INITIALSTATE province="izm" power="Turkey" unit="fleet"/>
+		<INITIALSTATE province="kha" power="Ukraine" unit="army"/>
+		<INITIALSTATE province="kie" power="Ukraine" unit="army"/>
+		<INITIALSTATE province="ode" power="Ukraine" unit="army"/>
+		<INITIALSTATE province="sev" power="Ukraine" unit="fleet"/>
+	</VARIANT>
+	
+	<VARIANT name="Modern (with Wings)" version="1.0">
+		<DESCRIPTION><![CDATA[
+		<p>
+			The Modern variant uses a map that is a representation of Europe, 
+			western Asia, and northern Africa as the region was politically 
+			divided in the 1990's. The map is similar in geography to the 
+			standard map, but includes more of Africa and the middle east.
+		</p>
+		<p>
+			This version of the Modern variant has Wing units (described 
+			below) automatically enabled. Furthermore, the "nuclear" powers 
+			(Britain, France, and Russia) will start with a Wing unit. 
+			All powers may build Wing units. However, if the Wing units is 
+			disabled (from the Rule Options tab), no further Wing units 
+			can be built.
+		</p>
+		<p>
+			There are 38 home centers and 26 neutral centers on the board, 
+			making 64 total supply centers. To win the game, control of 33 
+			centers is needed.
+		</p>	
+		<h2>Wing Units:</h2>
+		<div class="indent1cm">
+			<p>
+			Wings can be built on any buildable center, and can move over any terrain
+			(be it land or sea). Their moves are specified independent of coastal regions
+			(like an Army).
+			</p>
+			<p>
+			A Wing can move, support, be supported and be dislodged like any other unit. 
+			It cannot however convoy nor be convoyed.
+			</p>
+			<p>
+			A Wing does not capture a center: it blockades it. The center remains under
+			its original ownership, but it is not counted for build purposes by either
+			the center's owner or the owner of the blockading Wing. A power may have to
+			disband unit(s) if center(s) are blockaded, even down to no units, but is not
+			considered eliminated until these centers are occupied by an enemy Fleet or Army
+			as in standard rules. It is not possible to blockade yourself.
+			</p>
+			<p>
+			A center remains blockaded only as long as a Wing is over it: as soon as it
+			is gone the blockade is lifted and the power will be able to count this
+			center in the next adjustment phase (as long as it is not subsequently
+			captured or re-blockaded).
+			</p>
+			<p>
+			For the purposes of victory conditions, a blockaded center does not count
+			while it is being blockaded, neither for its owner nor for the power
+			blockading it.
+			</p>
+		</div>
+		<h2>Map Notes:</h2>
+		<div class="indent1cm">
+			<p>
+			Cairo, Hamburg and Istanbul behave as Kiel and Constantinople did in the
+			original game: they have no coasts but fleets can pass through them to
+			bodies of water of both sides.
+			</p>
+			<p>
+			There is another canal linking Rostov and Volga, thus permitting
+			access to the Caspian Sea to ships. Rostov is situated along the
+			Don River which empties into the Black Sea, while the Volga empties
+			into the Caspian Sea. In the real world there is a canal at Volgograd
+			linking the two rivers, somewhere in the southern Volga region on
+			the map. This is the only way to get ships into and out of the
+			Caspian Sea.
+			</p>
+			<p>
+			Iran is the only territory with multiple coasts in the game - the south
+			coast touches the Arabian Sea and the Persian Gulf, while the north coast
+			touches the Caspian Sea.
+			</p>
+		</div>
+		<p>
+		The Modern variant was created by Vincent Mous, and is described in a 
+		series of articles for <i>The Diplomatic Pouch Zine</i> (www.diplom.org),
+		beginning with <i>Modern Times</i>.
+		</p>
+		<p>
+			Author: Vincent Mous<br>
+			Electronic map by Martin Asal
+		</p>]]></DESCRIPTION> 
+		
+		<MAP adjacencyURI="modern_adjacency.xml">
+			<MAP_GRAPHIC ref="defaultMap" default="true" />
+		</MAP>
+		
+		<!-- ruleoptions -->
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY"/>
+			<RULEOPTION name="OPTION_WINGS" value="VALUE_WINGS_ENABLED"/>
+		</RULEOPTIONS>
+		
+		<!-- powers -->
+		<POWER name="Britain" active="true" adjective="British"/>
+		<POWER name="Egypt" active="true" adjective="Egyptian"/>
+		<POWER name="France" active="true" adjective="French"/>
+		<POWER name="Germany" active="true" adjective="German"/>
+		<POWER name="Italy" active="true" adjective="Italian"/>
+		<POWER name="Poland" active="true" adjective="Polish"/>
+		<POWER name="Russia" active="true" adjective="Russian"/>
+		<POWER name="Spain" active="true" adjective="Spanish"/>
+		<POWER name="Turkey" active="true" adjective="Turkish"/>
+		<POWER name="Ukraine" active="true" adjective="Ukranian"/>
+
+		
+		<!-- starting time -->
+		<STARTINGTIME turn="Spring 1994 Movement" />
+
+		
+		<!-- victory conditions -->
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="33" />
+		</VICTORYCONDITIONS>
+
+ 	 	
+		<!-- supply centers -->
+		<SUPPLYCENTER province="ada" homepower="Turkey" owner="Turkey"/>
+		<SUPPLYCENTER province="ale" homepower="Egypt" owner="Egypt"/>
+		<SUPPLYCENTER province="ank" homepower="Turkey" owner="Turkey"/>
+		<SUPPLYCENTER province="asw" homepower="Egypt" owner="Egypt"/>
+		<SUPPLYCENTER province="aus"/>
+		<SUPPLYCENTER province="bar" homepower="Spain" owner="Spain"/>
+		<SUPPLYCENTER province="bel"/>
+		<SUPPLYCENTER province="ber" homepower="Germany" owner="Germany"/>
+		<SUPPLYCENTER province="bie"/>
+		<SUPPLYCENTER province="bor" homepower="France" owner="France"/>
+		<SUPPLYCENTER province="bul"/>
+		<SUPPLYCENTER province="cai" homepower="Egypt" owner="Egypt"/>
+		<SUPPLYCENTER province="cro"/>
+		<SUPPLYCENTER province="cze"/>
+		<SUPPLYCENTER province="den"/>
+		<SUPPLYCENTER province="edi" homepower="Britain" owner="Britain"/>
+		<SUPPLYCENTER province="fra" homepower="Germany" owner="Germany"/>
+		<SUPPLYCENTER province="gda" homepower="Poland" owner="Poland"/>
+		<SUPPLYCENTER province="geo"/>
+		<SUPPLYCENTER province="gib" homepower="Britain" owner="Britain"/>
+		<SUPPLYCENTER province="gor" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="gre"/>
+		<SUPPLYCENTER province="ham" homepower="Germany" owner="Germany"/>
+		<SUPPLYCENTER province="hol"/>
+		<SUPPLYCENTER province="hun"/>
+		<SUPPLYCENTER province="irn"/>
+		<SUPPLYCENTER province="ire"/>
+		<SUPPLYCENTER province="isr"/>
+		<SUPPLYCENTER province="ist" homepower="Turkey" owner="Turkey"/>
+		<SUPPLYCENTER province="izm" homepower="Turkey" owner="Turkey"/>
+		<SUPPLYCENTER province="kha" homepower="Ukraine" owner="Ukraine"/>
+		<SUPPLYCENTER province="kie" homepower="Ukraine" owner="Ukraine"/>
+		<SUPPLYCENTER province="kra" homepower="Poland" owner="Poland"/>
+		<SUPPLYCENTER province="lib"/>
+		<SUPPLYCENTER province="lit"/>
+		<SUPPLYCENTER province="liv" homepower="Britain" owner="Britain"/>
+		<SUPPLYCENTER province="lon" homepower="Britain" owner="Britain"/>
+		<SUPPLYCENTER province="lyo" homepower="France" owner="France"/>
+		<SUPPLYCENTER province="mad" homepower="Spain" owner="Spain"/>
+		<SUPPLYCENTER province="mar" homepower="France" owner="France"/>
+		<SUPPLYCENTER province="mil" homepower="Italy" owner="Italy"/>
+		<SUPPLYCENTER province="mon"/>
+		<SUPPLYCENTER province="mor"/>
+		<SUPPLYCENTER province="mos" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="mun" homepower="Germany" owner="Germany"/>
+		<SUPPLYCENTER province="mur" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="nap" homepower="Italy" owner="Italy"/>
+		<SUPPLYCENTER province="nor"/>
+		<SUPPLYCENTER province="ode" homepower="Ukraine" owner="Ukraine"/>
+		<SUPPLYCENTER province="par" homepower="France" owner="France"/>
+		<SUPPLYCENTER province="por"/>
+		<SUPPLYCENTER province="rom" homepower="Italy" owner="Italy"/>
+		<SUPPLYCENTER province="ros" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="rum"/>
+		<SUPPLYCENTER province="sau"/>
+		<SUPPLYCENTER province="ser"/>
+		<SUPPLYCENTER province="sev" homepower="Ukraine" owner="Ukraine"/>
+		<SUPPLYCENTER province="sve" homepower="Spain" owner="Spain"/>
+		<SUPPLYCENTER province="stp" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="swe"/>
+		<SUPPLYCENTER province="swi"/>
+		<SUPPLYCENTER province="tun"/>
+		<SUPPLYCENTER province="ven" homepower="Italy" owner="Italy"/>
+		<SUPPLYCENTER province="war" homepower="Poland" owner="Poland"/>
+
+		
+		<!-- unit placement -->
+		<INITIALSTATE province="edi" power="Britain" unit="fleet"/>
+		<INITIALSTATE province="gib" power="Britain" unit="fleet"/>
+		<INITIALSTATE province="liv" power="Britain" unit="fleet"/>
+		<INITIALSTATE province="lon" power="Britain" unit="wing"/>
+		<INITIALSTATE province="ale" power="Egypt" unit="fleet"/>
+		<INITIALSTATE province="asw" power="Egypt" unit="army"/>
+		<INITIALSTATE province="cai" power="Egypt" unit="fleet"/>
+		<INITIALSTATE province="bor" power="France" unit="wing"/>
+		<INITIALSTATE province="lyo" power="France" unit="army"/>
+		<INITIALSTATE province="mar" power="France" unit="army"/>
+		<INITIALSTATE province="par" power="France" unit="army"/>
+		<INITIALSTATE province="ber" power="Germany" unit="fleet"/>
+		<INITIALSTATE province="fra" power="Germany" unit="army"/>
+		<INITIALSTATE province="ham" power="Germany" unit="fleet"/>
+		<INITIALSTATE province="mun" power="Germany" unit="army"/>
+		<INITIALSTATE province="mil" power="Italy" unit="army"/>
+		<INITIALSTATE province="nap" power="Italy" unit="fleet"/>
+		<INITIALSTATE province="rom" power="Italy" unit="army"/>
+		<INITIALSTATE province="ven" power="Italy" unit="fleet"/>
+		<INITIALSTATE province="gda" power="Poland" unit="fleet"/>
+		<INITIALSTATE province="kra" power="Poland" unit="army"/>
+		<INITIALSTATE province="war" power="Poland" unit="army"/>
+		<INITIALSTATE province="gor" power="Russia" unit="wing"/>
+		<INITIALSTATE province="mos" power="Russia" unit="army"/>
+		<INITIALSTATE province="mur" power="Russia" unit="army"/>
+		<INITIALSTATE province="ros" power="Russia" unit="fleet"/>
+		<INITIALSTATE province="stp" power="Russia" unit="fleet"/>
+		<INITIALSTATE province="bar" power="Spain" unit="fleet"/>
+		<INITIALSTATE province="mad" power="Spain" unit="army"/>
+		<INITIALSTATE province="sve" power="Spain" unit="army"/>
+		<INITIALSTATE province="ada" power="Turkey" unit="army"/>
+		<INITIALSTATE province="ank" power="Turkey" unit="fleet"/>
+		<INITIALSTATE province="ist" power="Turkey" unit="army"/>
+		<INITIALSTATE province="izm" power="Turkey" unit="fleet"/>
+		<INITIALSTATE province="kha" power="Ukraine" unit="army"/>
+		<INITIALSTATE province="kie" power="Ukraine" unit="army"/>
+		<INITIALSTATE province="ode" power="Ukraine" unit="army"/>
+		<INITIALSTATE province="sev" power="Ukraine" unit="fleet"/>
+	</VARIANT>
+	
+	<VARIANT name="Modern Shift" version="1.0" aliases="modern_shift">
+		<DESCRIPTION><![CDATA[
+		<p>
+		Modern Shift is the standard Modern variant, with powers shifted as in 
+		a Shift variant; each power's units start out in a different power's 
+		home supply centers. Powers must reach and retake their own home supply
+		centers before they can start building new units.
+		</p>
+		<p>
+		Wing units are not enabled by default for this variant.
+		</p>
+		<p>
+		Please refer to the description of the Modern variant for more details.
+		</p>
+		<p>
+		The Modern variant was created by Vincent Mous, and is described in a 
+		series of articles for <i>The Diplomatic Pouch Zine</i> (www.diplom.org),
+		beginning with <i>Modern Times</i>.
+		</p>
+		<p>
+			Author: Vincent Mous<br>
+			Electronic map by Martin Asal
+		</p>]]></DESCRIPTION> 
+		
+		<MAP adjacencyURI="modern_adjacency.xml">
+			<MAP_GRAPHIC ref="defaultMap" default="true" />
+		</MAP>
+		
+		<!-- ruleoptions -->
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY"/>
+		</RULEOPTIONS>
+		
+		<!-- powers -->
+		<POWER name="Britain" active="true" adjective="British"/>
+		<POWER name="Egypt" active="true" adjective="Egyptian"/>
+		<POWER name="France" active="true" adjective="French"/>
+		<POWER name="Germany" active="true" adjective="German"/>
+		<POWER name="Italy" active="true" adjective="Italian"/>
+		<POWER name="Poland" active="true" adjective="Polish"/>
+		<POWER name="Russia" active="true" adjective="Russian"/>
+		<POWER name="Spain" active="true" adjective="Spanish"/>
+		<POWER name="Turkey" active="true" adjective="Turkish"/>
+		<POWER name="Ukraine" active="true" adjective="Ukranian"/>
+
+		
+		<!-- starting time -->
+		<STARTINGTIME turn="Spring 1994 Movement" />
+
+		
+		<!-- victory conditions -->
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="33" />
+		</VICTORYCONDITIONS>
+
+ 	 	
+		<!-- supply centers -->
+		<SUPPLYCENTER province="ada" homepower="Turkey" owner="Turkey"/>
+		<SUPPLYCENTER province="ale" homepower="Egypt" owner="Egypt"/>
+		<SUPPLYCENTER province="ank" homepower="Turkey" owner="Turkey"/>
+		<SUPPLYCENTER province="asw" homepower="Egypt" owner="Egypt"/>
+		<SUPPLYCENTER province="aus"/>
+		<SUPPLYCENTER province="bar" homepower="Spain" owner="Spain"/>
+		<SUPPLYCENTER province="bel"/>
+		<SUPPLYCENTER province="ber" homepower="Germany" owner="Germany"/>
+		<SUPPLYCENTER province="bie"/>
+		<SUPPLYCENTER province="bor" homepower="France" owner="France"/>
+		<SUPPLYCENTER province="bul"/>
+		<SUPPLYCENTER province="cai" homepower="Egypt" owner="Egypt"/>
+		<SUPPLYCENTER province="cro"/>
+		<SUPPLYCENTER province="cze"/>
+		<SUPPLYCENTER province="den"/>
+		<SUPPLYCENTER province="edi" homepower="Britain" owner="Britain"/>
+		<SUPPLYCENTER province="fra" homepower="Germany" owner="Germany"/>
+		<SUPPLYCENTER province="gda" homepower="Poland" owner="Poland"/>
+		<SUPPLYCENTER province="geo"/>
+		<SUPPLYCENTER province="gib" homepower="Britain" owner="Britain"/>
+		<SUPPLYCENTER province="gor" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="gre"/>
+		<SUPPLYCENTER province="ham" homepower="Germany" owner="Germany"/>
+		<SUPPLYCENTER province="hol"/>
+		<SUPPLYCENTER province="hun"/>
+		<SUPPLYCENTER province="irn"/>
+		<SUPPLYCENTER province="ire"/>
+		<SUPPLYCENTER province="isr"/>
+		<SUPPLYCENTER province="ist" homepower="Turkey" owner="Turkey"/>
+		<SUPPLYCENTER province="izm" homepower="Turkey" owner="Turkey"/>
+		<SUPPLYCENTER province="kha" homepower="Ukraine" owner="Ukraine"/>
+		<SUPPLYCENTER province="kie" homepower="Ukraine" owner="Ukraine"/>
+		<SUPPLYCENTER province="kra" homepower="Poland" owner="Poland"/>
+		<SUPPLYCENTER province="lib"/>
+		<SUPPLYCENTER province="lit"/>
+		<SUPPLYCENTER province="liv" homepower="Britain" owner="Britain"/>
+		<SUPPLYCENTER province="lon" homepower="Britain" owner="Britain"/>
+		<SUPPLYCENTER province="lyo" homepower="France" owner="France"/>
+		<SUPPLYCENTER province="mad" homepower="Spain" owner="Spain"/>
+		<SUPPLYCENTER province="mar" homepower="France" owner="France"/>
+		<SUPPLYCENTER province="mil" homepower="Italy" owner="Italy"/>
+		<SUPPLYCENTER province="mon"/>
+		<SUPPLYCENTER province="mor"/>
+		<SUPPLYCENTER province="mos" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="mun" homepower="Germany" owner="Germany"/>
+		<SUPPLYCENTER province="mur" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="nap" homepower="Italy" owner="Italy"/>
+		<SUPPLYCENTER province="nor"/>
+		<SUPPLYCENTER province="ode" homepower="Ukraine" owner="Ukraine"/>
+		<SUPPLYCENTER province="par" homepower="France" owner="France"/>
+		<SUPPLYCENTER province="por"/>
+		<SUPPLYCENTER province="rom" homepower="Italy" owner="Italy"/>
+		<SUPPLYCENTER province="ros" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="rum"/>
+		<SUPPLYCENTER province="sau"/>
+		<SUPPLYCENTER province="ser"/>
+		<SUPPLYCENTER province="sev" homepower="Ukraine" owner="Ukraine"/>
+		<SUPPLYCENTER province="sve" homepower="Spain" owner="Spain"/>
+		<SUPPLYCENTER province="stp" homepower="Russia" owner="Russia"/>
+		<SUPPLYCENTER province="swe"/>
+		<SUPPLYCENTER province="swi"/>
+		<SUPPLYCENTER province="tun"/>
+		<SUPPLYCENTER province="ven" homepower="Italy" owner="Italy"/>
+		<SUPPLYCENTER province="war" homepower="Poland" owner="Poland"/>
+
+		
+		<!-- unit placement -->
+		<INITIALSTATE province="edi" power="Ukraine" unit="fleet"/>
+		<INITIALSTATE province="gib" power="Ukraine" unit="fleet"/>
+		<INITIALSTATE province="liv" power="Ukraine" unit="fleet"/>
+		<INITIALSTATE province="lon" power="Ukraine" unit="fleet"/>
+		<INITIALSTATE province="ale" power="Germany" unit="fleet"/>
+		<INITIALSTATE province="asw" power="Germany" unit="army"/>
+		<INITIALSTATE province="cai" power="Germany" unit="fleet"/>
+		<INITIALSTATE province="bor" power="Russia" unit="fleet"/>
+		<INITIALSTATE province="lyo" power="Russia" unit="army"/>
+		<INITIALSTATE province="mar" power="Russia" unit="army"/>
+		<INITIALSTATE province="par" power="Russia" unit="army"/>
+		<INITIALSTATE province="ber" power="Turkey" unit="fleet"/>
+		<INITIALSTATE province="fra" power="Turkey" unit="army"/>
+		<INITIALSTATE province="ham" power="Turkey" unit="fleet"/>
+		<INITIALSTATE province="mun" power="Turkey" unit="army"/>
+		<INITIALSTATE province="mil" power="Britain" unit="army"/>
+		<INITIALSTATE province="nap" power="Britain" unit="fleet"/>
+		<INITIALSTATE province="rom" power="Britain" unit="army"/>
+		<INITIALSTATE province="ven" power="Britain" unit="fleet"/>
+		<INITIALSTATE province="gda" power="Egypt" unit="fleet"/>
+		<INITIALSTATE province="kra" power="Egypt" unit="army"/>
+		<INITIALSTATE province="war" power="Egypt" unit="army"/>
+		<INITIALSTATE province="gor" power="Italy" unit="army"/>
+		<INITIALSTATE province="mos" power="Italy" unit="army"/>
+		<INITIALSTATE province="mur" power="Italy" unit="army"/>
+		<INITIALSTATE province="ros" power="Italy" unit="fleet"/>
+		<INITIALSTATE province="stp" power="Italy" unit="fleet"/>
+		<INITIALSTATE province="bar" power="Poland" unit="fleet"/>
+		<INITIALSTATE province="mad" power="Poland" unit="army"/>
+		<INITIALSTATE province="sve" power="Poland" unit="army"/>
+		<INITIALSTATE province="ada" power="France" unit="army"/>
+		<INITIALSTATE province="ank" power="France" unit="fleet"/>
+		<INITIALSTATE province="ist" power="France" unit="army"/>
+		<INITIALSTATE province="izm" power="France" unit="fleet"/>
+		<INITIALSTATE province="kha" power="Spain" unit="army"/>
+		<INITIALSTATE province="kie" power="Spain" unit="army"/>
+		<INITIALSTATE province="ode" power="Spain" unit="army"/>
+		<INITIALSTATE province="sev" power="Spain" unit="fleet"/>
+	</VARIANT>
+</VARIANTS>

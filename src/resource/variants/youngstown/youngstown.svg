@@ -1,0 +1,1160 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" 
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"
+[
+	<!-- jDip-specific XML additions -->
+	<!-- PROVINCE_DATA -->
+	<!ENTITY % svgExt "| jdipNS:PROVINCE_DATA" >
+	
+	<!ELEMENT jdipNS:PROVINCE_DATA (jdipNS:PROVINCE)+>
+	<!ATTLIST jdipNS:PROVINCE_DATA
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  dislodgedUnitOffset CDATA #IMPLIED
+	  >
+	<!ELEMENT jdipNS:PROVINCE (jdipNS:UNIT, jdipNS:DISLODGED_UNIT, jdipNS:SUPPLY_CENTER?)+>
+	<!ATTLIST jdipNS:PROVINCE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  name CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:UNIT EMPTY>
+	<!ATTLIST jdipNS:UNIT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:DISLODGED_UNIT EMPTY>
+	<!ATTLIST jdipNS:DISLODGED_UNIT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:SUPPLY_CENTER EMPTY>
+	<!ATTLIST jdipNS:SUPPLY_CENTER
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	  
+	<!-- Display Parameters -->
+	<!ENTITY % svgExt "| jdipNS:DISPLAY" >
+	
+	<!ELEMENT jdipNS:DISPLAY (jdipNS:ZOOM, jdipNS:LABELS)>
+	<!ATTLIST jdipNS:DISPLAY
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	<!ELEMENT jdipNS:ZOOM EMPTY>
+	<!ATTLIST jdipNS:ZOOM
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  min CDATA #REQUIRED
+	  max CDATA #REQUIRED
+	  factor CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:LABELS EMPTY>
+	<!ATTLIST jdipNS:LABELS
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  brief (true|false) "true"
+	  full (true|false) "true"
+	  >
+	  
+	  <!-- Order Drawing Parameters -->
+	<!ENTITY % svgExt "| jdipNS:ORDERDRAWING" >
+	
+	<!ELEMENT jdipNS:ORDERDRAWING (jdipNS:POWERCOLORS, jdipNS:SYMBOLSIZE+, jdipNS:BUILD, jdipNS:REMOVE,  jdipNS:DISBAND, jdipNS:WAIVE, jdipNS:HOLD, jdipNS:MOVE, jdipNS:RETREAT, jdipNS:SUPPORT, jdipNS:CONVOY )>
+	<!ATTLIST jdipNS:ORDERDRAWING
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	
+	<!ELEMENT jdipNS:POWERCOLORS (jdipNS:POWERCOLOR+)>
+	<!ATTLIST jdipNS:POWERCOLORS
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	
+	<!ELEMENT jdipNS:POWERCOLOR EMPTY>
+	<!ATTLIST jdipNS:POWERCOLOR
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  power CDATA #REQUIRED
+	  color CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:SYMBOLSIZE EMPTY>
+	<!ATTLIST jdipNS:SYMBOLSIZE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  name CDATA #REQUIRED
+	  width CDATA #REQUIRED
+	  height CDATA #REQUIRED
+	  >
+	
+	  <!ELEMENT jdipNS:HOLD EMPTY>
+	<!ATTLIST jdipNS:HOLD
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  widths CDATA #REQUIRED
+	  shadowWidths CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:DISBAND EMPTY>
+	<!ATTLIST jdipNS:DISBAND
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:WAIVE EMPTY>
+	<!ATTLIST jdipNS:WAIVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	>
+	  
+	<!ELEMENT jdipNS:REMOVE EMPTY>
+	<!ATTLIST jdipNS:REMOVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:BUILD EMPTY>
+	<!ATTLIST jdipNS:BUILD
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:MOVE EMPTY>
+	<!ATTLIST jdipNS:MOVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  widths CDATA #REQUIRED
+	  shadowWidths CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:RETREAT EMPTY>
+	<!ATTLIST jdipNS:RETREAT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:SUPPORT EMPTY>
+	<!ATTLIST jdipNS:SUPPORT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:CONVOY EMPTY>
+	<!ATTLIST jdipNS:CONVOY
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+]>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="980" height="630" viewBox="0 0 980 630" preserveAspectRatio="xMinYMin">
+	
+	<!-- jdip XML additions -->
+	<jdipNS:DISPLAY>
+		<jdipNS:ZOOM min="5" max="2500" factor="1.2" />
+		<jdipNS:LABELS brief="true" full="false" />
+	</jdipNS:DISPLAY>
+	
+	<jdipNS:ORDERDRAWING>
+		<jdipNS:POWERCOLORS>
+			<jdipNS:POWERCOLOR power="austria" color="darksalmon" />
+			<jdipNS:POWERCOLOR power="germany" color="slategray" />
+			<jdipNS:POWERCOLOR power="turkey" color="darkgoldenrod" />
+			<jdipNS:POWERCOLOR power="china" color="darkorange" />
+			<jdipNS:POWERCOLOR power="india" color="darkgreen" />
+			<jdipNS:POWERCOLOR power="russia" color="saddlebrown" />
+			<jdipNS:POWERCOLOR power="england" color="darkslateblue" />
+			<jdipNS:POWERCOLOR power="italy" color="limegreen" />
+			<jdipNS:POWERCOLOR power="france" color="darkcyan" />
+			<jdipNS:POWERCOLOR power="japan" color="orchid" />
+		</jdipNS:POWERCOLORS>
+		
+		<jdipNS:SYMBOLSIZE name="Fleet" width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="Army"  width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="Wing"  width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedFleet" width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedArmy"  width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedWing"  width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="FailedOrder"  width="20" height="20"/>
+		<jdipNS:SYMBOLSIZE name="SupplyCenter" width="10" height="10"/>
+		<jdipNS:SYMBOLSIZE name="BuildUnit"    width="25" height="25"/>
+		<jdipNS:SYMBOLSIZE name="RemoveUnit"   width="25" height="25"/>
+		<jdipNS:SYMBOLSIZE name="WaivedBuild" width="25" height="25"/>
+		
+		<jdipNS:BUILD deltaRadius="0"/>
+		<jdipNS:REMOVE deltaRadius="0"/>
+		<jdipNS:DISBAND deltaRadius="0"/>
+		<jdipNS:WAIVE deltaRadius="0"/>
+		<jdipNS:HOLD deltaRadius="4" strokeCSSStyle="varwidthorder" hilightOffset="0" hilightCSSClass="varwidthshadow" widths="2.5,4,6,8" shadowWidths="4.5,6,8,10"/>
+		<jdipNS:MOVE deltaRadius="4" strokeCSSStyle="varwidthorder" markerID="arrow" hilightOffset="0" hilightCSSClass="varwidthshadow"  widths="2.5,4,6,8" shadowWidths="4.5,6,8,10"/>
+		<jdipNS:RETREAT deltaRadius="4" strokeCSSStyle="defaultorder" markerID="arrow"  hilightOffset="0" hilightCSSClass="shadoworder" />
+		<jdipNS:SUPPORT deltaRadius="7" strokeCSSStyle="supportorder" markerID="arrow" hilightOffset="0" hilightCSSClass="shadowdash" />
+		<jdipNS:CONVOY deltaRadius="7" strokeCSSStyle="convoyorder" markerID="arrow" hilightOffset="0" hilightCSSClass="shadowdash" />
+	</jdipNS:ORDERDRAWING>
+	
+	<jdipNS:PROVINCE_DATA>
+		<jdipNS:PROVINCE name="adr"><jdipNS:UNIT x="241" y="292"/><jdipNS:DISLODGED_UNIT x="246" y="297"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="aeg"><jdipNS:UNIT x="321" y="340"/><jdipNS:DISLODGED_UNIT x="326" y="345"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="afg"><jdipNS:UNIT x="523" y="317"/><jdipNS:DISLODGED_UNIT x="528" y="322"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="alb"><jdipNS:UNIT x="276" y="312"/><jdipNS:DISLODGED_UNIT x="281" y="317"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="alg"><jdipNS:UNIT x="148" y="375"/><jdipNS:DISLODGED_UNIT x="153" y="380"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="and"><jdipNS:UNIT x="707" y="474"/><jdipNS:DISLODGED_UNIT x="712" y="479"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ank"><jdipNS:UNIT x="368" y="306"/><jdipNS:DISLODGED_UNIT x="373" y="311"/><jdipNS:SUPPLY_CENTER x="384" y="309"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ann"><jdipNS:UNIT x="813" y="442"/><jdipNS:DISLODGED_UNIT x="818" y="447"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="apu"><jdipNS:UNIT x="243" y="311"/><jdipNS:DISLODGED_UNIT x="248" y="316"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ara"><jdipNS:UNIT x="550" y="450"/><jdipNS:DISLODGED_UNIT x="555" y="455"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="arm"><jdipNS:UNIT x="412" y="313"/><jdipNS:DISLODGED_UNIT x="417" y="318"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bag"><jdipNS:UNIT x="421" y="358"/><jdipNS:DISLODGED_UNIT x="426" y="363"/><jdipNS:SUPPLY_CENTER x="408" y="342"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bal"><jdipNS:UNIT x="235" y="150"/><jdipNS:DISLODGED_UNIT x="240" y="155"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bar"><jdipNS:UNIT x="325" y="24"/><jdipNS:DISLODGED_UNIT x="330" y="29"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bel"><jdipNS:UNIT x="137" y="220"/><jdipNS:DISLODGED_UNIT x="142" y="225"/><jdipNS:SUPPLY_CENTER x="124" y="215"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ber"><jdipNS:UNIT x="191" y="181"/><jdipNS:DISLODGED_UNIT x="196" y="186"/><jdipNS:SUPPLY_CENTER x="203" y="189"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bla"><jdipNS:UNIT x="355" y="283"/><jdipNS:DISLODGED_UNIT x="360" y="288"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bob"><jdipNS:UNIT x="662" y="440"/><jdipNS:DISLODGED_UNIT x="667" y="445"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="boh"><jdipNS:UNIT x="218" y="220"/><jdipNS:DISLODGED_UNIT x="223" y="225"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bor"><jdipNS:UNIT x="839" y="542"/><jdipNS:DISLODGED_UNIT x="844" y="547"/><jdipNS:SUPPLY_CENTER x="852" y="527"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bre"><jdipNS:UNIT x="86" y="252"/><jdipNS:DISLODGED_UNIT x="91" y="257"/><jdipNS:SUPPLY_CENTER x="71" y="245"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bru"><jdipNS:UNIT x="839" y="513"/><jdipNS:DISLODGED_UNIT x="844" y="518"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bud"><jdipNS:UNIT x="266" y="257"/><jdipNS:DISLODGED_UNIT x="271" y="262"/><jdipNS:SUPPLY_CENTER x="258" y="244"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bul"><jdipNS:UNIT x="313" y="290"/><jdipNS:DISLODGED_UNIT x="318" y="295"/><jdipNS:SUPPLY_CENTER x="302" y="286"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bul-sc"><jdipNS:UNIT x="310" y="301"/><jdipNS:DISLODGED_UNIT x="315" y="306"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bul-ec"><jdipNS:UNIT x="321" y="286"/><jdipNS:DISLODGED_UNIT x="326" y="291"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bur"><jdipNS:UNIT x="144" y="258"/><jdipNS:DISLODGED_UNIT x="149" y="263"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="brm"><jdipNS:UNIT x="699" y="419"/><jdipNS:DISLODGED_UNIT x="704" y="424"/><jdipNS:SUPPLY_CENTER x="710" y="419"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="cal"><jdipNS:UNIT x="648" y="389"/><jdipNS:DISLODGED_UNIT x="653" y="394"/><jdipNS:SUPPLY_CENTER x="665" y="375"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="cam"><jdipNS:UNIT x="781" y="457"/><jdipNS:DISLODGED_UNIT x="786" y="462"/><jdipNS:SUPPLY_CENTER x="770" y="456"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="can"><jdipNS:UNIT x="827" y="325"/><jdipNS:DISLODGED_UNIT x="832" y="330"/><jdipNS:SUPPLY_CENTER x="826" y="360"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="cel"><jdipNS:UNIT x="907" y="541"/><jdipNS:DISLODGED_UNIT x="912" y="546"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="cey"><jdipNS:UNIT x="644" y="531"/><jdipNS:DISLODGED_UNIT x="649" y="536"/><jdipNS:SUPPLY_CENTER x="633" y="528"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="cly"><jdipNS:UNIT x="74" y="119"/><jdipNS:DISLODGED_UNIT x="79" y="124"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="con"><jdipNS:UNIT x="338" y="312"/><jdipNS:DISLODGED_UNIT x="343" y="317"/><jdipNS:SUPPLY_CENTER x="328" y="300"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="dan"><jdipNS:UNIT x="445" y="519"/><jdipNS:DISLODGED_UNIT x="450" y="524"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="dec"><jdipNS:UNIT x="610" y="393"/><jdipNS:DISLODGED_UNIT x="615" y="398"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="del"><jdipNS:UNIT x="575" y="341"/><jdipNS:DISLODGED_UNIT x="580" y="346"/><jdipNS:SUPPLY_CENTER x="595" y="352"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="den"><jdipNS:UNIT x="166" y="154"/><jdipNS:DISLODGED_UNIT x="171" y="159"/><jdipNS:SUPPLY_CENTER x="185" y="155"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="eio"><jdipNS:UNIT x="695" y="571"/><jdipNS:DISLODGED_UNIT x="700" y="576"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="eaf"><jdipNS:UNIT x="388" y="590"/><jdipNS:DISLODGED_UNIT x="393" y="595"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="eas"><jdipNS:UNIT x="335" y="363"/><jdipNS:DISLODGED_UNIT x="340" y="368"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ecs"><jdipNS:UNIT x="886" y="354"/><jdipNS:DISLODGED_UNIT x="891" y="359"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="edi"><jdipNS:UNIT x="91" y="132"/><jdipNS:DISLODGED_UNIT x="96" y="137"/><jdipNS:SUPPLY_CENTER x="99" y="132"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="egy"><jdipNS:UNIT x="320" y="423"/><jdipNS:DISLODGED_UNIT x="325" y="428"/><jdipNS:SUPPLY_CENTER x="321" y="384"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="egy-nc"><jdipNS:UNIT x="308" y="387"/><jdipNS:DISLODGED_UNIT x="313" y="392"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="egy-ec"><jdipNS:UNIT x="346" y="419"/><jdipNS:DISLODGED_UNIT x="351" y="424"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="eng"><jdipNS:UNIT x="70" y="227"/><jdipNS:DISLODGED_UNIT x="75" y="232"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="eth"><jdipNS:UNIT x="393" y="504"/><jdipNS:DISLODGED_UNIT x="398" y="509"/><jdipNS:SUPPLY_CENTER x="386.4" y="487"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="fez"><jdipNS:UNIT x="262" y="445"/><jdipNS:DISLODGED_UNIT x="267" y="450"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="fin"><jdipNS:UNIT x="273" y="85"/><jdipNS:DISLODGED_UNIT x="278" y="90"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="for"><jdipNS:UNIT x="857" y="376"/><jdipNS:DISLODGED_UNIT x="862" y="381"/><jdipNS:SUPPLY_CENTER x="857" y="357"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="fuj"><jdipNS:UNIT x="937" y="306"/><jdipNS:DISLODGED_UNIT x="942" y="311"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="gal"><jdipNS:UNIT x="291" y="220"/><jdipNS:DISLODGED_UNIT x="296" y="225"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="gas"><jdipNS:UNIT x="105" y="290"/><jdipNS:DISLODGED_UNIT x="110" y="295"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="goa"><jdipNS:UNIT x="492" y="489"/><jdipNS:DISLODGED_UNIT x="497" y="494"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="gob"><jdipNS:UNIT x="239" y="116"/><jdipNS:DISLODGED_UNIT x="244" y="121"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="gol"><jdipNS:UNIT x="158" y="314"/><jdipNS:DISLODGED_UNIT x="163" y="319"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="gos"><jdipNS:UNIT x="798" y="508"/><jdipNS:DISLODGED_UNIT x="803" y="513"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="got"><jdipNS:UNIT x="809" y="403"/><jdipNS:DISLODGED_UNIT x="814" y="408"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="gre"><jdipNS:UNIT x="296" y="335"/><jdipNS:DISLODGED_UNIT x="301" y="340"/><jdipNS:SUPPLY_CENTER x="304" y="328"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="han"><jdipNS:UNIT x="778" y="323"/><jdipNS:DISLODGED_UNIT x="783" y="328"/><jdipNS:SUPPLY_CENTER x="754" y="320"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="hel"><jdipNS:UNIT x="144" y="167"/><jdipNS:DISLODGED_UNIT x="149" y="172"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="hir"><jdipNS:UNIT x="921" y="260"/><jdipNS:DISLODGED_UNIT x="926" y="265"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="hok"><jdipNS:UNIT x="922" y="215"/><jdipNS:DISLODGED_UNIT x="927" y="220"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="hol"><jdipNS:UNIT x="136" y="198"/><jdipNS:DISLODGED_UNIT x="141" y="203"/><jdipNS:SUPPLY_CENTER x="141" y="186"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="hon"><jdipNS:UNIT x="881" y="322"/><jdipNS:DISLODGED_UNIT x="886" y="327"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="inn"><jdipNS:UNIT x="704" y="247"/><jdipNS:DISLODGED_UNIT x="709" y="252"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ion"><jdipNS:UNIT x="268" y="354"/><jdipNS:DISLODGED_UNIT x="273" y="359"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ira"><jdipNS:UNIT x="472" y="352"/><jdipNS:DISLODGED_UNIT x="477" y="357"/><jdipNS:SUPPLY_CENTER x="470" y="328"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ire"><jdipNS:UNIT x="39" y="159"/><jdipNS:DISLODGED_UNIT x="44" y="164"/><jdipNS:SUPPLY_CENTER x="49" y="170"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="iri"><jdipNS:UNIT x="43" y="199"/><jdipNS:DISLODGED_UNIT x="48" y="204"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="jav"><jdipNS:UNIT x="828" y="588"/><jdipNS:DISLODGED_UNIT x="833" y="593"/><jdipNS:SUPPLY_CENTER x="798" y="580"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="joh"><jdipNS:UNIT x="765" y="513"/><jdipNS:DISLODGED_UNIT x="770" y="518"/><jdipNS:SUPPLY_CENTER x="766" y="525"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="jor"><jdipNS:UNIT x="371" y="372"/><jdipNS:DISLODGED_UNIT x="376" y="377"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="jor-nc"><jdipNS:UNIT x="363" y="365"/><jdipNS:DISLODGED_UNIT x="368" y="370"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="jor-sc"><jdipNS:UNIT x="388" y="404"/><jdipNS:DISLODGED_UNIT x="393" y="409"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="jor-wc"><jdipNS:UNIT x="388" y="404"/><jdipNS:DISLODGED_UNIT x="393" y="409"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="kan"><jdipNS:UNIT x="719" y="289"/><jdipNS:DISLODGED_UNIT x="724" y="294"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sak"><jdipNS:UNIT x="880" y="141"/><jdipNS:DISLODGED_UNIT x="885" y="146"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="kas"><jdipNS:UNIT x="573" y="307"/><jdipNS:DISLODGED_UNIT x="578" y="312"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="kie"><jdipNS:UNIT x="167" y="194"/><jdipNS:DISLODGED_UNIT x="172" y="199"/><jdipNS:SUPPLY_CENTER x="175" y="172"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="klu"><jdipNS:UNIT x="291" y="253"/><jdipNS:DISLODGED_UNIT x="296" y="258"/><jdipNS:SUPPLY_CENTER x="303" y="240"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="kor"><jdipNS:UNIT x="866" y="257"/><jdipNS:DISLODGED_UNIT x="871" y="262"/><jdipNS:SUPPLY_CENTER x="850" y="247"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="kyo"><jdipNS:UNIT x="903" y="285"/><jdipNS:DISLODGED_UNIT x="908" y="290"/><jdipNS:SUPPLY_CENTER x="916" y="282"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="lao"><jdipNS:UNIT x="749" y="398"/><jdipNS:DISLODGED_UNIT x="754" y="403"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="lib"><jdipNS:UNIT x="220" y="403"/><jdipNS:DISLODGED_UNIT x="225" y="408"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="liv"><jdipNS:UNIT x="81" y="169"/><jdipNS:DISLODGED_UNIT x="86" y="174"/><jdipNS:SUPPLY_CENTER x="85" y="152"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="lon"><jdipNS:UNIT x="101" y="201"/><jdipNS:DISLODGED_UNIT x="106" y="206"/><jdipNS:SUPPLY_CENTER x="111" y="200"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="lvn"><jdipNS:UNIT x="278" y="140"/><jdipNS:DISLODGED_UNIT x="283" y="145"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mad"><jdipNS:UNIT x="607" y="461"/><jdipNS:DISLODGED_UNIT x="612" y="466"/><jdipNS:SUPPLY_CENTER x="622" y="465"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mag"><jdipNS:UNIT x="433" y="565"/><jdipNS:DISLODGED_UNIT x="438" y="570"/><jdipNS:SUPPLY_CENTER x="427.8" y="578.8"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mal"><jdipNS:UNIT x="803" y="556"/><jdipNS:DISLODGED_UNIT x="808" y="561"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="man"><jdipNS:UNIT x="806" y="202"/><jdipNS:DISLODGED_UNIT x="811" y="207"/><jdipNS:SUPPLY_CENTER x="817" y="234"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mar"><jdipNS:UNIT x="145" y="290"/><jdipNS:DISLODGED_UNIT x="150" y="295"/><jdipNS:SUPPLY_CENTER x="160" y="292"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mao"><jdipNS:UNIT x="30" y="297"/><jdipNS:DISLODGED_UNIT x="35" y="302"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mon"><jdipNS:UNIT x="266" y="288"/><jdipNS:DISLODGED_UNIT x="271" y="293"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mor"><jdipNS:UNIT x="65" y="452"/><jdipNS:DISLODGED_UNIT x="70" y="457"/><jdipNS:SUPPLY_CENTER x="91.8" y="377.5"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mos"><jdipNS:UNIT x="402" y="164"/><jdipNS:DISLODGED_UNIT x="407" y="169"/><jdipNS:SUPPLY_CENTER x="355" y="152"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mun"><jdipNS:UNIT x="179" y="235"/><jdipNS:DISLODGED_UNIT x="184" y="240"/><jdipNS:SUPPLY_CENTER x="197" y="237"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nat"><jdipNS:UNIT x="30" y="98"/><jdipNS:DISLODGED_UNIT x="35" y="103"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="npo"><jdipNS:UNIT x="945" y="193"/><jdipNS:DISLODGED_UNIT x="950" y="198"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nap"><jdipNS:UNIT x="237" y="341"/><jdipNS:DISLODGED_UNIT x="242" y="346"/><jdipNS:SUPPLY_CENTER x="246" y="327"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nej"><jdipNS:UNIT x="445" y="423"/><jdipNS:DISLODGED_UNIT x="450" y="428"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nej-wc"><jdipNS:UNIT x="424" y="448"/><jdipNS:DISLODGED_UNIT x="429" y="453"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nej-ec"><jdipNS:UNIT x="446" y="389"/><jdipNS:DISLODGED_UNIT x="451" y="394"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nep"><jdipNS:UNIT x="638" y="349"/><jdipNS:DISLODGED_UNIT x="643" y="354"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nrg"><jdipNS:UNIT x="135" y="45"/><jdipNS:DISLODGED_UNIT x="140" y="50"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nth"><jdipNS:UNIT x="123" y="145"/><jdipNS:DISLODGED_UNIT x="128" y="150"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nwy"><jdipNS:UNIT x="160" y="99"/><jdipNS:DISLODGED_UNIT x="165" y="104"/><jdipNS:SUPPLY_CENTER x="166" y="114"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="oba"><jdipNS:UNIT x="25" y="50"/><jdipNS:DISLODGED_UNIT x="30" y="55"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="obb"><jdipNS:UNIT x="25" y="250"/><jdipNS:DISLODGED_UNIT x="30" y="255"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="obc"><jdipNS:UNIT x="25" y="425"/><jdipNS:DISLODGED_UNIT x="30" y="430"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="obd"><jdipNS:UNIT x="70" y="510"/><jdipNS:DISLODGED_UNIT x="75" y="515"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="obe"><jdipNS:UNIT x="150" y="510"/><jdipNS:DISLODGED_UNIT x="155" y="515"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="obf"><jdipNS:UNIT x="305" y="510"/><jdipNS:DISLODGED_UNIT x="310" y="515"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="obg"><jdipNS:UNIT x="350" y="600"/><jdipNS:DISLODGED_UNIT x="355" y="605"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="obh"><jdipNS:UNIT x="490" y="600"/><jdipNS:DISLODGED_UNIT x="495" y="605"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="obi"><jdipNS:UNIT x="600" y="600"/><jdipNS:DISLODGED_UNIT x="605" y="605"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="obj"><jdipNS:UNIT x="950" y="600"/><jdipNS:DISLODGED_UNIT x="955" y="605"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="obk"><jdipNS:UNIT x="950" y="415"/><jdipNS:DISLODGED_UNIT x="955" y="420"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="obl"><jdipNS:UNIT x="950" y="158"/><jdipNS:DISLODGED_UNIT x="955" y="163"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="omo"><jdipNS:UNIT x="690" y="210"/><jdipNS:DISLODGED_UNIT x="695" y="215"/><jdipNS:SUPPLY_CENTER x="692" y="188"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="oms"><jdipNS:UNIT x="505" y="155"/><jdipNS:DISLODGED_UNIT x="510" y="160"/><jdipNS:SUPPLY_CENTER x="505" y="172"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="osa"><jdipNS:UNIT x="909" y="315"/><jdipNS:DISLODGED_UNIT x="914" y="320"/><jdipNS:SUPPLY_CENTER x="896" y="309"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="par"><jdipNS:UNIT x="116" y="262"/><jdipNS:DISLODGED_UNIT x="121" y="267"/><jdipNS:SUPPLY_CENTER x="120" y="246"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="pek"><jdipNS:UNIT x="787" y="273"/><jdipNS:DISLODGED_UNIT x="792" y="278"/><jdipNS:SUPPLY_CENTER x="780" y="244"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="pen"><jdipNS:UNIT x="273" y="405"/><jdipNS:DISLODGED_UNIT x="278" y="410"/><jdipNS:SUPPLY_CENTER x="265" y="380.5"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="per"><jdipNS:UNIT x="477" y="395"/><jdipNS:DISLODGED_UNIT x="482" y="400"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="phi"><jdipNS:UNIT x="887" y="450"/><jdipNS:DISLODGED_UNIT x="892" y="455"/><jdipNS:SUPPLY_CENTER x="874" y="417"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="pic"><jdipNS:UNIT x="116" y="232"/><jdipNS:DISLODGED_UNIT x="121" y="237"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="pie"><jdipNS:UNIT x="170" y="276"/><jdipNS:DISLODGED_UNIT x="175" y="281"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="por"><jdipNS:UNIT x="58" y="333"/><jdipNS:DISLODGED_UNIT x="63" y="338"/><jdipNS:SUPPLY_CENTER x="57" y="347"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="pos"><jdipNS:UNIT x="219" y="175"/><jdipNS:DISLODGED_UNIT x="224" y="180"/><jdipNS:SUPPLY_CENTER x="224" y="188"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="pru"><jdipNS:UNIT x="248" y="171"/><jdipNS:DISLODGED_UNIT x="253" y="176"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="raj"><jdipNS:UNIT x="586" y="416"/><jdipNS:DISLODGED_UNIT x="591" y="421"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="red"><jdipNS:UNIT x="401" y="461"/><jdipNS:DISLODGED_UNIT x="406" y="466"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="rom"><jdipNS:UNIT x="212" y="304"/><jdipNS:DISLODGED_UNIT x="217" y="309"/><jdipNS:SUPPLY_CENTER x="204" y="298"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ruh"><jdipNS:UNIT x="161" y="221"/><jdipNS:DISLODGED_UNIT x="166" y="226"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="rum"><jdipNS:UNIT x="322" y="261"/><jdipNS:DISLODGED_UNIT x="327" y="266"/><jdipNS:SUPPLY_CENTER x="308" y="269"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sat"><jdipNS:UNIT x="30" y="383"/><jdipNS:DISLODGED_UNIT x="35" y="388"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="spo"><jdipNS:UNIT x="935" y="377"/><jdipNS:DISLODGED_UNIT x="940" y="382"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sch"><jdipNS:UNIT x="845" y="458"/><jdipNS:DISLODGED_UNIT x="850" y="463"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sah"><jdipNS:UNIT x="147" y="445"/><jdipNS:DISLODGED_UNIT x="152" y="450"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sai"><jdipNS:UNIT x="803" y="471"/><jdipNS:DISLODGED_UNIT x="808" y="476"/><jdipNS:SUPPLY_CENTER x="789" y="476"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="kar"><jdipNS:UNIT x="898" y="165"/><jdipNS:DISLODGED_UNIT x="903" y="170"/><jdipNS:SUPPLY_CENTER x="903" y="181"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sax"><jdipNS:UNIT x="195" y="208"/><jdipNS:DISLODGED_UNIT x="200" y="213"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ser"><jdipNS:UNIT x="289" y="294"/><jdipNS:DISLODGED_UNIT x="294" y="299"/><jdipNS:SUPPLY_CENTER x="285" y="276"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sev"><jdipNS:UNIT x="401" y="259"/><jdipNS:DISLODGED_UNIT x="406" y="264"/><jdipNS:SUPPLY_CENTER x="358" y="255"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sha"><jdipNS:UNIT x="712" y="386"/><jdipNS:DISLODGED_UNIT x="717" y="391"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sib"><jdipNS:UNIT x="686" y="105"/><jdipNS:DISLODGED_UNIT x="691" y="110"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sik"><jdipNS:UNIT x="735" y="354"/><jdipNS:DISLODGED_UNIT x="740" y="359"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sil"><jdipNS:UNIT x="235" y="204"/><jdipNS:DISLODGED_UNIT x="240" y="209"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="snd"><jdipNS:UNIT x="537" y="372"/><jdipNS:DISLODGED_UNIT x="542" y="377"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sin"><jdipNS:UNIT x="614" y="250"/><jdipNS:DISLODGED_UNIT x="619" y="255"/><jdipNS:SUPPLY_CENTER x="638" y="254"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ska"><jdipNS:UNIT x="168" y="132"/><jdipNS:DISLODGED_UNIT x="173" y="137"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="smy"><jdipNS:UNIT x="364" y="326"/><jdipNS:DISLODGED_UNIT x="369" y="331"/><jdipNS:SUPPLY_CENTER x="343" y="332"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="soj"><jdipNS:UNIT x="884" y="232"/><jdipNS:DISLODGED_UNIT x="889" y="237"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="soo"><jdipNS:UNIT x="878" y="110"/><jdipNS:DISLODGED_UNIT x="883" y="115"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="som"><jdipNS:UNIT x="505" y="545"/><jdipNS:DISLODGED_UNIT x="510" y="550"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="spa"><jdipNS:UNIT x="96" y="323"/><jdipNS:DISLODGED_UNIT x="101" y="328"/><jdipNS:SUPPLY_CENTER x="84" y="331"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="spa-nc"><jdipNS:UNIT x="77" y="308"/><jdipNS:DISLODGED_UNIT x="82" y="313"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="spa-sc"><jdipNS:UNIT x="100" y="347"/><jdipNS:DISLODGED_UNIT x="105" y="352"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="stp"><jdipNS:UNIT x="374" y="84"/><jdipNS:DISLODGED_UNIT x="379" y="89"/><jdipNS:SUPPLY_CENTER x="310" y="106"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="stp-nc"><jdipNS:UNIT x="384" y="49"/><jdipNS:DISLODGED_UNIT x="389" y="54"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="stp-sc"><jdipNS:UNIT x="314" y="118"/><jdipNS:DISLODGED_UNIT x="319" y="123"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sud"><jdipNS:UNIT x="340" y="485"/><jdipNS:DISLODGED_UNIT x="345" y="490"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sue"><jdipNS:UNIT x="342" y="391"/><jdipNS:DISLODGED_UNIT x="347" y="396"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sum"><jdipNS:UNIT x="760" y="552"/><jdipNS:DISLODGED_UNIT x="765" y="557"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="swe"><jdipNS:UNIT x="198" y="105"/><jdipNS:DISLODGED_UNIT x="203" y="110"/><jdipNS:SUPPLY_CENTER x="215" y="112"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="syr"><jdipNS:UNIT x="370" y="347"/><jdipNS:DISLODGED_UNIT x="375" y="352"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tha"><jdipNS:UNIT x="747" y="431"/><jdipNS:DISLODGED_UNIT x="752" y="436"/><jdipNS:SUPPLY_CENTER x="745" y="450"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tha-wc"><jdipNS:UNIT x="734" y="471"/><jdipNS:DISLODGED_UNIT x="739" y="476"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tha-ec"><jdipNS:UNIT x="750" y="453"/><jdipNS:DISLODGED_UNIT x="755" y="458"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tib"><jdipNS:UNIT x="663" y="313"/><jdipNS:DISLODGED_UNIT x="668" y="318"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tim"><jdipNS:UNIT x="910" y="595"/><jdipNS:DISLODGED_UNIT x="915" y="600"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tok"><jdipNS:UNIT x="938" y="283"/><jdipNS:DISLODGED_UNIT x="943" y="288"/><jdipNS:SUPPLY_CENTER x="951" y="289"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tri"><jdipNS:UNIT x="242" y="274"/><jdipNS:DISLODGED_UNIT x="247" y="279"/><jdipNS:SUPPLY_CENTER x="223" y="265"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tun"><jdipNS:UNIT x="190" y="377"/><jdipNS:DISLODGED_UNIT x="195" y="382"/><jdipNS:SUPPLY_CENTER x="185" y="353.8"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tur"><jdipNS:UNIT x="513" y="271"/><jdipNS:DISLODGED_UNIT x="518" y="276"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tus"><jdipNS:UNIT x="190" y="289"/><jdipNS:DISLODGED_UNIT x="195" y="294"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tys"><jdipNS:UNIT x="203" y="332"/><jdipNS:DISLODGED_UNIT x="208" y="337"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tyr"><jdipNS:UNIT x="213" y="245"/><jdipNS:DISLODGED_UNIT x="218" y="250"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ukr"><jdipNS:UNIT x="343" y="211"/><jdipNS:DISLODGED_UNIT x="348" y="216"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ven"><jdipNS:UNIT x="204" y="271"/><jdipNS:DISLODGED_UNIT x="209" y="276"/><jdipNS:SUPPLY_CENTER x="211" y="261"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="vie"><jdipNS:UNIT x="240" y="243"/><jdipNS:DISLODGED_UNIT x="245" y="248"/><jdipNS:SUPPLY_CENTER x="235" y="233"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="vtn"><jdipNS:UNIT x="769" y="378"/><jdipNS:DISLODGED_UNIT x="774" y="383"/><jdipNS:SUPPLY_CENTER x="776" y="389"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="vla"><jdipNS:UNIT x="828" y="153"/><jdipNS:DISLODGED_UNIT x="833" y="158"/><jdipNS:SUPPLY_CENTER x="860" y="205"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="wio"><jdipNS:UNIT x="595" y="545"/><jdipNS:DISLODGED_UNIT x="600" y="550"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="wes"><jdipNS:UNIT x="136" y="344"/><jdipNS:DISLODGED_UNIT x="141" y="349"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="wal"><jdipNS:UNIT x="76" y="200"/><jdipNS:DISLODGED_UNIT x="81" y="205"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="war"><jdipNS:UNIT x="284" y="185"/><jdipNS:DISLODGED_UNIT x="289" y="190"/><jdipNS:SUPPLY_CENTER x="262" y="188"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="yel"><jdipNS:UNIT x="840" y="271"/><jdipNS:DISLODGED_UNIT x="845" y="276"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="yem"><jdipNS:UNIT x="473" y="459"/><jdipNS:DISLODGED_UNIT x="478" y="464"/><jdipNS:SUPPLY_CENTER x="438" y="473"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="yor"><jdipNS:UNIT x="102" y="174"/><jdipNS:DISLODGED_UNIT x="107" y="179"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="swi"><jdipNS:UNIT x="170" y="255"/><jdipNS:DISLODGED_UNIT x="175" y="260"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="him"><jdipNS:UNIT x="610" y="303"/><jdipNS:DISLODGED_UNIT x="615" y="308"/></jdipNS:PROVINCE>
+	</jdipNS:PROVINCE_DATA>
+	
+	<title>Youngstown</title>
+		
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		DIPLOMACY
+		=========
+		Variant:    Youngstown
+		Author:     unknown
+		SVG-coding: Martin Asal
+		Template:   youngstown.map.ps by Martin Asal for MapIt by George Boyce et al.
+		
+		Feel free to use and change this template, but don't delete the copyright
+		
+		Modifications to work with jDip by Zach DelProposto
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //-->
+		
+	<defs>
+		<style type="text/css">
+		<![CDATA[
+		  /* invisible click rects fill:none does not work */
+			
+			.invisible	{stroke:#000000;fill:#000000;fill-opacity:0.0;opacity:0.0}
+		  	
+		  /* Non-power colors */
+			.sea         		{fill:#99ccff; stroke:black; stroke-width:1px;}
+			.nopower      		{fill:navajowhite; stroke:black; stroke-width:1px;}
+			.neutral 			{fill:#808080; stroke:black; stroke-width:1px;}
+		  	.unordered 			 {fill:red; stroke:black; stroke-width:1;fill-opacity:0.90;}
+
+			
+		  /* Power colors */
+			.austria			{fill:salmon; stroke:black; stroke-width:1px;}
+			.germany			{fill:lightslategray; stroke:black; stroke-width:1px;}
+			.turkey				{fill:goldenrod; stroke:black; stroke-width:1px;}
+			.china				{fill:orange; stroke:black; stroke-width:1px;}
+			.india				{fill:forestgreen; stroke:black; stroke-width:1px;}
+			.russia				{fill:sienna; stroke:black; stroke-width:1px;}
+			.england			{fill:mediumslateblue; stroke:black; stroke-width:1px;}
+			.italy				{fill:mediumspringgreen; stroke:black; stroke-width:1px;}
+			.france				{fill:cyan; stroke:black; stroke-width:1px;}
+			.japan				{fill:plum; stroke:black; stroke-width:1px;}
+			
+		 /* Units */
+		  	.unitaustria			{fill:darksalmon; stroke:black; }
+			.unitgermany			{fill:slategray; stroke:black; }
+			.unitturkey				{fill:darkgoldenrod; stroke:black; }
+			.unitchina				{fill:darkorange; stroke:black; }
+			.unitindia				{fill:darkgreen; stroke:black; }
+			.unitrussia				{fill:saddlebrown; stroke:black; }
+			.unitengland			{fill:darkslateblue; stroke:black; }
+			.unititaly				{fill:limegreen; stroke:black; }
+			.unitfrance				{fill:darkcyan; stroke:black; }
+			.unitjapan				{fill:orchid; stroke:black; }
+			
+			
+		  /* Supply Centers [only fills] */
+		  	.scnopower			{fill:none;}
+		  	
+			.scaustria			{fill:black;}
+			.scgermany          {fill:black;}
+			.scturkey           {fill:black;}
+			.scchina            {fill:black;}
+			.scindia            {fill:black;}
+			.scrussia           {fill:black;}
+			.scengland          {fill:black;}
+			.scitaly            {fill:black;}
+			.scfrance           {fill:black;}
+			.scjapan            {fill:black;}
+		    
+		  /* Text */
+		  	.title     	{font-family:Arial; font-size:18px}
+			.credits	{font-family:Arial; font-size:10px}
+			.label16	{font-family:Arial,sanserif; font-size:16px; text-anchor:middle;}
+			.label14b	{font-family:Arial,sanserif; font-size:14px; text-anchor:middle; font-weight:bold;}
+			.label12	{font-family:Arial,sanserif; font-size:12px; text-anchor:middle;}
+			.label10	{font-family:Arial,sanserif; font-size:10px; text-anchor:middle;}
+			.label08	{font-family:Arial,sanserif; font-size:8px; text-anchor:middle;}
+			.label06	{font-family:Arial,sanserif; font-size:6px; text-anchor:middle;}
+			.label04	{font-family:Arial,sanserif; font-size:4px; text-anchor:middle;}
+			
+		  /* Order drawing styles, stroke and fill colors should not be specified */
+			.defaultorder	{stroke-width:3;fill:none;}
+			.supportorder	{stroke-width:3;fill:none;stroke-dasharray:2,1.5;}
+			.convoyorder	{stroke-dasharray:3,1;stroke-width:3;fill:none;}
+			
+			.shadoworder	{stroke-width:5;fill:none;stroke:black;}
+			.shadowdash		{stroke-width:5;fill:none;stroke:black;opacity:0.85;}
+			
+			.varwidthorder  {fill:none;}
+			.varwidthshadow {fill:none;stroke:black;}
+			
+			
+		]]>
+		</style>
+		
+		<marker id="arrow"
+			viewBox="0 0 10 10" refX="5" refY="5" 
+			markerUnits="strokeWidth"
+			markerWidth="4" markerHeight="3"
+			orient="auto">
+			<path d="M 0 0 L 10 5 L 0 10 z" />
+		</marker>
+		
+		<g id="offboard">
+		  <polygon points="-14,-20 -20,-14 -20,14 -14,20 14,20 20,14 20,-14 14,-20"/> 
+		</g> 
+		
+	</defs>
+		
+	<!-- the map -->
+	<g id="MapLayer" transform="translate(10,10)">
+		<polygon id="_adr" class="sea"    points="266,307,262,303,259,289,242,279,228,274,215,260,214,262,207,254,201,256,196,261,199,268,219,287,234,292,234,294,251,303,254,307"/>
+		<polygon id="_aeg" class="sea"    points="334,327,326,325,319,319,319,315,316,311,315,304,312,303,314,295,310,295,302,295,300,297,301,301,296,304,293,301,291,303,296,310,294,316,298,320,294,337,291,339,295,343,318,343"/>
+		<polygon id="_afg" class="nopower" points="558,273,547,274,538,278,537,273,531,269,523,278,514,278,514,282,501,285,501,292,490,302,484,302,482,313 482,313,486,316,495,335,492,345 499,344,507,345,512,337,527,334,525,325,535,314,533,310,540,305,536,302,542,299,543,294,539,284,543,281,558,279"/>
+		<polygon id="_alb" class="nopower" points="272,312,267,311,266,307,262,303,259,289 264,283,268,283 276,299 275,309"/>
+		<polygon id="_alg" class="nopower" points="104,360,124,347,151,342,162,341,168,339 166,346,164,363,163,367,172,377 162,378,137,380,121,383,111,382"/>
+		<polygon id="_and" class="sea"    points="745,508,735,483,722,471,721,472,719,446,718,440,711,424,705,415,699,415,698,419,693,425 660,458,695,493 712,495,719,504,738,515"/>
+		<polygon id="_ank" class="nopower" points="387,286,360,280,356,280,335,290 347,301,348,304 386,305,389,290"/>
+		<polygon id="_ann" class="nopower" points="769,387,781,404,799,412,804,416,813,429,813,442 793,444 792,430,788,425,786,419,774,412,753,389,759,382 763,387"/>
+		<polygon id="_apu" class="nopower" points="235,309,223,305 217,302 215,288 219,287,234,292,234,294,251,303,254,307,251,309,245,307,245,310"/>
+		<polygon id="_ara" class="sea"    points="595,471,574,437,574,431,567,421,561,403,562,394,553,398,543,389,548,384,542,383,539,378,532,377,511,381,504,381,498,379,496,380,491,371,488,371 488,380 490,386,495,393,508,396,518,404,508,418,505,434 505,471"/>
+		<polygon id="_arm" class="nopower" points="386,305,389,290,387,286 396,279 396,279,404,280,408,283,414,293 417,307,421,311 421,311,390,318,378,319 384,313"/>
+		<polygon id="_bag" class="nopower" points="390,318,421,311 424,316,421,321,426,331,425,347,431,347,433,352 430,356,432,365 429,367,424,362,409,364,382,344,379,346 379,346,379,341,376,338"/>
+		<polygon id="_bal" class="sea"    points="161,151,159,156,168,158,172,162,175,162,182,156,190,156,191,159,197,158,209,156,214,152,224,151,230,152,243,151,248,146,247,142,245,129,248,120 207,119,207,134,205,138,194,140,190,145,181,143 179,149,177,151,172,151"/>
+		<polygon id="_bar" class="sea"    points="246,6,249,11,253,7,256,9,263,6,268,10,264,17,270,18,275,16,278,20,319,32,324,36,315,48,296,48,286,45,289,51,296,52,299,56,299,63,303,75,320,79,323,75,311,62,317,61,330,66,337,61,326,52,343,40,344,33,334,18,343,16,348,22,346,27,354,29,385,22,395,27,422,32,424,28,405,18,411,5 411,0,246,0"/>
+		<polygon id="_bel" class="nopower" points="105,208,116,215,129,218,136,223,141,223 141,223,143,219,140,205,134,201 134,201,124,199,115,199 109,202,105,203"/>
+		<polygon id="_ber" class="nopower" points="172,162,175,162,182,156,190,156,191,159,197,158 199,171,198,184 179,186,171,184,170,168"/>
+		<polygon id="_bla" class="sea"    points="319,283 322,263 324,260 324,254 329,249 334,247 345,252 341,256 350,262 362,256 353,250 375,239 371,245 375,248 366,256 388,268 396,275 396,279 387,286 360,280 356,280 335,290 327,290 326,290 "/>
+		<polygon id="_bob" class="sea"    points="693,425,687,425,680,423,681,413,675,396,661,378,657,378,650,387,647,396,633,408,626,425,614,433,619,449,617,458 660,458"/>
+		<polygon id="_boh" class="nopower" points="243,210,233,203,222,203,212,198,208,198,202,198,188,208,194,217,200,218,202,221 211,220,215,217,233,219"/>
+		<polygon id="_bor" class="nopower" points="853,489,852,493,856,504,865,510,857,514,845,546,832,543,823,545,813,542,801,519,804,510 807,510,808,516,820,517,839,511,846,489"/>
+		<polygon id="_bre" class="nopower" points="83,258,78,257,76,250,60,248,58,239,61,239,57,231,78,230,76,224,87,224 89,235,90,241,88,254"/>
+		<polygon id="_brm" class="nopower" points="719,446,718,440,711,424,705,415,699,415,698,419,693,425,687,425,680,423,681,413,675,396,661,378 665,371,665,360,676,339,687,325 692,325 697,330,697,336,691,342,693,349 693,356,682,370,687,381,696,386,703,397,706,408,711,409,717,419,725,442"/>
+		<polygon id="_bru" class="nopower" points="833,485,840,484,847,469,850,469,862,479,853,489 846,489,839,511,820,517,808,516,807,510 813,510 825,490"/>
+		<polygon id="_bud" class="nopower" points="233,246,242,239,244,230,249,228,267,229,269,238,270,257 266,258,266,263,253,263 253,263,249,262,243,250"/>
+		<polygon id="_bul" class="nopower" points="310,295,310,288,319,283 322,263 321,263,312,262,302,266,292,266,285,264 287,284,291,292 300,297,302,295,310,295"/>
+		<polygon id="_bur" class="nopower" points="136,223,141,223,145,227,152,239 151,243 145,254,142,261,121,273 113,266,120,258,129,232"/>
+		<polygon id="_cal" class="nopower" points="661,378,657,378,650,387,647,396,633,408 630,403,623,403,618,398,619,391,616,373,627,366,629,363,628,358,635,350 649,346,661,345,664,339,661,334,678,321,682,325,687,325,676,339,665,360,665,371"/>
+		<polygon id="_cam" class="nopower" points="788,425,792,430,793,444,782,452,783,458,773,463 761,458,753,449 751,440,760,428,771,427"/>
+		<polygon id="_can" class="nopower" points="806,268,819,272,833,287,836,294,829,301,841,301,842,312,838,317,838,330,837,338,830,345,822,355,804,362 805,357,795,344,798,334,802,331,802,321,795,312,795,304,799,287,796,278"/>
+		<g id="_cel" class="nopower">
+		  <polygon class="sea"    points="865,510,857,514,845,546,832,543,823,545 823,568,830,574,844,579,847,582 871,582 919,533 919,482 893,482"/>
+		  <polygon points="905,502 899,508 878,508 872,517 869,534 875,555 877,554 875,543 881,535 888,548 891,546 884,531 894,518 876,525 876,518 879,513 902,511"/>
+		</g>
+		<polygon id="_cey" class="nopower" points="621,491 627,492 638,502 646,526 639,536 628,538 622,533 619,514 619,509 623,494"/>
+		<polygon id="_cly" class="nopower" points="64,125,58,124,55,113,64,97,77,91,84,92,82,99,79,103,77,107 71,125"/>
+		<g id="_con" class="nopower">
+		  <polygon points="319,315,316,311,315,304,312,303,314,295,310,295 310,288 319,283 326,290,327,290 335,290 335,290,347,301,348,304,341,314"/>
+		  <polygon class="sea"    points="327,290 323,293 314,295 315,299 315,299 321,295 329,293"/>
+		</g>
+		<polygon id="_dan" class="nopower" points="411,487,417,493,423,501,433,497,450,494 454,497,451,518,448,520 448,520,443,521,422,518,402,500,406,490"/>
+		<polygon id="_dec" class="nopower" points="581,356,596,356,611,359,618,365,627,366 616,373,619,391,618,398,623,403 611,416 611,416,603,406,574,389,574,368"/>
+		<polygon id="_del" class="nopower" points="540,305,553,312,562,307,584,311 587,318 595,321,590,334,606,344,618,347,619,350,635,350 635,350,628,358,629,363,627,366 618,365,611,359,596,356,581,356 568,353,553,346,550,339,545,345 537,337 527,334,525,325,535,314,533,310"/>
+		<g id="_den" class="nopower">
+		  <polygon points="152,154,145,144,145,133,162,129,161,134,166,139 173,139 178,140,181,141,181,143 179,149,177,151,172,151 161,151 159,156"/>
+		  <polygon class="sea"    points="166,139 161,151 172,151 167,146 173,139"/>
+		</g>
+		<polygon id="_eaf" class="nopower" points="416,586,404,604 360,604,360,576,354,570,326,570 ,324,556,321,553 328,550,338,554,350,552,363,544,370,544 392,551,405,545,410,546 406,554,410,576,409,583"/>
+		<polygon id="_eas" class="sea"    points="339,368 339,362,344,362,347,360,348,346,350,342,352,326,342,324,339,327,334,327 318,343,295,343 273,365,280,368,301,371,318,365,323,366 324,368"/>
+		<polygon id="_ecs" class="sea"    points="833,287,836,294,829,301,841,301,842,312,838,317,838,330,837,338,830,345 845,345,847,343,857,346,855,375,850,379 855,384,866,384,913,337,924,313 924,306,916,302,913,313,892,314,885,309,882,324,875,324,868,321,862,302,869,296,871,285 871,258,860,265,854,266"/>
+		<polygon id="_edi" class="nopower" points="77,107,83,105,92,107,93,114,86,125,90,136 83,137,72,131,71,125"/>
+		<polygon id="_egy" class="nopower" points="289,441,284,421 280,368,301,371,318,365,323,366 324,368 339,368 339,362,344,362 349,369,352,369 354,374,351,385,347,385 344,383,344,368,320,368,320,392,337,392 357,419,357,425 349,434,345,438"/>
+		<polygon id="_eio" class="sea"    points="803,604 803,586,783,578,780,573 785,566 773,566,764,568,743,555,724,525,699,501 695,493,660,458 617,458,618,473,613,483 621,491,627,492,638,502,646,526,639,536 639,604"/>
+		<polygon id="_eng" class="sea"    points="58,239,61,239,57,231,78,230,76,224,87,224,100,216,101,211,105,208,105,203,109,202 105,197,96,201,83,200,62,199,60,202 40,201 20,201"/>
+		<polygon id="_eth" class="nopower" points="378,457,385,471,396,473,400,479,408,481,411,487 411,487,406,490,402,500,422,518,443,521,448,520,445,527,429,538,418,538,410,546 406,554,410,546,405,545,392,551,370,544 369,540,350,520,355,515,361,502,361,492,367,480,367,461,378,457"/>
+		<polygon id="_fez" class="nopower" points="284,461,235,442,229,438,218,444,203,439 200,435,192,434,185,422,186,414 186,414,205,412,214,411,240,415,284,421 289,441,289,456,284,458"/>
+		<polygon id="_fin" class="nopower" points="285,94,274,94,255,101,249,100,238,95,233,79,233,75,253,62,252,58,245,53 237,41 222,30,224,24,233,31,245,29,247,18,255,17,261,23,262,28 265,42,286,71"/>
+		<polygon id="_for" class="nopower" points="845,345 847,343 857,346 855,375 850,379 843,380 837,375 837,359"/>
+		<polygon id="_fuj" class="nopower" points="944,286,943,297,936,305,924,306,916,302 898,287 907,282 918,281,922,285"/>
+		<polygon id="_gal" class="nopower" points="251,203,256,200,271,201,279,198,291,202,296,205,303,204,308,216,302,217,301,225,297,226 293,222,290,223,266,219,251,220,233,219"/>
+		<polygon id="_gas" class="nopower" points="82,288,84,276,86,276,85,266,83,258 88,254 95,259,113,266,121,273 113,277,110,280,107,296 87,293"/>
+		<polygon id="_goa" class="sea"    points="505,434,498,441,489,447,432,479,424,480,417,462 400,479,408,481,411,487,417,493,423,501,433,497,450,494,469,486,470,506 505,471"/>
+		<polygon id="_gob" class="sea"    points="248,120,253,119,267,121,264,113,259,109,261,106,276,102,286,105,286,100,295,100,293,96,285,94,274,94,255,101,249,100,238,95,233,79,233,75,253,62,252,58,245,53,226,57,228,65,205,83,205,92,212,101,207,119"/>
+		<polygon id="_gol" class="sea"    points="176,277,168,272,160,277,159,282,151,286,147,287,123,288,124,294,123,298,122,303,106,314,105,319 169,319 169,312 166,307 172,307 174,305 174,304 174,304 173,301 171,295 173,290 176,289"/>
+		<polygon id="_gos" class="sea"    points="805,457,797,471,784,473,777,471,773,463,761,458,753,449,736,440,737,458,734,463,745,477,751,482,758,487,766,502,766,511,766,519 801,519,804,510,813,510,825,490 833,485"/>
+		<polygon id="_got" class="sea"    points="822,355,804,362,799,373,792,364,782,364,779,368,774,371,773,380,769,387,781,404,799,412,804,416 815,405,822,386"/>
+		<polygon id="_gre" class="nopower" points="300,297,301,301,296,304,293,301,291,303,296,310,294,316,298,320,294,337,291,339,281,333,279,323,286,322,279,321,272,312 275,309 276,299,279,296,291,292"/>
+		<polygon id="_han" class="nopower" points="768,280,795,304 795,312,802,321,802,331,798,334 772,326,743,330,728,321 728,321,732,312,727,298,742,296,758,282"/>
+		<polygon id="_hel" class="sea"    points="124,176,133,170,141,171,143,167,146,169,155,166,155,162,152,154,145,144 131,144,124,151"/>
+		<polygon id="_hir" class="nopower" points="903,263,900,234,908,226 914,228,926,240,925,254,917,263"/>
+		<polygon id="_hok" class="nopower" points="896,187 925,201 928,199 935,207 925,218 903,215 908,219 904,222 899,216 898,207 901,207"/>
+		<polygon id="_hol" class="nopower" points="115,199,115,194,119,191,120,179,124,176,133,170,141,171 141,185,143,188,142,191,138,193,137,197,134,201 124,199"/>
+		<polygon id="_hon" class="nopower" points="885,309,882,324,875,324,868,321,862,302,869,296,871,285,878,274 878,290,875,296,880,298"/>
+		<polygon id="_inn" class="nopower" points="758,213,755,207,759,198,762,186,761,182,755,180,745,188,744,192,725,198,730,205,717,216,709,217,695,223,672,219,658,222,656,228,663,246 669,243,699,256,709,240,721,239,731,243 734,225,748,221"/>
+		<polygon id="_ion" class="sea"    points="291,339,281,333,279,323,286,322,279,321,272,312,267,311,266,307 254,307,251,309,245,307,245,316,247,321,240,332,236,332,235,345,209,340 187,362,193,366,215,368,218,377,230,377,242,382,247,379,247,367,257,361,263,362,273,365 295,343"/>
+		<polygon id="_ira" class="nopower" points="504,381,498,379,496,380,491,371,486,371,481,374,467,372,444,353,439,350,433,352 431,347,425,347,426,331,421,321,424,316 421,311,421,311,417,307,414,293 426,298,433,293,436,298,441,298 446,306,463,311 470,307,474,305,477,311,482,313 486,316,495,335,492,345,494,350,506,355,510,367,503,374"/>
+		<polygon id="_ire" class="nopower" points="15,177 13,174 7,166 9,162 13,161 20,153 15,145 18,142 16,135 22,137 25,137 36,128 50,130 51,137 53,139 50,146 44,149 45,158 36,173 24,173"/>
+		<polygon id="_iri" class="sea"    points="53,139 50,146 44,149 45,158 36,173 24,173 15,177 15,201 40,201,51,196,59,189,66,188,56,182,50,180,50,177,60,173,60,167,66,160,70,160,73,153,70,142,60,141,60,139"/>
+		<polygon id="_jav" class="nopower" points="785,566 789,565 806,570 814,568 823,568 830,574 844,579 847,582 840,587 812,589 803,586 783,578 780,573"/>
+		<polygon id="_joh" class="nopower" points="751,482,758,487,766,502,766,511,766,519,761,518,745,508,735,483 743,484"/>
+		<polygon id="_jor" class="nopower" points="397,430,392,429,384,407,373,401,359,381,357,378,356,370,352,369 349,369 344,362,347,360,348,346 364,346,376,338 379,341,379,346 378,352,372,357,378,364,377,367,372,369,378,379,389,389,401,410,401,428"/>
+		<polygon id="_kan" class="nopower" points="663,246,661,253,665,256,662,263,665,266,662,269,667,277,673,296,693,299,693,309,699,317 728,321,732,312,727,298,742,296,758,282,768,280 768,280,761,272,744,267,733,253,731,243 721,239,709,240,699,256,669,243"/>
+		<polygon id="_kar" class="nopower" points="886,138,892,144,903,157,895,154,897,165,909,181,901,177,901,182,896,182,878,161,869,145"/>
+		<polygon id="_kas" class="nopower" points="584,311 584,307 588,304 581,292 571,284 560,282 558,279 543,281,539,284,543,294,542,299,536,302,540,305 553,312,562,307"/>
+		<polygon id="_kie" class="nopower" points="141,171,143,167,146,169,155,166,155,162,152,154 159,156,168,158,172,162 170,168,171,184,171,196,175,204 163,206,158,198,142,191 143,188,141,185"/>
+		<polygon id="_klu" class="nopower" points="251,220,266,219,290,223,293,222,297,226 299,229,301,251,293,254,284,254,282,258,270,257 269,238,267,229,249,228"/>
+		<polygon id="_kor" class="nopower" points="846,205,847,217,841,228,851,233,867,248,871,258,860,265,854,266,849,261,844,249,839,241,831,241,829,236,817,226 818,222,824,211,831,212,838,202"/>
+		<polygon id="_kyo" class="nopower" points="878,274,900,272,900,263,903,263 917,263,918,281 907,282,898,287,878,290"/>
+		<polygon id="_lao" class="nopower" points="771,427 788,425,786,419,774,412,753,389,759,382 752,375,745,375,738,366,731,360 727,363,726,369 720,381 722,388,728,389,730,403,743,401,744,398,748,398,758,406"/>
+		<polygon id="_lib" class="nopower" points="193,366,215,368,218,377,230,377,242,382 244,395,240,415 214,411,205,412 186,414,184,405,179,394,181,388,183,387,185,378,193,372"/>
+		<polygon id="_liv" class="nopower" points="60,173,60,167,66,160,70,160,73,153,70,142,60,141,60,139,65,131,64,125 71,125,72,131,83,137 86,147,82,171,73,170"/>
+		<polygon id="_lon" class="nopower" points="102,172,110,179,102,194,105,197,96,201,83,200 80,187,86,178"/>
+		<polygon id="_lvn" class="nopower" points="247,142,245,129,248,120,253,119,267,121,264,113,259,109,261,106,276,102,286,105 289,107,288,115,293,124,295,135 295,135,288,136,270,154 263,155,262,149,253,147,249,142"/>
+		<polygon id="_mad" class="nopower" points="633,408,626,425,614,433,619,449,617,458,618,473,613,483,606,489,595,471,574,437,574,431 582,428,606,427,610,423,611,416,623,403 630,403"/>
+		<polygon id="_mag" class="nopower" points="450,494,469,486,470,506,459,529,439,560,416,586 409,583,410,576,406,554,410,546,418,538,429,538,445,527,448,520 451,518,454,497"/>
+		<polygon id="_mal" class="sea"    points="738,515,757,527,755,532,764,537,765,543,772,544,775,553,773,566 785,566,789,565,806,570,814,568,823,568 823,545,813,542,801,519 766,519,761,518,745,508"/>
+		<polygon id="_man" class="nopower" points="817,226,805,234,800,224,794,223,791,228 786,224,762,219,758,213,755,207,759,198,762,186,761,182 761,179,751,174,735,175,727,171,728,160 734,162,737,159,735,142,727,138,731,134,761,134,785,154,806,157,820,168,838,165,844,186,835,185,840,199,838,202 831,212,824,211,818,222"/>
+		<polygon id="_mao" class="sea"    points="82,288,84,276,86,276,85,266,83,258,78,257,76,250,60,248,58,239 20,201,0,201,0,220,29,220,35,226,35,254,29,260,0,260 0,330,59,388 62,382,74,371,77,362,81,357 81,351 69,352,62,348,57,347,44,347,43,337,38,327,42,320,43,305,40,298,52,289"/>
+		<polygon id="_mar" class="nopower" points="160,277,159,282,151,286,147,287,123,288,124,294,123,298 118,296,107,296 110,280,113,277,121,273,142,261,145,254 149,254,151,257 149,259,149,269"/>
+		<polygon id="_mon" class="nopower" points="259,289 242,279,247,270,253,263,266,263 269,268,268,283 264,283"/>
+		<polygon id="_mor" class="nopower" points="16,513,19,476,22,454,28,449,48,418,58,404,56,397,59,388,62,382,74,371,77,362,81,357,83,361,99,360,104,360 111,382,104,383,95,388,95,392,88,398,67,412,68,424,84,433,92,439,82,440,81,444,95,504,95,512 80,512,80,486,74,480,46,480,40,486,40,510 33,509"/>
+		<polygon id="_mos" class="nopower" points="421,93,408,98,373,100,351,111,331,112,311,122,293,124 295,135,299,138,299,142,295,154,298,159,300,176 313,178,319,178,325,169,339,172,351,182,379,188,383,198,392,202,396,211,408,214,415,226,427,231,431,239 438,235,447,235 450,216,461,196,450,179,454,175,445,134,445,111"/>
+		<polygon id="_mun" class="nopower" points="152,239,161,240,167,237,173,239 178,239,182,234,196,234,197,226,202,221,200,218,194,217,188,208 176,208,175,204 163,206,160,215,145,227"/>
+		<polygon id="_nap" class="nopower" points="245,310,245,316,247,321,240,332,236,332,235,345,209,340,210,334,233,330,237,324,232,313,213,306 217,302,223,305,235,309"/>
+		<polygon id="_nat" class="sea"    points="15,177,13,174,7,166,9,162,13,161,20,153,15,145,18,142,16,135,22,137,25,137,36,128,50,130,51,137,53,139 60,139,65,131,64,125,58,124,55,113,64,97,77,91 77,0,0,0 0,20,29,20,35,26,35,54,29,60,0,60 0,201,15,201"/>
+		<polygon id="_nej" class="nopower" points="379,346,382,344,409,364,424,362,429,367,432,365 449,381,449,385,459,392,460,396,463,397 465,405,489,411,489,420,452,438 442,453,438,451,419,448,416,454 405,445,397,430 397,430,401,428,401,410,389,389,378,379,372,369,377,367,378,364,372,357,378,352"/>
+		<polygon id="_nep" class="nopower" points="595,321,590,334,606,344,618,347,619,350,635,350,649,346,661,345,664,339,661,334 636,330,624,328,613,320,600,316"/>
+		<polygon id="_npo" class="sea"    points="947,37,933,45,934,57,907,71,920,88,927,101,926,122,920,116 892,144,903,157,895,154,897,165,909,181,901,177,901,182,896,182 896,187,925,201,928,199,935,207,925,218 925,233,938,239,939,254,947,277 954,277 954,168,926,168,920,162,920,134,926,128,954,128 954,37"/>
+		<polygon id="_nrg" class="sea"    points="131,86,148,73,163,70,176,54,199,37,202,25,217,19,233,12,237,6,244,10,246,6 246,0,77,0 77,91,84,92,82,99,79,103,77,107,83,105,92,107 92,93,99,86"/>
+		<polygon id="_nth" class="sea"    points="109,202,115,199,115,194,119,191,120,179,124,176 124,151,131,144 145,144,145,133 136,124,126,114,126,105,128,102,126,98,131,86 99,86,92,93 92,107,93,114,86,125,90,136,90,147,95,148,100,160,102,172,110,179,102,194,105,197"/>
+		<polygon id="_nwy" class="nopower" points="164,110,157,109,153,115,136,124,126,114,126,105,128,102,126,98,131,86,148,73,163,70,176,54,199,37,202,25,217,19,233,12,237,6,244,10,246,6,249,11,253,7,256,9,263,6,268,10,264,17,270,18 267,25,262,28,261,23,255,17,247,18,245,29,233,31,224,24,222,30,218,35,210,34,211,42,204,40,196,54,191,56,189,63,174,77,171,94,166,109,164,110"/>
+		<use xlink:href="#offboard" id="_oba" class="sea" transform="translate(15,40)"/>
+		<use xlink:href="#offboard" id="_obb" class="sea" transform="translate(15,240)"/>
+		<use xlink:href="#offboard" id="_obc" class="sea" transform="translate(15,415)"/>
+		<use xlink:href="#offboard" id="_obd" class="nopower" transform="translate(60,500)"/>
+		<use xlink:href="#offboard" id="_obe" class="nopower" transform="translate(140,500)"/>
+		<use xlink:href="#offboard" id="_obf" class="nopower" transform="translate(295,500)"/>
+		<use xlink:href="#offboard" id="_obg" class="nopower" transform="translate(340,590)"/>
+		<use xlink:href="#offboard" id="_obh" class="sea" transform="translate(480,590)"/>
+		<use xlink:href="#offboard" id="_obi" class="sea" transform="translate(590,590)"/>
+		<use xlink:href="#offboard" id="_obj" class="sea" transform="translate(940,590)"/>
+		<use xlink:href="#offboard" id="_obk" class="sea" transform="translate(940,405)"/>
+		<use xlink:href="#offboard" id="_obl" class="sea" transform="translate(940,148)"/>
+		<polygon id="_omo" class="nopower" points="593,179,612,167,621,167,634,170,640,166,634,163,635,154,650,154,676,166,690,169,710,159,728,160 727,171,735,175,751,174,761,179,761,182 755,180,745,188,744,192,725,198,730,205,717,216,709,217,695,223,672,219,658,222 658,222,650,221,642,211,621,206,606,188,597,187"/>
+		<polygon id="_oms" class="nopower" points="438,43,453,43,458,35,453,27,444,24,444,17,435,12,437,5,443,10,480,6,487,13,521,12,536,3,553,6,585,9,570,24 567,27,573,39,594,67,583,102,584,119,561,156,533,178,531,217,536,232 530,235,523,242,508,230,483,229,469,236,473,242,466,260,470,271,459,270 454,270,455,276,452,275,449,265,439,254,443,246,450,245,447,235 450,216,461,196,450,179,454,175,445,134,445,111,421,93 437,70"/>
+		<polygon id="_osa" class="nopower" points="916,302,913,313,892,314,885,309 880,298,875,296,878,290 898,287"/>
+		<polygon id="_par" class="nopower" points="89,235,90,241,88,254 95,259,113,266 120,258,129,232 105,231"/>
+		<polygon id="_pek" class="nopower" points="791,228,788,234,781,237,785,244,792,244,797,249,805,245,813,250,808,254,806,268 796,278,799,287,795,304 768,280,761,272,744,267,733,253,731,243,734,225,748,221,758,213 762,219,786,224"/>
+		<polygon id="_pen" class="nopower" points="242,382,247,379,247,367,257,361,263,362,273,365,280,368 284,421,240,415 244,395"/>
+		<polygon id="_per" class="sea"    points="488,371,486,371,481,374,467,372,444,353,439,350,433,352,430,356,432,365,449,381,449,385,459,392,460,396,463,397,476,396,488,380"/>
+		<g id="_phi" class="nopower">
+		  <polygon class="sea"    points="866,384 914,432 919,442 919,482 893,482 860,449 855,439 855,384"/>
+		  <polygon points="870,391 859,388 859,411 867,423 873,422 891,429 894,426 872,417"/>
+		  <polygon points="893,431 905,446 902,449 894,439 905,439 899,430"/>
+		  <polygon points="891,443 894,453 895,446 889,457 886,453 886,446"/>
+		  <polygon points="907,452 917,467 917,474 909,472 910,480 900,476 897,468 888,469 893,461 898,463"/>
+		</g>
+		<polygon id="_pic" class="nopower" points="87,224,100,216,101,211,105,208 116,215,129,218,136,223 129,232,105,231,89,235"/>
+		<polygon id="_pie" class="nopower" points="177,245,171,250,169,254,166,252,157,254,151,257 149,259,149,269,160,277 168,272,173,264,176,261,177,255,185,252 181,246"/>
+		<polygon id="_por" class="nopower" points="57,347,44,347,43,337,38,327,42,320,43,305 64,305,61,312"/>
+		<polygon id="_pos" class="nopower" points="197,158,209,156,214,152,224,151 221,176,219,181 206,185,198,184 199,171"/>
+		<polygon id="_pru" class="nopower" points="224,151,230,152,243,151,248,146,247,142 249,142,253,147,262,149,263,155,262,159,255,166,237,172,234,180 219,181,221,176"/>
+		<polygon id="_raj" class="nopower" points="574,431,567,421,561,403,562,394,553,398,543,389,548,384,542,383,539,378 542,373,554,370,546,355,541,353,545,345,550,339,553,346,568,353,581,356 574,368,574,389,603,406,611,416 611,416,610,423,606,427,582,428"/>
+		<polygon id="_red" class="sea"    points="417,462,416,454,405,445,397,430,392,429,384,407,373,401,359,381,357,378,356,370,352,369,354,374,351,385,347,385 344,383 344,392 337,392 357,419,357,425,378,457,385,471,396,473,400,479"/>
+		<polygon id="_rom" class="nopower" points="213,306,201,299,189,288,187,286 201,280,210,284,215,288 217,302"/>
+		<polygon id="_ruh" class="nopower" points="142,191,138,193,137,197,134,201,140,205,143,219,141,223 145,227,160,215,163,206,158,198"/>
+		<polygon id="_rum" class="nopower" points="308,216,302,217,301,225,297,226,299,229,301,251,293,254,284,254,282,258 285,264,292,266,302,266,312,262,321,263 322,263,324,260,324,254,329,249 322,245,318,232,315,225,309,223"/>
+		<polygon id="_sah" class="nopower" points="95,512,95,504,81,444,82,440,92,439,84,433,68,424,67,412,88,398,95,392,95,388,104,383,111,382,121,383,137,380,162,378,172,377 181,388,179,394,184,405,186,414,185,422,192,434,200,435,203,439 154,480,126,480,120,486,120,511"/>
+		<polygon id="_sai" class="nopower" points="813,442,812,450,805,457,797,471,784,473,777,471,773,463 783,458,782,452,793,444"/>
+		<polygon id="_sak" class="nopower" points="847,119,850,118,842,109,847,109,857,116,873,123,882,132,886,138 869,145"/>
+		<polygon id="_sat" class="sea"    points="16,513,19,476,22,454,28,449,48,418,58,404,56,397,59,388 0,330 0,395,29,395,35,401,35,429,29,435,0,435 0,513"/>
+		<polygon id="_sax" class="nopower" points="171,184,179,186,198,184,206,185 208,198,202,198,188,208 176,208,175,204,171,196"/>
+		<polygon id="_sch" class="sea"    points="804,416,813,429,813,442,812,450,805,457 833,485,840,484,847,469,850,469,862,479,853,489,852,493,856,504,865,510 893,482,860,449,855,439,855,384,850,379 843,380,837,375,837,359 845,345 830,345,822,355 822,386,815,405"/>
+		<polygon id="_ser" class="nopower" points="282,258,270,257,266,258,266,263 269,268,268,283 276,299,279,296,291,292 287,284,285,264"/>
+		<polygon id="_sev" class="nopower" points="318,232,322,245,329,249 329,249,334,247,345,252,341,256,350,262,362,256,353,250,375,239,371,245,375,248,366,256,388,268,396,275,396,279 404,280,408,283,414,293,426,298,433,293,436,298,441,298 443,283,426,268,419,252 431,239 427,231,415,226,408,214,396,211,392,202 376,212,352,218,333,230,322,230"/>
+		<polygon id="_sha" class="nopower" points="693,349,700,349,711,356,711,362,718,367,726,369 720,381,712,388,704,389,703,397 696,386,687,381,682,370,693,356"/>
+		<polygon id="_sib" class="nopower" points="570,24,596,16,620,16,660,25,697,21,701,10,790,13,821,19,841,15,864,22,908,21,947,37,933,45,934,57,907,71,920,88,927,101,926,122,920,116,911,114,892,87,894,69,898,63,886,54,881,68,872,61,859,64,861,80,854,82,841,77,803,87 769,83,716,117,722,123,719,130,727,138 735,142,737,159,734,162,728,160,710,159,690,169,676,166,650,154,635,154,634,163,640,166,634,170,621,167,612,167,593,179,586,182,583,189,585,197,574,196,579,211,565,214,576,225,574,229 564,228,547,229,543,232,536,232 531,217,533,178,561,156,584,119,583,102,594,67,573,39,567,27"/>
+		<polygon id="_sik" class="nopower" points="804,362,799,373,792,364,782,364 776,362,763,351,753,351,746,356,736,357,731,360,727,363,726,369,718,367,711,362,711,356,700,349,693,349,691,342,697,336,697,330,699,317 728,321,743,330,772,326,798,334 795,344,805,357"/>
+		<polygon id="_sil" class="nopower" points="234,180,237,190,248,197,251,203,243,210,233,203,222,203,212,198,208,198 206,185,219,181"/>
+		<polygon id="_sin" class="nopower" points="558,250,561,243,566,243,574,235,574,229,576,225,565,214,579,211,574,196,585,197,583,189,586,182,593,179 597,187,606,188,621,206,642,211,650,221,658,222 656,228,663,246,661,253,665,256,662,263,665,266,662,269 647,268,638,273,615,271,599,278 586,273,567,261"/>
+		<polygon id="_ska" class="sea"    points="145,133,162,129,161,134,166,139 173,139 178,140,181,141 180,132,172,120,164,114,164,110,157,109,153,115,136,124"/>
+		<polygon id="_smy" class="nopower" points="352,326,342,324,339,327,334,327,326,325,319,319,319,315 341,314,348,304 386,305,384,313,378,319 370,320,356,326"/>
+		<polygon id="_snd" class="nopower" points="539,378,532,377,511,381,504,381 503,374,510,367,506,355,494,350,492,345 499,344,507,345,512,337,527,334 537,337,545,345 541,353,546,355,554,370,542,373"/>
+		<polygon id="_soj" class="sea"    points="831,119,844,129,854,143,868,162,867,184,862,198,854,201,848,202,846,205,847,217,841,228,851,233,867,248,871,258 871,285,878,274,900,272,900,263,903,263,900,234,908,226 914,228,917,225,925,233 925,218,903,215,908,219,904,222,899,216,898,207,901,207 896,187 896,182,878,161,869,145 847,119"/>
+		<polygon id="_som" class="sea"    points="470,506,459,529,439,560,416,586,404,604 460,604,460,576,466,570,494,570,500,576,500,604 534,604,534,471,505,471"/>
+		<polygon id="_soo" class="sea"    points="920,116,911,114,892,87,894,69,898,63,886,54,881,68,872,61,859,64,861,80,854,82,841,77,803,87,804,101,797,117,820,124,822,118,831,119 847,119,850,118,842,109,847,109,857,116,873,123,882,132,886,138,892,144"/>
+		<polygon id="_spa" class="nopower" points="123,298,122,303,106,314,105,319,101,327,103,335,94,346,81,351,69,352,62,348,57,347 61,312,64,305,43,305 40,298,52,289 82,288,87,293,107,296,118,296"/>
+		<polygon id="_spo" class="sea" points="947,277,944,286,943,297,936,305,924,306 924,313,913,337,866,384,914,432,919,442,919,533,954,533 954,425,926,425,920,419,920,391,926,385,954,385 954,277"/>
+		<polygon id="_stp" class="nopower" points="270,18,275,16,278,20,319,32,324,36,315,48,296,48,286,45,289,51,296,52,299,56,299,63,303,75,320,79,323,75,311,62,317,61,330,66,337,61,326,52,343,40,344,33,334,18,343,16,348,22,346,27,354,29,385,22,395,27,422,32,424,28,405,18,411,5,423,6,441,27,450,30,445,41,438,43 437,70,421,93,408,98,373,100,351,111,331,112,311,122,293,124 288,115,289,107,286,105 286,100,295,100,293,96,285,94 286,71,265,42,262,28 267,25"/>
+		<polygon id="_sud" class="nopower" points="378,457,367,461,367,480,361,492,361,502,355,515,350,520,369,540,370,544 363,544,350,552,338,554,328,550,321,553 311,549 295,520,309,520,315,514,315,486,309,480 287,480,287,470,284,461 284,458,289,456,289,441 345,438,349,434,357,425"/>
+		<rect    id="_sue" class="sea"    x="320" y="368" height="24" width="24"/>
+		<polygon id="_sum" class="nopower" points="695,493 712,495 719,504 738,515 757,527 755,532 764,537 765,543 772,544 775,553 773,566 764,568 743,555 724,525 699,501"/>
+		<polygon id="_swe" class="nopower" points="245,53,226,57,228,65,205,83,205,92,212,101,207,119,207,134,205,138,194,140,190,145,181,143 181,141,180,132,172,120,164,114,164,110 166,109,171,94,174,77,189,63,191,56,196,54,204,40,211,42,210,34,218,35,222,30 237,41"/>
+		<polygon id="_syr" class="nopower" points="348,346,350,342,352,326 356,326,370,320,378,319,390,318 376,338,364,346"/>
+		<polygon id="_tha" class="nopower" points="753,449,736,440,737,458,734,463,745,477,751,482 743,484 735,483,722,471,721,472,719,446 725,442,717,419,711,409,706,408,703,397 704,389,712,388,720,381 720,381,722,388,728,389,730,403,743,401,744,398,748,398,758,406,771,427 760,428,751,440"/>
+		<polygon id="_tib" class="nopower" points="599,278,615,271,638,273,647,268,662,269 667,277,673,296,693,299,693,309,699,317,697,330 692,325,687,325 682,325,678,321,661,334 636,330,639,323,634,306,615,288"/>
+		<polygon id="_tim" class="sea"    points="954,533,919,533,871,582 847,582,840,587,812,589,803,586 803,604 920,604 920,576,926,570,954,570"/>
+		<polygon id="_tok" class="nopower" points="914,228,917,225,925,233,938,239,939,254,947,277,944,286 922,285,918,281 917,263,925,254,926,240"/>
+		<polygon id="_tri" class="nopower" points="242,279,228,274,215,260,214,262,207,254 207,246,213,246,217,243 228,246,233,246,243,250,249,262,253,263 247,270"/>
+		<polygon id="_tun" class="nopower" points="168,339,174,336,178,336,180,339,184,339,181,346,184,352,182,360,187,362,193,366 193,372,185,378,183,387,181,388 172,377,163,367,164,363,166,346,168,339"/>
+		<polygon id="_tur" class="nopower" points="470,307,474,305,477,311,482,313,484,302,490,302,501,292,501,285,514,282,514,278,523,278,531,269,537,273,538,278,547,274,558,273 556,266,544,259,548,251 558,250,561,243,566,243,574,235,574,229 564,228,547,229,543,232,536,232,530,235,523,242,508,230,483,229,469,236,473,242,466,260,470,271,459,270 466,277,463,280,456,278,455,282,462,288,468,297"/>
+		<polygon id="_tus" class="nopower" points="187,286,176,277,168,272 173,264,179,265,193,271,201,280"/>
+		<polygon id="_tyr" class="nopower" points="202,221,197,226,196,234,182,234,178,239 173,239,173,243 177,245,181,246,185,252,188,251,191,243,204,244,207,246 213,246,217,243,211,220"/>
+		<polygon id="_tys" class="sea"    points="209,340,210,334,233,330,237,324,232,313,213,306,201,299,189,288,187,286,176,277 176,289 180,291 176,302 174,304 174,305 177,307 178,312 176,325 174,324 174,336,178,336,180,339,184,339,181,346,184,352,182,360,187,362"/>
+		<polygon id="_ukr" class="nopower" points="291,202,296,205,303,204,308,216 309,223,315,225,318,232 322,230,333,230,352,218,376,212,392,202 383,198,379,188,351,182,339,172,325,169,319,178,313,178,300,176 295,181,297,188,294,198"/>
+		<polygon id="_ven" class="nopower" points="207,254,201,256,196,261,199,268,219,287 215,288,210,284,201,280,193,271,179,265,173,264 176,261,177,255,185,252 188,251,191,243,204,244,207,246"/>
+		<polygon id="_vie" class="nopower" points="211,220,215,217,233,219,251,220 249,228,244,230,242,239,233,246 228,246,217,243"/>
+		<polygon id="_vla" class="nopower" points="803,87,804,101,797,117,820,124,822,118,831,119,844,129,854,143,868,162,867,184,862,198,854,201,848,202,846,205 838,202,840,199,835,185,844,186,838,165,820,168,806,157,785,154,761,134,731,134,727,138 719,130,722,123,716,117,769,83"/>
+		<polygon id="_vtn" class="nopower" points="782,364,779,368,774,371,773,380,769,387 763,387,759,382,752,375,745,375,738,366,731,360 736,357,746,356,753,351,763,351,776,362"/>
+		<polygon id="_wal" class="nopower" points="83,200,62,199,60,202 40,201,51,196,59,189,66,188,56,182,50,180,50,177,60,173 73,170,82,171 86,178,80,187"/>
+		<polygon id="_war" class="nopower" points="263,155,262,159,255,166,237,172,234,180,237,190,248,197,251,203 251,203,256,200,271,201,279,198,291,202 294,198,297,188,295,181,300,176,298,159,295,154,299,142,299,138,295,135 288,136,270,154"/>
+		<polygon id="_wio" class="sea"    points="639,536,628,538,622,533,619,514,619,509,623,494 621,491 613,483,606,489,595,471 534,471,534,604 570,604,570,576,576,570,604,570,610,576,610,604 639,604"/>
+		<polygon id="_wme" class="sea"    points="105,319,101,327,103,335,94,346,81,351 81,357,83,361,99,360,104,360,124,347,151,342,162,341,168,339,174,336 174,324 169,327 167,323 169,319"/>
+		<polygon id="_yel" class="sea"    points="854,266,849,261,844,249,839,241,831,241,829,236,817,226,805,234,800,224,794,223,791,228,788,234,781,237,785,244,792,244,797,249,805,245,813,250,808,254,806,268,819,272,833,287"/>
+		<polygon id="_yem" class="nopower" points="463,397,476,396,488,380,490,386,495,393,508,396,518,404,508,418,505,434,498,441,489,447,432,479,424,480,417,462,416,454 419,448,438,451,442,453,452,438,489,420,489,411,465,405"/>
+		<polygon id="_yor" class="nopower" points="90,136,90,147,95,148,100,160,102,172 86,178 82,171 86,147,83,137"/>
+		<polygon id="_swi" class="neutral" points="152,239 161,240 167,237 173,239 173,243 177,245 171,250 169,254 166,252 157,254 151,257 149,254 145,254 151,243"/>
+		<polygon id="_him" class="neutral" points="558,250 567,261 586,273 599,278 615,288 634,306 639,323 636,330 624,328 613,320 600,316 595,321 587,318 584,311 584,307 588,304 581,292 571,284 560,282 558,279 558,273 556,266 544,259 548,251"/>
+		
+		<!-- corsica //-->
+		<polygon class="neutral" points="176,289 180,291 176,302 174,304 173,301 171,295 173,290"/>
+		<!-- sardinia //-->
+		<polygon class="neutral" points="174,305 177,307 178,312 176,325 174,324 169,327 167,323 169,319 169,312 166,307 172,307"/>
+		<!-- caspian sea //-->
+		<polygon class="sea" points="431,239 438,235 447,235 450,245 443,246 439,254 449,265 452,275 455,276 454,270 459,270 466,277 463,280 456,278 455,282 462,288 468,297 470,307 463,311 446,306 441,298 443,283 426,268 419,252"/>
+		<!-- impassable //-->
+		<polygon class="sea" points="411,5,423,6,441,27,450,30,445,41,438,43,453,43,458,35,453,27,444,24,444,17,435,12,437,5,443,10,480,6,487,13,521,12,536,3,553,6,585,9,570,24,596,16,620,16,660,25,697,21,701,10,790,13,821,19,841,15,864,22,908,21,947,37 954,37 954,0,411,0"/>
+	
+	
+		<text x="5" y="540" class="title">Youngstown</text>
+		<text x="5" y="550" class="credits">Electronic map by Martin Asal</text>
+		<text x="5" y="560" class="credits">Diplomacy is a trademark of Hasbro</text>
+	</g>
+	
+	<g id="BriefLabelLayer" class="label12" visibility="hidden">
+		<text x="171" y="259" class="label08">swi</text>
+		<text x="614" y="312" class="label12">him</text>
+		<text x="418" y="392" class="label10">nej</text>
+		<text x="444" y="559" class="label14">mag</text>
+		<text x="260.3" y="308.1" class="label10">adr</text>
+		<text x="318.3" y="330.8" class="label10">aeg</text>
+		<text x="515" y="335.4" class="label12">afg</text>
+		<text x="276.3" y="305.8" class="label08">alb</text>
+		<text x="152.3" y="364.9" class="label14">alg</text>
+		<text x="709.4" y="461.6" class="label14">and</text>
+		<text x="380.9" y="302.4" class="label10">ank</text>
+		<text x="806.1" y="433.2" class="label10">ann</text>
+		<text x="233.1" y="305.8" class="label06">apu</text>
+		<text x="551.4" y="434.3" class="label14">ara</text>
+		<text x="409.3" y="304.7" class="label10">arm</text>
+		<text x="422.9" y="345.6" class="label10">bag</text>
+		<text x="211.5" y="160.3" class="label14">bal</text>
+		<text x="382" y="22.7" class="label14">bar</text>
+		<text x="135.3" y="216" class="label08">bel</text>
+		<text x="200.1" y="176.2" class="label08">ber</text>
+		<text x="378.6" y="284.2" class="label14">bla</text>
+		<text x="668.5" y="426.3" class="label14">bob</text>
+		<text x="237.6" y="224" class="label10">boh</text>
+		<text x="835.6" y="535.5" class="label10">bor</text>
+		<text x="92.1" y="247.8" class="label08">bre</text>
+		<text x="844.7" y="505.9" class="label10">bru</text>
+		<text x="268.3" y="251.3" class="label08">bud</text>
+		<text x="320.6" y="284.2" class="label10">bul</text>
+		<text x="148.9" y="249" class="label08">bur</text>
+		<text x="685.5" y="392.2" class="label10">brm</text>
+		<text x="649.2" y="379.7" class="label12">cal</text>
+		<text x="787.9" y="449.1" class="label10">cam</text>
+		<text x="824.2" y="314.9" class="label12">can</text>
+		<text x="910.6" y="509.3" class="label14b">cel</text>
+		<text x="640.1" y="519.6" class="label10">cey</text>
+		<text x="81.9" y="112.6" class="label08">cly</text>
+		<text x="341.1" y="322.9" class="label10">con</text>
+		<text x="452.5" y="515" class="label10">dan</text>
+		<text x="603.7" y="385.4" class="label12">dec</text>
+		<text x="554.8" y="337.7" class="label12">del</text>
+		<text x="163.7" y="148.9" class="label08">den</text>
+		<text x="695.8" y="548" class="label14">eio</text>
+		<text x="380.9" y="577.5" class="label14">eaf</text>
+		<text x="312.6" y="370.6" class="label14">eas</text>
+		<text x="866.3" y="342.2" class="label14">ecs</text>
+		<text x="93.2" y="125.1" class="label08">edi</text>
+		<text x="313.8" y="407" class="label14">egy</text>
+		<text x="91" y="224" class="label14">eng</text>
+		<text x="399" y="535.5" class="label14">eth</text>
+		<text x="236.5" y="441.1" class="label14">fez</text>
+		<text x="260.3" y="98.9" class="label14">fin</text>
+		<text x="858.4" y="369.5" class="label10">for</text>
+		<text x="924.3" y="302.4" class="label10">fuj</text>
+		<text x="271.7" y="222.8" class="label10">gal</text>
+		<text x="110.3" y="281.9" class="label10">gas</text>
+		<text x="468.4" y="491.1" class="label14">goa</text>
+		<text x="231.9" y="103.5" class="label14">gob</text>
+		<text x="169.4" y="307" class="label14">gol</text>
+		<text x="798.1" y="496.8" class="label14">gos</text>
+		<text x="808.3" y="394.5" class="label14">got</text>
+		<text x="294.5" y="322.9" class="label10">gre</text>
+		<text x="774.2" y="311.5" class="label12">han</text>
+		<text x="147.8" y="162.6" class="label10">hel</text>
+		<text x="923.2" y="251.3" class="label10">hir</text>
+		<text x="917.5" y="210.3" class="label10">hok</text>
+		<text x="143.2" y="195.5" class="label08">hol</text>
+		<text x="883.4" y="317.2" class="label10">hon</text>
+		<text x="723.1" y="243.3" class="label12">inn</text>
+		<text x="246.7" y="368.4" class="label14">ion</text>
+		<text x="449.1" y="339.9" class="label12">ira</text>
+		<text x="33" y="177.4" class="label10">ire</text>
+		<text x="52.3" y="191" class="label14">iri</text>
+		<text x="811.7" y="590" class="label14">jav</text>
+		<text x="759.4" y="503.6" class="label10">joh</text>
+		<text x="387.7" y="402.5" class="label10">jor</text>
+		<text x="711.7" y="278.5" class="label12">kan</text>
+		<text x="871.5" y="137" class="label10">sak</text>
+		<text x="561.6" y="301.3" class="label10">kas</text>
+		<text x="168.3" y="186.5" class="label10">kie</text>
+		<text x="287.6" y="242.2" class="label08">klu</text>
+		<text x="842.4" y="237.6" class="label10">kor</text>
+		<text x="897" y="295.6" class="label10">kyo</text>
+		<text x="743.5" y="390" class="label10">lao</text>
+		<text x="235.3" y="402.5" class="label14">lib</text>
+		<text x="88.7" y="163.7" class="label08">liv</text>
+		<text x="286.5" y="129.6" class="label10">lvn</text>
+		<text x="106.9" y="194.4" class="label10">lon</text>
+		<text x="608.2" y="452.5" class="label12">mad</text>
+		<text x="793.5" y="545.7" class="label14">mal</text>
+		<text x="795.8" y="188.7" class="label12">man</text>
+		<text x="130.7" y="294.5" class="label08">mar</text>
+		<text x="48.9" y="287.6" class="label14">mao</text>
+		<text x="268.3" y="283.1" class="label08">mon</text>
+		<text x="65.9" y="475.2" class="label14">mor</text>
+		<text x="391.1" y="151.2" class="label14">mos</text>
+		<text x="188.7" y="229.7" class="label10">mun</text>
+		<text x="48.9" y="85.3" class="label14">nat</text>
+		<text x="928.8" y="187.6" class="label14">npo</text>
+		<text x="230.8" y="350.2" class="label06">nap</text>
+		<text x="619.6" y="346.8" class="label12">nep</text>
+		<text x="150.1" y="34.1" class="label14">nrg</text>
+		<text x="121.6" y="131.9" class="label14">nth</text>
+		<text x="148.9" y="122.8" class="label12">nwy</text>
+		<text x="662.8" y="202.4" class="label12">omo</text>
+		<text x="513.9" y="134.2" class="label14">oms</text>
+		<text x="907.2" y="308.1" class="label10">osa</text>
+		<text x="125.1" y="255.8" class="label08">par</text>
+		<text x="769.7" y="262.6" class="label12">pek</text>
+		<text x="275.1" y="394.5" class="label14">pen</text>
+		<text x="461.6" y="383.1" class="label10">per</text>
+		<text x="876.5" y="444.5" class="label14b">phi</text>
+		<text x="134.2" y="236.5" class="label08">pic</text>
+		<text x="177.4" y="270.6" class="label06">pie</text>
+		<text x="61.4" y="326.3" class="label10">por</text>
+		<text x="214.9" y="186.5" class="label08">pos</text>
+		<text x="262.6" y="167.1" class="label10">pru</text>
+		<text x="569.6" y="394.5" class="label12">raj</text>
+		<text x="384.3" y="441.1" class="label14">red</text>
+		<text x="216" y="300.1" class="label06">rom</text>
+		<text x="156.9" y="212.6" class="label08">ruh</text>
+		<text x="319.5" y="252.4" class="label10">rum</text>
+		<text x="20.5" y="374" class="label14">sat</text>
+		<text x="912.9" y="394.5" class="label14">spo</text>
+		<text x="844.7" y="432" class="label14">sch</text>
+		<text x="143.2" y="432" class="label14">sah</text>
+		<text x="808.3" y="462.7" class="label10">sai</text>
+		<text x="893.6" y="159.2" class="label10">kar</text>
+		<text x="206.9" y="204.6" class="label08">sax</text>
+		<text x="287.6" y="287.6" class="label08">ser</text>
+		<text x="401.3" y="246.7" class="label14">sev</text>
+		<text x="709.4" y="377.4" class="label10">sha</text>
+		<text x="681" y="87.5" class="label14">sib</text>
+		<text x="757.2" y="354.7" class="label12">sik</text>
+		<text x="236.5" y="200.1" class="label08">sil</text>
+		<text x="534.3" y="362.7" class="label12">snd</text>
+		<text x="616.2" y="235.3" class="label12">sin</text>
+		<text x="181.9" y="146.7" class="label10">ska</text>
+		<text x="380.9" y="324" class="label10">smy</text>
+		<text x="887.9" y="217.1" class="label14">soj</text>
+		<text x="845.8" y="110.3" class="label14">soo</text>
+		<text x="510.5" y="526.4" class="label14">som</text>
+		<text x="85.3" y="312.6" class="label12">spa</text>
+		<text x="388.8" y="69.4" class="label14">stp</text>
+		<text x="343.3" y="516.1" class="label14">sud</text>
+		<text x="342.2" y="385.4" class="label10">sue</text>
+		<text x="750.3" y="542.3" class="label14">sum</text>
+		<text x="201.2" y="130.7" class="label12">swe</text>
+		<text x="382" y="342.2" class="label10">syr</text>
+		<text x="736.7" y="422.9" class="label10">tha</text>
+		<text x="656" y="301.3" class="label14">tib</text>
+		<text x="914.1" y="579.8" class="label14">tim</text>
+		<text x="940.2" y="274" class="label10">tok</text>
+		<text x="237.6" y="268.3" class="label10">tri</text>
+		<text x="185" y="367.2" class="label10">tun</text>
+		<text x="498" y="286.5" class="label12">tur</text>
+		<text x="193.3" y="284.2" class="label06">tus</text>
+		<text x="202.4" y="321.7" class="label14">tys</text>
+		<text x="200.1" y="251.3" class="label08">tyr</text>
+		<text x="326.3" y="208.1" class="label12">ukr</text>
+		<text x="200.1" y="266" class="label06">ven</text>
+		<text x="247.8" y="238.7" class="label08">vie</text>
+		<text x="766.3" y="371.8" class="label10">vtn</text>
+		<text x="802.6" y="147.8" class="label14">vla</text>
+		<text x="590" y="525.2" class="label14">wio</text>
+		<text x="158" y="344.5" class="label14">wes</text>
+		<text x="80.7" y="192.1" class="label10">wal</text>
+		<text x="271.7" y="201.2" class="label12">war</text>
+		<text x="833.3" y="261.5" class="label14">yel</text>
+		<text x="495.7" y="447.9" class="label10">yem</text>
+		<text x="101.2" y="168.3" class="label08">yor</text>
+		<!-- offboard boxes -->
+		<g class="label14b">
+			<text x="25" y="45"  >oba</text>
+			<text x="25" y="245" >obb</text>
+			<text x="25" y="420" >obc</text>
+			<text x="70" y="505" >obd</text>
+			<text x="150" y="505">obe</text>
+			<text x="305" y="505">obf</text>
+			<text x="350" y="595">obg</text>
+			<text x="490" y="595">obh</text>
+			<text x="600" y="595">obi</text>
+			<text x="950" y="595">obj</text>
+			<text x="950" y="410">obk</text>
+			<text x="950" y="153">obl</text>
+		</g>
+	</g>
+	
+	<g id="FullLabelLayer" class="labeltext" visibility="hidden">
+		<!-- not yet implemented -->
+	</g>
+	
+	<!-- jDip rendering layers. -->
+	<g id="SupplyCenterLayer"/>
+	<g id="OrderLayer"/>
+	<g id="UnitLayer"/>
+	<g id="DislodgedUnitLayer"/>
+	<g id="HighestOrderLayer"/>
+	
+	<!-- invisible topmost layer for intercepting mouse events -->
+	<g id="MouseLayer" class="invisible"  transform="translate(10,10)">
+		<polygon id="adr"  points="266,307,262,303,259,289,242,279,228,274,215,260,214,262,207,254,201,256,196,261,199,268,219,287,234,292,234,294,251,303,254,307"/>
+		<polygon id="aeg"  points="334,327,326,325,319,319,319,315,316,311,315,304,312,303,314,295,310,295,302,295,300,297,301,301,296,304,293,301,291,303,296,310,294,316,298,320,294,337,291,339,295,343,318,343"/>
+		<polygon id="afg"  points="558,273,547,274,538,278,537,273,531,269,523,278,514,278,514,282,501,285,501,292,490,302,484,302,482,313 482,313,486,316,495,335,492,345 499,344,507,345,512,337,527,334,525,325,535,314,533,310,540,305,536,302,542,299,543,294,539,284,543,281,558,279"/>
+		<polygon id="alb"  points="272,312,267,311,266,307,262,303,259,289 264,283,268,283 276,299 275,309"/>
+		<polygon id="alg"  points="104,360,124,347,151,342,162,341,168,339 166,346,164,363,163,367,172,377 162,378,137,380,121,383,111,382"/>
+		<polygon id="and"  points="745,508,735,483,722,471,721,472,719,446,718,440,711,424,705,415,699,415,698,419,693,425 660,458,695,493 712,495,719,504,738,515"/>
+		<polygon id="ank"  points="387,286,360,280,356,280,335,290 347,301,348,304 386,305,389,290"/>
+		<polygon id="ann"  points="769,387,781,404,799,412,804,416,813,429,813,442 793,444 792,430,788,425,786,419,774,412,753,389,759,382 763,387"/>
+		<polygon id="apu"  points="235,309,223,305 217,302 215,288 219,287,234,292,234,294,251,303,254,307,251,309,245,307,245,310"/>
+		<polygon id="ara"  points="595,471,574,437,574,431,567,421,561,403,562,394,553,398,543,389,548,384,542,383,539,378,532,377,511,381,504,381,498,379,496,380,491,371,488,371 488,380 490,386,495,393,508,396,518,404,508,418,505,434 505,471"/>
+		<polygon id="arm"  points="386,305,389,290,387,286 396,279 396,279,404,280,408,283,414,293 417,307,421,311 421,311,390,318,378,319 384,313"/>
+		<polygon id="bag"  points="390,318,421,311 424,316,421,321,426,331,425,347,431,347,433,352 430,356,432,365 429,367,424,362,409,364,382,344,379,346 379,346,379,341,376,338"/>
+		<polygon id="bal"  points="161,151,159,156,168,158,172,162,175,162,182,156,190,156,191,159,197,158,209,156,214,152,224,151,230,152,243,151,248,146,247,142,245,129,248,120 207,119,207,134,205,138,194,140,190,145,181,143 179,149,177,151,172,151"/>
+		<polygon id="bar"  points="246,6,249,11,253,7,256,9,263,6,268,10,264,17,270,18,275,16,278,20,319,32,324,36,315,48,296,48,286,45,289,51,296,52,299,56,299,63,303,75,320,79,323,75,311,62,317,61,330,66,337,61,326,52,343,40,344,33,334,18,343,16,348,22,346,27,354,29,385,22,395,27,422,32,424,28,405,18,411,5 411,0,246,0"/>
+		<polygon id="bel"  points="105,208,116,215,129,218,136,223,141,223 141,223,143,219,140,205,134,201 134,201,124,199,115,199 109,202,105,203"/>
+		<polygon id="ber"  points="172,162,175,162,182,156,190,156,191,159,197,158 199,171,198,184 179,186,171,184,170,168"/>
+		<polygon id="bla"  points="319,283 322,263 324,260 324,254 329,249 334,247 345,252 341,256 350,262 362,256 353,250 375,239 371,245 375,248 366,256 388,268 396,275 396,279 387,286 360,280 356,280 335,290 327,290 326,290 "/>
+		<polygon id="bob"  points="693,425,687,425,680,423,681,413,675,396,661,378,657,378,650,387,647,396,633,408,626,425,614,433,619,449,617,458 660,458"/>
+		<polygon id="boh"  points="243,210,233,203,222,203,212,198,208,198,202,198,188,208,194,217,200,218,202,221 211,220,215,217,233,219"/>
+		<polygon id="bor"  points="853,489,852,493,856,504,865,510,857,514,845,546,832,543,823,545,813,542,801,519,804,510 807,510,808,516,820,517,839,511,846,489"/>
+		<polygon id="bre"  points="83,258,78,257,76,250,60,248,58,239,61,239,57,231,78,230,76,224,87,224 89,235,90,241,88,254"/>
+		<polygon id="brm"  points="719,446,718,440,711,424,705,415,699,415,698,419,693,425,687,425,680,423,681,413,675,396,661,378 665,371,665,360,676,339,687,325 692,325 697,330,697,336,691,342,693,349 693,356,682,370,687,381,696,386,703,397,706,408,711,409,717,419,725,442"/>
+		<polygon id="bru"  points="833,485,840,484,847,469,850,469,862,479,853,489 846,489,839,511,820,517,808,516,807,510 813,510 825,490"/>
+		<polygon id="bud"  points="233,246,242,239,244,230,249,228,267,229,269,238,270,257 266,258,266,263,253,263 253,263,249,262,243,250"/>
+		<polygon id="bul"  points="310,295,310,288,319,283 322,263 321,263,312,262,302,266,292,266,285,264 287,284,291,292 300,297,302,295,310,295"/>
+		<polyline id="bul-ec"  points="310,288,319,283 322,263 321,263,312,262,302,266,292,266,285,264"/>
+		<polyline id="bul-sc"  points="285,264 287,284,291,292 300,297,302,295,310,295,310,288"/>
+		<polygon id="bur"  points="136,223,141,223,145,227,152,239 151,243 145,254,142,261,121,273 113,266,120,258,129,232"/>
+		<polygon id="cal"  points="661,378,657,378,650,387,647,396,633,408 630,403,623,403,618,398,619,391,616,373,627,366,629,363,628,358,635,350 649,346,661,345,664,339,661,334,678,321,682,325,687,325,676,339,665,360,665,371"/>
+		<polygon id="cam"  points="788,425,792,430,793,444,782,452,783,458,773,463 761,458,753,449 751,440,760,428,771,427"/>
+		<polygon id="can"  points="806,268,819,272,833,287,836,294,829,301,841,301,842,312,838,317,838,330,837,338,830,345,822,355,804,362 805,357,795,344,798,334,802,331,802,321,795,312,795,304,799,287,796,278"/>
+		<g id="cel">
+		  <polygon	points="865,510,857,514,845,546,832,543,823,545 823,568,830,574,844,579,847,582 871,582 919,533 919,482 893,482"/>
+		  <polygon  points="905,502 899,508 878,508 872,517 869,534 875,555 877,554 875,543 881,535 888,548 891,546 884,531 894,518 876,525 876,518 879,513 902,511"/>
+		</g>
+		<polygon id="cey"  points="621,491 627,492 638,502 646,526 639,536 628,538 622,533 619,514 619,509 623,494"/>
+		<polygon id="cly"  points="64,125,58,124,55,113,64,97,77,91,84,92,82,99,79,103,77,107 71,125"/>
+		<g id="con">
+		  <polygon  points="319,315,316,311,315,304,312,303,314,295,310,295 310,288 319,283 326,290,327,290 335,290 335,290,347,301,348,304,341,314"/>
+		  <polygon     points="327,290 323,293 314,295 315,299 315,299 321,295 329,293"/>
+		</g>
+		<polygon id="dan"  points="411,487,417,493,423,501,433,497,450,494 454,497,451,518,448,520 448,520,443,521,422,518,402,500,406,490"/>
+		<polygon id="dec"  points="581,356,596,356,611,359,618,365,627,366 616,373,619,391,618,398,623,403 611,416 611,416,603,406,574,389,574,368"/>
+		<polygon id="del"  points="540,305,553,312,562,307,584,311 587,318 595,321,590,334,606,344,618,347,619,350,635,350 635,350,628,358,629,363,627,366 618,365,611,359,596,356,581,356 568,353,553,346,550,339,545,345 537,337 527,334,525,325,535,314,533,310"/>
+		<g id="den">
+		  <polygon  points="152,154,145,144,145,133,162,129,161,134,166,139 173,139 178,140,181,141,181,143 179,149,177,151,172,151 161,151 159,156"/>
+		  <polygon     points="166,139 161,151 172,151 167,146 173,139"/>
+		</g>
+		<polygon id="eaf"  points="416,586,404,604 360,604,360,576,354,570,326,570 ,324,556,321,553 328,550,338,554,350,552,363,544,370,544 392,551,405,545,410,546 406,554,410,576,409,583"/>
+		<polygon id="eas"  points="339,368 339,362,344,362,347,360,348,346,350,342,352,326,342,324,339,327,334,327 318,343,295,343 273,365,280,368,301,371,318,365,323,366 324,368"/>
+		<polygon id="ecs"  points="833,287,836,294,829,301,841,301,842,312,838,317,838,330,837,338,830,345 845,345,847,343,857,346,855,375,850,379 855,384,866,384,913,337,924,313 924,306,916,302,913,313,892,314,885,309,882,324,875,324,868,321,862,302,869,296,871,285 871,258,860,265,854,266"/>
+		<polygon id="edi"  points="77,107,83,105,92,107,93,114,86,125,90,136 83,137,72,131,71,125"/>
+		<polygon id="egy"  points="289,441,284,421 280,368,301,371,318,365,323,366 324,368 339,368 339,362,344,362 349,369,352,369 354,374,351,385,347,385 344,383,344,368,320,368,320,392,337,392 357,419,357,425 349,434,345,438"/>
+		<g id="egy-nc">
+		  <polyline  points="289,441,284,421 280,368,301,371,318,365,323,366 324,368,320,368,320,392"/>
+		  <polyline  points="344,368,339,368 339,362,344,362 349,369"/> 
+		</g>
+		<g id="egy-sc">
+		  <polyline  points="349,369,352,369 354,374,351,385,347,385 344,383,344,368"/> 
+		  <polyline  points="320,392 337,392 357,419,357,425 349,434,345,438 289,441"/>
+		</g>
+		<polygon id="eio"  points="803,604 803,586,783,578,780,573 785,566 773,566,764,568,743,555,724,525,699,501 695,493,660,458 617,458,618,473,613,483 621,491,627,492,638,502,646,526,639,536 639,604"/>
+		<polygon id="eng"  points="58,239,61,239,57,231,78,230,76,224,87,224,100,216,101,211,105,208,105,203,109,202 105,197,96,201,83,200,62,199,60,202 40,201 20,201"/>
+		<polygon id="eth"  points="378,457,385,471,396,473,400,479,408,481,411,487 411,487,406,490,402,500,422,518,443,521,448,520,445,527,429,538,418,538,410,546 406,554,410,546,405,545,392,551,370,544 369,540,350,520,355,515,361,502,361,492,367,480,367,461,378,457"/>
+		<polygon id="fez"  points="284,461,235,442,229,438,218,444,203,439 200,435,192,434,185,422,186,414 186,414,205,412,214,411,240,415,284,421 289,441,289,456,284,458"/>
+		<polygon id="fin"  points="285,94,274,94,255,101,249,100,238,95,233,79,233,75,253,62,252,58,245,53 237,41 222,30,224,24,233,31,245,29,247,18,255,17,261,23,262,28 265,42,286,71"/>
+		<polygon id="for"  points="845,345 847,343 857,346 855,375 850,379 843,380 837,375 837,359"/>
+		<polygon id="fuj"  points="944,286,943,297,936,305,924,306,916,302 898,287 907,282 918,281,922,285"/>
+		<polygon id="gal"  points="251,203,256,200,271,201,279,198,291,202,296,205,303,204,308,216,302,217,301,225,297,226 293,222,290,223,266,219,251,220,233,219"/>
+		<polygon id="gas"  points="82,288,84,276,86,276,85,266,83,258 88,254 95,259,113,266,121,273 113,277,110,280,107,296 87,293"/>
+		<polygon id="goa"  points="505,434,498,441,489,447,432,479,424,480,417,462 400,479,408,481,411,487,417,493,423,501,433,497,450,494,469,486,470,506 505,471"/>
+		<polygon id="gob"  points="248,120,253,119,267,121,264,113,259,109,261,106,276,102,286,105,286,100,295,100,293,96,285,94,274,94,255,101,249,100,238,95,233,79,233,75,253,62,252,58,245,53,226,57,228,65,205,83,205,92,212,101,207,119"/>
+		<polygon id="gol"  points="176,277,168,272,160,277,159,282,151,286,147,287,123,288,124,294,123,298,122,303,106,314,105,319 169,319 169,312 166,307 172,307 174,305 174,304 174,304 173,301 171,295 173,290 176,289"/>
+		<polygon id="gos"  points="805,457,797,471,784,473,777,471,773,463,761,458,753,449,736,440,737,458,734,463,745,477,751,482,758,487,766,502,766,511,766,519 801,519,804,510,813,510,825,490 833,485"/>
+		<polygon id="got"  points="822,355,804,362,799,373,792,364,782,364,779,368,774,371,773,380,769,387,781,404,799,412,804,416 815,405,822,386"/>
+		<polygon id="gre"  points="300,297,301,301,296,304,293,301,291,303,296,310,294,316,298,320,294,337,291,339,281,333,279,323,286,322,279,321,272,312 275,309 276,299,279,296,291,292"/>
+		<polygon id="han"  points="768,280,795,304 795,312,802,321,802,331,798,334 772,326,743,330,728,321 728,321,732,312,727,298,742,296,758,282"/>
+		<polygon id="hel"  points="124,176,133,170,141,171,143,167,146,169,155,166,155,162,152,154,145,144 131,144,124,151"/>
+		<polygon id="hir"  points="903,263,900,234,908,226 914,228,926,240,925,254,917,263"/>
+		<polygon id="hok"  points="896,187 925,201 928,199 935,207 925,218 903,215 908,219 904,222 899,216 898,207 901,207"/>
+		<polygon id="hol"  points="115,199,115,194,119,191,120,179,124,176,133,170,141,171 141,185,143,188,142,191,138,193,137,197,134,201 124,199"/>
+		<polygon id="hon"  points="885,309,882,324,875,324,868,321,862,302,869,296,871,285,878,274 878,290,875,296,880,298"/>
+		<polygon id="inn"  points="758,213,755,207,759,198,762,186,761,182,755,180,745,188,744,192,725,198,730,205,717,216,709,217,695,223,672,219,658,222,656,228,663,246 669,243,699,256,709,240,721,239,731,243 734,225,748,221"/>
+		<polygon id="ion"  points="291,339,281,333,279,323,286,322,279,321,272,312,267,311,266,307 254,307,251,309,245,307,245,316,247,321,240,332,236,332,235,345,209,340 187,362,193,366,215,368,218,377,230,377,242,382,247,379,247,367,257,361,263,362,273,365 295,343"/>
+		<polygon id="ira"  points="504,381,498,379,496,380,491,371,486,371,481,374,467,372,444,353,439,350,433,352 431,347,425,347,426,331,421,321,424,316 421,311,421,311,417,307,414,293 426,298,433,293,436,298,441,298 446,306,463,311 470,307,474,305,477,311,482,313 486,316,495,335,492,345,494,350,506,355,510,367,503,374"/>
+		<polygon id="ire"  points="15,177 13,174 7,166 9,162 13,161 20,153 15,145 18,142 16,135 22,137 25,137 36,128 50,130 51,137 53,139 50,146 44,149 45,158 36,173 24,173"/>
+		<polygon id="iri"  points="53,139 50,146 44,149 45,158 36,173 24,173 15,177 15,201 40,201,51,196,59,189,66,188,56,182,50,180,50,177,60,173,60,167,66,160,70,160,73,153,70,142,60,141,60,139"/>
+		<polygon id="jav"  points="785,566 789,565 806,570 814,568 823,568 830,574 844,579 847,582 840,587 812,589 803,586 783,578 780,573"/>
+		<polygon id="joh"  points="751,482,758,487,766,502,766,511,766,519,761,518,745,508,735,483 743,484"/>
+		<polygon id="jor"  points="397,430,392,429,384,407,373,401,359,381,357,378,356,370,352,369 349,369 344,362,347,360,348,346 364,346,376,338 379,341,379,346 378,352,372,357,378,364,377,367,372,369,378,379,389,389,401,410,401,428"/>
+		<polyline id="jor-nc"  points="349,369 344,362,347,360,348,346 364,346,376,338 379,341,379,346 378,352,372,357,378,364"/>
+		<polyline id="jor-sc"  points="378,364 377,367,372,369,378,379,389,389,401,410,401,428 397,430,392,429,384,407,373,401,359,381,357,378,356,370,352,369 349,369"/>
+		<polygon id="kan"  points="663,246,661,253,665,256,662,263,665,266,662,269,667,277,673,296,693,299,693,309,699,317 728,321,732,312,727,298,742,296,758,282,768,280 768,280,761,272,744,267,733,253,731,243 721,239,709,240,699,256,669,243"/>
+		<polygon id="kar"  points="886,138,892,144,903,157,895,154,897,165,909,181,901,177,901,182,896,182,878,161,869,145"/>
+		<polygon id="kas"  points="584,311 584,307 588,304 581,292 571,284 560,282 558,279 543,281,539,284,543,294,542,299,536,302,540,305 553,312,562,307"/>
+		<polygon id="kie"  points="141,171,143,167,146,169,155,166,155,162,152,154 159,156,168,158,172,162 170,168,171,184,171,196,175,204 163,206,158,198,142,191 143,188,141,185"/>
+		<polygon id="klu"  points="251,220,266,219,290,223,293,222,297,226 299,229,301,251,293,254,284,254,282,258,270,257 269,238,267,229,249,228"/>
+		<polygon id="kor"  points="846,205,847,217,841,228,851,233,867,248,871,258,860,265,854,266,849,261,844,249,839,241,831,241,829,236,817,226 818,222,824,211,831,212,838,202"/>
+		<polygon id="kyo"  points="878,274,900,272,900,263,903,263 917,263,918,281 907,282,898,287,878,290"/>
+		<polygon id="lao"  points="771,427 788,425,786,419,774,412,753,389,759,382 752,375,745,375,738,366,731,360 727,363,726,369 720,381 722,388,728,389,730,403,743,401,744,398,748,398,758,406"/>
+		<polygon id="lib"  points="193,366,215,368,218,377,230,377,242,382 244,395,240,415 214,411,205,412 186,414,184,405,179,394,181,388,183,387,185,378,193,372"/>
+		<polygon id="liv"  points="60,173,60,167,66,160,70,160,73,153,70,142,60,141,60,139,65,131,64,125 71,125,72,131,83,137 86,147,82,171,73,170"/>
+		<polygon id="lon"  points="102,172,110,179,102,194,105,197,96,201,83,200 80,187,86,178"/>
+		<polygon id="lvn"  points="247,142,245,129,248,120,253,119,267,121,264,113,259,109,261,106,276,102,286,105 289,107,288,115,293,124,295,135 295,135,288,136,270,154 263,155,262,149,253,147,249,142"/>
+		<polygon id="mad"  points="633,408,626,425,614,433,619,449,617,458,618,473,613,483,606,489,595,471,574,437,574,431 582,428,606,427,610,423,611,416,623,403 630,403"/>
+		<polygon id="mag"  points="450,494,469,486,470,506,459,529,439,560,416,586 409,583,410,576,406,554,410,546,418,538,429,538,445,527,448,520 451,518,454,497"/>
+		<polygon id="mal"  points="738,515,757,527,755,532,764,537,765,543,772,544,775,553,773,566 785,566,789,565,806,570,814,568,823,568 823,545,813,542,801,519 766,519,761,518,745,508"/>
+		<polygon id="man"  points="817,226,805,234,800,224,794,223,791,228 786,224,762,219,758,213,755,207,759,198,762,186,761,182 761,179,751,174,735,175,727,171,728,160 734,162,737,159,735,142,727,138,731,134,761,134,785,154,806,157,820,168,838,165,844,186,835,185,840,199,838,202 831,212,824,211,818,222"/>
+		<polygon id="mao"  points="82,288,84,276,86,276,85,266,83,258,78,257,76,250,60,248,58,239 20,201,0,201,0,220,29,220,35,226,35,254,29,260,0,260 0,330,59,388 62,382,74,371,77,362,81,357 81,351 69,352,62,348,57,347,44,347,43,337,38,327,42,320,43,305,40,298,52,289"/>
+		<polygon id="mar"  points="160,277,159,282,151,286,147,287,123,288,124,294,123,298 118,296,107,296 110,280,113,277,121,273,142,261,145,254 149,254,151,257 149,259,149,269"/>
+		<polygon id="mon"  points="259,289 242,279,247,270,253,263,266,263 269,268,268,283 264,283"/>
+		<polygon id="mor"  points="16,513,19,476,22,454,28,449,48,418,58,404,56,397,59,388,62,382,74,371,77,362,81,357,83,361,99,360,104,360 111,382,104,383,95,388,95,392,88,398,67,412,68,424,84,433,92,439,82,440,81,444,95,504,95,512 80,512,80,486,74,480,46,480,40,486,40,510 33,509"/>
+		<polygon id="mos"  points="421,93,408,98,373,100,351,111,331,112,311,122,293,124 295,135,299,138,299,142,295,154,298,159,300,176 313,178,319,178,325,169,339,172,351,182,379,188,383,198,392,202,396,211,408,214,415,226,427,231,431,239 438,235,447,235 450,216,461,196,450,179,454,175,445,134,445,111"/>
+		<polygon id="mun"  points="152,239,161,240,167,237,173,239 178,239,182,234,196,234,197,226,202,221,200,218,194,217,188,208 176,208,175,204 163,206,160,215,145,227"/>
+		<polygon id="nap"  points="245,310,245,316,247,321,240,332,236,332,235,345,209,340,210,334,233,330,237,324,232,313,213,306 217,302,223,305,235,309"/>
+		<polygon id="nat"  points="15,177,13,174,7,166,9,162,13,161,20,153,15,145,18,142,16,135,22,137,25,137,36,128,50,130,51,137,53,139 60,139,65,131,64,125,58,124,55,113,64,97,77,91 77,0,0,0 0,20,29,20,35,26,35,54,29,60,0,60 0,201,15,201"/>
+		<polygon id="nej"  points="379,346,382,344,409,364,424,362,429,367,432,365 449,381,449,385,459,392,460,396,463,397 465,405,489,411,489,420,452,438 442,453,438,451,419,448,416,454 405,445,397,430 397,430,401,428,401,410,389,389,378,379,372,369,377,367,378,364,372,357,378,352"/>
+		<polyline id="nej-ec"  points="379,346,382,344,409,364,424,362,429,367,432,365 449,381,449,385,459,392,460,396,463,397 465,405,489,411,489,420,452,438"/>
+		<polyline id="nej-wc"  points="452,438 442,453,438,451,419,448,416,454 405,445,397,430 397,430,401,428,401,410,389,389,378,379,372,369,377,367,378,364,372,357,378,352 379,346"/>
+		<polygon id="nep"  points="595,321,590,334,606,344,618,347,619,350,635,350,649,346,661,345,664,339,661,334 636,330,624,328,613,320,600,316"/>
+		<polygon id="npo"  points="947,37,933,45,934,57,907,71,920,88,927,101,926,122,920,116 892,144,903,157,895,154,897,165,909,181,901,177,901,182,896,182 896,187,925,201,928,199,935,207,925,218 925,233,938,239,939,254,947,277 954,277 954,168,926,168,920,162,920,134,926,128,954,128 954,37"/>
+		<polygon id="nrg"  points="131,86,148,73,163,70,176,54,199,37,202,25,217,19,233,12,237,6,244,10,246,6 246,0,77,0 77,91,84,92,82,99,79,103,77,107,83,105,92,107 92,93,99,86"/>
+		<polygon id="nth"  points="109,202,115,199,115,194,119,191,120,179,124,176 124,151,131,144 145,144,145,133 136,124,126,114,126,105,128,102,126,98,131,86 99,86,92,93 92,107,93,114,86,125,90,136,90,147,95,148,100,160,102,172,110,179,102,194,105,197"/>
+		<polygon id="nwy"  points="164,110,157,109,153,115,136,124,126,114,126,105,128,102,126,98,131,86,148,73,163,70,176,54,199,37,202,25,217,19,233,12,237,6,244,10,246,6,249,11,253,7,256,9,263,6,268,10,264,17,270,18 267,25,262,28,261,23,255,17,247,18,245,29,233,31,224,24,222,30,218,35,210,34,211,42,204,40,196,54,191,56,189,63,174,77,171,94,166,109,164,110"/>
+		<polygon id="omo"  points="593,179,612,167,621,167,634,170,640,166,634,163,635,154,650,154,676,166,690,169,710,159,728,160 727,171,735,175,751,174,761,179,761,182 755,180,745,188,744,192,725,198,730,205,717,216,709,217,695,223,672,219,658,222 658,222,650,221,642,211,621,206,606,188,597,187"/>
+		<polygon id="oms"  points="438,43,453,43,458,35,453,27,444,24,444,17,435,12,437,5,443,10,480,6,487,13,521,12,536,3,553,6,585,9,570,24 567,27,573,39,594,67,583,102,584,119,561,156,533,178,531,217,536,232 530,235,523,242,508,230,483,229,469,236,473,242,466,260,470,271,459,270 454,270,455,276,452,275,449,265,439,254,443,246,450,245,447,235 450,216,461,196,450,179,454,175,445,134,445,111,421,93 437,70"/>
+		<polygon id="osa"  points="916,302,913,313,892,314,885,309 880,298,875,296,878,290 898,287"/>
+		<polygon id="par"  points="89,235,90,241,88,254 95,259,113,266 120,258,129,232 105,231"/>
+		<polygon id="pek"  points="791,228,788,234,781,237,785,244,792,244,797,249,805,245,813,250,808,254,806,268 796,278,799,287,795,304 768,280,761,272,744,267,733,253,731,243,734,225,748,221,758,213 762,219,786,224"/>
+		<polygon id="pen"  points="242,382,247,379,247,367,257,361,263,362,273,365,280,368 284,421,240,415 244,395"/>
+		<polygon id="per"  points="488,371,486,371,481,374,467,372,444,353,439,350,433,352,430,356,432,365,449,381,449,385,459,392,460,396,463,397,476,396,488,380"/>
+		<g id="phi">
+		  <polygon  points="866,384 914,432 919,442 919,482 893,482 860,449 855,439 855,384"/>
+		  <polygon  points="870,391 859,388 859,411 867,423 873,422 891,429 894,426 872,417"/>
+		  <polygon  points="893,431 905,446 902,449 894,439 905,439 899,430"/>
+		  <polygon  points="891,443 894,453 895,446 889,457 886,453 886,446"/>
+		  <polygon  points="907,452 917,467 917,474 909,472 910,480 900,476 897,468 888,469 893,461 898,463"/>
+		</g>
+		<polygon id="pic"  points="87,224,100,216,101,211,105,208 116,215,129,218,136,223 129,232,105,231,89,235"/>
+		<polygon id="pie"  points="177,245,171,250,169,254,166,252,157,254,151,257 149,259,149,269,160,277 168,272,173,264,176,261,177,255,185,252 181,246"/>
+		<polygon id="por"  points="57,347,44,347,43,337,38,327,42,320,43,305 64,305,61,312"/>
+		<polygon id="pos"  points="197,158,209,156,214,152,224,151 221,176,219,181 206,185,198,184 199,171"/>
+		<polygon id="pru"  points="224,151,230,152,243,151,248,146,247,142 249,142,253,147,262,149,263,155,262,159,255,166,237,172,234,180 219,181,221,176"/>
+		<polygon id="raj"  points="574,431,567,421,561,403,562,394,553,398,543,389,548,384,542,383,539,378 542,373,554,370,546,355,541,353,545,345,550,339,553,346,568,353,581,356 574,368,574,389,603,406,611,416 611,416,610,423,606,427,582,428"/>
+		<polygon id="red"  points="417,462,416,454,405,445,397,430,392,429,384,407,373,401,359,381,357,378,356,370,352,369,354,374,351,385,347,385 344,383 344,392 337,392 357,419,357,425,378,457,385,471,396,473,400,479"/>
+		<polygon id="rom"  points="213,306,201,299,189,288,187,286 201,280,210,284,215,288 217,302"/>
+		<polygon id="ruh"  points="142,191,138,193,137,197,134,201,140,205,143,219,141,223 145,227,160,215,163,206,158,198"/>
+		<polygon id="rum"  points="308,216,302,217,301,225,297,226,299,229,301,251,293,254,284,254,282,258 285,264,292,266,302,266,312,262,321,263 322,263,324,260,324,254,329,249 322,245,318,232,315,225,309,223"/>
+		<polygon id="sah"  points="95,512,95,504,81,444,82,440,92,439,84,433,68,424,67,412,88,398,95,392,95,388,104,383,111,382,121,383,137,380,162,378,172,377 181,388,179,394,184,405,186,414,185,422,192,434,200,435,203,439 154,480,126,480,120,486,120,511"/>
+		<polygon id="sai"  points="813,442,812,450,805,457,797,471,784,473,777,471,773,463 783,458,782,452,793,444"/>
+		<polygon id="sak"  points="847,119,850,118,842,109,847,109,857,116,873,123,882,132,886,138 869,145"/>
+		<polygon id="sat"  points="16,513,19,476,22,454,28,449,48,418,58,404,56,397,59,388 0,330 0,395,29,395,35,401,35,429,29,435,0,435 0,513"/>
+		<polygon id="sax"  points="171,184,179,186,198,184,206,185 208,198,202,198,188,208 176,208,175,204,171,196"/>
+		<polygon id="sch"  points="804,416,813,429,813,442,812,450,805,457 833,485,840,484,847,469,850,469,862,479,853,489,852,493,856,504,865,510 893,482,860,449,855,439,855,384,850,379 843,380,837,375,837,359 845,345 830,345,822,355 822,386,815,405"/>
+		<polygon id="ser"  points="282,258,270,257,266,258,266,263 269,268,268,283 276,299,279,296,291,292 287,284,285,264"/>
+		<polygon id="sev"  points="318,232,322,245,329,249 329,249,334,247,345,252,341,256,350,262,362,256,353,250,375,239,371,245,375,248,366,256,388,268,396,275,396,279 404,280,408,283,414,293,426,298,433,293,436,298,441,298 443,283,426,268,419,252 431,239 427,231,415,226,408,214,396,211,392,202 376,212,352,218,333,230,322,230"/>
+		<polygon id="sha"  points="693,349,700,349,711,356,711,362,718,367,726,369 720,381,712,388,704,389,703,397 696,386,687,381,682,370,693,356"/>
+		<polygon id="sib"  points="570,24,596,16,620,16,660,25,697,21,701,10,790,13,821,19,841,15,864,22,908,21,947,37,933,45,934,57,907,71,920,88,927,101,926,122,920,116,911,114,892,87,894,69,898,63,886,54,881,68,872,61,859,64,861,80,854,82,841,77,803,87 769,83,716,117,722,123,719,130,727,138 735,142,737,159,734,162,728,160,710,159,690,169,676,166,650,154,635,154,634,163,640,166,634,170,621,167,612,167,593,179,586,182,583,189,585,197,574,196,579,211,565,214,576,225,574,229 564,228,547,229,543,232,536,232 531,217,533,178,561,156,584,119,583,102,594,67,573,39,567,27"/>
+		<polygon id="sik"  points="804,362,799,373,792,364,782,364 776,362,763,351,753,351,746,356,736,357,731,360,727,363,726,369,718,367,711,362,711,356,700,349,693,349,691,342,697,336,697,330,699,317 728,321,743,330,772,326,798,334 795,344,805,357"/>
+		<polygon id="sil"  points="234,180,237,190,248,197,251,203,243,210,233,203,222,203,212,198,208,198 206,185,219,181"/>
+		<polygon id="sin"  points="558,250,561,243,566,243,574,235,574,229,576,225,565,214,579,211,574,196,585,197,583,189,586,182,593,179 597,187,606,188,621,206,642,211,650,221,658,222 656,228,663,246,661,253,665,256,662,263,665,266,662,269 647,268,638,273,615,271,599,278 586,273,567,261"/>
+		<polygon id="ska"  points="145,133,162,129,161,134,166,139 173,139 178,140,181,141 180,132,172,120,164,114,164,110,157,109,153,115,136,124"/>
+		<polygon id="smy"  points="352,326,342,324,339,327,334,327,326,325,319,319,319,315 341,314,348,304 386,305,384,313,378,319 370,320,356,326"/>
+		<polygon id="snd"  points="539,378,532,377,511,381,504,381 503,374,510,367,506,355,494,350,492,345 499,344,507,345,512,337,527,334 537,337,545,345 541,353,546,355,554,370,542,373"/>
+		<polygon id="soj"  points="831,119,844,129,854,143,868,162,867,184,862,198,854,201,848,202,846,205,847,217,841,228,851,233,867,248,871,258 871,285,878,274,900,272,900,263,903,263,900,234,908,226 914,228,917,225,925,233 925,218,903,215,908,219,904,222,899,216,898,207,901,207 896,187 896,182,878,161,869,145 847,119"/>
+		<polygon id="som"  points="470,506,459,529,439,560,416,586,404,604 460,604,460,576,466,570,494,570,500,576,500,604 534,604,534,471,505,471"/>
+		<polygon id="soo"  points="920,116,911,114,892,87,894,69,898,63,886,54,881,68,872,61,859,64,861,80,854,82,841,77,803,87,804,101,797,117,820,124,822,118,831,119 847,119,850,118,842,109,847,109,857,116,873,123,882,132,886,138,892,144"/>
+		<polygon id="spa"  points="123,298,122,303,106,314,105,319,101,327,103,335,94,346,81,351,69,352,62,348,57,347 61,312,64,305,43,305 40,298,52,289 82,288,87,293,107,296,118,296"/>
+		<polyline id="spa-nc"  points="61,312,64,305,43,305 40,298,52,289 82,288,87,293,107,296"/>
+		<polyline id="spa-sc"  points="107,296,118,296 123,298,122,303,106,314,105,319,101,327,103,335,94,346,81,351,69,352,62,348,57,347 61,312"/>
+		<polygon id="spo"  points="947,277,944,286,943,297,936,305,924,306 924,313,913,337,866,384,914,432,919,442,919,533,954,533 954,425,926,425,920,419,920,391,926,385,954,385 954,277"/>
+		<polygon id="stp"  points="270,18,275,16,278,20,319,32,324,36,315,48,296,48,286,45,289,51,296,52,299,56,299,63,303,75,320,79,323,75,311,62,317,61,330,66,337,61,326,52,343,40,344,33,334,18,343,16,348,22,346,27,354,29,385,22,395,27,422,32,424,28,405,18,411,5,423,6,441,27,450,30,445,41,438,43 437,70,421,93,408,98,373,100,351,111,331,112,311,122,293,124 288,115,289,107,286,105 286,100,295,100,293,96,285,94 286,71,265,42,262,28 267,25"/>
+		<polyline id="stp-nc"  points="286,71,265,42,262,28 267,25 270,18,275,16,278,20,319,32,324,36,315,48,296,48,286,45,289,51,296,52,299,56,299,63,303,75,320,79,323,75,311,62,317,61,330,66,337,61,326,52,343,40,344,33,334,18,343,16,348,22,346,27,354,29,385,22,395,27,422,32,424,28,405,18,411,5,423,6,441,27,450,30,445,41,438,43 437,70,421,93,408,98,373,100"/>
+		<polyline id="stp-sc"  points="373,100,351,111,331,112,311,122,293,124 288,115,289,107,286,105 286,100,295,100,293,96,285,94 286,71"/>
+		<polygon id="sud"  points="378,457,367,461,367,480,361,492,361,502,355,515,350,520,369,540,370,544 363,544,350,552,338,554,328,550,321,553 311,549 295,520,309,520,315,514,315,486,309,480 287,480,287,470,284,461 284,458,289,456,289,441 345,438,349,434,357,425"/>
+		<rect    id="sue"     x="320" y="368" height="24" width="24"/>
+		<polygon id="sum"  points="695,493 712,495 719,504 738,515 757,527 755,532 764,537 765,543 772,544 775,553 773,566 764,568 743,555 724,525 699,501"/>
+		<polygon id="swe"  points="245,53,226,57,228,65,205,83,205,92,212,101,207,119,207,134,205,138,194,140,190,145,181,143 181,141,180,132,172,120,164,114,164,110 166,109,171,94,174,77,189,63,191,56,196,54,204,40,211,42,210,34,218,35,222,30 237,41"/>
+		<polygon id="syr"  points="348,346,350,342,352,326 356,326,370,320,378,319,390,318 376,338,364,346"/>
+		<polygon id="tha"  points="753,449,736,440,737,458,734,463,745,477,751,482 743,484 735,483,722,471,721,472,719,446 725,442,717,419,711,409,706,408,703,397 704,389,712,388,720,381 720,381,722,388,728,389,730,403,743,401,744,398,748,398,758,406,771,427 760,428,751,440"/>
+		<polyline id="tha-wc"  points="743,484 735,483,722,471,721,472,719,446 725,442"/>
+		<polyline id="tha-ec"  points="725,442,717,419,711,409,706,408,703,397 704,389,712,388,720,381 720,381,722,388,728,389,730,403,743,401,744,398,748,398,758,406,771,427 760,428,751,440 753,449,736,440,737,458,734,463,745,477,751,482 743,484"/> 
+		<polygon id="tib"  points="599,278,615,271,638,273,647,268,662,269 667,277,673,296,693,299,693,309,699,317,697,330 692,325,687,325 682,325,678,321,661,334 636,330,639,323,634,306,615,288"/>
+		<polygon id="tim"  points="954,533,919,533,871,582 847,582,840,587,812,589,803,586 803,604 920,604 920,576,926,570,954,570"/>
+		<polygon id="tok"  points="914,228,917,225,925,233,938,239,939,254,947,277,944,286 922,285,918,281 917,263,925,254,926,240"/>
+		<polygon id="tri"  points="242,279,228,274,215,260,214,262,207,254 207,246,213,246,217,243 228,246,233,246,243,250,249,262,253,263 247,270"/>
+		<polygon id="tun"  points="168,339,174,336,178,336,180,339,184,339,181,346,184,352,182,360,187,362,193,366 193,372,185,378,183,387,181,388 172,377,163,367,164,363,166,346,168,339"/>
+		<polygon id="tur"  points="470,307,474,305,477,311,482,313,484,302,490,302,501,292,501,285,514,282,514,278,523,278,531,269,537,273,538,278,547,274,558,273 556,266,544,259,548,251 558,250,561,243,566,243,574,235,574,229 564,228,547,229,543,232,536,232,530,235,523,242,508,230,483,229,469,236,473,242,466,260,470,271,459,270 466,277,463,280,456,278,455,282,462,288,468,297"/>
+		<polygon id="tus"  points="187,286,176,277,168,272 173,264,179,265,193,271,201,280"/>
+		<polygon id="tyr"  points="202,221,197,226,196,234,182,234,178,239 173,239,173,243 177,245,181,246,185,252,188,251,191,243,204,244,207,246 213,246,217,243,211,220"/>
+		<polygon id="tys"  points="209,340,210,334,233,330,237,324,232,313,213,306,201,299,189,288,187,286,176,277 176,289 180,291 176,302 174,304 174,305 177,307 178,312 176,325 174,324 174,336,178,336,180,339,184,339,181,346,184,352,182,360,187,362"/>
+		<polygon id="ukr"  points="291,202,296,205,303,204,308,216 309,223,315,225,318,232 322,230,333,230,352,218,376,212,392,202 383,198,379,188,351,182,339,172,325,169,319,178,313,178,300,176 295,181,297,188,294,198"/>
+		<polygon id="ven"  points="207,254,201,256,196,261,199,268,219,287 215,288,210,284,201,280,193,271,179,265,173,264 176,261,177,255,185,252 188,251,191,243,204,244,207,246"/>
+		<polygon id="vie"  points="211,220,215,217,233,219,251,220 249,228,244,230,242,239,233,246 228,246,217,243"/>
+		<polygon id="vla"  points="803,87,804,101,797,117,820,124,822,118,831,119,844,129,854,143,868,162,867,184,862,198,854,201,848,202,846,205 838,202,840,199,835,185,844,186,838,165,820,168,806,157,785,154,761,134,731,134,727,138 719,130,722,123,716,117,769,83"/>
+		<polygon id="vtn"  points="782,364,779,368,774,371,773,380,769,387 763,387,759,382,752,375,745,375,738,366,731,360 736,357,746,356,753,351,763,351,776,362"/>
+		<polygon id="wal"  points="83,200,62,199,60,202 40,201,51,196,59,189,66,188,56,182,50,180,50,177,60,173 73,170,82,171 86,178,80,187"/>
+		<polygon id="war"  points="263,155,262,159,255,166,237,172,234,180,237,190,248,197,251,203 251,203,256,200,271,201,279,198,291,202 294,198,297,188,295,181,300,176,298,159,295,154,299,142,299,138,295,135 288,136,270,154"/>
+		<polygon id="wio"  points="639,536,628,538,622,533,619,514,619,509,623,494 621,491 613,483,606,489,595,471 534,471,534,604 570,604,570,576,576,570,604,570,610,576,610,604 639,604"/>
+		<polygon id="wme"  points="105,319,101,327,103,335,94,346,81,351 81,357,83,361,99,360,104,360,124,347,151,342,162,341,168,339,174,336 174,324 169,327 167,323 169,319"/>
+		<polygon id="yel"  points="854,266,849,261,844,249,839,241,831,241,829,236,817,226,805,234,800,224,794,223,791,228,788,234,781,237,785,244,792,244,797,249,805,245,813,250,808,254,806,268,819,272,833,287"/>
+		<polygon id="yem"  points="463,397,476,396,488,380,490,386,495,393,508,396,518,404,508,418,505,434,498,441,489,447,432,479,424,480,417,462,416,454 419,448,438,451,442,453,452,438,489,420,489,411,465,405"/>
+		<polygon id="yor"  points="90,136,90,147,95,148,100,160,102,172 86,178 82,171 86,147,83,137"/>
+		<!-- impassable spaces -->
+		<polygon id="swi" points="152,239 161,240 167,237 173,239 173,243 177,245 171,250 169,254 166,252 157,254 151,257 149,254 145,254 151,243"/>
+		<polygon id="him" points="558,250 567,261 586,273 599,278 615,288 634,306 639,323 636,330 624,328 613,320 600,316 595,321 587,318 584,311 584,307 588,304 581,292 571,284 560,282 558,279 558,273 556,266 544,259 548,251"/>		
+		<!-- offboard boxes using <use> links don't work. so we will use the offboard box poly -->
+		<polygon id="oba"  transform="translate(15,40)" points="-14,-20 -20,-14 -20,14 -14,20 14,20 20,14 20,-14 14,-20"/> 
+		<polygon id="obb"  transform="translate(15,240)" points="-14,-20 -20,-14 -20,14 -14,20 14,20 20,14 20,-14 14,-20"/> 
+		<polygon id="obc"  transform="translate(15,415)" points="-14,-20 -20,-14 -20,14 -14,20 14,20 20,14 20,-14 14,-20"/> 
+		<polygon id="obd"  transform="translate(60,500)" points="-14,-20 -20,-14 -20,14 -14,20 14,20 20,14 20,-14 14,-20"/> 
+		<polygon id="obe"  transform="translate(140,500)" points="-14,-20 -20,-14 -20,14 -14,20 14,20 20,14 20,-14 14,-20"/> 
+		<polygon id="obf"  transform="translate(295,500)" points="-14,-20 -20,-14 -20,14 -14,20 14,20 20,14 20,-14 14,-20"/> 
+		<polygon id="obg"  transform="translate(340,590)" points="-14,-20 -20,-14 -20,14 -14,20 14,20 20,14 20,-14 14,-20"/> 
+		<polygon id="obh"  transform="translate(480,590)" points="-14,-20 -20,-14 -20,14 -14,20 14,20 20,14 20,-14 14,-20"/> 
+		<polygon id="obi"  transform="translate(590,590)" points="-14,-20 -20,-14 -20,14 -14,20 14,20 20,14 20,-14 14,-20"/> 
+		<polygon id="obj"  transform="translate(940,590)" points="-14,-20 -20,-14 -20,14 -14,20 14,20 20,14 20,-14 14,-20"/> 
+		<polygon id="obk"  transform="translate(940,405)" points="-14,-20 -20,-14 -20,14 -14,20 14,20 20,14 20,-14 14,-20"/> 
+		<polygon id="obl"  transform="translate(940,148)" points="-14,-20 -20,-14 -20,14 -14,20 14,20 20,14 20,-14 14,-20"/> 
+	</g>
+	
+</svg>

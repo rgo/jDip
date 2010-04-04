@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE SYMBOLS [
+	
+	<!ELEMENT SYMBOLS (DESCRIPTION, SCALING?)>
+	<!ATTLIST SYMBOLS 
+		name CDATA #REQUIRED
+		version CDATA #REQUIRED
+		thumbURI CDATA #REQUIRED
+		svgURI CDATA #REQUIRED
+		>
+	
+	<!ELEMENT DESCRIPTION (#PCDATA)>
+	
+	<!ELEMENT SCALING (SCALE+)>
+	<!ELEMENT SCALE EMPTY>
+	<!ATTLIST SCALE 
+		symbolName CDATA #REQUIRED
+		value CDATA #REQUIRED
+		>
+]>
+<SYMBOLS name="Flagged" version="1.0" thumbURI="symbols.gif" svgURI="symbols.svg">
+	<DESCRIPTION><![CDATA[Flagged units, based on DipTool by Christian Hagenah.]]></DESCRIPTION>
+</SYMBOLS>
+

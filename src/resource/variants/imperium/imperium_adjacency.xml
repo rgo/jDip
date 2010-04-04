@@ -1,0 +1,463 @@
+<?xml version="1.0"?>
+<!DOCTYPE PROVINCES [
+	<!ELEMENT PROVINCES (BORDER_DEFINITIONS?, PROVINCE+)>
+	
+	<!-- ===================================================================== -->
+	<!ELEMENT BORDER_DEFINITIONS (BORDER+)>
+	
+	<!ELEMENT BORDER EMPTY>
+	<!ATTLIST BORDER	
+				id ID #REQUIRED
+				description CDATA #REQUIRED
+				from CDATA #IMPLIED
+				unitTypes CDATA #IMPLIED
+				orderTypes CDATA #IMPLIED
+				year CDATA #IMPLIED
+				season CDATA #IMPLIED
+				phase CDATA #IMPLIED
+				baseMoveModifier CDATA #IMPLIED
+				>
+				
+	<!-- ===================================================================== -->
+	<!ELEMENT PROVINCE (UNIQUENAME*, ADJACENCY+)>
+	<!ATTLIST PROVINCE 	
+				shortname CDATA #REQUIRED
+				fullname CDATA #REQUIRED
+				isConvoyableCoast (true|false) "false"
+				borders IDREFS #IMPLIED
+				>	
+	
+				
+	<!ELEMENT UNIQUENAME EMPTY>
+	<!ATTLIST UNIQUENAME name CDATA #REQUIRED>
+	
+	<!ELEMENT ADJACENCY EMPTY>
+	<!ATTLIST ADJACENCY 	
+				type (mv|xc|nc|sc|wc|ec) "mv"
+				refs CDATA #REQUIRED
+				>
+]>
+<PROVINCES>
+
+	<BORDER_DEFINITIONS>
+		<BORDER id="mxFromREG" from="reg" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromSEQ" from="seq" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromCOL" from="col" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromVIN" from="vin" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromMAU" from="mau" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromFRI" from="fri" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromFRA" from="fra" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromTEU" from="teu" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromVAN" from="van" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromALA" from="ala" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromIAZ" from="iaz" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromTHR" from="thr" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromSCY" from="scy" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromDAC" from="dac" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromDAL" from="dal" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromBAE" from="bae" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromSUE" from="sue" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromHU4" from="hu4" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromGAL" from="gal" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromQUA" from="qua" description="" baseMoveModifier="-1" />
+		<BORDER id="mxFromASD" from="asd" description="" baseMoveModifier="-1" />
+	</BORDER_DEFINITIONS>
+
+	<PROVINCE fullname="Mare Adriaticum" shortname="ADR">
+		<UNIQUENAME name="adria" />
+		<UNIQUENAME name="adriatic" />
+		<ADJACENCY type="xc" refs="bru sam anc rav ver dal dac mac-wc ion"/>
+	</PROVINCE>
+	<PROVINCE fullname="Aegaeis" shortname="AEG">
+		<UNIQUENAME name="aegean" />
+		<ADJACENCY type="xc" refs="ath mac-ec thr byz gal mil cyp int"/>
+	</PROVINCE>
+	<PROVINCE fullname="Aemilia" shortname="Aem">
+		<ADJACENCY type="mv" refs="reg ver rav gen alp"/>
+	</PROVINCE>
+	<PROVINCE fullname="Alamanni" shortname="Ala" borders="mxFromREG mxFromSEQ mxFromCOL">
+		<UNIQUENAME name="Alemannen" />
+		<ADJACENCY type="mv" refs="reg seq col van"/>
+	</PROVINCE>
+	<PROVINCE fullname="Alexandria" shortname="Ale">
+		<UNIQUENAME name="Egy" />
+		<UNIQUENAME name="Egypt" />
+		<ADJACENCY type="xc" refs="lyb cyp"/>
+		<ADJACENCY type="mv" refs="lyb ori"/>
+	</PROVINCE>
+	<PROVINCE fullname="Alpes" shortname="Alp">
+		<ADJACENCY type="xc" refs="gen lig mas"/>
+		<ADJACENCY type="mv" refs="mas vie seq reg aem gen"/>
+	</PROVINCE>
+	<PROVINCE fullname="Ancona" shortname="Anc">
+		<ADJACENCY type="xc" refs="rav adr sam"/>
+		<ADJACENCY type="mv" refs="rav tus rom sam"/>
+	</PROVINCE>
+	<PROVINCE fullname="Antiochia" shortname="Ant">
+		<ADJACENCY type="xc" refs="ori cyp mil"/>
+		<ADJACENCY type="mv" refs="mil gal pon ori"/>
+	</PROVINCE>
+	<PROVINCE fullname="Aquitania" shortname="Aqu">
+		<ADJACENCY type="xc" refs="bur can lug"/>
+		<ADJACENCY type="mv" refs="lug lut vie mas nar bur"/>
+	</PROVINCE>
+	<PROVINCE fullname="Asdingi" shortname="Asd" borders="mxFromVIN">
+		<ADJACENCY type="mv" refs="qua hu2 vis iaz vin"/>
+	</PROVINCE>
+	<PROVINCE fullname="Athenum" shortname="Ath">
+		<UNIQUENAME name="Athen" />
+		<ADJACENCY type="xc" refs="mac-wc mac-ec aeg int ion"/>
+		<ADJACENCY type="mv" refs="mac"/>
+	</PROVINCE>
+	<PROVINCE fullname="Oceanus Atlanticus" shortname="ATL">
+		<UNIQUENAME name="Atlantic" />
+		<ADJACENCY type="xc" refs="bri can tar oli bae bal mau"/>
+	</PROVINCE>
+	<PROVINCE fullname="Baetica" shortname="Bae" borders="mxFromMAU">
+		<ADJACENCY type="xc" refs="oli atl bal sag"/>
+		<ADJACENCY type="mv" refs="oli tar sag mau"/>
+	</PROVINCE>
+	<PROVINCE fullname="Baleares" shortname="BAL">
+		<UNIQUENAME name="wes" />
+		<UNIQUENAME name="western" />
+		<ADJACENCY type="xc" refs="atl bae sag lig tyr car mau"/>
+	</PROVINCE>
+	<PROVINCE fullname="Belgica" shortname="Bel">
+		<UNIQUENAME name="Belgium" />
+		<ADJACENCY type="xc" refs="rot sax ger col"/>
+		<ADJACENCY type="mv" refs="rot lut col"/>
+	</PROVINCE>
+	<PROVINCE fullname="Oceanus Britannicus" shortname="BRI">
+		<ADJACENCY type="xc" refs="atl can lug rot sax lon fla ebu-wc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Brundisium" shortname="Bru">
+		<UNIQUENAME name="Brindisi" />
+		<ADJACENCY type="xc" refs="sam adr ion rhe"/>
+		<ADJACENCY type="mv" refs="sam cap rhe"/>
+	</PROVINCE>
+	<PROVINCE fullname="Burdigala" shortname="Bur">
+		<UNIQUENAME name="Bordeaux" />
+		<ADJACENCY type="xc" refs="tar can aqu"/>
+		<ADJACENCY type="mv" refs="tar nar aqu"/>
+	</PROVINCE>
+	<PROVINCE fullname="Byzantium" shortname="Byz">
+		<UNIQUENAME name="Con" />
+		<UNIQUENAME name="Constantinople" />
+		<ADJACENCY type="xc" refs="scy eux pon gal aeg thr"/>
+		<ADJACENCY type="mv" refs="scy pon gal thr"/>
+	</PROVINCE>
+	<PROVINCE fullname="Mare Cantabricum" shortname="CAN">
+		<ADJACENCY type="xc" refs="atl bri lug aqu bur tar"/>
+	</PROVINCE>
+	<PROVINCE fullname="Capova" shortname="Cap">
+		<UNIQUENAME name="Capua" />
+		<ADJACENCY type="xc" refs="rom tyr rhe"/>
+		<ADJACENCY type="mv" refs="rom sam bru rhe"/>
+	</PROVINCE>
+	<PROVINCE fullname="Carthago" shortname="Car">
+		<UNIQUENAME name="Tun" />
+		<UNIQUENAME name="Tunis" />
+		<ADJACENCY type="xc" refs="mau bal tyr int num"/>
+		<ADJACENCY type="mv" refs="mau num"/>
+	</PROVINCE>
+	<PROVINCE fullname="Chatti" shortname="Cha">
+		<UNIQUENAME name="Hessen" />
+		<ADJACENCY type="mv" refs="rip sil sue van"/>
+	</PROVINCE>
+	<PROVINCE fullname="Chersonesus" shortname="Che">
+		<UNIQUENAME name="Sev" />
+		<UNIQUENAME name="Sevastopol" />
+		<UNIQUENAME name="Krim" />
+		<ADJACENCY type="xc" refs="ost eux hu4"/>
+		<ADJACENCY type="mv" refs="ost hu4"/>
+	</PROVINCE>
+	<PROVINCE fullname="Colonia Agrippa" shortname="Col" borders="mxFromFRI mxFromFRA mxFromTEU mxFromVAN mxFromALA">
+		<UNIQUENAME name="Cologne" />
+		<UNIQUENAME name="Koeln" />
+		<ADJACENCY type="xc" refs="bel ger fri"/>
+		<ADJACENCY type="mv" refs="bel lut vie seq fri fra teu van ala"/>
+	</PROVINCE>
+	<PROVINCE fullname="Mare Cypris" shortname="CYP">
+		<UNIQUENAME name="EAS" />
+		<UNIQUENAME name="eastern" />
+		<ADJACENCY type="xc" refs="mil ant ori ale lyb int aeg"/>
+	</PROVINCE>
+	<PROVINCE fullname="Dacia" shortname="Dac" borders="mxFromIAZ">
+		<ADJACENCY type="xc" refs="dal adr mac-wc"/>
+		<ADJACENCY type="mv" refs="dal iaz thr mac"/>
+	</PROVINCE>
+	<PROVINCE fullname="Dalmatia" shortname="Dal" borders="mxFromIAZ">
+		<ADJACENCY type="xc" refs="ver adr dac"/>
+		<ADJACENCY type="mv" refs="ver vin iaz dac"/>
+	</PROVINCE>
+	<PROVINCE fullname="Eburacum" shortname="Ebu">
+		<UNIQUENAME name="Yor" />
+		<UNIQUENAME name="York" />
+		<ADJACENCY type="ec" refs="ger max"/>
+		<ADJACENCY type="wc" refs="bri fla"/>
+		<ADJACENCY type="mv" refs="fla max"/>
+	</PROVINCE>
+	<PROVINCE fullname="Pontus Euxinus" shortname="EUX">
+		<UNIQUENAME name="BLA" />
+		<UNIQUENAME name="Black" />
+		<ADJACENCY type="xc" refs="ost che hu4 scy byz pon"/>
+	</PROVINCE>
+	<PROVINCE fullname="Flavia Caesarensis" shortname="Fla">
+		<UNIQUENAME name="Wal" />
+		<UNIQUENAME name="Wales" />
+		<ADJACENCY type="xc" refs="lon bri ebu-wc"/>
+		<ADJACENCY type="mv" refs="lon max ebu"/>
+	</PROVINCE>
+	<PROVINCE fullname="Franci" shortname="Fra" borders="mxFromCOL">
+		<UNIQUENAME name="Franken" />
+		<ADJACENCY type="mv" refs="fri jut lan teu col"/>
+	</PROVINCE>
+	<PROVINCE fullname="Frisii" shortname="Fri" borders="mxFromCOL">
+		<UNIQUENAME name="Friesland" />
+		<ADJACENCY type="xc" refs="jut ger col"/>
+		<ADJACENCY type="mv" refs="jut fra col"/>
+	</PROVINCE>
+	<PROVINCE fullname="Galatia" shortname="Gal" borders="mxFromTHR">
+		<ADJACENCY type="xc" refs="byz thr aeg mil"/>
+		<ADJACENCY type="mv" refs="thr byz pon ant mil"/>
+	</PROVINCE>
+	<PROVINCE fullname="Genova" shortname="Gen">
+		<UNIQUENAME name="Genua" />
+		<ADJACENCY type="xc" refs="alp lig tus"/>
+		<ADJACENCY type="mv" refs="alp aem rav tus"/>
+	</PROVINCE>
+	<PROVINCE fullname="Mare Germanicum" shortname="GER">
+		<UNIQUENAME name="NTH" />
+		<UNIQUENAME name="NTS" />
+		<ADJACENCY type="xc" refs="hai jut fri col bel sax lon max ebu-ec"/>
+	</PROVINCE>
+	<PROVINCE fullname="Haithabu" shortname="Hai">
+		<UNIQUENAME name="Den" />
+		<UNIQUENAME name="Denmark" />
+		<ADJACENCY type="xc" refs="ger jut"/>
+		<ADJACENCY type="mv" refs="jut lan rip sil hu1"/>
+	</PROVINCE>
+	<PROVINCE fullname="Hunni Primi" shortname="Hu1">
+		<ADJACENCY type="mv" refs="hai sil hu3"/>
+	</PROVINCE>
+	<PROVINCE fullname="Hunni Secundi" shortname="Hu2">
+		<ADJACENCY type="mv" refs="sil sue qua asd vis hu3"/>
+	</PROVINCE>
+	<PROVINCE fullname="Hunni Terti" shortname="Hu3">
+		<ADJACENCY type="mv" refs="hu1 sil hu2 vis hu4 ost"/>
+	</PROVINCE>
+	<PROVINCE fullname="Hunni Quarti" shortname="Hu4" borders="mxFromSCY">
+		<ADJACENCY type="mv" refs="che ost hu3 vis iaz scy"/>
+		<ADJACENCY type="xc" refs="che eux scy"/>
+	</PROVINCE>
+	<PROVINCE fullname="Iazygi" shortname="Iaz" borders="mxFromSCY mxFromTHR mxFromDAC mxFromDAL mxFromVIN">
+		<ADJACENCY type="mv" refs="asd vis hu4 scy thr dac dal vin"/>
+	</PROVINCE>
+	<PROVINCE fullname="Mare Internum" shortname="INT">
+		<ADJACENCY type="xc" refs="ion ath aeg cyp lyb num car tyr syr"/>
+	</PROVINCE>
+	<PROVINCE fullname="Mare Ionium" shortname="ION">
+		<UNIQUENAME name="Ionian" />
+		<ADJACENCY type="xc" refs="ath int syr tyr rhe bru adr mac-wc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Jutii" shortname="Jut">
+		<UNIQUENAME name="Iut" />
+		<UNIQUENAME name="Iutii" />
+		<ADJACENCY type="xc" refs="hai ger fri"/>
+		<ADJACENCY type="mv" refs="hai lan fra fri"/>
+	</PROVINCE>
+	<PROVINCE fullname="Langobardi" shortname="Lan">
+		<UNIQUENAME name="Langobarden" />
+		<ADJACENCY type="mv" refs="jut fra teu rip hai"/>
+	</PROVINCE>
+	<PROVINCE fullname="Mare Ligusticum" shortname="LIG">
+		<UNIQUENAME name="LYO" />
+		<UNIQUENAME name="GOL" />
+		<UNIQUENAME name="LYON" />
+		<UNIQUENAME name="LION" />
+		<ADJACENCY type="xc" refs="sag nar mas alp gen tus rom tyr bal"/>
+	</PROVINCE>
+	<PROVINCE fullname="Londinum" shortname="Lon">
+		<UNIQUENAME name="London" />
+		<ADJACENCY type="xc" refs="max ger sax bri fla"/>
+		<ADJACENCY type="mv" refs="max fla"/>
+	</PROVINCE>
+	<PROVINCE fullname="Lugdunensis" shortname="Lug">
+		<UNIQUENAME name="Bre" />
+		<ADJACENCY type="xc" refs="aqu can bri rot"/>
+		<ADJACENCY type="mv" refs="aqu lut rot"/>
+	</PROVINCE>
+	<PROVINCE fullname="Lutetia" shortname="Lut">
+		<UNIQUENAME name="Par" />
+		<UNIQUENAME name="Paris" />
+		<ADJACENCY type="mv" refs="bel col vie aqu lug rot"/>
+	</PROVINCE>
+	<PROVINCE fullname="Lybia" shortname="Lyb">
+		<UNIQUENAME name="Lib" />
+		<UNIQUENAME name="Libya" />
+		<ADJACENCY type="xc" refs="num int cyp ale"/>
+		<ADJACENCY type="mv" refs="num ale"/>
+	</PROVINCE>
+	<PROVINCE fullname="Macedonia" shortname="Mac">
+		<ADJACENCY type="ec" refs="thr aeg ath"/>
+		<ADJACENCY type="wc" refs="dac adr ion ath"/>
+		<ADJACENCY type="mv" refs="dac thr ath"/>
+	</PROVINCE>
+	<PROVINCE fullname="Massilia" shortname="Mas">
+		<UNIQUENAME name="Mar" />
+		<UNIQUENAME name="Marseille" />
+		<ADJACENCY type="xc" refs="nar lig alp"/>
+		<ADJACENCY type="mv" refs="nar aqu vie alp"/>
+	</PROVINCE>
+	<PROVINCE fullname="Mauretania" shortname="Mau" borders="mxFromBAE">
+		<UNIQUENAME name="Naf" />
+		<ADJACENCY type="xc" refs="atl bal car"/>
+		<ADJACENCY type="mv" refs="car num bae"/>
+	</PROVINCE>
+	<PROVINCE fullname="Maxima Caesarensis" shortname="Max">
+		<ADJACENCY type="xc" refs="lon ger ebu-ec"/>
+		<ADJACENCY type="mv" refs="ebu fla lon"/>
+	</PROVINCE>
+	<PROVINCE fullname="Miletus" shortname="Mil">
+		<UNIQUENAME name="Milet" />
+		<ADJACENCY type="xc" refs="gal aeg cyp ant"/>
+		<ADJACENCY type="mv" refs="gal ant"/>
+	</PROVINCE>
+	<PROVINCE fullname="Narbonensis" shortname="Nar">
+		<ADJACENCY type="xc" refs="sag lig mas"/>
+		<ADJACENCY type="mv" refs="sag tar bur aqu mas"/>
+	</PROVINCE>
+	<PROVINCE fullname="Numidia" shortname="Num">
+		<ADJACENCY type="xc" refs="car int lyb"/>
+		<ADJACENCY type="mv" refs="mau car lyb"/>
+	</PROVINCE>
+	<PROVINCE fullname="Olisipo" shortname="Oli">
+		<UNIQUENAME name="Por" />
+		<UNIQUENAME name="Portugal" />
+		<UNIQUENAME name="Lisboa" />
+		<ADJACENCY type="xc" refs="tar atl bae"/>
+		<ADJACENCY type="mv" refs="tar bae"/>
+	</PROVINCE>
+	<PROVINCE fullname="Ostrogothi" shortname="Ost">
+		<UNIQUENAME name="Ostgothen" />
+		<ADJACENCY type="xc" refs="eux che"/>
+		<ADJACENCY type="mv" refs="hu3 hu4 che"/>
+	</PROVINCE>
+	<PROVINCE fullname="Orientes" shortname="Ori">
+		<ADJACENCY type="xc" refs="ant cyp"/>
+		<ADJACENCY type="mv" refs="pon ant ale"/>
+	</PROVINCE>
+	<PROVINCE fullname="Pontica" shortname="Pon">
+		<ADJACENCY type="xc" refs="eux byz"/>
+		<ADJACENCY type="mv" refs="byz gal ant ori"/>
+	</PROVINCE>
+	<PROVINCE fullname="Quadi" shortname="Qua" borders="mxFromVIN">
+		<ADJACENCY type="mv" refs="sue hu2 asd vin"/>
+	</PROVINCE>
+	<PROVINCE fullname="Ravenna" shortname="Rav">
+		<ADJACENCY type="xc" refs="ver adr anc"/>
+		<ADJACENCY type="mv" refs="ver aem gen tus anc"/>
+	</PROVINCE>
+	<PROVINCE fullname="Castra Regina" shortname="Reg" borders="mxFromALA mxFromVAN mxFromSUE">
+		<UNIQUENAME name="Regensburg" />
+		<ADJACENCY type="mv" refs="vin ver aem alp seq ala van sue"/>
+	</PROVINCE>
+	<PROVINCE fullname="Rhegium" shortname="Rhe">
+		<ADJACENCY type="xc" refs="bru ion tyr cap"/>
+		<ADJACENCY type="mv" refs="bru cap"/>
+	</PROVINCE>
+	<PROVINCE fullname="Ripuari" shortname="Rip">
+		<ADJACENCY type="mv" refs="hai sil cha van teu lan"/>
+	</PROVINCE>
+	<PROVINCE fullname="Roma" shortname="Rom">
+		<UNIQUENAME name="Rome" />
+		<ADJACENCY type="xc" refs="tus lig tyr cap"/>
+		<ADJACENCY type="mv" refs="tus anc sam cap"/>
+	</PROVINCE>
+	<PROVINCE fullname="Rotomagus" shortname="Rot">
+		<UNIQUENAME name="Rouen" />
+		<ADJACENCY type="xc" refs="lug bri sax bel"/>
+		<ADJACENCY type="mv" refs="lug lut bel"/>
+	</PROVINCE>
+	<PROVINCE fullname="Saguntum" shortname="Sag">
+		<UNIQUENAME name="Valencia" />
+		<ADJACENCY type="xc" refs="nar lig bal bae"/>
+		<ADJACENCY type="mv" refs="nar tar bae"/>
+	</PROVINCE>
+	<PROVINCE fullname="Samnium" shortname="Sam">
+		<ADJACENCY type="xc" refs="anc adr bru"/>
+		<ADJACENCY type="mv" refs="anc rom cap bru"/>
+	</PROVINCE>
+	<PROVINCE fullname="Litus Saxonicum" shortname="SAX">
+		<UNIQUENAME name="ENG" />
+		<UNIQUENAME name="channel" />
+		<ADJACENCY type="xc" refs="bel rot bri lon ger"/>
+	</PROVINCE>
+	<PROVINCE fullname="Scytia" shortname="Scy" borders="mxFromIAZ mxFromHU4">
+		<ADJACENCY type="xc" refs="byz eux hu4"/>
+		<ADJACENCY type="mv" refs="byz thr iaz hu4"/>
+	</PROVINCE>
+	<PROVINCE fullname="Sequanorum" shortname="Seq" borders="mxFromALA">
+		<ADJACENCY type="mv" refs="col vie alp reg ala"/>
+	</PROVINCE>
+	<PROVINCE fullname="Silingi" shortname="Sil">
+		<ADJACENCY type="mv" refs="hai hu1 hu2 hu3 sue cha rip"/>
+	</PROVINCE>
+	<PROVINCE fullname="Suebi" shortname="Sue" borders="mxFromVIN mxFromREG">
+		<UNIQUENAME name="Swabia" />
+		<UNIQUENAME name="Schwaben" />
+		<ADJACENCY type="mv" refs="van cha sil hu2 qua vin reg"/>
+	</PROVINCE>
+	<PROVINCE fullname="Syracusae" shortname="Syr">
+		<UNIQUENAME name="Sic" />
+		<UNIQUENAME name="Syracus" />
+		<UNIQUENAME name="Sicily" />
+		<ADJACENCY type="xc" refs="tyr ion int"/>
+		<ADJACENCY type="mv" refs="Syr"/>
+	</PROVINCE>
+	<PROVINCE fullname="Taraconensis" shortname="Tar">
+		<ADJACENCY type="xc" refs="oli atl can bur"/>
+		<ADJACENCY type="mv" refs="oli bae sag nar bur"/>
+	</PROVINCE>
+	<PROVINCE fullname="Teutones" shortname="Teu" borders="mxFromCOL">
+		<UNIQUENAME name="Teutonen" />
+		<ADJACENCY type="mv" refs="fra lan rip van col"/>
+	</PROVINCE>
+	<PROVINCE fullname="Thracia" shortname="Thr" borders="mxFromIAZ mxFromGAL">
+		<ADJACENCY type="xc" refs="byz gal aeg mac-ec"/>
+		<ADJACENCY type="mv" refs="byz scy iaz dac mac gal"/>
+	</PROVINCE>
+	<PROVINCE fullname="Tuscia" shortname="Tus">
+		<UNIQUENAME name="Tos" />
+		<UNIQUENAME name="Tuscany" />
+		<ADJACENCY type="xc" refs="gen lig rom"/>
+		<ADJACENCY type="mv" refs="gen rav anc rom"/>
+	</PROVINCE>
+	<PROVINCE fullname="Mare Tyrrhenicum" shortname="TYR">
+		<UNIQUENAME name="TYS" />
+		<UNIQUENAME name="TYN" />
+		<ADJACENCY type="xc" refs="rom cap rhe ion syr int car bal lig"/>
+	</PROVINCE>
+	<PROVINCE fullname="Vandales" shortname="Van" borders="mxFromREG mxFromCOL">
+		<UNIQUENAME name="Wan" />
+		<UNIQUENAME name="Wandales" />
+		<ADJACENCY type="mv" refs="teu rip cha sue ala reg col"/>
+	</PROVINCE>
+	<PROVINCE fullname="Verona" shortname="Ver">
+		<ADJACENCY type="xc" refs="dal adr rav"/>
+		<ADJACENCY type="mv" refs="dal vin reg aem rav"/>
+	</PROVINCE>
+	<PROVINCE fullname="Viennensis" shortname="Vie">
+		<ADJACENCY type="mv" refs="lut col seq alp mas aqu"/>
+	</PROVINCE>
+	<PROVINCE fullname="Vindobona" shortname="Vin" borders="mxFromSUE mxFromQUA mxFromASD mxFromIAZ">
+		<UNIQUENAME name="Vienna" />
+		<UNIQUENAME name="Wien" />
+		<ADJACENCY type="mv" refs="dal ver reg sue qua asd iaz"/>
+	</PROVINCE>
+	<PROVINCE fullname="Visigothi" shortname="Vis">
+		<UNIQUENAME name="Westgothen" />
+		<ADJACENCY type="mv" refs="hu2 hu3 hu4 iaz asd"/>
+	</PROVINCE>
+
+</PROVINCES>

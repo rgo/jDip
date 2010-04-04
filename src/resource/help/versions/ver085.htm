@@ -1,0 +1,68 @@
+<html>
+<head>
+ <title>Version History: 0.85</title>
+ <link rel="StyleSheet" href="../application_help.css">
+</head>
+<body>
+<h1>Version History: 0.85</h1>
+<h2>jDip version 0.85 (October, 2002)</h2>
+<pre>
+    - Core changes:
+        + Performance & style optimizations to non-GUI core classes
+	+ Added versioning to some classes which were forgotten about previously....
+	+ Considerable adjudicator/adjudicator core classes performance optimizations
+	+ Assertions now used in many core classes: enable assertions when debugging!
+	+ Tool plugin management via dip.tool package
+	+ Core changes in SVG DOM render classes
+	+ Simplified SVG Map format, especially positioning metadata
+	+ SVG metadata parsing code now simpler and more robust
+	+ SVG settings can allow supply centers symbols to change colors with changed ownership
+	+ SVG maps can specify zoom amount and min/max zoom limits
+	+ Reorganized resources to better support internationalization
+	+ More internationalization support
+	+ Build.xml updates, auto-build of variant file packs. ANT 1.5 or later is now required.
+	+ Variant packs may end with "Variant.zip" as well as "Variants.zip" (and .jar or .zip is acceptable)
+	+ Added RuleOptions class to enable future rule options
+    - GUI changes / improvements:
+        + View previous turn results menu shortcut is ^T
+	+ Improved Save Changes dialog
+	+ "Gentler" zoom/pan; now defaults to 20% increments
+	+ Topological map has improved simple units
+	+ Improved Topological Map layout
+	+ "Selected Orders Only" menu option removed from View (confusing & not yet applicable)
+	+ Considerably improved mouse support in GUI map
+	+ Scrollbars added to metadata notes
+	+ Improved status/ajudication result dialog titles
+	+ Adjustments and Dislodged units now reported in Turn Status summary
+    - Bug fixes:
+    	+ Revalidate order menu shortcut is now ^D instead of ^R (conflicted with Results menu item)
+	+ Fixed multiple-order-entry dialog result text message
+	+ Fixed debug text written to stdout for convoy orders entered via GUI 
+	+ Fixed TestSuite memory leak 
+	+ Fixed map XML validation issues
+	+ Fixed New Game dialog map selection thumbnail list and scrolling problems
+	+ Fixed il8n resource localization bugs
+	+ Fixed order entry bug using "->" for moves without whitespace before the "->"
+	+ Fixed history-menu update bug post edit mode
+	+ Fixed all known adjudicator bugs
+    - New features:
+    	+ TestSuite now supports variants.
+	+ Drag-and-Drop support: drag files (.jdip or judge files) to be opened
+	+ Plugin interface for add-on tools [that can do almost anything!] now supported
+	+ Ability to change map view (View | Select Map) [if multiple maps are available]
+	+ Key shortcuts for View and Order mode; (but not edit mode), when mouse is over map
+	+ New Map: "Simple" Standard map [Vector based]
+	+ New Map: "Detailed" Standard map [Bitmap & Vector based]
+    - Miscellaneous:
+	+ Users that need rapid (tens of thousands of orders per second) adjudication
+		(for use in, say, developing computer "AI" opponents) will see a 
+		tremendous performance improvement in this release.
+	+ Saved games from version 0.83 should be compatible with this release.
+	+ An early vector-based version of the SailHo! variant is now available
+		as a separate download
+	+ Targetted Future Features: Order Drawing, New Variants, Renderer speed improvements
+	+ Only the Windows installer has been tested; please let me know how the installer
+		works on other platforms
+</pre>
+</body>
+</html>

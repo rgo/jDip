@@ -1,0 +1,398 @@
+<?xml version="1.0"?>
+<!DOCTYPE PROVINCES [
+	<!ELEMENT PROVINCES (BORDER_DEFINITIONS?, PROVINCE+)>
+	
+	<!-- ===================================================================== -->
+	<!ELEMENT BORDER_DEFINITIONS (BORDER+)>
+	
+	<!ELEMENT BORDER EMPTY>
+	<!ATTLIST BORDER	
+				id ID #REQUIRED
+				description CDATA #REQUIRED
+				from CDATA #IMPLIED
+				unitTypes CDATA #IMPLIED
+				orderTypes CDATA #IMPLIED
+				year CDATA #IMPLIED
+				season CDATA #IMPLIED
+				phase CDATA #IMPLIED
+				baseMoveModifier CDATA #IMPLIED
+				>
+				
+	<!-- ===================================================================== -->
+	<!ELEMENT PROVINCE (UNIQUENAME*, ADJACENCY+)>
+	<!ATTLIST PROVINCE 	
+				shortname CDATA #REQUIRED
+				fullname CDATA #REQUIRED
+				isConvoyableCoast (true|false) "false"
+				borders IDREFS #IMPLIED
+				>	
+	
+				
+	<!ELEMENT UNIQUENAME EMPTY>
+	<!ATTLIST UNIQUENAME name CDATA #REQUIRED>
+	
+	<!ELEMENT ADJACENCY EMPTY>
+	<!ATTLIST ADJACENCY 	
+				type (mv|xc|nc|sc|wc|ec) "mv"
+				refs CDATA #REQUIRED
+				>
+]>
+<PROVINCES>
+
+	<BORDER_DEFINITIONS>
+		<BORDER id="ice_pel2hwo" description="ice prevents movement across the Celestial Straits from PEL to HWO in fall" from="pel" season="fall" />
+		<BORDER id="ice_hwo2pel" description="ice prevents movement across the Celestial Straits from HWO to PEL in fall" from="hwo" season="fall" />
+		<BORDER id="ice_ctk2lig" description="lack of ice prevents movement across the Celestial Straits from CTK to LIG in spring" from="ctk" season="spring" />
+		<BORDER id="ice_lig2ctk" description="lack of ice prevents movement across the Celestial Straits from LIG to CTK in spring" from="lig" season="spring" />
+	</BORDER_DEFINITIONS>
+	
+	<PROVINCE shortname="lig" fullname="Land of Invisible Ghosts" borders="ice_ctk2lig">
+		<ADJACENCY type="mv" refs="sdi ctk" />
+		<ADJACENCY type="xc" refs="bha wwo hwo pel ctk sdi-nc sdi-sc" />
+	</PROVINCE>
+	
+	<PROVINCE shortname="hwo" fullname="Hubwards Widdershins Ocean" borders="ice_pel2hwo">
+		<ADJACENCY type="xc" refs="pel wwo two ku lig not tro vor ing ctk" />
+	</PROVINCE>
+	
+	<PROVINCE shortname="ctk" fullname="Cutangelsk" borders="ice_lig2ctk">
+		<ADJACENCY type="mv" refs="lig ing hub ool eca" />
+		<ADJACENCY type="xc" refs="pel hwo ing eca" />
+	</PROVINCE>
+	
+	<PROVINCE shortname="pel" fullname="Pelargic Sea" borders="ice_hwo2pel">
+		<ADJACENCY type="xc" refs="sos hwo bes sdi-sc lig ctk eca gon" />
+	</PROVINCE>
+	
+	
+	<PROVINCE shortname="cor" fullname="Cori Celesti">
+		<ADJACENCY type="mv" refs="cor" />
+	</PROVINCE>
+
+
+	<PROVINCE shortname="ank" fullname="Ankh-Morpork">
+		<ADJACENCY type="mv" refs="sto ist" />
+		<ADJACENCY type="xc" refs="crc pse sto ist" />
+	</PROVINCE>
+	<PROVINCE shortname="api" fullname="Apinkieyabarmpot">
+		<ADJACENCY type="mv" refs="bri reh ksn mom" />
+		<ADJACENCY type="xc" refs="gob bri mom" />
+	</PROVINCE>
+	<PROVINCE shortname="bes" fullname="Bes Pelargic">
+		<ADJACENCY type="mv" refs="wun hng sdi" />
+		<ADJACENCY type="xc" refs="pel sos wun sdi-sc" />
+	</PROVINCE>
+	<PROVINCE shortname="bha" fullname="BhangBhangSoup">
+		<ADJACENCY type="xc" refs="mcs wwo naf hon tit-ec sdi-nc lig" />
+	</PROVINCE>
+	<PROVINCE shortname="bla" fullname="Blade Mountains">
+		<ADJACENCY type="mv" refs="kyt yap rrk" />
+		<ADJACENCY type="xc" refs="two gob kyt rrk" />
+	</PROVINCE>
+	<PROVINCE shortname="bom" fullname="Bay of Mantle">
+		<ADJACENCY type="xc" refs="sus gob rwo oro reh-ec" />
+	</PROVINCE>
+	<PROVINCE shortname="bor" fullname="Borogravia">
+		<ADJACENCY type="mv" refs="ube vie mom ksn ush btk omn ist sto" />
+	</PROVINCE>
+	<PROVINCE shortname="bri" fullname="Brindisi">
+		<ADJACENCY type="mv" refs="reh api" />
+		<ADJACENCY type="xc" refs="gob api reh-wc" />
+	</PROVINCE>
+	<PROVINCE shortname="bro" fullname="Brown Islands">
+		<ADJACENCY type="mv" refs="bro" />
+		<ADJACENCY type="xc" refs="sos hto gor roc" />
+	</PROVINCE>
+	<PROVINCE shortname="bti" fullname="BeTrobi Islands">
+		<ADJACENCY type="mv" refs="bti" />
+		<ADJACENCY type="xc" refs="rto sos roc" />
+	</PROVINCE>
+	<PROVINCE shortname="btk" fullname="Betrek">
+		<ADJACENCY type="mv" refs="bor ush van eph omn" />
+	</PROVINCE>
+	<PROVINCE shortname="cap" fullname="Cape Terror">
+		<ADJACENCY type="xc" refs="cfs got sus ura sbe tez" />
+	</PROVINCE>
+	<PROVINCE shortname="cfs" fullname="Circumfence Sea">
+		<ADJACENCY type="xc" refs="roc gor cap kru how lao ura" />
+	</PROVINCE>
+	<PROVINCE shortname="chi" fullname="Chimera">
+		<ADJACENCY type="mv" refs="oct csh lan sto" />
+		<ADJACENCY type="xc" refs="hto pse sto oct" />
+	</PROVINCE>
+	<PROVINCE shortname="crc" fullname="Circle Sea">
+		<ADJACENCY type="xc" refs="pse ank ist omn eph tso kha" />
+	</PROVINCE>
+	<PROVINCE shortname="csh" fullname="Cutshade">
+		<ADJACENCY type="mv" refs="chi oct lla rmt lan" />
+	</PROVINCE>
+	
+	<!-- Short/full name? -->
+	<PROVINCE shortname="dij" fullname="Rimwards XXXX">
+		<ADJACENCY type="mv" refs="ter hnl" />
+		<ADJACENCY type="xc" refs="sla ter-nc hnl" />
+	</PROVINCE>
+	
+	<PROVINCE shortname="eca" fullname="Ecalpon">
+		<ADJACENCY type="mv" refs="ctk ool gon" />
+		<ADJACENCY type="xc" refs="pel gon ctk" />
+	</PROVINCE>
+	<PROVINCE shortname="eph" fullname="Ephebe">
+		<ADJACENCY type="mv" refs="omn btk van nef" />
+		<ADJACENCY type="xc" refs="crc omn" />
+	</PROVINCE>
+	<PROVINCE shortname="far" fullname="Farferee">
+		<ADJACENCY type="mv" refs="gha mun reh" />
+		<ADJACENCY type="xc" refs="got sus reh-ec gha" />
+	</PROVINCE>
+	<PROVINCE shortname="gen" fullname="Genua">
+		<ADJACENCY type="mv" refs="vie rrk yap" />
+		<ADJACENCY type="xc" refs="swa vie yap" />
+	</PROVINCE>
+	<PROVINCE shortname="gha" fullname="Ghat">
+		<ADJACENCY type="mv" refs="tez van mun far" />
+		<ADJACENCY type="xc" refs="got tez far" />
+	</PROVINCE>
+	<PROVINCE shortname="gob" fullname="Gulf of Brindisi">
+		<ADJACENCY type="xc" refs="two rwo bom swa oro reh-wc bri api mom kyt bla" />
+	</PROVINCE>
+	<PROVINCE shortname="gon" fullname="Gonim">
+		<ADJACENCY type="mv" refs="eca ool lla wyr" />
+		<ADJACENCY type="xc" refs="sos pel eca wyr" />
+	</PROVINCE>
+	<PROVINCE shortname="gor" fullname="Gorunna Trench">
+		<ADJACENCY type="xc" refs="cfs roc hto kru bro red ymi how" />
+	</PROVINCE>
+	<PROVINCE shortname="got" fullname="Gulf of Tezuma">
+		<ADJACENCY type="xc" refs="sus cap tez gha far" />
+	</PROVINCE>
+	<PROVINCE shortname="her" fullname="Hersheba">
+		<ADJACENCY type="mv" refs="kha red" />
+		<ADJACENCY type="xc" refs="hto pse kha red" />
+	</PROVINCE>	
+	<PROVINCE shortname="hng" fullname="Hung Hung">
+		<ADJACENCY type="mv" refs="tit sdi bes wun" />
+		<ADJACENCY type="xc" refs="rto mcs tit wun" />
+	</PROVINCE>
+	<PROVINCE shortname="hnl" fullname="Hubwards New Llamedos">
+		<ADJACENCY type="mv" refs="dij ter" />
+		<ADJACENCY type="xc" refs="sla tbb dij ter-sc" />
+	</PROVINCE>
+	<PROVINCE shortname="hon" fullname="Hong Mountains">
+		<ADJACENCY type="mv" refs="tit" />
+		<ADJACENCY type="xc" refs="mcs bha tit-ec tit-wc" />
+	</PROVINCE>
+	<PROVINCE shortname="how" fullname="Howondaland">
+		<ADJACENCY type="mv" refs="ymi lao" />
+		<ADJACENCY type="xc" refs="cfs gor ymi lao" />
+	</PROVINCE>
+	<PROVINCE shortname="hto" fullname="Hubwards Turnwise Ocean">
+		<ADJACENCY type="xc" refs="gor sos pse bro wyr oct chi her red" />
+	</PROVINCE>
+	<PROVINCE shortname="hub" fullname="Hubland Steppes">
+		<ADJACENCY type="mv" refs="ing vor koo rmt ool ctk" />
+	</PROVINCE>
+	<PROVINCE shortname="ing" fullname="Ingenting">
+		<ADJACENCY type="mv" refs="vor hub ctk" />
+		<ADJACENCY type="xc" refs="hwo vor ctk" />
+	</PROVINCE>
+	<PROVINCE shortname="ist" fullname="Istanzia">
+		<ADJACENCY type="mv" refs="ank sto bor omn" />
+		<ADJACENCY type="xc" refs="crc ank omn" />
+	</PROVINCE>
+	<PROVINCE shortname="kha" fullname="Al Khali">
+		<ADJACENCY type="mv" refs="tso lao red her" />
+		<ADJACENCY type="xc" refs="pse crc tso her" />
+	</PROVINCE>
+	<PROVINCE shortname="koo" fullname="Koom Valley">
+		<ADJACENCY type="mv" refs="hub vor tro ube lan rmt" />
+	</PROVINCE>
+	<PROVINCE shortname="kru" fullname="Krull">
+		<ADJACENCY type="mv" refs="kru" />
+		<ADJACENCY type="xc" refs="cfs roc" />
+	</PROVINCE>
+	<PROVINCE shortname="ksn" fullname="Klatchistan">
+		<ADJACENCY type="mv" refs="api reh mun ush bor" />
+	</PROVINCE>
+	<PROVINCE shortname="ku" fullname="Ku">
+		<ADJACENCY type="xc" refs="wwo tbb two hwo" />
+	</PROVINCE>
+	<PROVINCE shortname="kyt" fullname="Kythia">
+		<ADJACENCY type="mv" refs="yap bla" />
+		<ADJACENCY type="xc" refs="gob swa yap bla" />
+	</PROVINCE>
+	<PROVINCE shortname="lan" fullname="Lancre">
+		<ADJACENCY type="mv" refs="chi csh rmt koo ube sto" />
+	</PROVINCE>
+	<PROVINCE shortname="lao" fullname="Laotan">
+		<ADJACENCY type="mv" refs="how ymi red kha tso nef sbe ura" />
+		<ADJACENCY type="xc" refs="cfs how ura" />
+	</PROVINCE>
+	<PROVINCE shortname="lla" fullname="Llamedos">
+		<ADJACENCY type="mv" refs="rmt csh oct wyr gon ool" />
+	</PROVINCE>
+	<PROVINCE shortname="lof" fullname="Land of Fog">
+		<ADJACENCY type="mv" refs="lof" />
+		<ADJACENCY type="xc" refs="sla tbb wwo" />
+	</PROVINCE>
+	<PROVINCE shortname="mcs" fullname="McSweeney Sea">
+		<ADJACENCY type="xc" refs="rto bha wwo sla tit-wc hon naf hng" />
+	</PROVINCE>
+	<PROVINCE shortname="mom" fullname="Momerathia">
+		<ADJACENCY type="mv" refs="api bor vie" />
+		<ADJACENCY type="xc" refs="swa gob api vie" />
+	</PROVINCE>
+	<PROVINCE shortname="mun" fullname="Muntab">
+		<ADJACENCY type="mv" refs="reh far gha van ush ksn" />
+	</PROVINCE>
+	<PROVINCE shortname="naf" fullname="Nafooi">
+		<ADJACENCY type="mv" refs="naf" />
+		<ADJACENCY type="xc" refs="mcs wwo bha" />
+	</PROVINCE>
+	<PROVINCE shortname="nef" fullname="The Great Nef">
+		<ADJACENCY type="mv" refs="van tez sbe lao tso eph" />
+	</PROVINCE>
+	<PROVINCE shortname="not" fullname="No Thingfjord">
+		<ADJACENCY type="mv" refs="rrk vie tro" />
+		<ADJACENCY type="xc" refs="hwo two rrk tro" />
+	</PROVINCE>
+	<PROVINCE shortname="oct" fullname="Octarine Grass Country">
+		<ADJACENCY type="mv" refs="wyr lla csh chi" />
+		<ADJACENCY type="xc" refs="hto wyr chi" />
+	</PROVINCE>
+	<PROVINCE shortname="omn" fullname="Omnia">
+		<ADJACENCY type="mv" refs="ist bor btk eph" />
+		<ADJACENCY type="xc" refs="crc ist eph" />
+	</PROVINCE>
+	<PROVINCE shortname="ool" fullname="Oolskunrahod">
+		<ADJACENCY type="mv" refs="gon eca ctk hub rmt lla" />
+	</PROVINCE>
+	<PROVINCE shortname="oro" fullname="Orohai Peninsula">
+		<ADJACENCY type="mv" refs="reh" />
+		<ADJACENCY type="xc" refs="gob bom reh-ec reh-wc" />
+	</PROVINCE>
+	<PROVINCE shortname="pse" fullname="Pseudopolitan Sea">
+		<ADJACENCY type="xc" refs="hto crc chi sto ank kha her" />
+	</PROVINCE>
+	<PROVINCE shortname="pur" fullname="Purdeighsland">
+		<ADJACENCY type="mv" refs="ter" />
+		<ADJACENCY type="xc" refs="tbb rwo two ter-sc" />
+	</PROVINCE>
+	<PROVINCE shortname="red" fullname="Re'Durat">
+		<ADJACENCY type="mv" refs="her kha lao ymi" />
+		<ADJACENCY type="xc" refs="gor hto her ymi" />
+	</PROVINCE>	
+	<PROVINCE shortname="reh" fullname="Rehigreed Province">
+		<ADJACENCY type="mv" refs="oro far mun ksn bri" />
+		<ADJACENCY type="ec" refs="sus oro far" />
+		<ADJACENCY type="wc" refs="gob bri oro bom" />
+	</PROVINCE>
+	<PROVINCE shortname="rmt" fullname="Ramtop Mountains">
+		<ADJACENCY type="mv" refs="hub koo lan csh lla ool" />
+	</PROVINCE>
+	<PROVINCE shortname="roc" fullname="Rim Ocean">
+		<ADJACENCY type="xc" refs="rto sos gor cfs kru bti bro" />
+	</PROVINCE>
+	<PROVINCE shortname="rrk" fullname="Rammerock Mountains">
+		<ADJACENCY type="mv" refs="bla yap gen vie not" />
+		<ADJACENCY type="xc" refs="two bla not" />
+	</PROVINCE>
+	<PROVINCE shortname="rto" fullname="Rimwards Turnwise Ocean">
+		<ADJACENCY type="xc" refs="mcs sos roc bti wun hng" />
+	</PROVINCE>
+	<PROVINCE shortname="rwo" fullname="Rimwards Widdershins Ocean">
+		<ADJACENCY type="xc" refs="bom gob two pur ter-sc" />
+	</PROVINCE>
+	<PROVINCE shortname="sbe" fullname="S'Belinde">
+		<ADJACENCY type="mv" refs="ura lao nef tez" />
+		<ADJACENCY type="xc" refs="cap ura tez" />
+	</PROVINCE>
+	<PROVINCE shortname="sdi" fullname="Sum Dim">
+		<ADJACENCY type="mv" refs="bes hng tit lig" />
+		<ADJACENCY type="nc" refs="bha tit-ec lig" />
+		<ADJACENCY type="sc" refs="pel bes lig" />
+	</PROVINCE>
+	<PROVINCE shortname="sla" fullname="Slakki Sea">
+		<ADJACENCY type="xc" refs="lof hnl dij ter-nc mcs wwo tbb" />
+	</PROVINCE>
+	<PROVINCE shortname="sos" fullname="Sea of Storms">
+		<ADJACENCY type="xc" refs="rto pel hto roc bro bti wun bes gon wyr" />
+	</PROVINCE>
+	<PROVINCE shortname="sto" fullname="Sto Plains">
+		<ADJACENCY type="mv" refs="chi lan ube bor ist ank" />
+		<ADJACENCY type="xc" refs="pse chi ank" />
+	</PROVINCE>
+	<PROVINCE shortname="sus" fullname="Sumtri Sea">
+		<ADJACENCY type="xc" refs="bom cap got far reh-ec" />
+	</PROVINCE>
+	<PROVINCE shortname="swa" fullname="Swamp Sea">
+		<ADJACENCY type="xc" refs="gob mom vie gen yap kyt" />
+	</PROVINCE>
+	<PROVINCE shortname="tbb" fullname="The Big Bight">
+		<ADJACENCY type="xc" refs="wwo sla two ku lof hnl ter-sc pur" />
+	</PROVINCE>
+	<PROVINCE shortname="ter" fullname="Terror Incognita">
+		<ADJACENCY type="mv" refs="dij hnl pur" />
+		<ADJACENCY type="nc" refs="sla dij" />
+		<ADJACENCY type="sc" refs="tbb rwo pur hnl" />
+	</PROVINCE>
+	<PROVINCE shortname="tez" fullname="Tezuma">
+		<ADJACENCY type="mv" refs="sbe nef van gha" />
+		<ADJACENCY type="xc" refs="got cap sbe gha" />
+	</PROVINCE>
+	<PROVINCE shortname="tit" fullname="Tito Desert">
+		<ADJACENCY type="mv" refs="hon sdi hng" />
+		<ADJACENCY type="nc" refs="mcs hng hon" />
+		<ADJACENCY type="ec" refs="bha hon sdi-nc" />
+	</PROVINCE>
+	<PROVINCE shortname="tro" fullname="Trollbone Mountains">
+		<ADJACENCY type="mv" refs="not vie ube koo vor" />
+		<ADJACENCY type="xc" refs="hwo not vor" />
+	</PROVINCE>
+	<PROVINCE shortname="tso" fullname="Tsort">
+		<ADJACENCY type="mv" refs="nef lao kha" />
+		<ADJACENCY type="xc" refs="crc kha" />
+	</PROVINCE>	
+	<PROVINCE shortname="two" fullname="Turnwise Widdershins Ocean">
+		<ADJACENCY type="xc" refs="hwo tbb rwo gob bla rrk not pur ku" />
+	</PROVINCE>
+	<PROVINCE shortname="ube" fullname="Uberwald">
+		<ADJACENCY type="mv" refs="vie bor sto lan koo tro" />
+	</PROVINCE>
+	<PROVINCE shortname="ura" fullname="Urabewe">
+		<ADJACENCY type="mv" refs="lao sbe" />
+		<ADJACENCY type="xc" refs="cfs cap lao sbe" />
+	</PROVINCE>
+	<PROVINCE shortname="ush" fullname="Ushistan">
+		<ADJACENCY type="mv" refs="bor ksn mun van btk" />
+	</PROVINCE>
+	<PROVINCE shortname="van" fullname="Vanglemesh">
+		<ADJACENCY type="mv" refs="ush mun gha tez nef eph btk" />
+	</PROVINCE>
+	<PROVINCE shortname="vie" fullname="Vieux Plains">
+		<ADJACENCY type="mv" refs="rrk gen mom bor ube tro not" />
+	</PROVINCE>
+	<PROVINCE shortname="vor" fullname="Vortex Plains">
+		<ADJACENCY type="mv" refs="tro koo hub ing" />
+		<ADJACENCY type="xc" refs="hwo ing tro" />
+	</PROVINCE>
+	<PROVINCE shortname="wun" fullname="W'ung District">
+		<ADJACENCY type="mv" refs="hng bes" />
+		<ADJACENCY type="xc" refs="sos rto bes hng" />
+	</PROVINCE>
+	<PROVINCE shortname="wwo" fullname="Widdershins Widdershins Ocean">
+		<ADJACENCY type="xc" refs="bha mcs sla tbb ku hwo lig naf lof" />
+	</PROVINCE>
+	<PROVINCE shortname="wyr" fullname="Wyrmberg">
+		<ADJACENCY type="mv" refs="gon lla oct" />
+		<ADJACENCY type="xc" refs="sos hto gon oct" />
+	</PROVINCE>
+	<PROVINCE shortname="yap" fullname="Yaphinga-yaphoul">
+		<ADJACENCY type="mv" refs="gen rrk bla kyt" />
+		<ADJACENCY type="xc" refs="swa gen kyt" />
+	</PROVINCE>
+	<PROVINCE shortname="ymi" fullname="Ymitury">
+		<ADJACENCY type="mv" refs="red lao how" />
+		<ADJACENCY type="xc" refs="gor red how" />
+	</PROVINCE>
+</PROVINCES>

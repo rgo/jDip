@@ -1,0 +1,103 @@
+<html>
+<head>
+ <title>Version History: 1.0</title>
+ <link rel="StyleSheet" href="../application_help.css">
+</head>
+<body>
+<h1>Version History: 1.0</h1>
+<h2>jDip version 1.0 (September 2003)</h2>
+<pre>
+ - New and Improved Features:
+     + Face-to-Face (F2F) mode; games started in this manner have each power separately 
+             entering orders. After a power submits his or her orders, they remain hidden
+             until order resolution occurs.
+     + Youngstown Variant, with a detailed map (by Martin Asal), added
+     + Maps can now be exported as PDF files
+     + Better order drawing: 
+             + Move and Hold orders have thickness proportional to support.
+             + Better rendering of Support orders and merging with Move/Hold orders
+             + A red "X" is drawn over failed orders when in review mode
+             + Disband and Remove orders now drawn over (instead of under) units
+             + Drawing speed improvements
+     + Better result reporting:
+             + For bounces and dislodges, the province from which the unit bounced or
+                     was dislodged by is displayed.
+             + Statistics are now reported (attack:defense) for bounces and dislodges
+             + Moves that fail because another move failed reported 
+             + General style and formatting improvements
+     + Better turn status reporting:
+             + Clearer formatting
+             + Improved descriptions for adjustment orders
+             + Indication of blocked builds due to home SC occupation
+             + Number of units without orders is reported (if at least one order is submitted)
+     + Better order parsing:
+             + Control characters and odd whitespace characters now ignored
+             + Garbage text in front of orders, in "Enter multiple orders", is now (usually) ignored
+             + More tolerant of Province misspellings due to new matching algorithm
+             + Improved formatting of invalid orders in "Enter multiple orders" dialog
+     + Undo/Redo makes it easier to unwind (undo) a game to a turn in the distant past
+     + Scroll bars on map window now disappear when not needed.
+     + Text improvements on Topological and Simple standard maps
+     + Long (Full) province names added to Hundred variant maps
+     + Short (Abbreviated) province names added to Standard Traditional map
+     + Edit mode prompting and information displayed in statusbar
+     + Faster map setup time (by about 20%)
+     + Map Editing tool to help with unit, supply center, and text placement created
+ - GUI changes:
+     + Order Input text box not shown when in modes that disallow order input
+     + Edit mode: dislodged units can only be added in Retreat phase
+     + Order sorting method changed to combo-box instead of buttons
+     + Eliminated "advance after resolve" option in prefs; resolution now always advances the turn.
+     + Eliminated "show MRU files" option in prefs; most-recently used files are always shown
+     + Edit mode: power selection box is now the correct size
+     + Confirmation required when saving or exporting over an existing file
+     + Main window now starts up larger
+     + More help available
+     + Filtering of URI and Email address input in Game and Player Information window
+     + File modified indicator more descriptive
+     + Nicer FileNotFound error
+     + Save/Open dialog improvements
+ - Bug Fixes:
+     + Fixed: Adjudicator sometimes created "Success" result for dislodged units
+     + Fixed: Bad dislodged position for Burgundy and Brest on Topo (Rectilinear) map
+     + Fixed: Cursors not correct in Batik versions after 1.5b4
+     + Fixed: Improper display of some dialogs at 800x600 resolution
+     + Fixed: Batik error dialogs not consistent with default error dialogs
+     + Fixed: Highlighting and focus bugs in text areas
+     + Fixed: Image export now sets background color
+     + Fixed: Exception when parsing non-adjustment orders during adjustment phase
+     + Fixed: Save game directory (in Preferences) not used when set
+     + Fixed: Scrolling bugs
+     + Fixed: Memory issues with mutiple opens (Fixed with latest Batik libraries)
+ - Core changes:
+     + Dynamic Order drawing support implemented
+     + post-Batik 1.5 integration
+     + Scroller code improvements and simplification
+     + ANT target descriptions added
+     + New Result classes and adjudicator support for these classes
+     + Extensive refactoring of rendering and order display GUI classes 
+     + Refactored StateWriter
+     + ResultWriter refactoring, now with i18n and CSS support
+     + StdAdjudicator checks that a power's order lists only contain orders for that power
+     + Levenshtein distances used to determine Province matches (when appropriate)
+     + Tool plugins now have their own directory     
+     + Selective control over which powers may enter and display orders
+     + GameSetup object controls game restoration
+     + Improved event creation, event handler cleanup
+     + Streamlined menu code and event handling
+     + ErrorDialogs are now logged
+     + MapPanel changes (lazy loading, fixed reload issues)
+     + TestParser / Convert removed from standard distribution
+     + Splash.java improvements to detect errors in end-user Java configurations
+     + General code cleanups and improvements
+     + Significant changes to scrolling code
+ - Miscellaneous:
+     + Version 1.0 can read version 0.95 saved games, however, version 0.95
+       is not be able to read saved games created from version 1.0.
+     + Issue: there may be a several-second delay after a map is loaded before
+       it is responsive. Internal processing is occuring during this time. This
+       has to do with the Batik library (which displays the map SVG graphics),
+       and will be worked around in a future version if possible.
+</pre>
+</body>
+</html>

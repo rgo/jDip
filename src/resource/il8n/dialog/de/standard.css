@@ -1,0 +1,46 @@
+/* standard stylesheet */
+body { font-family:arial, helvetica, sans-serif; font-size:12pt; }
+
+/* paragraphs (these have pre-spacing) */
+p { margin-top:6pt; font-family:helvetica, arial, sans-serif; font-size:12pt; margin-bottom:0pt;  }
+p.mono { font-family:monospace,courier; font-size:small; }
+p.big { font-size:14pt; }
+
+/* divisions: these have no top/bottom margins */
+div { margin-top:0pt; font-family:helvetica, arial, sans-serif; font-size:12pt; margin-bottom:0pt; }
+
+/* indented divisions */
+div.indent1cm 	{ margin-left:1cm; }
+div.indent05cm	{ margin-left:0.5cm; }
+div.indent15cm	{ margin-left:1.5cm; }
+div.indent2cm	{ margin-left:2.0cm; }
+div.indent25cm	{ margin-left:2.5cm; }
+div.indent3cm	{ margin-left:3.0cm; }
+
+div.ind1top05big	{ margin-left:1cm; margin-top:0.5cm; font-size:14pt; }
+div.indent2cmbig	{ margin-left:2cm; font-size:14pt; margin-top:0.15cm;}
+div.ind1big		{ margin-left:1cm; font-size:14pt; }
+
+div.center		{ text-align:center; }
+div.centerbig		{ text-align:center; font-size:14pt; }
+div.monosmall		{ font-family:monospace,courier; font-size:small; }
+
+/* simple header */
+div.header	{ font-weight:bold; }
+
+/* monospace division */
+div.mono { font-family:monospace,courier; font-size:small; }
+
+
+/* modified headers */
+h1 { font-family:arial, helvetica, sans-serif; }
+h2 { font-family:arial, helvetica, sans-serif; }
+h3 { font-family:arial, helvetica, sans-serif; }
+
+h1.centered { text-align:center; }
+h2.centered { text-align:center; }
+h3.centered { text-align:center; }
+
+/* table stuff */
+td { text-align:center; }
+

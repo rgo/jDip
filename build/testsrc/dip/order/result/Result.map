@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" href="./TimeResult.html" title="dip.order.result.TimeResult" alt="" coords="16,384,320,488"/>
-<area shape="rect" href="./Result.html" title="dip.order.result.Result" alt="" coords="183,157,487,309"/>
-<area shape="rect" href="./OrderResult.html" title="dip.order.result.OrderResult" alt="" coords="365,368,640,504"/>
-<area shape="rect" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="151,35,279,75"/>
-<area shape="rect" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Comparable.html" title="java.lang.Comparable" alt="" coords="324,11,585,99"/>
-</map>

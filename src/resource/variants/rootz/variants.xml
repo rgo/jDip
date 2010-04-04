@@ -1,0 +1,312 @@
+<?xml version="1.0"?>
+<!DOCTYPE VARIANTS [
+	<!ELEMENT VARIANTS (DESCRIPTION, MAP_DEFINITION+, VARIANT+)>
+	
+	<!ELEMENT DESCRIPTION (#PCDATA)>
+	
+	<!ELEMENT MAP_DEFINITION (DESCRIPTION?)>
+	<!ATTLIST MAP_DEFINITION 
+		id ID #REQUIRED
+		title CDATA #REQUIRED
+		URI CDATA #REQUIRED
+		thumbURI CDATA #REQUIRED
+		preferredUnitStyle CDATA #IMPLIED
+		>
+	
+	<!ELEMENT VARIANT (DESCRIPTION, MAP, RULEOPTIONS?, POWER+, STARTINGTIME, VICTORYCONDITIONS, SUPPLYCENTER+, INITIALSTATE*)>
+	<!ATTLIST VARIANT
+			name CDATA #REQUIRED
+			default (true|false) "false"
+			version CDATA #REQUIRED
+			aliases CDATA #IMPLIED
+			>
+			
+	<!ELEMENT MAP (MAP_GRAPHIC*)>
+	<!ATTLIST MAP adjacencyURI CDATA #REQUIRED>
+	
+	<!ELEMENT MAP_GRAPHIC EMPTY>
+	<!ATTLIST MAP_GRAPHIC
+			ref IDREF #REQUIRED
+			default (true|false) "false"
+			preferredUnitStyle CDATA #IMPLIED
+			>
+	
+	<!ELEMENT RULEOPTIONS (RULEOPTION+)>
+	<!ELEMENT RULEOPTION EMPTY>
+	<!ATTLIST RULEOPTION	name CDATA #REQUIRED
+				value CDATA #REQUIRED>
+	
+	<!ELEMENT POWER EMPTY>
+	<!ATTLIST POWER name CDATA #REQUIRED
+			active (true|false) "true"
+			adjective CDATA #REQUIRED
+			altnames CDATA #IMPLIED
+			>
+	
+	<!ELEMENT STARTINGTIME EMPTY>
+	<!ATTLIST STARTINGTIME 	turn CDATA #REQUIRED
+				allowBCYears (true|false) "false"
+				>
+	
+	<!ELEMENT VICTORYCONDITIONS (WINNING_SUPPLY_CENTERS?, YEARS_WITHOUT_SC_CAPTURE?, GAME_LENGTH?)>
+	
+	<!ELEMENT WINNING_SUPPLY_CENTERS EMPTY>
+	<!ATTLIST WINNING_SUPPLY_CENTERS value CDATA #REQUIRED>
+	
+	<!ELEMENT YEARS_WITHOUT_SC_CAPTURE EMPTY>
+	<!ATTLIST YEARS_WITHOUT_SC_CAPTURE value CDATA #REQUIRED>
+	
+	<!ELEMENT GAME_LENGTH EMPTY>
+	<!ATTLIST GAME_LENGTH value CDATA #REQUIRED>
+	
+	<!ELEMENT SUPPLYCENTER EMPTY>
+	<!ATTLIST SUPPLYCENTER 	province CDATA #REQUIRED
+				homepower CDATA "none"
+				owner CDATA "none"
+				>
+				
+	<!ELEMENT INITIALSTATE EMPTY>
+	<!ATTLIST INITIALSTATE 	province CDATA #REQUIRED
+				power CDATA #REQUIRED
+				unit CDATA #REQUIRED
+				unitcoast CDATA #IMPLIED
+				>
+]>
+<!-- NOTE: it's very important that the name of the file will be variants.xml, in all lower case -->
+<!-- NOTE: for CDATA escapes, no space between tag and bracket!! -->
+<VARIANTS>
+	<DESCRIPTION><![CDATA[Root Z variant.]]></DESCRIPTION>
+	
+	<MAP_DEFINITION id="rootz" title="Root Z" 
+		URI="rootz_map.svg" thumbURI="rootz_thumb.png" preferredUnitStyle="modern">
+		<DESCRIPTION>
+		The Root Z map. The second set of powers have the same colors
+		but different unit and province shading.
+		</DESCRIPTION>
+	</MAP_DEFINITION>
+	
+	<VARIANT name="Root Z" version="1.1" aliases="rootz">
+		<DESCRIPTION><![CDATA[
+		The idea for this variant comes from the mathematical concept of a cut in
+		the complex plane.  When applied to two diplomacy boards this creates a link
+		between the two boards.  Locally the cut appears to have no effect because a
+		unit "views" exactly the same provinces across the cut line as in standard
+		diplomacy, however a unit trying to move across the cut line moves from one
+		board to the other board.
+		<div style="margin-left:1cm;margin-right:1cm;">
+			<p><i>
+			In essence, the Root Z variant allows seven players to control a power on each
+			of two identical Diplomacy boards, with access between the two boards by
+			moving across any border of the border line running from Mar-Pie in the north
+			to Mao-Naf in the south.
+			</i></p>
+			<p><i>
+			The effect is quite different from simply imposing one board on top of
+			another, as in "parallel dimensions" where say, Bur1 accesses Bur2 and Bud1
+			accesses Bud2.  A better analogy might be an interlocking spiral (joined at
+			the ends).  As the designers say below, the talk of "two boards" is confusing:
+			this is really *one* board!
+			</i></p>
+		</div>
+		<div class="indent2cm">
+			<p>
+				Greg Tanner (EP Chapter Two, Issue 305, June 17, 1993)
+			<p>
+		</div>
+		
+		<h2 style="margin-bottom:0pt;">Rules</h2>
+		<ol>
+			<li>No player may control Austria/Russia or Russia/Turkey</li>
+			
+			<li>
+			Provinces on different board should be treated as distinct with respect
+			to movement.  Specifically, A Mar1-Pie2 does not stand out F Pie1-Mar2, as the
+			two actions take place in different sectors of the board.
+			</li>
+			
+			<li>
+			A center captured on board 1(2) by a unit built on board 2(1) is owned
+			by nation on board 2(1).
+			</li>
+			
+			<li>
+			Although there are 7 players there are 14 distinct powers in this game.
+			France1 can attack France2, France1 can dislodge France2 units and France1 can
+			capture France2 centres.  If your powers are Austria1 and England2 then
+			Austria1 can attack England2, can dislodge England2 units and capture England2
+			centres.
+			</li>
+			
+			<li>
+			The victory condition is 28 centres, owned by a combination of a
+			player's two powers.  If two players reach this target simultaneously the
+			player with the most centres wins.  If they have the same number of centres
+			then they share a two-way draw.
+			</li>
+		</ol>
+		
+		<h2>Restrictions on Powers</h2>
+		<div class="indent1cm">
+		While a single player controls two powers, some power combinations are not permitted.
+		These power combinations are not enforced by this program.
+		</div>
+		
+		<h2>14-Player Variant</h2>
+		<div class="indent1cm">
+		When playing with 14 players, be sure to reduce the number of Supply Centers
+		required for victory to 18.
+		</div>
+		
+		<h2>Changes and Notes</h2>
+		<div class="indent1cm">
+		This version is not compatible with Judge histories due to some slight 
+		differences in the power naming scheme.
+		</div>
+		<p style="margin-top:21pt;">
+			Authors: Phil Creed, Tom Hyer, and Mark Nelson<br>
+			Electronic Map by Martin Asal
+		</p>]]></DESCRIPTION> 
+		<MAP adjacencyURI="rootz_adjacency.xml">
+			<MAP_GRAPHIC ref="rootz" default="true" />
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY" />
+		</RULEOPTIONS>
+		<POWER name="Austria1" active="true" adjective="1Austrian"/> 
+		<POWER name="England1" altnames="Britain1" active="true" adjective="1English"/> 
+		<POWER name="France1" active="true" adjective="1French"/> 
+		<POWER name="Germany1" active="true" adjective="1German"/> 
+		<POWER name="Italy1" active="true" adjective="1Italian"/> 
+		<POWER name="Russia1" active="true" adjective="1Russian"/> 
+		<POWER name="Turkey1" active="true" adjective="1Turkish"/> 
+		<POWER name="Austria2" active="true" adjective="2Austrian"/> 
+		<POWER name="England2" altnames="Britain2" active="true" adjective="2English"/> 
+		<POWER name="France2" active="true" adjective="2French"/> 
+		<POWER name="Germany2" active="true" adjective="2German"/> 
+		<POWER name="Italy2" active="true" adjective="2Italian"/> 
+		<POWER name="Russia2" active="true" adjective="2Russian"/> 
+		<POWER name="Turkey2" active="true" adjective="2Turkish"/> 
+		<STARTINGTIME turn="Spring, 1901, Movement" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="28" />
+		</VICTORYCONDITIONS>
+	 	<!-- neutral SC (24 total; boards 1 and 2) -->
+		<SUPPLYCENTER province="bel1"/>
+		<SUPPLYCENTER province="bel2"/>
+		<SUPPLYCENTER province="bul1"/>
+		<SUPPLYCENTER province="bul2"/>
+		<SUPPLYCENTER province="den1"/>
+		<SUPPLYCENTER province="den2"/>
+		<SUPPLYCENTER province="gre1"/>
+		<SUPPLYCENTER province="gre2"/>
+		<SUPPLYCENTER province="hol1"/>
+		<SUPPLYCENTER province="hol2"/>
+		<SUPPLYCENTER province="nor1"/>
+		<SUPPLYCENTER province="nor2"/>
+		<SUPPLYCENTER province="por1"/>
+		<SUPPLYCENTER province="por2"/>
+		<SUPPLYCENTER province="rum1"/>
+		<SUPPLYCENTER province="rum2"/>
+		<SUPPLYCENTER province="ser1"/>
+		<SUPPLYCENTER province="ser2"/>
+		<SUPPLYCENTER province="spa1"/>
+		<SUPPLYCENTER province="spa2"/>
+		<SUPPLYCENTER province="swe1"/>
+		<SUPPLYCENTER province="swe2"/>
+		<SUPPLYCENTER province="tun1"/>
+		<SUPPLYCENTER province="tun2"/>
+		<!-- owned SC (board 1) -->                      
+		<SUPPLYCENTER homepower="Austria1" owner="Austria1" province="bud1"/>
+		<SUPPLYCENTER homepower="Austria1" owner="Austria1" province="tri1"/>
+		<SUPPLYCENTER homepower="Austria1" owner="Austria1" province="vie1"/>
+		<SUPPLYCENTER homepower="England1" owner="England1" province="edi1"/>
+		<SUPPLYCENTER homepower="England1" owner="England1" province="lon1"/>
+		<SUPPLYCENTER homepower="England1" owner="England1" province="lvp1"/>
+		<SUPPLYCENTER homepower="France1"  owner="France1"  province="bre1"/>
+		<SUPPLYCENTER homepower="France1"  owner="France1"  province="mar1"/>
+		<SUPPLYCENTER homepower="France1"  owner="France1"  province="par1"/>
+		<SUPPLYCENTER homepower="germany1"  owner="germany1"  province="ber1"/>
+		<SUPPLYCENTER homepower="germany1"  owner="germany1"  province="kie1"/>
+		<SUPPLYCENTER homepower="germany1"  owner="germany1"  province="mun1"/>
+		<SUPPLYCENTER homepower="Italy1"   owner="Italy1"   province="nap1"/>
+		<SUPPLYCENTER homepower="Italy1"   owner="Italy1"   province="rom1"/>
+		<SUPPLYCENTER homepower="Italy1"   owner="Italy1"   province="ven1"/>
+		<SUPPLYCENTER homepower="Russia1"  owner="Russia1"  province="mos1"/>
+		<SUPPLYCENTER homepower="Russia1"  owner="Russia1"  province="sev1"/>
+		<SUPPLYCENTER homepower="Russia1"  owner="Russia1"  province="stp1"/>
+		<SUPPLYCENTER homepower="Russia1"  owner="Russia1"  province="war1"/>
+		<SUPPLYCENTER homepower="Turkey1"  owner="Turkey1"  province="ank1"/>
+		<SUPPLYCENTER homepower="Turkey1"  owner="Turkey1"  province="con1"/>
+		<SUPPLYCENTER homepower="Turkey1"  owner="Turkey1"  province="smy1"/>
+		<!-- owned SC (board 2) -->
+		<SUPPLYCENTER homepower="Austria2" owner="Austria2" province="bud2"/>
+		<SUPPLYCENTER homepower="Austria2" owner="Austria2" province="tri2"/>
+		<SUPPLYCENTER homepower="Austria2" owner="Austria2" province="vie2"/>
+		<SUPPLYCENTER homepower="England2" owner="England2" province="edi2"/>
+		<SUPPLYCENTER homepower="England2" owner="England2" province="lon2"/>
+		<SUPPLYCENTER homepower="England2" owner="England2" province="lvp2"/>
+		<SUPPLYCENTER homepower="France2"  owner="France2"  province="bre2"/>
+		<SUPPLYCENTER homepower="France2"  owner="France2"  province="mar2"/>
+		<SUPPLYCENTER homepower="France2"  owner="France2"  province="par2"/>
+		<SUPPLYCENTER homepower="germany2"  owner="germany2"  province="ber2"/>
+		<SUPPLYCENTER homepower="germany2"  owner="germany2"  province="kie2"/>
+		<SUPPLYCENTER homepower="germany2"  owner="germany2"  province="mun2"/>
+		<SUPPLYCENTER homepower="Italy2"   owner="Italy2"   province="nap2"/>
+		<SUPPLYCENTER homepower="Italy2"   owner="Italy2"   province="rom2"/>
+		<SUPPLYCENTER homepower="Italy2"   owner="Italy2"   province="ven2"/>
+		<SUPPLYCENTER homepower="Russia2"  owner="Russia2"  province="mos2"/>
+		<SUPPLYCENTER homepower="Russia2"  owner="Russia2"  province="sev2"/>
+		<SUPPLYCENTER homepower="Russia2"  owner="Russia2"  province="stp2"/>
+		<SUPPLYCENTER homepower="Russia2"  owner="Russia2"  province="war2"/>
+		<SUPPLYCENTER homepower="Turkey2"  owner="Turkey2"  province="ank2"/>
+		<SUPPLYCENTER homepower="Turkey2"  owner="Turkey2"  province="con2"/>
+		<SUPPLYCENTER homepower="Turkey2"  owner="Turkey2"  province="smy2"/>
+		<!-- starting units (board 1) -->
+		<INITIALSTATE province="ank1" power="turkey1" unit="fleet" />
+		<INITIALSTATE province="ber1" power="germany1" unit="army" />
+		<INITIALSTATE province="bre1" power="france1" unit="fleet" />
+		<INITIALSTATE province="bud1" power="austria1" unit="army" />
+		<INITIALSTATE province="con1" power="turkey1" unit="army" />
+		<INITIALSTATE province="edi1" power="england1" unit="fleet" />
+		<INITIALSTATE province="kie1" power="germany1" unit="fleet" />
+		<INITIALSTATE province="lvp1" power="england1" unit="army" />
+		<INITIALSTATE province="lon1" power="england1" unit="fleet" />
+		<INITIALSTATE province="mar1" power="france1" unit="army" />
+		<INITIALSTATE province="mos1" power="russia1" unit="army" />
+		<INITIALSTATE province="mun1" power="germany1" unit="army" />
+		<INITIALSTATE province="nap1" power="italy1" unit="fleet" />
+		<INITIALSTATE province="par1" power="france1" unit="army" />
+		<INITIALSTATE province="rom1" power="italy1" unit="army" />
+		<INITIALSTATE province="sev1" power="russia1" unit="fleet" />
+		<INITIALSTATE province="smy1" power="turkey1" unit="army" />
+		<INITIALSTATE province="stp1" power="russia1" unit="fleet" unitcoast="sc" />
+		<INITIALSTATE province="tri1" power="austria1" unit="fleet" />
+		<INITIALSTATE province="ven1" power="italy1" unit="army" />
+		<INITIALSTATE province="vie1" power="austria1" unit="army" />
+		<INITIALSTATE province="war1" power="russia1" unit="army" />
+		<!-- starting units (board 2) -->
+		<INITIALSTATE province="ank2" power="turkey2" unit="fleet" />
+		<INITIALSTATE province="ber2" power="germany2" unit="army" />
+		<INITIALSTATE province="bre2" power="france2" unit="fleet" />
+		<INITIALSTATE province="bud2" power="austria2" unit="army" />
+		<INITIALSTATE province="con2" power="turkey2" unit="army" />
+		<INITIALSTATE province="edi2" power="england2" unit="fleet" />
+		<INITIALSTATE province="kie2" power="germany2" unit="fleet" />
+		<INITIALSTATE province="lvp2" power="england2" unit="army" />
+		<INITIALSTATE province="lon2" power="england2" unit="fleet" />
+		<INITIALSTATE province="mar2" power="france2" unit="army" />
+		<INITIALSTATE province="mos2" power="russia2" unit="army" />
+		<INITIALSTATE province="mun2" power="germany2" unit="army" />
+		<INITIALSTATE province="nap2" power="italy2" unit="fleet" />
+		<INITIALSTATE province="par2" power="france2" unit="army" />
+		<INITIALSTATE province="rom2" power="italy2" unit="army" />
+		<INITIALSTATE province="sev2" power="russia2" unit="fleet" />
+		<INITIALSTATE province="smy2" power="turkey2" unit="army" />
+		<INITIALSTATE province="stp2" power="russia2" unit="fleet" unitcoast="sc" />
+		<INITIALSTATE province="tri2" power="austria2" unit="fleet" />
+		<INITIALSTATE province="ven2" power="italy2" unit="army" />
+		<INITIALSTATE province="vie2" power="austria2" unit="army" />
+		<INITIALSTATE province="war2" power="russia2" unit="army" />
+	</VARIANT>
+</VARIANTS>
+

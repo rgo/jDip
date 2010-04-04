@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 2.0//EN" "http://java.sun.com/products/javahelp/map_2_0.dtd">
+	
+<map version="2.0">
+	<mapID target="cornericon" url="images/frame_corner.gif" />
+	
+	<mapID target="Welcome" url="welcome.htm" />                                                      
+	
+	<mapID target="ver168_htm" url="versions/ver168.htm"/>
+	<mapID target="ver167_htm" url="versions/ver167.htm"/>
+	<mapID target="ver160_htm" url="versions/ver160.htm"/>
+	<mapID target="ver151_htm" url="versions/ver151.htm"/>
+	<mapID target="ver150_htm" url="versions/ver150.htm"/>
+	<mapID target="ver100_htm" url="versions/ver100.htm"/>
+	<mapID target="ver095_htm" url="versions/ver095.htm"/>
+	<mapID target="ver090_htm" url="versions/ver090.htm"/>
+	<mapID target="ver086_htm" url="versions/ver086.htm"/>
+	<mapID target="ver085_htm" url="versions/ver085.htm"/>
+	<mapID target="ver083_htm" url="versions/ver083.htm"/>
+	<mapID target="ver080_htm" url="versions/ver080.htm"/>
+	<mapID target="ver075_htm" url="versions/ver075.htm"/>
+	
+	<mapID target="what_s_new_htm" url="what_s_new.htm" />
+	<mapID target="gnu_general_public_license_htm" url="gnu_general_public_license.htm" />
+	
+	<mapID target="The_Interface" url="using/the_interface.htm" />
+	<mapID target="import_floc_htm" url="using/import_floc.htm"/>
+	<mapID target="import_judge_htm" url="using/import_judge.htm"/>
+	<mapID target="Entering_Orders" url="using/enteringorders.htm" />
+	<mapID target="Starting_A_New_Game" url="using/starting_a_new_game.htm" />
+	<mapID target="Printing" url="using/printing.htm" />
+	<mapID target="Preferences" url="using/preferences.htm" />
+	<mapID target="StartF2F" url="using/startF2F.htm" />
+	<mapID target="Metadata" url="using/metadata.htm" />
+	<mapID target="Multiorder" url="using/multiorder.htm" />
+	<mapID target="Reports_Status" url="using/reports_status.htm" />
+	<mapID target="Reports_Results" url="using/reports_results.htm" />
+	<mapID target="History_Select" url="using/history_select.htm" />
+	<mapID target="Order_Checking" url="using/order_checking.htm" />
+	<mapID target="using_menus_file_htm" url="using/menus/file.htm" />
+	<mapID target="using_menus_edit_htm" url="using/menus/edit.htm" />
+	<mapID target="using_menus_orders_htm" url="using/menus/orders.htm" />
+	<mapID target="using_menus_history_htm" url="using/menus/history.htm" />
+	<mapID target="using_menus_view_htm" url="using/menus/view.htm" />
+	<mapID target="using_menus_reports_htm" url="using/menus/reports.htm" />
+	<mapID target="using_menus_help_htm" url="using/menus/help.htm" />
+	<mapID target="faq_general_htm" url="faq/general.htm" />
+	<mapID target="troubleshooting_troubleshootinggeneral_htm" url="troubleshooting/troubleshootinggeneral.htm" />
+	<mapID target="cmd_options_htm" url="advanced/cmd_options.htm" />
+	<mapID target="save_game_format_htm" url="advanced/save_game_format.htm" />
+	<mapID target="advanced_creating_variant_plugins_htm" url="advanced/creating_variant_plugins.htm" />
+	<mapID target="advanced_variant_plugin_file_structure_htm" url="advanced/variant_plugin_file_structure.htm" />
+	<mapID target="advanced_variant_xml_file_format_htm" url="advanced/variant_xml_file_format.htm" />
+	<mapID target="adjacency_xml_file_format_htm" url="advanced/adjacency_xml_file_format.htm" />
+	<mapID target="advanced_svg_map_file_format_htm" url="advanced/svg_map_file_format.htm" />
+</map>

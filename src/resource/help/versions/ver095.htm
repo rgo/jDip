@@ -1,0 +1,106 @@
+<html>
+<head>
+ <title>Version History: 0.95</title>
+ <link rel="StyleSheet" href="../application_help.css">
+</head>
+<body>
+<h1>Version History: 0.95</h1>
+<h2>jDip version 0.95 (May, 2003)</h2>
+<pre>
+    - New Features:
+        + Drag-and-Drop can be used to enter orders (Colin Jacobs)
+        + Edit mode improvements (Colin Jacobs)
+        + Animate mode allows turn-by-turn animation of the map
+        + Influence setting in View menu shows all occupied/last-occupied provinces by power
+        + Order format (e.g., abbreviations of provinces, coasts, etc.) can be
+                set and adjusted in Preferences
+        + Help System added (F1 to get help generally, or about specific windows).
+                Note that Help text is not yet complete, and not all windows
+                have specific help.
+        + New variants (with complete, detailed maps)
+                + SailHo! Crowded
+                + Hundred3.1 [H31]
+                + Hundred3.2 [H32]
+        + New variants (with very spartan grid-maps) added:
+                + Asia
+                + Modern (with and without Wing units)
+        + A new type of unit, the Wing unit, is now optionally available for any variant.
+        + Games now saved as compressed XML, and incompatible with previous versions (sorry!)
+        + Improved order parsing
+                + Some common misspellings added
+                + Even more variations of orders are now legally accepted
+        + improved command-line parsing and new command-line options (such 
+                as enabling logging, getting the version, and setting the variant 
+                plugin path)
+        + Java Webstart is now supported
+        + Waive orders are no longer supported. 
+        + Better support for Mac OS X-specific features, which have not yet
+                been tested. These may be disabled via the "-noosx" command line parameter.
+                Comments from Mac users are very much desired!
+        + Save Game and Variant file format documentation
+        + Started scattered localization in French. Note: I barely remember any French.
+    - GUI changes / improvements:
+        + "Reports" menu added; report items were previously contained under "View" menu.
+        + Removed "Validate XML files" from preferences (could cause buggy behavior
+                when enabled); it is now a command-line option instead.
+        + Improved text rendering quality in many places.
+        + Improved error dialogs (text and formatting)
+        + Shortcut changes (control R = resolve, control E = results)
+        + New startup splash screen (Joeri Clayes)
+    - Bug Fixes:
+        + Fixed: TestSuite now uses "variant" directory, so it actually works
+        + Fixed: Remove orders drawn in wrong area
+        + Fixed: Retreat orders drawn in wrong area
+        + Fixed: No text displayed in game-end dialog
+        + Fixed: Formatting and display issues in Status report
+        + Fixed: Remove order results displayed negative units to remove
+        + Fixed: View settings (e.g., Show Units) were not disabled during
+                 map loading, and could result in an inconsistent menu / actual 
+                 drawing state if selected.
+        + Fixed: If a required variant was missing, there was a program
+                 error. Now, an informative error message is displayed.
+        + Fixed: Handling of uncaught AWT exceptions, for easier end-user debugging
+        + Fixed: 1898 now starts in Spring, 1898 with fixed positions
+        + Fixed: SVG private XML namespace well-formedness issues
+        + Fixed: If no move orders (or no units), adjudicator would emit paradox
+                 messages (although no paradox existed).
+        + Fixed: supply center for Portugal wasn't drawn on rectilinear (topological) map
+        + Fixed: Confusing error message about DefineState orders
+        + Fixed: Creating a Dislodged unit on the first turn caused an exception
+        + Fixed: Occasional display bugs when entering/exiting Highlight Unordered units mode 
+    - Core changes:
+        + Multiple Performance enhancements to core adjudication routines,
+                for optimal speed in automated adjudicators. This results
+                in a 15-30% performance increase from version 0.85, the 
+                previously fastest version. This release will now become 
+                the new baseline performance release.
+        + JUnit tests added for non-GUI code (Mike Rosseel)
+        + Much faster Position class, and position class API changes
+        + New field and changes to Position and Position.ProvinceData classes
+        + Province class API changes
+        + Improved Path.getMinPath() algorithm
+        + Phase class API changes to support YearType
+        + YearType class added to Phase (to support negative, or "BC", years)
+        + Reduced adjudicator String creation
+        + Improved API documentation
+        + Assertions enabled in ANT "Run" target
+        + dip.misc.Convert to help convert Judge files to jDip XML adjacency format
+        + dip.misc.Log class can now log to a file in addition to stdout
+        + jcmdline (jcmdline.sf.net) is now used to parse command line options
+        + New Coast constant (Coast.WING, aka Coast.TOUCHING) added
+        + Coast.TOUCHING (Coast.WING) created automatically from adjacency graph
+        + Coast.TOUCHING used for for Path.getMinPath() and Province.isTouching()
+        + New Unit.Type: WING
+        + New validation tests added (wing.txt, 19 cases) for Wing units
+        + New validation test harness for OrderParser created
+        + Utils.SimpleFileFilter is now in its own class (dip.misc.SimpleFileFilter)
+        + CSS stylesheets can be--and now are--used in JEditorPane instances
+        + Many new ANT targets: webstart, test, performance, and junit targets
+    - Miscellaneous:
+        + File-format incompatibility with all prevous versions. Games are now
+          saved as gzip compressed XML, instead of a proprietary binary format.
+          All future versions will also save files as compressed XML, and
+          cross-version compatibility should be considerably improved.
+</pre>
+</body>
+</html>
