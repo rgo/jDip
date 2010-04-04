@@ -1,0 +1,37 @@
+<!DOCTYPE PROVINCES [
+	<!ELEMENT PROVINCES (BORDER_DEFINITIONS?, PROVINCE+)>
+	
+	<!-- ===================================================================== -->
+	<!ELEMENT BORDER_DEFINITIONS (BORDER+)>
+	
+	<!ELEMENT BORDER EMPTY>
+	<!ATTLIST BORDER	
+				id ID #REQUIRED
+				description CDATA #REQUIRED
+				unitTypes CDATA #IMPLIED
+				from CDATA #IMPLIED
+				orderTypes CDATA #IMPLIED
+				baseMoveModifier CDATA #IMPLIED
+				prohibited CDATA #REQUIRED
+				>
+				
+	<!-- ===================================================================== -->
+	<!ELEMENT PROVINCE (UNIQUENAME*, ADJACENCY+)>
+	<!ATTLIST PROVINCE 	
+				shortname CDATA #REQUIRED
+				fullname CDATA #REQUIRED
+				isConvoyableCoast (true|false) "false"
+				borders IDREFS #IMPLIED
+				>	
+	
+				
+	<!ELEMENT UNIQUENAME EMPTY>
+	<!ATTLIST UNIQUENAME name CDATA #REQUIRED>
+	
+	<!ELEMENT ADJACENCY EMPTY>
+	<!ATTLIST ADJACENCY 	
+				type (mv|xc|nc|sc|wc|ec) "mv"
+				refs CDATA #REQUIRED
+				>
+]>
+

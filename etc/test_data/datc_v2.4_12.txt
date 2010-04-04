@@ -1,0 +1,98 @@
+#############################################################
+#
+#	DATC (Diplomacy Adjudicator Test Cases) Test Cases
+#	DATC Version 2.4
+#	SECTION 12
+#	1898 VARIANT
+#
+# 	The DATC is copyright Lucas B. Kruijswijk
+#	http://web.inter.nl.net/users/L.B.Kruijswijk/
+#
+#############################################################
+
+#############################################################
+#	
+# Set the Variant for all cases.
+#
+# IMPORTANT NOTE:
+# 	These test cases use the 1898 variant.
+#
+#############################################################
+VARIANT_ALL DATC_1898
+
+# Build fails until Home SC captured
+# 
+# jDip note:
+# NOTE: The adjudicator does not consider any builds to be valid here, 
+# since no home supply centers exist (thus there are no builds). 
+# This order fails, because it is ignored by the adjudicator (which 
+# states the reason why)
+#
+CASE 12.A [Home supply center must be captured]
+PRESTATE_SETPHASE Fall 1901, Adjustment
+PRESTATE_SUPPLYCENTER_OWNERS
+	Germany: A War		# owned non-home supply center
+	Germany: A Ber		# owned home supply center
+PRESTATE
+	Germany: A Ber		# a unit in home SC
+ORDERS
+	Germany: Build A Mun	# fails; Germany does not yet control this SC
+POSTSTATE
+	Germany: A Ber
+END
+
+
+# Builds are restricted to the home supply centers and not to the starting positions of the units.
+CASE 12.B [Build on non-starting position allowed]
+PRESTATE_SETPHASE Fall 1901, Adjustment
+PRESTATE_SUPPLYCENTER_OWNERS
+	Germany: A War		# owned non-home supply center
+	Germany: A Mun		# owned home supply center
+PRESTATE
+	Germany: A War		# a unit in non-home SC
+ORDERS
+	Germany: Build A Mun	# succeeds
+POSTSTATE
+	Germany: A War
+	Germany: A Mun		# new unit built
+END
+
+
+# The notion of home supply center still exists. 
+# That means that builds in other supply centers are not allowed.
+#
+# NOTE: this will succeed if the order is "Build A Ber" instead.
+# Also note, that if in PRESTATE a unit is in Berlin, no builds will
+# be calculated (since the adjustment calculator knows that Germany
+# has no home-supply centers that are unoccupied).
+#
+CASE 12.C [Can only build in Home supply centers]
+PRESTATE_SETPHASE Fall 1901, Adjustment
+PRESTATE_SUPPLYCENTER_OWNERS
+	Germany: A War		# owned non-home supply center
+	Germany: A Ber		# owned home supply center
+PRESTATE
+	Germany: A Pru		# a unit NOT in a supply center.
+ORDERS
+	Germany: Build A War	# fails; Warsaw is not a home SC
+POSTSTATE
+	Germany: A Pru
+END
+
+# When a unit has to be removed according to the civil disorder rules, 
+# then the distance should still be calculated from the home supply centers 
+# and not to the owned or starting supply centers.
+CASE 12.D [Civil Disorder based on Home supply centers]
+PRESTATE_SETPHASE Fall 1901, Adjustment
+PRESTATE_SUPPLYCENTER_OWNERS
+	Russia: A stp
+PRESTATE
+	Russia: F Black Sea
+	Russia: F Norwegian Sea
+ORDERS
+	# ** no orders given ** [Civil disorder]
+POSTSTATE
+	Russia: F Black Sea 
+	# F NWG removed, as it is farther from supply center at stp
+END
+

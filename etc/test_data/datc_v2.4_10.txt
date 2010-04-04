@@ -1,0 +1,264 @@
+#############################################################
+#
+#	DATC (Diplomacy Adjudicator Test Cases)
+#	DATC Version 2.4
+#	SECTION 10
+#	TEST CASES
+#
+# 	The DATC is copyright Lucas B. Kruijswijk
+#	http://web.inter.nl.net/users/L.B.Kruijswijk/
+#
+#############################################################
+
+#############################################################
+#	
+# Set the Variant for all cases.
+#
+# IMPORTANT NOTE:
+# 	These test cases use the Loeb9 variant.
+#
+#############################################################
+VARIANT_ALL DATC_Loeb9
+
+#############################################################
+
+# DIFFICULT PASSABLE BORDER VARIANT
+
+# If an army is passing a difficult passable border without any support, then it can not cut support.
+CASE 10.A [SUPPORT CAN NOT BE CUT OVER DIFFICULT PASSABLE BORDER]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Italy: A Naples
+	Italy: F Tyrrhenian
+	Turkey: F Sicily
+	Turkey: F Ionian Sea
+ORDERS
+	Italy: A Naples - Sicily			# Move does not cut support due to border rule
+	Italy: F Tyrrhenian Sea Hold		# Should dislodge
+	Turkey: F Sicily Supports F Ionian Sea - Tyrrhenian Sea
+	Turkey: F Ionian Sea - Tyrrhenian Sea
+POSTSTATE
+	Turkey: F Tyrrhenian Sea
+	Turkey: F Sicily
+	Italy: A Naples
+POSTSTATE_DISLODGED
+	Italy: F Tyrrhenian Sea
+END
+
+# If the move receives support, then it can cut support.
+CASE 10.B [MOVE OVER DIFFICULT PASSABLE BORDER WITH SUPPORTS CUT SUPPORTS]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Italy: A Naples
+	Italy: F Ionian Sea
+	Italy: F Tunis
+	Italy: F Rome
+	
+	Spain: F Sicily
+	Spain: F Tyrrhenian Sea
+ORDERS
+	Italy: A Naples - Sicily
+	Italy: F Ionian Sea Supports A Naples - Sicily
+	Italy: F Tunis Supports F Rome - Tyrrhenian Sea
+	Italy: F Rome - Tyrrhenian Sea
+	
+	Spain: F Sicily Supports F Tyrrhenian Sea
+	Spain: F Tyrrhenian Sea Hold
+POSTSTATE
+	Italy: A Naples
+	Italy: F Ionian Sea
+	Italy: F Tunis
+	Italy: F Tyrrhenian Sea
+	
+	Spain: F Sicily
+POSTSTATE_DISLODGED
+	Spain: F Tyrrhenian Sea
+END
+
+# A move over difficult passable border can not prevent another unit to move into the sector.
+CASE 10.C [MOVE OVER DIFFICULT PASSABLE BORDER CAN NOT BOUNCE WITH NORMAL MOVE]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Spain: A Cordoba
+	
+	Italy: A Tunis
+ORDERS
+	Spain: A Cordoba - North Africa
+	Italy: A Tunis - North Africa
+	
+POSTSTATE
+	Spain: A Cordoba
+	
+	Italy: A North Africa
+END
+
+# If the border is difficult to pass, it is impossible to give support over this border.
+CASE 10.E [SUPPORT CAN NOT BE GIVEN OVER DIFFICULT PASSABLE BORDER]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Italy: A Naples
+	Italy: F Tyrrhenian Sea
+	
+	Spain: F Sicily
+ORDERS
+	Italy: A Naples Supports F Tyrrhenian Sea - Sicily
+	Italy: F Tyrrhenian Sea - Sicily
+	
+	Spain: F Sicily Hold
+	
+POSTSTATE_SAME
+END
+
+
+# Adjudicator may choke on a circular movement when one of the borders is difficult passable.
+CASE 10.H [CIRCULAR MOVEMENT WITH DIFFICULT PASSABLE BORDER]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Italy: F Sicily
+	Italy: F Tyrrhenian Sea
+	Italy: A Naples
+ORDERS
+	Italy: F Sicily - Tyrrhenian Sea
+	Italy: F Tyrrhenian Sea - Naples
+	Italy: A Naples - Sicily
+POSTSTATE
+	Italy: F Tyrrhenian Sea
+	Italy: F Naples
+	Italy: A Sicily
+END
+
+# Adjudicator may choke on a circular movement when one of the borders is difficult passable and the unit using this border is bounced.
+CASE 10.I [CIRCULAR MOVEMENT WITH BOUNCE]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Italy: F Sicily
+	Italy: F Tyrrhenian Sea
+	Italy: A Naples
+	
+	Turkey: F Ionian Sea
+ORDERS
+	Italy: F Sicily - Tyrrhenian Sea
+	Italy: F Tyrrhenian Sea - Naples
+	Italy: A Naples - Sicily
+	
+	Turkey: F Ionian Sea - Sicily
+POSTSTATE_SAME
+END
+
+# When a circular movement is attacked by an army over a difficult passable order, the circular movement will just go on.
+CASE 10.J [CIRCULAR MOVEMENT CAN NOT BE DISRUPTED BY ARMY USING DIFFICULT PASSABLE BORDER]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Italy: A North Africa
+	Italy: F Western Mediterranean
+	Italy: F Tunis
+	
+	Spain: A Cordoba
+ORDERS
+	Italy: A North Africa - Tunis
+	Italy: F Western Mediterranean - North Africa
+	Italy: F Tunis - Western Mediterranean
+	
+	Spain: A Cordoba - North Africa
+POSTSTATE
+	Italy: A Tunis
+	Italy: F North Africa
+	Italy: F Western Mediterranean
+	
+	Spain: A Cordoba
+END
+
+# A difficult passable border is also difficult passable during retreat. That means that when two armies retreat to the same sector and one of the armies is using a difficult passable border, the army using the normal border has a successful retreat.
+CASE 10.K [DIFFICULT PASSABLE BORDER DURING RETREAT]
+PRESTATE_SETPHASE Fall 1901, Retreat
+PRESTATE_DISLODGED
+	Italy: A Apulia
+	Italy: F Ionian Sea
+Orders
+	Italy: A Apulia - Sicily
+	Italy: F Ionian Sea - Sicily
+POSTSTATE
+	Italy: F Sicily
+
+
+
+# A difficult passable border can be by-passed by a convoy.
+CASE 10.M [USING CONVOY INSTEAD OF DIFFICULT PASSABLE BORDER]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Italy: A Naples
+	Italy: F Tyrrhenian Sea
+	Italy: F Ionian Sea
+	
+	Turkey: A Sicily
+ORDERS
+	Italy: A Naples - Sicily by Convoy
+	Italy: F Tyrrhenian Sea Convoys A Naples - Sicily
+	Italy: F Ionian Sea Supports A Naples - Sicily
+	
+	Turkey: A Sicily Hold
+POSTSTATE
+	Italy: A Sicily
+	Italy: F Tyrrhenian Sea
+	Italy: F Ionian Sea
+POSTSTATE_DISLODGED
+	Turkey: A Sicily
+END
+
+# If a difficult passable border is by-passed by a convoy, then it cuts support.
+CASE 10.N [USING CONVOY INSTEAD OF DIFFICULT PASSABLE BORDER CUTS SUPPORT]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Italy: A Naples
+	Italy: F Tyrrhenian Sea
+	Italy: F Ionian Sea
+	
+	Turkey: F Sicily
+	Turkey:	F Aegean Sea
+ORDERS
+	Italy: A Naples - Sicily by Convoy
+	Italy: F Tyrrhenian Sea Convoys A Naples - Sicily
+	Italy: F Ionian Sea Hold
+	
+	Turkey: F Sicily Supports F Aegean Sea - Ionian Sea
+	Turkey: F Aegean Sea - Ionian Sea
+POSTSTATE
+	Italy: A Naples
+	Italy: F Tyrrhenian Sea
+	Italy: F Ionian Sea
+	
+	Turkey: F Sicily
+	Turkey:	F Aegean Sea
+END
+
+# A movement over a difficult passable border does not cut support. But what if the movement was supported by an army of the same power of the army that is attacked?
+CASE 10.O [SUPPORT ON ATTACK ON OWN ARMY OVER DIFFICULT PASSABLE BORDER DOES NOT CUT SUPPORT]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Italy: A Naples
+	Italy: F Ionian Sea
+	
+	Spain: F Tyrrhenian Sea
+	Spain: F Sicily
+	
+	Turkey: F Greece
+	Turkey: F Aegean Sea
+ORDERS
+	Italy: A Naples - Sicily
+	Italy: F Ionian Sea Hold
+	
+	Spain: F Tyrrhenian Sea Supports A Naples - Sicily
+	Spain: F Sicily Supports F Ionian Sea
+	
+	Turkey: F Greece Supports F Aegean Sea - Ionian Sea
+	Turkey: F Aegean Sea - Ionian Sea
+POSTSTATE
+	Italy: A Naples
+	Italy: F Ionian Sea
+	
+	Spain: F Tyrrhenian Sea
+	Spain: F Sicily
+	
+	Turkey: F Greece
+	Turkey: F Aegean Sea
+END

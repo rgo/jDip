@@ -1,0 +1,23 @@
+body { font-family:arial; background-color:#ffffff;  }
+h1 { font-weight:bold; font-family:verdana, sans-serif; color:#5151ff; margin-top:6pt; margin-bottom:5.5pt; font-size:16pt;  }
+li.kadov-h1 { font-weight:bold; font-family:verdana, sans-serif; color:#5151ff; font-size:10pt;  }
+h2 { font-weight:bold; color:#a82384; margin-top:9pt; margin-bottom:6pt; font-family:verdana, sans-serif; font-size:14pt;  }
+li.kadov-h2 { font-weight:bold; color:#a82384; font-family:verdana, sans-serif; font-size:12pt;  }
+h3 { font-weight:bold; color:#4848ff; margin-top:9pt; margin-bottom:6pt; font-size:12pt;  }
+li.kadov-h3 { font-weight:bold; color:#4848ff; font-size:12pt;  }
+h4 { font-weight:bold; font-size:12pt;  }
+li.kadov-h4 { font-weight:bold; font-size:12pt;  }
+p { margin-top:0pt; font-family:verdana, sans-serif; font-size:12pt; margin-bottom:6pt;  }
+li.kadov-p { font-family:verdana, sans-serif; font-size:12pt;  }
+span.expandtext { color:#000000; font-weight:normal; font-style:normal;  }
+span.glosstext { font-style:italic; font-weight:normal; color:#0000ff;  }
+ol { margin-top:0px; margin-bottom:0px;  }
+ul { margin-top:0px; margin-bottom:0px;  }
+p.dtd-el { font-weight:bold; background-color:#bbaabb; margin-left:0pt;}
+p.dtd-el-desc { margin-left:36pt; }
+p.dtd-el-cont { margin-left:36pt; font-style:italic; }
+p.dtd-attr 	{ font-style:italic; margin-left:36pt; background-color:#f0f8ff; }
+p.dtd-attr-name { font-weight:bold; margin-left:72pt; margin-bottom:3pt; }
+p.dtd-attr-desc	{ margin-left:108pt; margin-top:0pt; }
+pre { font-size:12pt; margin-top: 0pt; margin-bottom:0pt }
+

@@ -1,0 +1,432 @@
+<html>
+<head>
+ <title>Variant XML File Format</title>
+ <link rel="StyleSheet" href="../application_help.css">
+</head>
+<body>
+ <h1>Variant XML File Format</h1>
+ <h2>Introduction</h2>
+ <p>
+ All variant plugins must have the required "variants.xml" (all lowercase) file
+ contained within. This defines one or more variants, including their SVG map, 
+ their adjacency/province information, and the starting information.
+ </p>
+ <p>
+ The variant.xml file decouples the map graphic, province information, 
+ and starting options which allows for easy creation of some types of variants without 
+ altering province or map information. For example, the Crowded and Standard variants
+ only differ in their variant.xml &lt;VARIANT&gt; entry, which defines new supply centers,
+ starting positions, and powers.
+ </p>
+ <h2>URI Specification</h2>
+ <p>
+ Several attributes within the variant.xml file define URIs. Valid URIs may be of the
+ following format:
+ </p>
+ <ul>
+ 	<li><p><b>http:</b> Loads data from an http server. </p></li>
+ 	<li><p><b>file:</b> Loads data from a specific path on the local file system.</p></li>
+ 	<li><p><b>(directory path)</b> Loads data from within the .zip (or .jar) variant file. <b>Recommended.</b></p></li>
+ </ul>
+ <p>
+ The "directory path" version is recommended, as it does not depend upon the existence a network connection
+ or specific local file system path. For example, if the uri was uri="dir/file.svg"
+ the file "file.svg" would be loaded from the directory "dir" within the variant .zip (or .jar) plugin file.
+ If the file is in the root directory of the variant plugin, only the file name need be specified.
+ </p>
+ <h2>DTD Reference for variant.xml</h2>
+ 
+ <p class="dtd-el" style="margin-top:9pt;">
+ VARIANTS
+ </p>
+ <p class="dtd-el-desc">
+ The root element.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: (DESCRIPTION, VARIANT+)
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ version [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ A positive integer or floating-point value denoting variant version.
+ </p>
+
+ 
+ <p class="dtd-el">
+ VARIANT
+ </p>
+ <p class="dtd-el-desc">
+ The enclosing element for a single variant description.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: (DESCRIPTION, MAP, RULEOPTIONS?, POWER+, STARTINGTIME, VICTORYCONDITIONS, SUPPLYCENTER+, INITIALSTATE*)
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ name [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ The name of the variant
+ </p>
+ <p class="dtd-attr-name">
+ default [IMPLIED:"false"]
+ </p>
+ <p class="dtd-attr-desc">
+ Boolean ("true" or "false") value indicating if this is the default variant.
+ </p>
+ <p class="dtd-attr-name">
+ version [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ Valid positive integer or floating-point value denoting variant version. If 
+ two (or more) variants with the same name exist, the the highest version is used.
+ </p>
+
+ <p class="dtd-el">
+ DESCRIPTION
+ </p>
+ <p class="dtd-el-desc">
+ Brackets the text description. Note that HTML markup (properly escaped) is not only 
+ permitted but also recommended.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: (#PCDATA)
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES: None
+ </p>
+
+ <p class="dtd-el">
+ MAP
+ </p>
+ <p class="dtd-el-desc">
+ Defines the province adjacency file and map graphic(s).
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: (GRAPHIC*)
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ adjacencyURI
+ </p>
+ <p class="dtd-attr-desc">
+ URI to the Adjacency XML file. For details on the province adjacency XML file format,
+ see Help. 
+ </p>
+
+ 
+ <p class="dtd-el">
+ GRAPHIC
+ </p>
+ <p class="dtd-el-desc">
+ Defines a map graphic (in SVG format).
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: [Empty]
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ uri [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ The URI of the map graphic SVG file.
+ </p>
+ <p class="dtd-attr-name">
+ default [REQUIRED:"true" | "false"]
+ </p>
+ <p class="dtd-attr-desc">
+ Whether this is the default graphic for this variant. There should be only one
+ default graphic per variant. This is a boolean value.
+ </p>
+ <p class="dtd-attr-name">
+ title [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ The displayed name of the map graphic. This is displayed under the thumbnail map image in the
+ New Game dialog.
+ </p>
+ <p class="dtd-attr-name">
+ description [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ A brief description of the map graphic. This is displayed as a mouse-over.
+ </p>
+ <p class="dtd-attr-name">
+ thumburi [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ The URI for the thumbnail graphic of the map. This should be a 75 x 75 pixel image,
+ in GIF, JPG, or PNG format.
+ </p>
+
+ <p class="dtd-el">
+ RULEOPTIONS
+ </p>
+ <p class="dtd-el-desc">
+ Container for RULEOPTIONS, which describe default rule options.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: (RULEOPTION+)
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES: None.
+ </p>
+
+ <p class="dtd-el">
+ RULEOPTION
+ </p>
+ <p class="dtd-el-desc">
+ A Rule Option default.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: [Empty]
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ name
+ </p>
+ <p class="dtd-attr-desc">
+ The name of the rule option. This must correspond to a known rule option, as defined
+ by dip.world.RuleOptions or subclass.
+ </p>
+ <p class="dtd-attr-name">
+ value
+ </p>
+ <p class="dtd-attr-desc">
+ The value of the rule option. This must correspond to a known value of a known rule option, as defined
+ by dip.world.RuleOptions or subclass.
+ </p>
+
+ 
+ <p class="dtd-el">
+ POWER
+ </p>
+ <p class="dtd-el-desc">
+ Defines a Power
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: [Empty]
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ name [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ The name of the power; for example, "England".
+ </p>
+ <p class="dtd-attr-name">
+ active [REQUIRED:"true" | "false"]
+ </p>
+ <p class="dtd-attr-desc">
+ Boolean describing if this power is active. Inactive powers have units 
+ that always hold. This is "false", for example, in the 5- and 6-player 
+ Standard variants.
+ </p>
+ <p class="dtd-attr-name">
+ adjective [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ The power adjective. For power "France", this would be "French".
+ </p>
+ <p class="dtd-attr-name">
+ altname [OPTIONAL]
+ </p>
+ <p class="dtd-attr-desc">
+ An alternative power name. For example, Power "England" has an alternative name 
+ of "Britain". 
+ </p>
+
+
+ <p class="dtd-el">
+ STARTINGTIME
+ </p>
+ <p class="dtd-el-desc">
+ Details the starting phase, year, and seaon of the game.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: [Empty]
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ turn
+ </p>
+ <p class="dtd-attr-desc">
+ The starting season/phase/year. For example: "Spring 1901, Movement". Note that the 
+ Season, year, and phase must be a valid combination.
+ </p>
+  <p class="dtd-attr-name">
+ allowBCYears [OPTIONAL: "true" | "false"]
+ </p>
+ <p class="dtd-attr-desc">
+ Boolean attribute indicating if player can start games using BC years ("negative" years).
+ Default value is false. If a BC starting phase is found, this will default to true.
+ </p>
+
+ 
+ <p class="dtd-el">
+ VICTORYCONDITIONS
+ </p>
+ <p class="dtd-el-desc">
+ Describes the default variant victory condition(s).
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: (WINNING_SUPPLY_CENTERS, YEARS_WITHOUT_SC_CAPTURE?, GAME_LENGTH?)
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES: None
+ </p>
+
+ <p class="dtd-el">
+ WINNING_SUPPLY_CENTERS
+ </p>
+ <p class="dtd-el-desc">
+ The number of supply centers required for victory. This victory
+ condition is required.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: [Empty]
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ value [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ Positive (nonzero) integer value.
+ </p>
+
+ <p class="dtd-el">
+ YEARS_WITHOUT_SC_CAPTURE
+ </p>
+ <p class="dtd-el-desc">
+ The number of years, without a supply center changing ownership, 
+ before a draw is declared. This victory condition is optional. If 
+ set to zero, it is ignored.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: [Empty]
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ value [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ Zero or positive integer value.
+ </p>
+
+ <p class="dtd-el">
+ GAME_LENGTH
+ </p>
+ <p class="dtd-el-desc">
+ The maximum length of a game, in years. This is an optional condition. 
+ If set to zero, it is ignored.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: [Empty]
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ value [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ Zero or positive integer value.
+ </p>
+
+ <p class="dtd-el">
+ SUPPLYCENTER
+ </p>
+ <p class="dtd-el-desc">
+ Defines a supply center for a province.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: [Empty]
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ province [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ The province in which this supply center is located.
+ </p>
+ <p class="dtd-attr-name">
+  homepower [OPTIONAL:Power | "any" | "none"]
+ </p>
+ <p class="dtd-attr-desc">
+ Power name for which this supply center is a home center. In most variants, 
+ new units may only be built at home supply centers. By default, this value is
+ "none". If the value is "any", this supply center is a home center for any
+ power.
+ </p>
+ <p class="dtd-attr-name">
+  owner [OPTIONAL:Power | "none"]
+ </p>
+ <p class="dtd-attr-desc">
+ The power name (or "none" if no power) that owns this supply center.
+ </p>
+
+ 
+ <p class="dtd-el">
+ INITIALSTATE
+ </p>
+ <p class="dtd-el-desc">
+ Defines the placement of a unit.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: [Empty]
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ province [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ The province in which this unit is located.
+ </p>
+ <p class="dtd-attr-name">
+ power [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ Name of the power that owns the unit.
+ </p>
+ <p class="dtd-attr-name">
+ unit [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ The name of the unit. Typically, this is either "fleet" or "army".
+ </p>
+ <p class="dtd-attr-name">
+ unitcoast [OPTIONAL]
+ </p>
+ <p class="dtd-attr-desc">
+ Defines the coast ("nc", "sc", "wc", "ec") for a fleet in a multi-coastal province.
+ This is not optional if the province is multicoastal!
+ </p>
+ 
+ 
+ 
+</body>
+</html>

@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<!DOCTYPE VARIANTS [
+	<!ELEMENT VARIANTS (DESCRIPTION, MAP_DEFINITION+, VARIANT+)>
+	
+	<!ELEMENT DESCRIPTION (#PCDATA)>
+	
+	<!ELEMENT MAP_DEFINITION (DESCRIPTION?)>
+	<!ATTLIST MAP_DEFINITION 
+		id ID #REQUIRED
+		title CDATA #REQUIRED
+		URI CDATA #REQUIRED
+		thumbURI CDATA #REQUIRED
+		preferredUnitStyle CDATA #IMPLIED
+		>
+	
+	<!ELEMENT VARIANT (DESCRIPTION, MAP, RULEOPTIONS?, POWER+, STARTINGTIME, VICTORYCONDITIONS, SUPPLYCENTER+, INITIALSTATE*)>
+	<!ATTLIST VARIANT
+			name CDATA #REQUIRED
+			default (true|false) "false"
+			version CDATA #REQUIRED
+			aliases CDATA #IMPLIED
+			>
+			
+	<!ELEMENT MAP (MAP_GRAPHIC*)>
+	<!ATTLIST MAP adjacencyURI CDATA #REQUIRED>
+	
+	<!ELEMENT MAP_GRAPHIC EMPTY>
+	<!ATTLIST MAP_GRAPHIC
+			ref IDREF #REQUIRED
+			default (true|false) "false"
+			preferredUnitStyle CDATA #IMPLIED
+			>
+	
+	<!ELEMENT RULEOPTIONS (RULEOPTION+)>
+	<!ELEMENT RULEOPTION EMPTY>
+	<!ATTLIST RULEOPTION	name CDATA #REQUIRED
+				value CDATA #REQUIRED>
+	
+	<!ELEMENT POWER EMPTY>
+	<!ATTLIST POWER name CDATA #REQUIRED
+			active (true|false) "true"
+			adjective CDATA #REQUIRED
+			altnames CDATA #IMPLIED
+			>
+	
+	<!ELEMENT STARTINGTIME EMPTY>
+	<!ATTLIST STARTINGTIME 	turn CDATA #REQUIRED
+				allowBCYears (true|false) "false"
+				>
+	
+	<!ELEMENT VICTORYCONDITIONS (WINNING_SUPPLY_CENTERS?, YEARS_WITHOUT_SC_CAPTURE?, GAME_LENGTH?)>
+	
+	<!ELEMENT WINNING_SUPPLY_CENTERS EMPTY>
+	<!ATTLIST WINNING_SUPPLY_CENTERS value CDATA #REQUIRED>
+	
+	<!ELEMENT YEARS_WITHOUT_SC_CAPTURE EMPTY>
+	<!ATTLIST YEARS_WITHOUT_SC_CAPTURE value CDATA #REQUIRED>
+	
+	<!ELEMENT GAME_LENGTH EMPTY>
+	<!ATTLIST GAME_LENGTH value CDATA #REQUIRED>
+	
+	<!ELEMENT SUPPLYCENTER EMPTY>
+	<!ATTLIST SUPPLYCENTER 	province CDATA #REQUIRED
+				homepower CDATA "none"
+				owner CDATA "none"
+				>
+				
+	<!ELEMENT INITIALSTATE EMPTY>
+	<!ATTLIST INITIALSTATE 	province CDATA #REQUIRED
+				power CDATA #REQUIRED
+				unit CDATA #REQUIRED
+				unitcoast CDATA #IMPLIED
+				>
+]>
+<!-- NOTE: it's very important that the name of the file will be variants.xml, in all lower case -->
+<!-- NOTE: for CDATA escapes, no space between tag and bracket!! -->
+<VARIANTS>
+	<DESCRIPTION><![CDATA[Created variant.]]></DESCRIPTION> 
+	
+	<MAP_DEFINITION id="defaultMap" title="Asia" preferredUnitStyle="modern"
+		URI="asia.svg" thumbURI="asia_thumb.png">
+		<DESCRIPTION><![CDATA[
+			Asia variant map.
+		]]>
+		</DESCRIPTION> 
+	</MAP_DEFINITION>
+	
+	<VARIANT name="Asia" version="1.0">
+		<DESCRIPTION><![CDATA[
+		<p>
+			Asian Diplomacy was originally conceived of and created by David Lawler,
+			updated and modified by Peter Baer.  Territory chart revised by Will Wible. 
+		</p>
+		<p>
+			There are absolutely no rule changes from the standard rulebook.
+			Just a new map.  Canals are similar to Constantinople in the regular
+			game; ie fleets and armies may cross, but only one may be occupying
+			the territory at a time. Asian Diplomacy has almost no historical basis.
+		</p>
+		<p>
+			Authors: David Lawler, Peter Baer and Will Wible<br>
+			Map by: Stephen McKee
+		</p>
+		]]>
+		</DESCRIPTION> 
+		<MAP adjacencyURI="asia_adjacency.xml">
+			<MAP_GRAPHIC ref="defaultMap" default="true" />
+		</MAP>
+		
+		<!-- ruleoptions -->
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY"/>
+		</RULEOPTIONS>
+		
+		<!-- powers -->
+		<POWER name="China" 		active="true" adjective="Chinese" 	 />	<!-- C -->
+		<POWER name="India" 		active="true" adjective="Indian" 	 />	<!-- N -->
+		<POWER name="Indonesia" 	active="true" adjective="Indonesian" />	<!-- I -->
+		<POWER name="Japan" 		active="true" adjective="Japanese" 	 />	<!-- J -->
+		<POWER name="Persia" 		active="true" adjective="Persian" 	 />	<!-- P -->
+		<POWER name="Russia" 		active="true" adjective="Russian" 	 />	<!-- R -->
+		<POWER name="Siberia" 	    active="true" adjective="Siberian" 	 />	<!-- S -->
+
+		<!-- starting time -->
+		<STARTINGTIME turn="Spring, 1901, Movement" />
+		
+		<!-- victory conditions -->
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="21"/>
+		</VICTORYCONDITIONS>
+ 	 	
+		<!-- supply centers -->
+		<SUPPLYCENTER province="ara" homepower="persia" owner="persia"/>
+		<SUPPLYCENTER province="aus"/>
+		<SUPPLYCENTER province="bal"/>
+		<SUPPLYCENTER province="ban"/>
+		<SUPPLYCENTER province="bjg" homepower="china" owner="china"/>
+		<SUPPLYCENTER province="bom" homepower="india" owner="india"/>
+		<SUPPLYCENTER province="bor" homepower="indonesia" owner="indonesia"/>
+		<SUPPLYCENTER province="cal" homepower="india" owner="india"/>
+		<SUPPLYCENTER province="del" homepower="india" owner="india"/>
+		<SUPPLYCENTER province="egy"/>
+		<SUPPLYCENTER province="hok" homepower="japan" owner="japan"/>
+		<SUPPLYCENTER province="hon" homepower="japan" owner="japan"/>
+		<SUPPLYCENTER province="irk" homepower="siberia" owner="siberia"/>
+		<SUPPLYCENTER province="irn" homepower="persia" owner="persia"/>
+		<SUPPLYCENTER province="irq" homepower="persia" owner="persia"/>
+		<SUPPLYCENTER province="jav" homepower="indonesia" owner="indonesia"/>
+		<SUPPLYCENTER province="kam" homepower="siberia" owner="siberia"/>
+		<SUPPLYCENTER province="lao"/>
+		<SUPPLYCENTER province="mad"/>
+		<SUPPLYCENTER province="man" homepower="japan" owner="japan"/>
+		<SUPPLYCENTER province="mos" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="new"/>
+		<SUPPLYCENTER province="nov"/>
+		<SUPPLYCENTER province="oma"/>
+		<SUPPLYCENTER province="pak"/>
+		<SUPPLYCENTER province="phi" homepower="japan" owner="japan"/>
+		<SUPPLYCENTER province="sev" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="sha" homepower="china" owner="china"/>
+		<SUPPLYCENTER province="sri"/>
+		<SUPPLYCENTER province="stp" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="sum" homepower="indonesia" owner="indonesia"/>
+		<SUPPLYCENTER province="tha"/>
+		<SUPPLYCENTER province="tia"/>
+		<SUPPLYCENTER province="tib" homepower="china" owner="china"/>
+		<SUPPLYCENTER province="tur"/>
+		<SUPPLYCENTER province="ura"/>
+		<SUPPLYCENTER province="uzb"/>
+		<SUPPLYCENTER province="vie"/>
+		<SUPPLYCENTER province="wsb" homepower="siberia" owner="siberia"/>
+		<SUPPLYCENTER province="yak"/>
+		
+		<!-- unit placement -->
+		<INITIALSTATE province="bei" 	power="china" 		unit="army"/>
+		<INITIALSTATE province="tib" 	power="china" 		unit="army"/>
+		<INITIALSTATE province="sha" 	power="china" 		unit="fleet"/>
+		<INITIALSTATE province="cal" 	power="india" 		unit="army"/>
+		<INITIALSTATE province="del" 	power="india" 		unit="army"/>
+		<INITIALSTATE province="bom" 	power="india" 		unit="fleet"/>
+		<INITIALSTATE province="bor" 	power="indonesia" 	unit="fleet"/>
+		<INITIALSTATE province="jav" 	power="indonesia" 	unit="fleet"/>
+		<INITIALSTATE province="sum" 	power="indonesia" 	unit="fleet"/>
+		<INITIALSTATE province="hok" 	power="japan" 		unit="fleet"/>
+		<INITIALSTATE province="hon" 	power="japan" 		unit="fleet"/>
+		<INITIALSTATE province="man" 	power="japan" 		unit="army"/>
+		<INITIALSTATE province="phi" 	power="japan" 		unit="fleet"/>
+		<INITIALSTATE province="irn" 	power="persia" 		unit="army"/>
+		<INITIALSTATE province="irq" 	power="persia" 		unit="army"/>
+		<INITIALSTATE province="ara" 	power="persia" 		unit="fleet" unitcoast="ec"/>
+		<INITIALSTATE province="mos" 	power="russia" 		unit="army"/>
+		<INITIALSTATE province="sev" 	power="russia" 		unit="army"/>
+		<INITIALSTATE province="stp" 	power="russia" 		unit="fleet"/>
+		<INITIALSTATE province="irk" 	power="siberia" 	unit="army"/>
+		<INITIALSTATE province="kam" 	power="siberia" 	unit="fleet"/>
+		<INITIALSTATE province="wes" 	power="siberia" 	unit="army"/>
+	</VARIANT>
+</VARIANTS>

@@ -1,0 +1,270 @@
+#############################################################
+#
+#	DATC (Diplomacy Adjudicator Test Cases) Test Cases
+#	DATC Version 2.4
+#	SECTION 9
+#	CONVOYING COASTAL AREA VARIANT
+#
+# 	The DATC is copyright Lucas B. Kruijswijk
+#	http://web.inter.nl.net/users/L.B.Kruijswijk/
+#
+#############################################################
+
+#############################################################
+#	
+# Set the Variant for all cases.
+#
+# IMPORTANT NOTE:
+# 	To execute these test cases, the standard map should 
+#	be adapted. The areas Denmark and Sweden are made 
+#	convoyable coasts. Berlin and Denmark are connected 
+#	for fleets. That means that fleets can move from 
+#	Berlin to Denmark and vice versa, but armies can not.
+#
+#############################################################
+VARIANT_ALL DATC_ConvoyingCoastal
+
+
+# Test MAP: 
+# 	Denmark, Sweden are convoyable coasts (convoy orders should be possible)
+#	Berlin, Denmark connected for fleets (but not for armies)
+#
+#	Both units should bounce.
+CASE 9.TEST.A [Test map validity]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	England: F Denmark
+	Germany: F Berlin
+ORDERS
+	England: F Denmark-Berlin
+	Germany: F Berlin-Denmark
+POSTSTATE
+	England: F Denmark
+	Germany: F Berlin
+END
+
+
+# both moves are illegal (not adjacent, and no convoy route)
+CASE 9.TEST.B [Test map validity]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	England: A Denmark
+	Germany: A Berlin
+ORDERS
+	England: A Denmark-Berlin
+	Germany: A Berlin-Denmark
+POSTSTATE
+	England: A Denmark
+	Germany: A Berlin
+END
+
+
+# we should be able to convoy in the given coastal regions
+CASE 9.TEST.C [Test map validity]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	England: F Denmark
+	Germany: F Sweden
+	Russia:  F Skagerrak
+	Russia:  A Kiel
+ORDERS
+	England: F Denmark C Kiel-Norway
+	Germany: F Sweden  C Kiel-Norway
+	Russia:  F Skagerrak C Kiel-Norway
+	Russia:  A Kiel-Norway
+POSTSTATE
+	England: F Denmark
+	Germany: F Sweden
+	Russia:  F Skagerrak
+	Russia:  A Norway
+END
+
+# English convoy is illegal because it convoys to itself; 
+# dislodging own convoy shouldn't be possible.
+CASE 9.A [Dislodging own convoy]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	England: F Denmark
+	Germany: A Kiel
+	Russia:  A Berlin
+ORDERS
+	England: F Denmark Convoys A Berlin - Denmark
+	Germany: A Kiel Supports A Berlin - Denmark
+	Russia:  A Berlin - Denmark
+POSTSTATE
+	England: F Denmark
+	Germany: A Kiel
+	Russia:  A Berlin
+END
+
+
+# Similar to 13.A, but with an un-arguably legal convoy path.
+# Should not be able to dislodge your own convoy.
+CASE 9.B [Convoy to own area with loop]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	England: F Denmark
+	Germany: A Kiel
+	Russia:  A Berlin
+	Russia:  F Skagerrak
+ORDERS
+	England: F Denmark Convoys A Berlin - Denmark
+	Germany: A Kiel Supports A Berlin - Denmark
+	Russia:  A Berlin - Denmark
+	Russia:  F Skagerrak Convoys A Berlin - Denmark
+POSTSTATE
+	England: F Denmark
+	Germany: A Kiel
+	Russia:  A Berlin
+	Russia:  F Skagerrak
+END
+
+
+# Convoys can be disrupted by armies; german move to stp fails.
+CASE 9.C [Convoy disrupted by Army]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Germany: A Denmark 
+	Germany: F Sweden
+	Germany: F Gulf of Bothnia
+	Russia:  A Finland
+	Russia:  A Norway
+ORDERS
+	Germany: A Denmark - St Petersburg					# fails
+	Germany: F Sweden Convoys A Denmark - St Petersburg			# dislodged
+	Germany: F Gulf of Bothnia Convoys A Denmark - St Petersburg		# ok
+	Russia:  A Finland - Sweden						# ok
+	Russia:  A Norway Supports A Finland - Sweden				# ok
+POSTSTATE
+	Germany: A Denmark
+	Germany: F Gulf of Bothnia
+	Russia:  A Sweden
+	Russia:  A Norway
+POSTSTATE_DISLODGED
+	Germany: F Sweden
+END
+
+
+# Convoys can be disrupted by convoys. German convoy is disrupted
+# by the russian convoy; therefore, the German move to Finland fails.
+CASE 9.D [Convoy disrupted by convoying army]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Germany: A Denmark
+	Germany: F Sweden
+	Russia:  F Gulf of Bothnia
+	Russia:  F Norway
+	Russia:  A St Petersburg
+ORDERS
+	Germany: A Denmark - Finland					# fails
+	Germany: F Sweden Convoys A Denmark - Finland			# dislodged
+	Russia:  F Gulf of Bothnia Convoys A St Petersburg - Sweden	# ok
+	Russia:  F Norway Supports A St Petersburg - Sweden		# ok
+	Russia:  A St Petersburg - Sweden				# ok
+POSTSTATE
+	Germany: A Denmark
+	Russia:  F Gulf of Bothnia
+	Russia:  F Norway
+	Russia:  A Sweden
+POSTSTATE_DISLODGED
+	Germany: F Sweden
+END
+
+
+# Both convoys will fail if Syzkman is used. Otherwise, failure will result
+# with 1976, 1982, and 2000 rules.
+CASE 9.E [Two disrupted convoys paradox; Szykman used]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Germany: A Kiel
+	Germany: F Denmark
+	Germany: F Skagerrak
+	Russia:  F Sweden
+	Russia:  A Finland
+	Russia:  F Baltic Sea
+ORDERS
+	Germany: A Kiel - Sweden
+	Germany: F Denmark Convoys A Kiel - Sweden
+	Germany: F Skagerrak Supports A Kiel - Sweden
+	Russia:  F Sweden Convoys A Finland - Denmark
+	Russia:  A Finland - Denmark
+	Russia:  F Baltic Sea Supports A Finland - Denmark
+POSTSTATE
+	Germany: A Kiel
+	Germany: F Denmark
+	Germany: F Skagerrak
+	Russia:  F Sweden
+	Russia:  A Finland
+	Russia:  F Baltic Sea
+END
+
+
+
+# Adjudication results are for Syzkman
+#
+CASE 9.F [Disrupted convoy support paradox with no resolution; Szykman used]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Germany: A Denmark
+	Germany: F Sweden
+	Germany: A Norway
+	Russia:  F Gulf of Bothnia
+	Russia:  A St Petersburg
+	Russia:  F Baltic Sea
+	England: F Finland
+	England: F Livonia
+ORDERS
+	Germany: A Denmark - Finland						# syzkman'd
+	Germany: F Sweden Convoys A Denmark - Finland				# ok
+	Germany: A Norway Supports A Denmark - Finland				# ok
+	Russia:  F Gulf of Bothnia Convoys A St Petersburg - Sweden		# dislodged, and destroyed
+	Russia:  A St Petersburg - Sweden					# syzkman'd
+	Russia:  F Baltic Sea Supports A St Petersburg - Sweden			# ok
+	England: F Finland Supports F Livonia - Gulf of Bothnia			# ok
+	England: F Livonia - Gulf of Bothnia					# ok
+POSTSTATE
+	Germany: A Denmark
+	Germany: F Sweden
+	Germany: A Norway
+	Russia:  A St Petersburg
+	Russia:  F Baltic Sea
+	England: F Finland
+	England: F Gulf of Bothnia
+END
+
+
+# Syzkman results are given.
+CASE 9.G [Disrupted convoy support with two resolutions; Szykman used]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Germany: A Denmark
+	Germany: F Sweden
+	Germany: A Norway
+	Germany: F Baltic Sea
+	Germany: F Livonia
+	Russia:  F Gulf of Bothnia
+	Russia:  A St Petersburg
+	Russia:  F Finland
+	Russia:  F Skagerrak
+ORDERS
+	Germany: A Denmark - Finland
+	Germany: F Sweden Convoys A Denmark - Finland
+	Germany: A Norway Supports A Denmark - Finland
+	Germany: F Baltic Sea Supports F Livonia - Gulf of Bothnia
+	Germany: F Livonia - Gulf of Bothnia
+	Russia:  F Gulf of Bothnia Convoys A St Petersburg - Sweden	# not dislodged
+	Russia:  A St Petersburg - Sweden
+	Russia:  F Finland Supports F Gulf of Bothnia			# ok (not cut)
+	Russia:  F Skagerrak Supports A St Petersburg - Sweden
+POSTSTATE
+	Germany: A Denmark
+	Germany: F Sweden
+	Germany: A Norway
+	Germany: F Baltic Sea
+	Germany: F Livonia
+	Russia:  F Gulf of Bothnia
+	Russia:  A St Petersburg
+	Russia:  F Finland
+	Russia:  F Skagerrak
+END
+

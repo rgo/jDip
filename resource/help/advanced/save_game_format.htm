@@ -1,0 +1,24 @@
+<html>
+<head>
+ <title>Save File Format</title>
+ <link rel="StyleSheet" href="../application_help.css">
+</head>
+<body>
+ <h1>Saved Game File Format</h1>
+ <h2>Introduction</h2>
+ <p>
+ The saved game file format is a compressed XML format which is interchangeable between
+ platforms. The XML file format is robust and allows for improved compatibility between
+ versions. After decompression, the XML file format may be manipulated (e.g., using XSLT)
+ to other desired formats.
+ </p>
+ <h2>Compression</h2>
+ <p>
+ Saved game files are compressed using the <b>gzip</b> compression 
+ (for more details, see <i>http://www.gzip.org</i>)
+ format. A complete file will begin and end with &lt;jsx&gt; elements. Windows users may 
+ use a program like WinZip or WinRar to decompress a gzip file; note that adding the extension
+ ".gz" may help. 
+ </p>
+</body>
+</html>

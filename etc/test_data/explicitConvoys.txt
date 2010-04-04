@@ -1,0 +1,175 @@
+#############################################################
+#
+#	explicitConvoys.txt
+#
+#	These cases are designed to ensure that explicit
+#	convoys are evaluated correctly. A selection of 
+#	DATC cases (notably section 6.F, 6.G) are used.
+#
+#############################################################
+
+#############################################################
+#	
+# Set the Variant for all cases.
+#
+#############################################################
+VARIANT_ALL Standard
+
+# simple basic test
+CASE EC.1 Basic Test of Explicit Convoying
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	England: F nth
+	England: A lon
+ORDERS
+	England: F nth C A lon-bel
+	England: A lon-nth-bel
+POSTSTATE
+	England: F nth
+	England: A bel
+END
+
+# simple basic test 2
+CASE EC.2 No convoying fleet
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	England: F nth
+	England: A lon
+ORDERS
+	England: F nth H
+	England: A lon-nth-bel
+POSTSTATE
+	England: F nth
+	England: A lon
+END
+
+# simple basic test 3
+CASE EC.3 Wrong convoy path specified
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	England: F nth
+	England: F ech
+	England: A lon
+ORDERS
+	England: F nth C A lon-bel
+	England: F ech H
+	England: A lon-ech-bel
+POSTSTATE
+	England: F nth
+	England: F ech
+	England: A lon
+END
+
+# simple basic test 4
+CASE EC.4 Invalid convoy path (no fleet in ech)
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	England: F nth
+	England: A lon
+ORDERS
+	England: F nth H
+	England: A lon-ech-bel
+POSTSTATE
+	England: F nth
+	England: A lon
+END
+
+
+# two armies with two convoys
+CASE EC.5 (DATC 6.C.6)
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	England: F nth
+	England: A lon
+	France: F eng
+	France: A bel
+ORDERS
+	England: F nth C A lon-bel
+	England: A lon-nth-bel
+	France: F eng C A bel-lon
+	France: A bel-eng-lon
+POSTSTATE
+	England: F nth
+	England: A bel
+	France: F eng
+	France: A lon
+END
+
+
+# disrupted unit swap (lon-bel bounces off bur-bel)
+CASE EC.6 (DATC 6.C.7)
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	England: F nth
+	England: A lon
+	France: F eng
+	France: A bel
+	France: A bur
+ORDERS
+	England: F nth C A lon-bel
+	England: A lon-nth-bel
+	France: F eng C A bel-lon
+	France: A bel-eng-lon
+	France: A bur-bel
+POSTSTATE_SAME
+END
+
+
+# dislodge of convoying fleet on route
+# poststate: per 2000 rules
+# we only specify one route (ech)
+#
+CASE EC.7 (DATC 6.F.9)
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	England: F eng
+	England: F nth
+	England: A lon
+	France: F bre
+	France: F mao
+ORDERS
+	England: F eng C A lon-bel
+	England: F nth C A lon-bel
+	England: A lon-eng-bel
+	France: F bre S F mao-eng
+	France: F mao-eng
+POSTSTATE
+	England: F nth
+	England: A lon
+	France: F bre
+	France: F eng
+POSTSTATE_DISLODGED
+	England: F eng
+END
+
+
+# dislodged convoying fleet not on route
+#
+CASE EC.8 (DATC 6.F.12)
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	England: F eng
+	England: A lon
+	England: F iri
+	France: F nao
+	France: F mao
+ORDERS
+	England: F eng C A lon-bel
+	England: A lon-eng-bel
+	England: F iri C A lon-bel
+	France: F nao S F mao-iri
+	France: F mao-iri
+POSTSTATE
+	England: F eng
+	England: A bel
+	France: F nao
+	France: F iri
+POSTSTATE_DISLODGED
+	England: F iri
+END
+
+
+
+
+
+

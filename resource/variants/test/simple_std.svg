@@ -1,0 +1,866 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" 
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"
+[
+	<!-- jDip-specific XML additions -->
+	<!-- PROVINCE_DATA -->
+	<!ENTITY % svgExt "| jdipNS:PROVINCE_DATA" >
+	
+	<!ELEMENT jdipNS:PROVINCE_DATA (jdipNS:PROVINCE)+>
+	<!ATTLIST jdipNS:PROVINCE_DATA
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  dislodgedUnitOffset CDATA #IMPLIED
+	  >
+	<!ELEMENT jdipNS:PROVINCE (jdipNS:UNIT, jdipNS:DISLODGED_UNIT, jdipNS:SUPPLY_CENTER?)+>
+	<!ATTLIST jdipNS:PROVINCE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  name CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:UNIT EMPTY>
+	<!ATTLIST jdipNS:UNIT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:DISLODGED_UNIT EMPTY>
+	<!ATTLIST jdipNS:DISLODGED_UNIT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:SUPPLY_CENTER EMPTY>
+	<!ATTLIST jdipNS:SUPPLY_CENTER
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  x CDATA #REQUIRED
+	  y CDATA #REQUIRED
+	  >
+	  
+	<!-- Display Parameters -->
+	<!ENTITY % svgExt "| jdipNS:DISPLAY" >
+	
+	<!ELEMENT jdipNS:DISPLAY (jdipNS:ZOOM, jdipNS:LABELS)>
+	<!ATTLIST jdipNS:DISPLAY
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	<!ELEMENT jdipNS:ZOOM EMPTY>
+	<!ATTLIST jdipNS:ZOOM
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  min CDATA #REQUIRED
+	  max CDATA #REQUIRED
+	  factor CDATA #REQUIRED
+	  >
+	<!ELEMENT jdipNS:LABELS EMPTY>
+	<!ATTLIST jdipNS:LABELS
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  brief (true|false) "true"
+	  full (true|false) "true"
+	  >
+	  
+	  <!-- Order Drawing Parameters -->
+	<!ENTITY % svgExt "| jdipNS:ORDERDRAWING" >
+	
+	<!ELEMENT jdipNS:ORDERDRAWING (jdipNS:POWERCOLORS, jdipNS:SYMBOLSIZE+, jdipNS:BUILD, jdipNS:REMOVE,  jdipNS:DISBAND, jdipNS:WAIVE, jdipNS:HOLD, jdipNS:MOVE, jdipNS:RETREAT, jdipNS:SUPPORT, jdipNS:CONVOY )>
+	<!ATTLIST jdipNS:ORDERDRAWING
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	
+	<!ELEMENT jdipNS:POWERCOLORS (jdipNS:POWERCOLOR+)>
+	<!ATTLIST jdipNS:POWERCOLORS
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  >
+	
+	<!ELEMENT jdipNS:POWERCOLOR EMPTY>
+	<!ATTLIST jdipNS:POWERCOLOR
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  power CDATA #REQUIRED
+	  color CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:SYMBOLSIZE EMPTY>
+	<!ATTLIST jdipNS:SYMBOLSIZE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  name CDATA #REQUIRED
+	  width CDATA #REQUIRED
+	  height CDATA #REQUIRED
+	  >
+	
+	  <!ELEMENT jdipNS:HOLD EMPTY>
+	<!ATTLIST jdipNS:HOLD
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  widths CDATA #REQUIRED
+	  shadowWidths CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:DISBAND EMPTY>
+	<!ATTLIST jdipNS:DISBAND
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:WAIVE EMPTY>
+	<!ATTLIST jdipNS:WAIVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	>
+	  
+	<!ELEMENT jdipNS:REMOVE EMPTY>
+	<!ATTLIST jdipNS:REMOVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	  
+	<!ELEMENT jdipNS:BUILD EMPTY>
+	<!ATTLIST jdipNS:BUILD
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:MOVE EMPTY>
+	<!ATTLIST jdipNS:MOVE
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  widths CDATA #REQUIRED
+	  shadowWidths CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:RETREAT EMPTY>
+	<!ATTLIST jdipNS:RETREAT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:SUPPORT EMPTY>
+	<!ATTLIST jdipNS:SUPPORT
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+	
+	<!ELEMENT jdipNS:CONVOY EMPTY>
+	<!ATTLIST jdipNS:CONVOY
+	  xmlns:jdipNS CDATA #FIXED "http://jdip.sourceforge.org/jdipNS"
+	  deltaRadius CDATA #REQUIRED
+	  strokeCSSStyle CDATA #REQUIRED
+	  markerID CDATA #REQUIRED
+	  filterID CDATA #IMPLIED
+	  hilightOffset CDATA #REQUIRED
+	  hilightCSSClass CDATA #REQUIRED
+	  >
+]>
+<!-- ==================================================================================================	-->
+<!-- Simplified Diplomacy Map	-->
+<!-- Original Map by Brian Roberts (many thanks!) -->
+<!-- SVG version by Zachary DelProposto -->
+<!-- all coords in 'user' space; use viewbox to map to device -->
+<!-- ==================================================================================================	-->
+
+<!-- NOTE: ALL PROVINCE IDs must be in LOWER case!! -->
+<svg width="615px" height="595px" viewBox="-05 -05 610 590" 
+	xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	shape-rendering="geometricPrecision" preserveAspectRatio="xMinYMin">
+	
+	<jdipNS:DISPLAY>
+		<jdipNS:ZOOM min="5" max="1000" factor="1.2" />
+		<jdipNS:LABELS brief="true" full="false" />
+	</jdipNS:DISPLAY>
+	
+	<jdipNS:ORDERDRAWING>
+		<jdipNS:POWERCOLORS>
+			<jdipNS:POWERCOLOR power="austria" color="red" />
+			<jdipNS:POWERCOLOR power="england" color="blue" />
+			<jdipNS:POWERCOLOR power="france" color="deepskyblue" />
+			<jdipNS:POWERCOLOR power="germany" color="gray" />
+			<jdipNS:POWERCOLOR power="italy" color="olive" />
+			<jdipNS:POWERCOLOR power="russia" color="seashell" />
+			<jdipNS:POWERCOLOR power="turkey" color="yellow" />
+			<!-- crowded variant colors -->
+			<jdipNS:POWERCOLOR power="balkan" color="#36E600" />
+			<jdipNS:POWERCOLOR power="lowland" color="#E67700" />
+			<jdipNS:POWERCOLOR power="norway" color="#E600E3" />
+			<jdipNS:POWERCOLOR power="spain" color="#529A70" />
+		</jdipNS:POWERCOLORS>
+		
+		<jdipNS:SYMBOLSIZE name="Fleet" width="10" height="10"/>
+		<jdipNS:SYMBOLSIZE name="Army" width="10" height="10"/>
+		<jdipNS:SYMBOLSIZE name="Wing" width="10" height="10"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedFleet" width="10" height="10"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedArmy" width="10" height="10"/>
+		<jdipNS:SYMBOLSIZE name="DislodgedWing" width="10" height="10"/>
+		<jdipNS:SYMBOLSIZE name="FailedOrder" width="10" height="10"/>
+		<jdipNS:SYMBOLSIZE name="SupplyCenter" width="6" height="6"/>
+		<jdipNS:SYMBOLSIZE name="BuildUnit" width="15" height="15"/>
+		<jdipNS:SYMBOLSIZE name="RemoveUnit" width="12" height="12"/>
+		<jdipNS:SYMBOLSIZE name="WaivedBuild" width="12" height="12"/>
+		
+		<jdipNS:BUILD deltaRadius="0"/>
+		<jdipNS:REMOVE deltaRadius="2"/>
+		<jdipNS:DISBAND deltaRadius="2"/>
+		<jdipNS:WAIVE deltaRadius="0"/>
+		<jdipNS:HOLD deltaRadius="2" strokeCSSStyle="varwidthorder" hilightOffset="0" hilightCSSClass="varwidthshadow" widths="2,3.5,5,6.5" shadowWidths="4,5.5,7,8.5"/>
+		<jdipNS:MOVE deltaRadius="2" strokeCSSStyle="varwidthorder" markerID="arrow" hilightOffset="0"  hilightCSSClass="varwidthshadow" widths="3,5,7,9" shadowWidths="5,7,9,11"/>
+		<jdipNS:RETREAT deltaRadius="2" strokeCSSStyle="defaultorder" markerID="arrow" hilightOffset="0"  hilightCSSClass="shadoworder" />
+		<jdipNS:SUPPORT deltaRadius="7" strokeCSSStyle="supportorder" markerID="arrow" hilightOffset="0" hilightCSSClass="shadowdash"/>
+		<jdipNS:CONVOY deltaRadius="7" strokeCSSStyle="convoyorder" markerID="arrow" hilightOffset="0"  hilightCSSClass="shadowdash"/>
+	</jdipNS:ORDERDRAWING>
+	
+	<jdipNS:PROVINCE_DATA>
+		<jdipNS:PROVINCE name="adr"><jdipNS:UNIT x="280" y="460"/><jdipNS:DISLODGED_UNIT x="290" y="470"/><jdipNS:SUPPLY_CENTER x="280" y="480"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="aeg"><jdipNS:UNIT x="420" y="510"/><jdipNS:DISLODGED_UNIT x="430" y="520"/><jdipNS:SUPPLY_CENTER x="420" y="530"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="alb"><jdipNS:UNIT x="320" y="460"/><jdipNS:DISLODGED_UNIT x="330" y="470"/><jdipNS:SUPPLY_CENTER x="320" y="480"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ank"><jdipNS:UNIT x="530" y="470"/><jdipNS:DISLODGED_UNIT x="540" y="480"/><jdipNS:SUPPLY_CENTER x="530" y="490"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="apu"><jdipNS:UNIT x="240" y="460"/><jdipNS:DISLODGED_UNIT x="250" y="470"/><jdipNS:SUPPLY_CENTER x="240" y="480"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="arm"><jdipNS:UNIT x="580" y="470"/><jdipNS:DISLODGED_UNIT x="590" y="480"/><jdipNS:SUPPLY_CENTER x="580" y="490"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bal"><jdipNS:UNIT x="320" y="150"/><jdipNS:DISLODGED_UNIT x="330" y="160"/><jdipNS:SUPPLY_CENTER x="320" y="170"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bar"><jdipNS:UNIT x="250" y="010"/><jdipNS:DISLODGED_UNIT x="260" y="020"/><jdipNS:SUPPLY_CENTER x="250" y="030"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bel"><jdipNS:UNIT x="160" y="210"/><jdipNS:DISLODGED_UNIT x="170" y="220"/><jdipNS:SUPPLY_CENTER x="160" y="230"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ber"><jdipNS:UNIT x="320" y="230"/><jdipNS:DISLODGED_UNIT x="330" y="240"/><jdipNS:SUPPLY_CENTER x="320" y="250"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bla"><jdipNS:UNIT x="510" y="430"/><jdipNS:DISLODGED_UNIT x="520" y="440"/><jdipNS:SUPPLY_CENTER x="510" y="450"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="boh"><jdipNS:UNIT x="370" y="310"/><jdipNS:DISLODGED_UNIT x="380" y="320"/><jdipNS:SUPPLY_CENTER x="370" y="330"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bre"><jdipNS:UNIT x="040" y="240"/><jdipNS:DISLODGED_UNIT x="050" y="250"/><jdipNS:SUPPLY_CENTER x="040" y="260"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bud"><jdipNS:UNIT x="370" y="390"/><jdipNS:DISLODGED_UNIT x="380" y="400"/><jdipNS:SUPPLY_CENTER x="370" y="410"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bul"><jdipNS:UNIT x="420" y="450"/><jdipNS:DISLODGED_UNIT x="430" y="460"/><jdipNS:SUPPLY_CENTER x="420" y="470"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bur"><jdipNS:UNIT x="140" y="270"/><jdipNS:DISLODGED_UNIT x="150" y="280"/><jdipNS:SUPPLY_CENTER x="140" y="290"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="cly"><jdipNS:UNIT x="070" y="030"/><jdipNS:DISLODGED_UNIT x="080" y="040"/><jdipNS:SUPPLY_CENTER x="070" y="050"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="con"><jdipNS:UNIT x="480" y="470"/><jdipNS:DISLODGED_UNIT x="490" y="480"/><jdipNS:SUPPLY_CENTER x="470" y="490"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="den"><jdipNS:UNIT x="250" y="130"/><jdipNS:DISLODGED_UNIT x="260" y="140"/><jdipNS:SUPPLY_CENTER x="250" y="150"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="eas"><jdipNS:UNIT x="420" y="550"/><jdipNS:DISLODGED_UNIT x="430" y="560"/><jdipNS:SUPPLY_CENTER x="420" y="570"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="edi"><jdipNS:UNIT x="130" y="050"/><jdipNS:DISLODGED_UNIT x="140" y="060"/><jdipNS:SUPPLY_CENTER x="130" y="070"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="eng"><jdipNS:UNIT x="090" y="170"/><jdipNS:DISLODGED_UNIT x="100" y="180"/><jdipNS:SUPPLY_CENTER x="090" y="190"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="fin"><jdipNS:UNIT x="330" y="050"/><jdipNS:DISLODGED_UNIT x="340" y="060"/><jdipNS:SUPPLY_CENTER x="330" y="070"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="gal"><jdipNS:UNIT x="420" y="320"/><jdipNS:DISLODGED_UNIT x="430" y="330"/><jdipNS:SUPPLY_CENTER x="420" y="340"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="gas"><jdipNS:UNIT x="090" y="290"/><jdipNS:DISLODGED_UNIT x="100" y="300"/><jdipNS:SUPPLY_CENTER x="090" y="310"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="gob"><jdipNS:UNIT x="340" y="090"/><jdipNS:DISLODGED_UNIT x="350" y="100"/><jdipNS:SUPPLY_CENTER x="340" y="110"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="gol"><jdipNS:UNIT x="130" y="370"/><jdipNS:DISLODGED_UNIT x="140" y="380"/><jdipNS:SUPPLY_CENTER x="130" y="390"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="gre"><jdipNS:UNIT x="370" y="470"/><jdipNS:DISLODGED_UNIT x="380" y="480"/><jdipNS:SUPPLY_CENTER x="370" y="490"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="hel"><jdipNS:UNIT x="230" y="170"/><jdipNS:DISLODGED_UNIT x="240" y="180"/><jdipNS:SUPPLY_CENTER x="230" y="190"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="hol"><jdipNS:UNIT x="220" y="210"/><jdipNS:DISLODGED_UNIT x="230" y="220"/><jdipNS:SUPPLY_CENTER x="220" y="230"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ion"><jdipNS:UNIT x="260" y="510"/><jdipNS:DISLODGED_UNIT x="270" y="520"/><jdipNS:SUPPLY_CENTER x="260" y="530"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="iri"><jdipNS:UNIT x="040" y="120"/><jdipNS:DISLODGED_UNIT x="050" y="130"/><jdipNS:SUPPLY_CENTER x="040" y="140"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="kie"><jdipNS:UNIT x="280" y="210"/><jdipNS:DISLODGED_UNIT x="290" y="220"/><jdipNS:SUPPLY_CENTER x="280" y="230"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="lon"><jdipNS:UNIT x="130" y="130"/><jdipNS:DISLODGED_UNIT x="140" y="140"/><jdipNS:SUPPLY_CENTER x="130" y="150"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="lvn"><jdipNS:UNIT x="370" y="150"/><jdipNS:DISLODGED_UNIT x="380" y="160"/><jdipNS:SUPPLY_CENTER x="370" y="170"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="lvp"><jdipNS:UNIT x="070" y="070"/><jdipNS:DISLODGED_UNIT x="080" y="080"/><jdipNS:SUPPLY_CENTER x="070" y="090"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mar"><jdipNS:UNIT x="130" y="330"/><jdipNS:DISLODGED_UNIT x="140" y="340"/><jdipNS:SUPPLY_CENTER x="130" y="350"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mao"><jdipNS:UNIT x="020" y="310"/><jdipNS:DISLODGED_UNIT x="030" y="320"/><jdipNS:SUPPLY_CENTER x="020" y="330"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mos"><jdipNS:UNIT x="470" y="210"/><jdipNS:DISLODGED_UNIT x="480" y="220"/><jdipNS:SUPPLY_CENTER x="470" y="230"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="mun"><jdipNS:UNIT x="250" y="290"/><jdipNS:DISLODGED_UNIT x="260" y="300"/><jdipNS:SUPPLY_CENTER x="250" y="310"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="naf"><jdipNS:UNIT x="060" y="490"/><jdipNS:DISLODGED_UNIT x="070" y="500"/><jdipNS:SUPPLY_CENTER x="060" y="510"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nao"><jdipNS:UNIT x="020" y="040"/><jdipNS:DISLODGED_UNIT x="030" y="050"/><jdipNS:SUPPLY_CENTER x="020" y="060"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nap"><jdipNS:UNIT x="190" y="470"/><jdipNS:DISLODGED_UNIT x="200" y="480"/><jdipNS:SUPPLY_CENTER x="190" y="490"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nth"><jdipNS:UNIT x="180" y="110"/><jdipNS:DISLODGED_UNIT x="190" y="120"/><jdipNS:SUPPLY_CENTER x="180" y="130"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nwg"><jdipNS:UNIT x="140" y="010"/><jdipNS:DISLODGED_UNIT x="150" y="020"/><jdipNS:SUPPLY_CENTER x="140" y="030"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="nwy"><jdipNS:UNIT x="250" y="050"/><jdipNS:DISLODGED_UNIT x="260" y="060"/><jdipNS:SUPPLY_CENTER x="250" y="070"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="par"><jdipNS:UNIT x="090" y="250"/><jdipNS:DISLODGED_UNIT x="100" y="260"/><jdipNS:SUPPLY_CENTER x="090" y="270"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="pic"><jdipNS:UNIT x="100" y="210"/><jdipNS:DISLODGED_UNIT x="110" y="220"/><jdipNS:SUPPLY_CENTER x="100" y="230"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="pie"><jdipNS:UNIT x="190" y="350"/><jdipNS:DISLODGED_UNIT x="200" y="360"/><jdipNS:SUPPLY_CENTER x="190" y="370"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="por"><jdipNS:UNIT x="040" y="370"/><jdipNS:DISLODGED_UNIT x="050" y="380"/><jdipNS:SUPPLY_CENTER x="040" y="390"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="pru"><jdipNS:UNIT x="370" y="200"/><jdipNS:DISLODGED_UNIT x="380" y="210"/><jdipNS:SUPPLY_CENTER x="370" y="220"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="rom"><jdipNS:UNIT x="190" y="430"/><jdipNS:DISLODGED_UNIT x="200" y="440"/><jdipNS:SUPPLY_CENTER x="190" y="450"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ruh"><jdipNS:UNIT x="210" y="250"/><jdipNS:DISLODGED_UNIT x="220" y="260"/><jdipNS:SUPPLY_CENTER x="210" y="270"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="rum"><jdipNS:UNIT x="440" y="410"/><jdipNS:DISLODGED_UNIT x="450" y="420"/><jdipNS:SUPPLY_CENTER x="440" y="430"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ser"><jdipNS:UNIT x="370" y="430"/><jdipNS:DISLODGED_UNIT x="380" y="440"/><jdipNS:SUPPLY_CENTER x="370" y="450"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sev"><jdipNS:UNIT x="530" y="390"/><jdipNS:DISLODGED_UNIT x="540" y="400"/><jdipNS:SUPPLY_CENTER x="530" y="410"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="sil"><jdipNS:UNIT x="370" y="260"/><jdipNS:DISLODGED_UNIT x="380" y="270"/><jdipNS:SUPPLY_CENTER x="370" y="280"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ska"><jdipNS:UNIT x="230" y="090"/><jdipNS:DISLODGED_UNIT x="240" y="100"/><jdipNS:SUPPLY_CENTER x="230" y="110"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="smy"><jdipNS:UNIT x="510" y="510"/><jdipNS:DISLODGED_UNIT x="520" y="520"/><jdipNS:SUPPLY_CENTER x="510" y="530"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="spa"><jdipNS:UNIT x="080" y="360"/><jdipNS:DISLODGED_UNIT x="090" y="370"/><jdipNS:SUPPLY_CENTER x="080" y="380"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="stp"><jdipNS:UNIT x="370" y="020"/><jdipNS:DISLODGED_UNIT x="380" y="030"/><jdipNS:SUPPLY_CENTER x="370" y="040"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="swe"><jdipNS:UNIT x="290" y="090"/><jdipNS:DISLODGED_UNIT x="300" y="100"/><jdipNS:SUPPLY_CENTER x="290" y="110"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="swi"><jdipNS:UNIT x="195" y="320"/><jdipNS:DISLODGED_UNIT x="195" y="310"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="syr"><jdipNS:UNIT x="540" y="550"/><jdipNS:DISLODGED_UNIT x="550" y="560"/><jdipNS:SUPPLY_CENTER x="540" y="570"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tri"><jdipNS:UNIT x="310" y="390"/><jdipNS:DISLODGED_UNIT x="320" y="400"/><jdipNS:SUPPLY_CENTER x="310" y="410"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tun"><jdipNS:UNIT x="110" y="510"/><jdipNS:DISLODGED_UNIT x="120" y="520"/><jdipNS:SUPPLY_CENTER x="110" y="530"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tus"><jdipNS:UNIT x="190" y="390"/><jdipNS:DISLODGED_UNIT x="200" y="400"/><jdipNS:SUPPLY_CENTER x="190" y="410"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tyr"><jdipNS:UNIT x="280" y="330"/><jdipNS:DISLODGED_UNIT x="290" y="340"/><jdipNS:SUPPLY_CENTER x="280" y="350"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="tys"><jdipNS:UNIT x="140" y="440"/><jdipNS:DISLODGED_UNIT x="150" y="450"/><jdipNS:SUPPLY_CENTER x="140" y="460"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ukr"><jdipNS:UNIT x="460" y="320"/><jdipNS:DISLODGED_UNIT x="470" y="330"/><jdipNS:SUPPLY_CENTER x="460" y="340"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="ven"><jdipNS:UNIT x="250" y="390"/><jdipNS:DISLODGED_UNIT x="260" y="400"/><jdipNS:SUPPLY_CENTER x="250" y="410"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="vie"><jdipNS:UNIT x="370" y="350"/><jdipNS:DISLODGED_UNIT x="380" y="360"/><jdipNS:SUPPLY_CENTER x="370" y="370"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="wal"><jdipNS:UNIT x="080" y="120"/><jdipNS:DISLODGED_UNIT x="090" y="130"/><jdipNS:SUPPLY_CENTER x="080" y="140"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="war"><jdipNS:UNIT x="420" y="210"/><jdipNS:DISLODGED_UNIT x="430" y="220"/><jdipNS:SUPPLY_CENTER x="420" y="230"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="wes"><jdipNS:UNIT x="100" y="440"/><jdipNS:DISLODGED_UNIT x="110" y="450"/><jdipNS:SUPPLY_CENTER x="100" y="460"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="yor"><jdipNS:UNIT x="130" y="090"/><jdipNS:DISLODGED_UNIT x="140" y="100"/><jdipNS:SUPPLY_CENTER x="130" y="110"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bul-ec"><jdipNS:UNIT x="450" y="450"/><jdipNS:DISLODGED_UNIT x="460" y="460"/><jdipNS:SUPPLY_CENTER x="450" y="450"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="bul-sc"><jdipNS:UNIT x="420" y="490"/><jdipNS:DISLODGED_UNIT x="430" y="500"/><jdipNS:SUPPLY_CENTER x="420" y="490"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="spa-nc"><jdipNS:UNIT x="070" y="330"/><jdipNS:DISLODGED_UNIT x="080" y="340"/><jdipNS:SUPPLY_CENTER x="070" y="330"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="spa-sc"><jdipNS:UNIT x="080" y="400"/><jdipNS:DISLODGED_UNIT x="090" y="410"/><jdipNS:SUPPLY_CENTER x="080" y="400"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="stp-nc"><jdipNS:UNIT x="290" y="020"/><jdipNS:DISLODGED_UNIT x="300" y="030"/><jdipNS:SUPPLY_CENTER x="290" y="020"/></jdipNS:PROVINCE>
+		<jdipNS:PROVINCE name="stp-sc"><jdipNS:UNIT x="370" y="110"/><jdipNS:DISLODGED_UNIT x="380" y="120"/><jdipNS:SUPPLY_CENTER x="370" y="110"/></jdipNS:PROVINCE>
+	</jdipNS:PROVINCE_DATA>
+    
+	<title>Simplified Standard Map</title>
+  	<defs>
+		<style type="text/css"><![CDATA[
+		
+		/* text */
+		.coasttext 	{text-anchor:middle;stroke-width:0.25px;font-family:sansserif;font-size:12px;stroke:black;fill:black;}
+		.labeltext	{font-family:arial,sansserif;font-size:12px;text-anchor:middle;stroke-width:0.30px;stroke:black;fill:black;}
+		
+		/* map and unit features */
+		
+		.seapoly			{stroke:#000000;stroke-width:1;fill:#B5DEF8}
+		.coastdash			{stroke:#555555;stroke-width:1;stroke-dasharray:3,1.5;}
+		.sealine 			{stroke:#B5DEFF;stroke-width:3;}
+		.impassable 		{fill:#A69F8F;stroke:black;stroke-width:1}
+		.nopower 			{fill:#F7DB94;stroke:black;stroke-width:1}
+		.shadow				{stroke:black;fill:black;stroke-width:1;opacity:0.40;}
+		.dislodgedshadow	{stroke:black;fill:black;stroke-width:1;opacity:0.30;}
+		.unordered 			{fill:red; stroke:black; stroke-width:1;fill-opacity:0.90;}
+		
+		/* invisible click rects fill:none does not work */
+		
+		.invisible	{stroke:#000000;fill:#000000;fill-opacity:0.0;opacity:0.0}
+		
+		/* default region coloring, by power */
+		
+		.nopower 	{fill:antiquewhite;		stroke:#000000;stroke-width:1}
+		.water		{fill:lightblue;		stroke:#000000;stroke-width:1}
+		
+		.neutral	{fill:lightgray;		stroke:#000000;stroke-width:1}
+
+		.austria 	{fill:indianred;		stroke:#000000;stroke-width:1}
+		.england 	{fill:mediumslateblue;	stroke:#000000;stroke-width:1}
+		.france 	{fill:skyblue;			stroke:#000000;stroke-width:1}
+		.germany 	{fill:dimgray;			stroke:#000000;stroke-width:1}
+		.italy 		{fill:olivedrab;		stroke:#000000;stroke-width:1}
+		.russia 	{fill:lightgray;		stroke:#000000;stroke-width:1}
+		.turkey 	{fill:gold;				stroke:#000000;stroke-width:1}
+		
+		/* unit colors, by power note that underscores are not supported */
+		
+		.unitaustria	{fill:red;			fill-opacity:0.85}
+		.unitengland 	{fill:blue;			fill-opacity:0.85}
+		.unitfrance 	{fill:deepskyblue;	fill-opacity:0.85}
+		.unitgermany 	{fill:gray;		fill-opacity:0.85}
+		.unititaly 		{fill:olive;		fill-opacity:0.85}
+		.unitrussia 	{fill:seashell;		fill-opacity:1.0}
+		.unitturkey 	{fill:yellow;		fill-opacity:0.85}
+		
+		/* supply center styles */
+		
+		.scnopower	{fill:black;stroke:black;}
+		
+		.scaustria	{fill:black;stroke:black;}
+		.scengland	{fill:black;stroke:black;}
+		.scfrance	{fill:black;stroke:black;}
+		.scgermany	{fill:black;stroke:black;}
+		.scitaly 	{fill:black;stroke:black;}
+		.scrussia	{fill:black;stroke:black;}
+		.scturkey	{fill:black;stroke:black;}
+		
+		/* CSS styles for Crowded variant only */
+		
+		.balkan 	{fill:#36E600;fill-opacity:0.65;stroke:#000000;stroke-width:1}
+		.lowland 	{fill:#E67700;fill-opacity:0.65;stroke:#000000;stroke-width:1}
+		.norway 	{fill:#E600E3;fill-opacity:0.65;stroke:#000000;stroke-width:1}
+		.spain 		{fill:#529A70;fill-opacity:0.65;stroke:#000000;stroke-width:1}
+		
+		.unitbalkan		{fill:#36E600;fill-opacity:0.85}
+		.unitlowland	{fill:#E67700;fill-opacity:0.85}
+		.unitnorway		{fill:#E600E3;fill-opacity:0.85}
+		.unitspain		{fill:#529A70;fill-opacity:0.85}
+		
+		.scbalkan		{fill:black;stroke:black;} 
+		.sclowland		{fill:black;stroke:black;} 
+		.scnorway		{fill:black;stroke:black;} 
+		.scspain		{fill:black;stroke:black;} 
+		
+		/* order drawing styles, stroke and fill colors should not be specified */
+		
+		.defaultorder	{stroke-width:3;fill:none;}
+		.supportorder	{stroke-width:3;fill:none;stroke-dasharray:2,2;}
+		.convoyorder	{stroke-dasharray:6,3;stroke-width:3;fill:none;}
+		
+		.shadoworder	{stroke-width:5;fill:none;stroke:black;}
+		.shadowdash		{stroke-width:5;fill:none;stroke:black;opacity:0.45;}
+		
+		.varwidthorder  {fill:none;}
+		.varwidthshadow {fill:none;stroke:black;}
+		
+		]]></style>
+		
+		<marker id="arrow"
+			viewBox="0 0 10 10" refX="5" refY="5" 
+			markerUnits="strokeWidth"
+			markerWidth="4" markerHeight="3"
+			orient="auto">
+			<path d="M 0 0 L 10 5 L 0 10 z" />
+		</marker>
+	</defs>    
+    
+	<g id="MapLayer">
+		
+		<!-- background rectangle -->
+		<rect stroke="#555555" fill="#555555" x="-5" y="-5" width="610" height="590"/>
+		
+		
+		<!-- land provinces -->
+		<g id="_cly" class="nopower">
+			<path d="M 040,020 L 080,020 L 100,040 L 100,060 L 040,060 z"/>
+		</g>
+		<g id="_lvp" class="nopower">
+			<path d="M 040,060 L 100,060 L 100,100 L 040,100 z"/>
+		</g>
+		<g id="_wal" class="nopower">
+			<path d="M 060,100 L 100,100 L 100,160 L 060,160 z"/>
+		</g>
+		<g id="_edi" class="nopower">
+			<path d="M 100,040 L 160,040 L 160,080 L 100,080 z"/>
+		</g>
+		<g id="_yor" class="nopower">
+			<path d="M 100,080 L 160,080 L 160,120 L 100,120 z"/>
+		</g>
+		<g id="_lon" class="nopower">
+			<path d="M 100,120 L 160,120 L 160,140 L 140,160 L 100,160 z"/>
+		</g>
+		<g id="_nwy" class="nopower">
+			<path d="M 200,040 L 300,040 L 300,080 L 200,080 z"/>
+		</g>
+		<g id="_swe" class="nopower">
+			<path d="M 260,080 L 320,080 L 320,120 L 260,120 z"/>
+			<line class="sealine" x1="260" y1="115" x2="320" y2="115"/>
+		</g>
+		<g id="_fin" class="nopower">
+			<path d="M 300,040 L 340,040 L 360,060 L 360,080 L 300,080 z"/>
+		</g>
+		<g id="_stp" class="nopower">
+			<path d="M 280,000 L 380,000 L 400,020 L 400,140 L 360,140 L 360,060 L 360,060 L 340,040 L 280,040 z"/>
+			<line class="coastdash" x1="350" y1="50" x2="390" y2="10"/>
+			<text class="coasttext" x="290" y="020">nc</text>
+			<text class="coasttext" x="370" y="110">sc</text>
+		</g>
+		<g id="_den" class="nopower">
+			<path d="M 200,120 L 300,120 L 300,160 L 200,160 z"/>
+		</g>
+		
+		
+		<g id="_por" class="nopower">
+			<path d="M 020,360 L 040,340 L 060,340 L 060,420 L 040,420 L 020,400 z"/>
+		</g>
+		<g id="_spa" class="nopower">
+			<path d="M 060,320 L 100,320 L 100,400 L 080,420 L 060,420 z"/>
+			<line class="coastdash" x1="6" y1="38" x2="10" y2="34"/>
+			<text class="coasttext" x="70" y="333">nc</text>
+			<text class="coasttext" x="85" y="405">sc</text>
+		 </g>
+		
+		
+		<g id="_bre" class="nopower">
+			<path d="M 020,180 L 040,200 L 060,200 L 060,300 L 040,300 L 020,280 z"/>
+		</g>
+		<g id="_gas" class="nopower">
+			<path d="M 060,280 L 120,280 L 120,320 L 060,320 z"/>
+		</g>
+		<g id="_pic" class="nopower">
+			<path d="M 060,200 L 140,200 L 140,240 L 060,240 z"/>
+		</g>
+		<g id="_par" class="nopower">
+			<path d="M 060,240 L 120,240 L 120,280 L 060,280 z"/>
+		</g>
+		<g id="_hol" class="nopower">
+			<path d="M 180,200 L 260,200 L 260,240 L 180,240 z"/>
+		</g>
+		<g id="_bel" class="nopower">
+			<path d="M 140,180 L 160,180 L 180,200 L 180,240 L 140,240 z"/>
+		</g>
+		<g id="_bur" class="nopower">
+			<path d="M 120,240 L 160,240 L 160,320 L 120,320 z"/>
+		</g>
+		<g id="_mar" class="nopower">
+			<path d="M 100,320 L 160,320 L 160,360 L 100,360 z"/>
+		</g>
+		
+		<g id="_swi">
+			<title>Switzerland (Swi)</title>
+			<desc>This space is impassable.</desc>
+			<path class="impassable" d="M 160,300 L 200,300 L 220,320 L 220,340 L 160,340 z"/>
+		</g>
+		 
+		<g id="_ruh" class="nopower">
+			<path d="M 160,240 L 260,240 L 260,280 L 160,280 z"/>
+		</g>
+		<g id="_kie" class="nopower">
+			<path d="M 260,160 L 300,160 L 300,280 L 260,280 z"/>
+		</g>
+		<g id="_ber" class="nopower">
+			<path d="M 300,200 L 340,200 L 340,280 L 300,280 z"/>
+		</g>
+		<g id="_pru" class="nopower">
+			<path d="M 340,180 L 400,180 L 400,240 L 340,240 z"/>
+		</g>
+		<g id="_mun" class="nopower">
+			<path d="M 160,280 L 340,280 L 340,320 L 220,320 L 200,300 L 160,300 z"/>
+		</g>
+		<g id="_sil" class="nopower">
+			<path d="M 340,240 L 400,240 L 400,300 L 340,300 z"/>
+		</g>
+		
+		<g id="_lvn" class="nopower">
+			<path d="M 340,140 L 400,140 L 400,180 L 340,180 z"/>
+		</g>
+		<g id="_war" class="nopower">
+			<path d="M 400,160 L 420,160 L 440,180 L 440,280 L 400,280 z"/>
+		</g>
+		<g id="_mos" class="nopower">
+			<path d="M 400,120 L 440,120 L 500,180 L 500,380 L 480,380 L 480,280 L 460,260 L 440,260 L 440,180 L 420,160 L 400,160 z"/>
+		</g>
+		<g id="_ukr" class="nopower">
+			<path d="M 440,260 L 460,260 L 480,280 L 480,400 L 440,400 z"/>
+		</g>
+		<g id="_sev" class="nopower">
+			<path d="M 480,380 L 580,380 L 600,400 L 600,420 L 480,420 z"/>
+		</g>
+		
+		
+		<g id="_pie" class="nopower">
+			<path d="M 160,340 L 220,340 L 220,380 L 160,380 z"/>
+		</g>
+		<g id="_tus" class="nopower">
+			<path d="M 160,380 L 220,380 L 220,420 L 160,420 z"/>
+		</g>
+		<g id="_ven" class="nopower">
+			<path d="M 220,360 L 280,360 L 280,420 L 260,440 L 220,440 z"/>
+		</g>
+		<g id="_rom" class="nopower">
+			<path d="M 160,420 L 220,420 L 220,460 L 160,460 z"/>
+		</g>
+		<g id="_apu" class="nopower">
+			<path d="M 220,440 L 260,440 L 260,500 L 220,500 z"/>
+		</g>
+		<g id="_nap" class="nopower">
+			<path d="M 160,460 L 220,460 L 220,500 L 160,500 z"/>
+		</g>
+		
+		
+		<g id="_tyr" class="nopower">
+			<path d="M 220,320 L 340,320 L 340,360 L 220,360 z"/>
+		</g>
+		<g id="_boh" class="nopower">
+			<path d="M 340,300 L 400,300 L 400,340 L 340,340 z"/>
+		</g>
+		<g id="_vie" class="nopower">
+			<path d="M 340,340 L 400,340 L 400,380 L 340,380 z"/>
+		</g>
+		<g id="_tri" class="nopower">
+			<path d="M 280,360 L 340,360 L 340,440 L 300,440 L 280,420 z"/>
+		</g>
+		<g id="_gal" class="nopower">
+			<path d="M 400,280 L 440,280 L 440,400 L 400,400 z"/>
+		</g>
+		<g id="_bud" class="nopower">
+			<path d="M 340,380 L 400,380 L 400,420 L 340,420 z"/>
+		</g>
+		
+		<g id="_alb" class="nopower">
+			<path d="M 300,440 L 340,440 L 340,500 L 300,500 z"/>
+		</g>
+		<g id="_ser" class="nopower">
+			<path d="M 340,420 L 400,420 L 400,460 L 340,460 z"/>
+		</g>
+		<g id="_gre" class="nopower">
+			<path d="M 340,460 L 400,460 L 400,500 L 340,500 z"/>
+		</g>
+		<g id="_rum" class="nopower">
+			<path d="M 400,400 L 480,400 L 480,420 L 460,440 L 400,440 z"/>
+		</g>
+		<g id="_bul" class="nopower">
+			<path d="M 400,440 L 460,440 L 460,460 L 440,480 L 440,500 L 400,500 z"/>
+			<line class="coastdash" x1="400" y1="440" x2="440" y2="480"/>
+			<text class="coasttext" x="450" y="453">ec</text>
+			<text class="coasttext" x="420" y="493">sc</text>
+		</g>
+		
+		
+		<g id="_con" class="nopower">
+			<path d="M 460,460 L 500,460 L 500,500 L 440,500 L 440,480 z"/>
+			<line class="sealine" x1="465" y1="460" x2="445" y2="480"/>
+			<line class="sealine" x1="445" y1="480" x2="445" y2="500"/>
+	   </g>
+		<g id="_ank" class="nopower">
+			<path d="M 500,460 L 560,460 L 560,500 L 500,500 z"/>
+		</g>
+		<g id="_smy" class="nopower">
+			<path d="M 460,500 L 560,500 L 560,540 L 460,540 z"/>
+		</g>
+		<g id="_arm" class="nopower">
+			<path d="M 560,420 L 600,420 L 600,540 L 560,540 z"/>
+		</g>
+		<g id="_syr" class="nopower">
+			<path d="M 480,540 L 600,540 L 600,560 L 580,580 L 480,580 z"/>
+		</g>
+		
+		
+		<g id="_naf" class="nopower">
+			<path d="M 040,460 L 080,460 L 080,540 L 060,540 L 040,520 z"/>
+		</g>
+		<g id="_tun" class="nopower">
+			<path d="M 080,500 L 140,500 L 140,540 L 080,540 z"/>
+		</g>
+		
+		
+		<!-- sea provinces -->
+		<g id="_nao">
+			<path class="seapoly" d="M 000,020 L 020,000 L 040,000 L 040,100 L 000,100 z"/>
+		</g>
+		<g id="_nwg">
+			<path class="seapoly" d="M 040,000 L 220,000 L 220,040 L 100,040 L 080,020 L 040,020 z"/>
+		</g>
+		<g id="_nth">
+			<path class="seapoly" d="M 160,040 L 200,040 L 200,200 L 180,200 L 160,180 L 140,180 L 140,160 L 160,140 z"/>
+		</g>
+		<g id="_bar">
+			<path class="seapoly" d="M 220,000 L 280,000 L 280,040 L 220,040 z"/>
+		</g>
+		<g id="_iri">
+			<path class="seapoly" d="M 020,100 L 060,100 L 060,160 L 040,160 L 020,140 z"/>
+		</g>
+		<g id="_eng">
+			<path class="seapoly" d="M 040,160 L 140,160 L 140,200 L 040,200 z"/>
+		</g>
+		<g id="_ska">
+			<path class="seapoly" d="M 200,080 L 260,080 L 260,120 L 200,120 z"/>
+		</g>
+		<g id="_hel">
+			<path class="seapoly" d="M 200,160 L 260,160 L 260,200 L 200,200 z"/>
+		</g>
+		<g id="_bal">
+			<path class="seapoly" d="M 300,120 L 320,120 L 340,140 L 340,200 L 300,200 z"/>
+		</g>
+		<g id="_gob">
+			<path class="seapoly" d="M 320,080 L 360,080 L 360,140 L 340,140 L 320,120 z"/>
+		</g>
+		<g id="_mao">
+			<path class="seapoly" d="M 000,100 L 020,100 L 020,140 L 040,160 L 040,200 L 020,220 L 020,280 L 040,300 L 060,300 L 060,340 L 040,340 L 020,360 L 020,400 L 040,420 L 080,420 L 080,460 L 020,460 L 000,440 z"/>
+		</g>
+		<g id="_wme">
+			<path class="seapoly" d="M 080,420 L 100,400 L 120,400 L 120,500 L 080,500 z"/>
+		</g>
+		<g id="_gol">
+			<path class="seapoly" d="M 100,360 L 160,360 L 160,400 L 100,400 z"/>
+		</g>
+		<g id="_adr">
+			<path class="seapoly" d="M 260,440 L 280,420 L 300,440 L 300,500 L 260,500 z"/>
+		</g>
+		<g id="_eas">
+			<path class="seapoly" d="M 360,540 L 480,540 L 480,580 L 380,580 L 360,560 z"/>
+		</g>
+		<g id="_bla">
+			<path class="seapoly" d="M 480,420 L 560,420 L 560,460 L 460,460 L 460,440 z"/>
+		</g>
+		<g id="_tys">
+			<path class="seapoly" d="M 120,400 L 160,400 L 160,500 L 120,500 z"/>
+		</g>
+		<g id="_ion">
+			<path class="seapoly" d="M 140,500 L 380,500 L 380,540 L 140,540 z"/>
+		</g>
+		<g id="_aeg">
+			<path class="seapoly" d="M 380,500 L 460,500 L 460,540 L 380,540 z"/>
+		</g>
+	</g>
+	
+	<!-- drawing layer: supply centers -->
+	<g id="SupplyCenterLayer"/>
+ 	<!-- drawing layer: orders -->
+	<g id="OrderLayer"/>
+	<!-- drawing layer: units -->
+	<g id="UnitLayer"/>
+	<!-- drawing layer: dislodged units -->
+	<g id="DislodgedUnitLayer"/>
+	
+	<!-- drawing layer -->
+	<g id="HighestOrderLayer"/>
+	
+	
+	<!-- abbreviated name layer  -->
+	<g id="BriefLabelLayer" class="labeltext" visibility="hidden">
+	   <text id="brf_swi" x="174" y="323.8">swi</text>
+	   <text id="brf_adr" x="280.3" y="491.9">adr</text>
+	   <text id="brf_aeg" x="397.9" y="525.7">aeg</text>
+	   <text id="brf_alb" x="321.2" y="491.9">alb</text>
+	   <text id="brf_ank" x="513.4" y="485.8">ank</text>
+	   <text id="brf_apu" x="239.4" y="491.9">apu</text>
+	   <text id="brf_arm" x="580.9" y="510.4">arm</text>
+	   <text id="brf_bal" x="318.3" y="185">bal</text>
+	   <text id="brf_bar" x="235.2" y="29.7">bar</text>
+	   <text id="brf_bel" x="154.8" y="195.9">bel</text>
+	   <text id="brf_ber" x="321.2" y="214.8">ber</text>
+	   <text id="brf_bla" x="489.9" y="447">bla</text>
+	   <text id="brf_boh" x="354.9" y="332.4">boh</text>
+	   <text id="brf_bre" x="41" y="225.1">bre</text>
+	   <text id="brf_bud" x="351.9" y="406.1">bud</text>
+	   <text id="brf_bul" transform="translate(444.9,469.5), rotate(-45)" x="0" y="0">bul</text>
+	   <text id="brf_bur" x="141.1" y="301">bur</text>
+	   <text id="brf_cly" x="54.4" y="46.1">cly</text>
+	   <text id="brf_con" transform="translate(461.3,480.7), rotate(-45)" x="0" y="0">con</text>
+	   <text id="brf_den" x="219.7" y="144.8">den</text>
+	   <text id="brf_eas" x="392.8" y="563.5">eas</text>
+	   <text id="brf_edi" x="111.9" y="63.5">edi</text>
+	   <text id="brf_eng" x="67.2" y="183.1">eng</text>
+	   <text id="brf_fin" x="313.7" y="69.9">fin</text>
+	   <text id="brf_gal" x="419.4" y="360">gal</text>
+	   <text id="brf_gas" x="76.3" y="311">gas</text>
+	   <text id="brf_gre" x="353.9" y="482.7">gre</text>
+	   <text id="brf_bot" x="339.3" y="122.9">bot</text>
+	   <text id="brf_lyo" x="114.6" y="389.7">lyo</text>
+	   <text id="brf_hel" x="215.1" y="191.4">hel</text>
+	   <text id="brf_hol" x="200.5" y="224.2">hol</text>
+	   <text id="brf_ion" x="304.8" y="525.7">ion</text>
+	   <text id="brf_iri" x="48" y="153.9">iri</text>
+	   <text id="brf_kie" x="278.2" y="253.7">kie</text>
+	   <text id="brf_lon" x="112.8" y="153.9">lon</text>
+	   <text id="brf_lvn" x="356" y="171.9">lvn</text>
+	   <text id="brf_lvp" x="50.7" y="86.3">lvp</text>
+	   <text id="brf_mar" x="112.6" y="344.7">mar</text>
+	   <text id="brf_mao" x="17.8" y="185">mao</text>
+	   <text id="brf_mos" x="470.5" y="189.3">mos</text>
+	   <text id="brf_mun" x="301" y="300">mun</text>
+	   <text id="brf_naf" x="58.9" y="475.4">naf</text>
+	   <text id="brf_nap" x="173.1" y="484.5">nap</text>
+	   <text id="brf_nao" x="18.7" y="75.4">nao</text>
+	   <text id="brf_nth" x="177.7" y="150.3">nth</text>
+	   <text id="brf_nwy" x="220.6" y="63.5">nwy</text>
+	   <text id="brf_nwg" x="183.1" y="21.5">nwg</text>
+	   <text id="brf_par" x="72.6" y="265.3">par</text>
+	   <text id="brf_pic" x="78.1" y="226.1">pic</text>
+	   <text id="brf_pie" x="173.1" y="366.7">pie</text>
+	   <text id="brf_por" x="44.3" y="410.6">por</text>
+	   <text id="brf_pru" x="357" y="228.1">pru</text>
+	   <text id="brf_rom" x="173.1" y="443.4">rom</text>
+	   <text id="brf_ruh" x="185.9" y="262.6">ruh</text>
+	   <text id="brf_rum" x="418.3" y="424.5">rum</text>
+	   <text id="brf_ser" x="351.9" y="447">ser</text>
+	   <text id="brf_sev" x="504.2" y="404">sev</text>
+	   <text id="brf_sil" x="353.9" y="287.4">sil</text>
+	   <text id="brf_ska" x="216.9" y="110.5">ska</text>
+	   <text id="brf_smy" x="483.8" y="525.7">smy</text>
+	   <text id="brf_spa" x="80.9" y="346.6">spa</text>
+	   <text id="brf_stp" transform="translate(352.9,47.1), rotate(45)" x="0" y="0">stp</text>
+	   <text id="brf_swe" x="273.6" y="102.8">swe</text>
+	   <text id="brf_syr" x="516.5" y="567.6">syr</text>
+	   <text id="brf_tri" x="311" y="374.4">tri</text>
+	   <text id="brf_tun" x="93.2" y="525.7">tun</text>
+	   <text id="brf_tus" x="174.9" y="407.8">tus</text>
+	   <text id="brf_tyr" x="250.7" y="343">tyr</text>
+	   <text id="brf_tys" x="140.2" y="479.1">tys</text>
+	   <text id="brf_ukr" x="459.2" y="360">ukr</text>
+	   <text id="brf_ven" x="247.6" y="374.4">ven</text>
+	   <text id="brf_vie" x="351.9" y="363.1">vie</text>
+	   <text id="brf_wal" x="79" y="153">wal</text>
+	   <text id="brf_war" x="419.4" y="189.3">war</text>
+	   <text id="brf_wes" x="99.1" y="478.1">wes</text>
+	   <text id="brf_yor" x="118.3" y="107.3">yor</text>
+	</g>
+	
+	<!-- full name layer: NOT SUPPORTED -->
+	<g id="FullLabelLayer" class="labeltext" visibility="hidden"/>
+	
+	<!-- Invisible shapes for click detection -->
+	<g id="MouseLayer" class="invisible">
+		<path id="cly" d="M 040,020 L 080,020 L 100,040 L 100,060 L 040,060 z"/>
+		<path id="lvp" d="M 040,060 L 100,060 L 100,100 L 040,100 z"/>
+		<path id="wal" d="M 060,100 L 100,100 L 100,160 L 060,160 z"/>
+		<path id="edi" d="M 100,040 L 160,040 L 160,080 L 100,080 z"/>
+		<path id="yor" d="M 100,080 L 160,080 L 160,120 L 100,120 z"/>
+		<path id="lon" d="M 100,120 L 160,120 L 160,140 L 140,160 L 100,160 z"/>
+		<path id="nwy" d="M 200,040 L 300,040 L 300,080 L 200,080 z"/>
+		<path id="swe" d="M 260,080 L 320,080 L 320,120 L 260,120 z"/>
+		<path id="fin" d="M 300,040 L 340,040 L 360,060 L 360,080 L 300,080 z"/>
+		<path id="stp" d="M 280,000 L 380,000 L 400,020 L 400,140 L 360,140 L 360,060 L 360,060 L 340,040 L 280,040 z"/>
+		<path id="den" d="M 200,120 L 300,120 L 300,160 L 200,160 z"/>
+		<path id="por" d="M 020,360 L 040,340 L 060,340 L 060,420 L 040,420 L 020,400 z"/>
+		<path id="spa" d="M 060,320 L 100,320 L 100,400 L 080,420 L 060,420 z"/>
+		<path id="bre" d="M 020,180 L 040,200 L 060,200 L 060,300 L 040,300 L 020,280 z"/>
+		<path id="gas" d="M 060,280 L 120,280 L 120,320 L 060,320 z"/>
+		<path id="pic" d="M 060,200 L 140,200 L 140,240 L 060,240 z"/>
+		<path id="par" d="M 060,240 L 120,240 L 120,280 L 060,280 z"/>
+		<path id="hol" d="M 180,200 L 260,200 L 260,240 L 180,240 z"/>
+		<path id="bel" d="M 140,180 L 160,180 L 180,200 L 180,240 L 140,240 z"/>
+		<path id="bur" d="M 120,240 L 160,240 L 160,320 L 120,320 z"/>
+		<path id="mar" d="M 100,320 L 160,320 L 160,360 L 100,360 z"/>
+		<path id="ruh" d="M 160,240 L 260,240 L 260,280 L 160,280 z"/>
+		<path id="kie" d="M 260,160 L 300,160 L 300,280 L 260,280 z"/>
+		<path id="ber" d="M 300,200 L 340,200 L 340,280 L 300,280 z"/>
+		<path id="pru" d="M 340,180 L 400,180 L 400,240 L 340,240 z"/>
+		<path id="mun" d="M 160,280 L 340,280 L 340,320 L 220,320 L 200,300 L 160,300 z"/>
+		<path id="sil" d="M 340,240 L 400,240 L 400,300 L 340,300 z"/>
+		<path id="lvn" d="M 340,140 L 400,140 L 400,180 L 340,180 z"/>
+		<path id="war" d="M 400,160 L 420,160 L 440,180 L 440,280 L 400,280 z"/>
+		<path id="mos" d="M 400,120 L 440,120 L 500,180 L 500,380 L 480,380 L 480,280 L 460,260 L 440,260 L 440,180 L 420,160 L 400,160 z"/>
+		<path id="ukr" d="M 440,260 L 460,260 L 480,280 L 480,400 L 440,400 z"/>
+		<path id="sev" d="M 480,380 L 580,380 L 600,400 L 600,420 L 480,420 z"/>
+		<path id="pie" d="M 160,340 L 220,340 L 220,380 L 160,380 z"/>
+		<path id="tus" d="M 160,380 L 220,380 L 220,420 L 160,420 z"/>
+		<path id="ven" d="M 220,360 L 280,360 L 280,420 L 260,440 L 220,440 z"/>
+		<path id="rom" d="M 160,420 L 220,420 L 220,460 L 160,460 z"/>
+		<path id="apu" d="M 220,440 L 260,440 L 260,500 L 220,500 z"/>
+		<path id="nap" d="M 160,460 L 220,460 L 220,500 L 160,500 z"/>
+		<path id="tyr" d="M 220,320 L 340,320 L 340,360 L 220,360 z"/>
+		<path id="boh" d="M 340,300 L 400,300 L 400,340 L 340,340 z"/>
+		<path id="vie" d="M 340,340 L 400,340 L 400,380 L 340,380 z"/>
+		<path id="tri" d="M 280,360 L 340,360 L 340,440 L 300,440 L 280,420 z"/>
+		<path id="gal" d="M 400,280 L 440,280 L 440,400 L 400,400 z"/>
+		<path id="bud" d="M 340,380 L 400,380 L 400,420 L 340,420 z"/>
+		<path id="alb" d="M 300,440 L 340,440 L 340,500 L 300,500 z"/>
+		<path id="ser" d="M 340,420 L 400,420 L 400,460 L 340,460 z"/>
+    	<path id="gre" d="M 340,460 L 400,460 L 400,500 L 340,500 z"/>
+		<path id="rum" d="M 400,400 L 480,400 L 480,420 L 460,440 L 400,440 z"/>
+		<path id="bul" d="M 400,440 L 460,440 L 460,460 L 440,480 L 440,500 L 400,500 z"/>
+		<path id="con" d="M 460,460 L 500,460 L 500,500 L 440,500 L 440,480 z"/>
+		<path id="ank" d="M 500,460 L 560,460 L 560,500 L 500,500 z"/>
+		<path id="smy" d="M 460,500 L 560,500 L 560,540 L 460,540 z"/>
+		<path id="arm" d="M 560,420 L 600,420 L 600,540 L 560,540 z"/>
+		<path id="syr" d="M 480,540 L 600,540 L 600,560 L 580,580 L 480,580 z"/>
+		<path id="naf" d="M 040,460 L 080,460 L 080,540 L 060,540 L 040,520 z"/>
+		<path id="tun" d="M 080,500 L 140,500 L 140,540 L 080,540 z"/>
+		<!-- sea provinces -->
+		<path id="nao" d="M 000,020 L 020,000 L 040,000 L 040,100 L 000,100 z"/>
+		<path id="nwg" d="M 040,000 L 220,000 L 220,040 L 100,040 L 080,020 L 040,020 z"/>
+		<path id="nth" d="M 160,040 L 200,040 L 200,200 L 180,200 L 160,180 L 140,180 L 140,160 L 160,140 z"/>
+		<path id="bar" d="M 220,000 L 280,000 L 280,040 L 220,040 z"/>
+		<path id="iri" d="M 020,100 L 060,100 L 060,160 L 040,160 L 020,140 z"/>
+		<path id="eng" d="M 040,160 L 140,160 L 140,200 L 040,200 z"/>
+		<path id="ska" d="M 200,080 L 260,080 L 260,120 L 200,120 z"/>
+		<path id="hel" d="M 200,160 L 260,160 L 260,200 L 200,200 z"/>
+		<path id="bal" d="M 300,120 L 320,120 L 340,140 L 340,200 L 300,200 z"/>
+		<path id="gob" d="M 320,080 L 360,080 L 360,140 L 340,140 L 320,120 z"/>
+		<path id="mao" d="M 000,100 L 020,100 L 020,140 L 040,160 L 040,200 L 020,220 L 020,280 L 040,300 L 060,300 L 060,340 L 040,340 L 020,360 L 020,400 L 040,420 L 080,420 L 080,460 L 020,460 L 000,440 z"/>
+		<path id="wme" d="M 080,420 L 100,400 L 120,400 L 120,500 L 080,500 z"/>
+		<path id="gol" d="M 100,360 L 160,360 L 160,400 L 100,400 z"/>
+		<path id="adr" d="M 260,440 L 280,420 L 300,440 L 300,500 L 260,500 z"/>
+		<path id="eas" d="M 360,540 L 480,540 L 480,580 L 380,580 L 360,560 z"/>
+		<path id="bla" d="M 480,420 L 560,420 L 560,460 L 460,460 L 460,440 z"/>
+		<path id="tys" d="M 120,400 L 160,400 L 160,500 L 120,500 z"/>
+		<path id="ion" d="M 140,500 L 380,500 L 380,540 L 140,540 z"/>
+		<path id="aeg" d="M 380,500 L 460,500 L 460,540 L 380,540 z"/>
+		<!-- spain nc/sc -->
+		<path id="spa-nc" d="M 060,320 L 100,320 L 100,340 L 060,380 z"/>
+		<path id="spa-sc" d="M 060,380 L 100,340 L 100,400 L 080,420 L 060,420 z"/>
+		<!-- st. petersburg nc/sc -->
+		<path id="stp-nc" d="M 280,000 L 380,000 L 340,040 L 280,040 z"/>
+		<path id="stp-sc" d="M 340,040 L 380,000 L 400,020 L 400,140 L 360,140 L 360,060 z"/>
+		<!-- bulgaria ec/sc -->
+		<path id="bul-ec" d="M 400,440 L 460,440 L 460,460 L 440,480 z"/> 
+		<path id="bul-sc" d="M 400,440 L 440,480 L 440,500 L 400,500 z"/>
+		<!-- impassable provinces -->
+		<path id="swi" d="M 160,300 L 200,300 L 220,320 L 220,340 L 160,340 z"/>
+	</g>
+</svg>

@@ -1,0 +1,928 @@
+<?xml version="1.0"?>
+<!DOCTYPE VARIANTS [
+	<!ELEMENT VARIANTS (DESCRIPTION, MAP_DEFINITION+, VARIANT+)>
+	
+	<!ELEMENT DESCRIPTION (#PCDATA)>
+	
+	<!ELEMENT MAP_DEFINITION (DESCRIPTION?)>
+	<!ATTLIST MAP_DEFINITION 
+		id ID #REQUIRED
+		title CDATA #REQUIRED
+		URI CDATA #REQUIRED
+		thumbURI CDATA #REQUIRED
+		preferredUnitStyle CDATA #IMPLIED
+		>
+	
+	<!ELEMENT VARIANT (DESCRIPTION, MAP, RULEOPTIONS?, POWER+, STARTINGTIME, VICTORYCONDITIONS, SUPPLYCENTER+, INITIALSTATE*)>
+	<!ATTLIST VARIANT
+			name CDATA #REQUIRED
+			default (true|false) "false"
+			version CDATA #REQUIRED
+			aliases CDATA #IMPLIED
+			>
+			
+	<!ELEMENT MAP (MAP_GRAPHIC*)>
+	<!ATTLIST MAP adjacencyURI CDATA #REQUIRED>
+	
+	<!ELEMENT MAP_GRAPHIC EMPTY>
+	<!ATTLIST MAP_GRAPHIC
+			ref IDREF #REQUIRED
+			default (true|false) "false"
+			preferredUnitStyle CDATA #IMPLIED
+			>
+	
+	<!ELEMENT RULEOPTIONS (RULEOPTION+)>
+	<!ELEMENT RULEOPTION EMPTY>
+	<!ATTLIST RULEOPTION	name CDATA #REQUIRED
+				value CDATA #REQUIRED>
+	
+	<!ELEMENT POWER EMPTY>
+	<!ATTLIST POWER name CDATA #REQUIRED
+			active (true|false) "true"
+			adjective CDATA #REQUIRED
+			altnames CDATA #IMPLIED
+			>
+	
+	<!ELEMENT STARTINGTIME EMPTY>
+	<!ATTLIST STARTINGTIME 	turn CDATA #REQUIRED
+				allowBCYears (true|false) "false"
+				>
+	
+	<!ELEMENT VICTORYCONDITIONS (WINNING_SUPPLY_CENTERS?, YEARS_WITHOUT_SC_CAPTURE?, GAME_LENGTH?)>
+	
+	<!ELEMENT WINNING_SUPPLY_CENTERS EMPTY>
+	<!ATTLIST WINNING_SUPPLY_CENTERS value CDATA #REQUIRED>
+	
+	<!ELEMENT YEARS_WITHOUT_SC_CAPTURE EMPTY>
+	<!ATTLIST YEARS_WITHOUT_SC_CAPTURE value CDATA #REQUIRED>
+	
+	<!ELEMENT GAME_LENGTH EMPTY>
+	<!ATTLIST GAME_LENGTH value CDATA #REQUIRED>
+	
+	<!ELEMENT SUPPLYCENTER EMPTY>
+	<!ATTLIST SUPPLYCENTER 	province CDATA #REQUIRED
+				homepower CDATA "none"
+				owner CDATA "none"
+				>
+				
+	<!ELEMENT INITIALSTATE EMPTY>
+	<!ATTLIST INITIALSTATE 	province CDATA #REQUIRED
+				power CDATA #REQUIRED
+				unit CDATA #REQUIRED
+				unitcoast CDATA #IMPLIED
+				>
+]>
+<!-- http://jdip.sourceforge.net/dtd/ NOTE: it's very important that the name of the file will be variants.xml, in all lower case -->
+<!-- NOTE: for CDATA escapes, no space between tag and bracket!! -->
+<VARIANTS>
+	<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;">
+	Various maps for automated DATC compliance and regression testing.
+	</div>]]></DESCRIPTION>
+	
+	<MAP_DEFINITION id="standard" title="Simple" 
+		URI="simple_std.svg" thumbURI="simple_thumb.png">
+		<DESCRIPTION>
+		Simple Standard Map.
+		</DESCRIPTION>
+	</MAP_DEFINITION>
+	
+	<MAP_DEFINITION id="chaos" title="Standard" 
+		URI="chaos.svg" thumbURI="egdipmap_thumb.png">
+		<DESCRIPTION>
+		Chaos map.
+		</DESCRIPTION>
+	</MAP_DEFINITION>
+	
+	<MAP_DEFINITION id="loeb9" title="Loeb9" 
+		URI="loeb9_gridmap.svg" thumbURI="grid_thumb.png">
+		<DESCRIPTION>
+		Loeb9 Test Gridmap (map spaces are in alphabetical 
+		order and not nescessarily contiguous.
+		</DESCRIPTION>
+	</MAP_DEFINITION>
+	
+	
+	<VARIANT name="DATC_Standard" version="1.0" default="false">
+		<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;color:red;">
+		<b>NOTE: This map is for DATC and Regression Testing, and is not recommended for general game play.</b>
+		</div>
+		<div style="font-family:arial,helvetica;margin-top:10px;">
+		Test Version of Standard Map. This version allows the user to optionally start in BC (e.g., 500 BC), 
+		unlike the normal Standard variant. Wing units are also allowed, for testing purposes.
+		</div>]]></DESCRIPTION>
+		<MAP adjacencyURI="std_adjacency.xml">
+			<MAP_GRAPHIC ref="standard" default="true"/>
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY" />
+			<RULEOPTION name="OPTION_WINGS" value="VALUE_WINGS_ENABLED" />
+		</RULEOPTIONS>
+		<POWER name="France" active="true" adjective="French" /> 
+		<POWER name="Austria" active="true" adjective="Austrian" /> 
+		<POWER name="Turkey" active="true" adjective="Turkish" /> 
+		<POWER name="Russia" active="true" adjective="Russian" /> 
+		<POWER name="England" active="true" adjective="English" altnames="Britain" /> 
+		<POWER name="Germany" active="true" adjective="German" /> 
+		<POWER name="Italy" active="true" adjective="Italian" />
+		<STARTINGTIME turn="Spring, 1914, Movement" allowBCYears="true"/>
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="18" />
+			<YEARS_WITHOUT_SC_CAPTURE value="7" />
+			<GAME_LENGTH value="35" />
+		</VICTORYCONDITIONS>
+ 	 	<!-- supply centers -->
+		<SUPPLYCENTER province="ank" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="bel" />
+		<SUPPLYCENTER province="ber" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="bre" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="bud" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="bul" />
+	 	<SUPPLYCENTER province="con" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="den" />
+		<SUPPLYCENTER province="edi" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="gre" />
+		<SUPPLYCENTER province="hol" />
+		<SUPPLYCENTER province="kie" homepower="germany" owner="germany"/>
+		<SUPPLYCENTER province="lvp" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="lon" homepower="britain" owner="britain"/>
+	 	<SUPPLYCENTER province="mar" homepower="france" owner="france"/>
+	 	<SUPPLYCENTER province="mos" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="mun" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="nap" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="nor" />
+	 	<SUPPLYCENTER province="par" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="por" />
+	 	<SUPPLYCENTER province="rom" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="rum" />
+		<SUPPLYCENTER province="ser" />
+	 	<SUPPLYCENTER province="sev" homepower="russia" owner="russia"/>
+	 	<SUPPLYCENTER province="smy" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="spa" />
+	 	<SUPPLYCENTER province="stp" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="swe" />
+		<SUPPLYCENTER province="tri" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="tun" />
+	 	<SUPPLYCENTER province="ven" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="vie" homepower="austria" owner="austria"/>
+	 	<SUPPLYCENTER province="war" homepower="russia" owner="russia"/>
+		<!-- unit placement -->
+		<INITIALSTATE province="ank" power="turkey" unit="fleet" />
+		<INITIALSTATE province="ber" power="germany" unit="army" />
+		<INITIALSTATE province="bre" power="france" unit="fleet" />
+		<INITIALSTATE province="bud" power="austria" unit="army" />
+		<INITIALSTATE province="con" power="turkey" unit="army" />
+		<INITIALSTATE province="edi" power="britain" unit="fleet" />
+		<INITIALSTATE province="kie" power="germany" unit="fleet" />
+		<INITIALSTATE province="lvp" power="britain" unit="army" />
+		<INITIALSTATE province="lon" power="britain" unit="fleet" />
+		<INITIALSTATE province="mar" power="france" unit="army" />
+		<INITIALSTATE province="mos" power="russia" unit="army" />
+		<INITIALSTATE province="mun" power="germany" unit="army" />
+		<INITIALSTATE province="nap" power="italy" unit="fleet" />
+		<INITIALSTATE province="par" power="france" unit="army" />
+		<INITIALSTATE province="rom" power="italy" unit="army" />
+		<INITIALSTATE province="sev" power="russia" unit="fleet" />
+		<INITIALSTATE province="smy" power="turkey" unit="army" />
+		<INITIALSTATE province="stp" power="russia" unit="fleet" unitcoast="sc" />
+		<INITIALSTATE province="tri" power="austria" unit="fleet" />
+		<INITIALSTATE province="ven" power="italy" unit="army" />
+		<INITIALSTATE province="vie" power="austria" unit="army" />
+		<INITIALSTATE province="war" power="russia" unit="army" />
+	</VARIANT>
+	
+	
+	<VARIANT name="DATC_1898" version="1.1">
+		<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;color:red;">
+		<b>NOTE: This map is for DATC and Regression Testing, and is not recommended for general game play.</b>
+		</div>
+		<div style="font-family:arial,helvetica;margin-top:10px;">
+		Test Version of 1898 Variant 
+		</div>]]></DESCRIPTION>
+		<MAP adjacencyURI="std_adjacency.xml">
+				<MAP_GRAPHIC ref="standard" default="true"/>
+		</MAP>
+		<POWER name="France" active="true" adjective="French" /> 
+		<POWER name="Austria" active="true" adjective="Austrian" /> 
+		<POWER name="Turkey" active="true" adjective="Turkish" /> 
+		<POWER name="Russia" active="true" adjective="Russian" /> 
+		<POWER name="England" active="true" adjective="English" altnames="Britain" /> 
+		<POWER name="Germany" active="true" adjective="German" /> 
+		<POWER name="Italy" active="true" adjective="Italian" />
+		<STARTINGTIME turn="Spring, 1899, Movement" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="18" />
+			<YEARS_WITHOUT_SC_CAPTURE value="7" />
+			<GAME_LENGTH value="35" />
+		</VICTORYCONDITIONS>
+		<!-- supply centers -->
+		<SUPPLYCENTER province="ank" homepower="turkey" />
+		<SUPPLYCENTER province="bel" />
+		<SUPPLYCENTER province="ber" homepower="germany" /> 
+	 	<SUPPLYCENTER province="bre" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="bud" homepower="austria" /> 
+		<SUPPLYCENTER province="bul" />
+	 	<SUPPLYCENTER province="con" homepower="turkey" /> 
+		<SUPPLYCENTER province="den" />
+		<SUPPLYCENTER province="edi" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="gre" />
+		<SUPPLYCENTER province="hol" />
+		<SUPPLYCENTER province="kie" homepower="germany" owner="germany"/>
+		<SUPPLYCENTER province="lvp" homepower="britain" /> 
+		<SUPPLYCENTER province="lon" homepower="britain" /> 
+	 	<SUPPLYCENTER province="mar" homepower="france" /> 
+	 	<SUPPLYCENTER province="mos" homepower="russia" /> 
+		<SUPPLYCENTER province="mun" homepower="germany" /> 
+	 	<SUPPLYCENTER province="nap" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="nor" />
+	 	<SUPPLYCENTER province="par" homepower="france" /> 
+		<SUPPLYCENTER province="por" />
+	 	<SUPPLYCENTER province="rom" homepower="italy" /> 
+		<SUPPLYCENTER province="rum" />
+		<SUPPLYCENTER province="ser" />
+	 	<SUPPLYCENTER province="sev" homepower="russia" /> 
+	 	<SUPPLYCENTER province="smy" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="spa" />
+	 	<SUPPLYCENTER province="stp" homepower="russia" owner="russia"/> 
+		<SUPPLYCENTER province="swe" />
+		<SUPPLYCENTER province="tri" homepower="austria" owner="austria"/> 
+		<SUPPLYCENTER province="tun" />
+	 	<SUPPLYCENTER province="ven" homepower="italy" />
+		<SUPPLYCENTER province="vie" homepower="austria" />
+	 	<SUPPLYCENTER province="war" homepower="russia" /> 
+		<!-- unit placement -->
+		<INITIALSTATE province="bre" power="france" unit="army" />
+		<INITIALSTATE province="edi" power="britain" unit="fleet" />
+		<INITIALSTATE province="kie" power="germany" unit="army" />
+		<INITIALSTATE province="nap" power="italy" unit="army" />
+		<INITIALSTATE province="smy" power="turkey" unit="army" />
+		<INITIALSTATE province="stp" power="russia" unit="army" />
+		<INITIALSTATE province="tri" power="austria" unit="army" />
+	</VARIANT>
+	
+	<!-- 11: colonial [not implemented] -->
+	
+	<VARIANT name="DATC_ConvoyingCoastal" version="1.0" default="false">
+		<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;color:red;">
+		<b>NOTE: This map is for DATC and Regression Testing, and is not recommended for general game play.</b>
+		</div>
+		<div style="font-family:arial,helvetica;margin-top:10px;">
+		Modified Standard Map with some coasts marked as convoyable.  
+		</div>]]></DESCRIPTION>
+		<MAP adjacencyURI="conv_coast_adjacency.xml">
+			<MAP_GRAPHIC ref="standard" default="true"/>
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY" />
+		</RULEOPTIONS>
+		<POWER name="France" active="true" adjective="French" /> 
+		<POWER name="Austria" active="true" adjective="Austrian" /> 
+		<POWER name="Turkey" active="true" adjective="Turkish" /> 
+		<POWER name="Russia" active="true" adjective="Russian" /> 
+		<POWER name="England" active="true" adjective="English" altnames="Britain" /> 
+		<POWER name="Germany" active="true" adjective="German" /> 
+		<POWER name="Italy" active="true" adjective="Italian" />
+		<STARTINGTIME turn="Spring, 1914, Movement" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="18" />
+			<YEARS_WITHOUT_SC_CAPTURE value="7" />
+			<GAME_LENGTH value="35" />
+		</VICTORYCONDITIONS>
+ 	 	<!-- supply centers -->
+		<SUPPLYCENTER province="ank" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="bel" />
+		<SUPPLYCENTER province="ber" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="bre" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="bud" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="bul" />
+	 	<SUPPLYCENTER province="con" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="den" />
+		<SUPPLYCENTER province="edi" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="gre" />
+		<SUPPLYCENTER province="hol" />
+		<SUPPLYCENTER province="kie" homepower="germany" owner="germany"/>
+		<SUPPLYCENTER province="lvp" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="lon" homepower="britain" owner="britain"/>
+	 	<SUPPLYCENTER province="mar" homepower="france" owner="france"/>
+	 	<SUPPLYCENTER province="mos" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="mun" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="nap" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="nor" />
+	 	<SUPPLYCENTER province="par" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="por" />
+	 	<SUPPLYCENTER province="rom" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="rum" />
+		<SUPPLYCENTER province="ser" />
+	 	<SUPPLYCENTER province="sev" homepower="russia" owner="russia"/>
+	 	<SUPPLYCENTER province="smy" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="spa" />
+	 	<SUPPLYCENTER province="stp" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="swe" />
+		<SUPPLYCENTER province="tri" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="tun" />
+	 	<SUPPLYCENTER province="ven" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="vie" homepower="austria" owner="austria"/>
+	 	<SUPPLYCENTER province="war" homepower="russia" owner="russia"/>
+		<!-- unit placement -->
+		<INITIALSTATE province="ank" power="turkey" unit="fleet" />
+		<INITIALSTATE province="ber" power="germany" unit="army" />
+		<INITIALSTATE province="bre" power="france" unit="fleet" />
+		<INITIALSTATE province="bud" power="austria" unit="army" />
+		<INITIALSTATE province="con" power="turkey" unit="army" />
+		<INITIALSTATE province="edi" power="britain" unit="fleet" />
+		<INITIALSTATE province="kie" power="germany" unit="fleet" />
+		<INITIALSTATE province="lvp" power="britain" unit="army" />
+		<INITIALSTATE province="lon" power="britain" unit="fleet" />
+		<INITIALSTATE province="mar" power="france" unit="army" />
+		<INITIALSTATE province="mos" power="russia" unit="army" />
+		<INITIALSTATE province="mun" power="germany" unit="army" />
+		<INITIALSTATE province="nap" power="italy" unit="fleet" />
+		<INITIALSTATE province="par" power="france" unit="army" />
+		<INITIALSTATE province="rom" power="italy" unit="army" />
+		<INITIALSTATE province="sev" power="russia" unit="fleet" />
+		<INITIALSTATE province="smy" power="turkey" unit="army" />
+		<INITIALSTATE province="stp" power="russia" unit="fleet" unitcoast="sc" />
+		<INITIALSTATE province="tri" power="austria" unit="fleet" />
+		<INITIALSTATE province="ven" power="italy" unit="army" />
+		<INITIALSTATE province="vie" power="austria" unit="army" />
+		<INITIALSTATE province="war" power="russia" unit="army" />
+	</VARIANT>
+	
+	
+	<VARIANT name="DATC_Chaos" version="1.0" default="false">
+		<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;color:red;">
+		<b>NOTE: This map is for DATC and Regression Testing, and is not recommended for general game play.</b>
+		</div>
+		<div style="font-family:arial,helvetica;margin-top:10px;">
+		Test version of Chaos Variant
+		</div>]]></DESCRIPTION>
+		<MAP adjacencyURI="std_adjacency.xml">
+			<MAP_GRAPHIC ref="chaos" default="true"/>
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_ANY_OWNED" />
+		</RULEOPTIONS>
+		<POWER name="A-Ank" active="true" adjective="A-Ank" /> 
+		<POWER name="B-Bel" active="true" adjective="B-Bel" /> 
+		<POWER name="C-Ber" active="true" adjective="C-Ber" /> 
+		<POWER name="D-Bre" active="true" adjective="D-Bre" /> 
+		<POWER name="E-Bud" active="true" adjective="E-Bud" /> 
+		<POWER name="F-Bul" active="true" adjective="F-Bul" /> 
+		<POWER name="G-Con" active="true" adjective="G-Con" /> 
+		<POWER name="H-Den" active="true" adjective="H-Den" /> 
+		<POWER name="I-Edi" active="true" adjective="I-Edi" /> 
+		<POWER name="J-Gre" active="true" adjective="J-Gre" /> 
+		<POWER name="K-Hol" active="true" adjective="K-Hol" /> 
+		<POWER name="L-Kie" active="true" adjective="L-Kie" /> 
+		<POWER name="N-Lvp" active="true" adjective="N-Lvp" /> 
+		<POWER name="P-Lon" active="true" adjective="P-Lon" /> 
+		<POWER name="Q-Mar" active="true" adjective="Q-Mar" /> 
+		<POWER name="R-Mos" active="true" adjective="R-Mos" /> 
+		<POWER name="S-Mun" active="true" adjective="S-Mun" /> 
+		<POWER name="T-Nap" active="true" adjective="T-Nap" /> 
+		<POWER name="U-Nor" active="true" adjective="U-Nor" /> 
+		<POWER name="V-Par" active="true" adjective="V-Par" /> 
+		<POWER name="W-Por" active="true" adjective="W-Por" /> 
+		<POWER name="X-Rom" active="true" adjective="X-Rom" /> 
+		<POWER name="Y-Rum" active="true" adjective="Y-Rum" /> 
+		<POWER name="Z-Ser" active="true" adjective="Z-Ser" /> 
+		<POWER name="0-Sev" active="true" adjective="0-Sev" /> 
+		<POWER name="1-Smy" active="true" adjective="1-Smy" /> 
+		<POWER name="2-Spa" active="true" adjective="2-Spa" /> 
+		<POWER name="3-StP" active="true" adjective="3-StP" /> 
+		<POWER name="4-Swe" active="true" adjective="4-Swe" /> 
+		<POWER name="5-Tri" active="true" adjective="5-Tri" /> 
+		<POWER name="6-Tun" active="true" adjective="6-Tun" /> 
+		<POWER name="7-Ven" active="true" adjective="7-Ven" /> 
+		<POWER name="8-Vie" active="true" adjective="8-Vie" /> 
+		<POWER name="9-War" active="true" adjective="9-War" /> 
+		<STARTINGTIME turn="Fall, 1900, Adjustment" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="18" />
+			<YEARS_WITHOUT_SC_CAPTURE value="7" />
+			<GAME_LENGTH value="35" />
+		</VICTORYCONDITIONS>
+ 	 	<!-- supply centers -->
+		<SUPPLYCENTER province="ank" owner="A-Ank"/>
+		<SUPPLYCENTER province="bel" owner="B-Bel"/>
+		<SUPPLYCENTER province="ber" owner="C-Ber"/>
+	 	<SUPPLYCENTER province="bre" owner="D-Bre"/>
+		<SUPPLYCENTER province="bud" owner="E-Bud"/>
+		<SUPPLYCENTER province="bul" owner="F-Bul"/>
+	 	<SUPPLYCENTER province="con" owner="G-Con"/>
+		<SUPPLYCENTER province="den" owner="H-Den"/>
+		<SUPPLYCENTER province="edi" owner="I-Edi"/>
+		<SUPPLYCENTER province="gre" owner="J-Gre"/>
+		<SUPPLYCENTER province="hol" owner="K-Hol"/>
+		<SUPPLYCENTER province="kie" owner="L-Kie"/>
+		<SUPPLYCENTER province="lvp" owner="N-Lvp"/>
+		<SUPPLYCENTER province="lon" owner="P-Lon"/>
+	 	<SUPPLYCENTER province="mar" owner="Q-Mar"/>
+	 	<SUPPLYCENTER province="mos" owner="R-Mos"/>
+		<SUPPLYCENTER province="mun" owner="S-Mun"/>
+	 	<SUPPLYCENTER province="nap" owner="T-Nap"/>
+		<SUPPLYCENTER province="nor" owner="U-Nor"/>
+	 	<SUPPLYCENTER province="par" owner="V-Par"/>
+		<SUPPLYCENTER province="por" owner="W-Por"/>
+	 	<SUPPLYCENTER province="rom" owner="X-Rom"/>
+		<SUPPLYCENTER province="rum" owner="Y-Rum"/>
+		<SUPPLYCENTER province="ser" owner="Z-Ser"/>
+	 	<SUPPLYCENTER province="sev" owner="0-Sev"/>
+	 	<SUPPLYCENTER province="smy" owner="1-Smy"/>
+		<SUPPLYCENTER province="spa" owner="2-Spa"/>
+	 	<SUPPLYCENTER province="stp" owner="3-StP"/>
+		<SUPPLYCENTER province="swe" owner="4-Swe"/>
+		<SUPPLYCENTER province="tri" owner="5-Tri"/>
+		<SUPPLYCENTER province="tun" owner="6-Tun"/>
+	 	<SUPPLYCENTER province="ven" owner="7-Ven"/>
+		<SUPPLYCENTER province="vie" owner="8-Vie"/>
+	 	<SUPPLYCENTER province="war" owner="9-War"/>
+		<!-- no units placed; adjustment phase; we get to pick -->
+	</VARIANT>
+	
+	
+	<VARIANT name="DATC_Loeb9" version="1.0" default="false">
+		<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;color:red;">
+		<b>NOTE: This map is for DATC and Regression Testing, and is not recommended for general game play.</b>
+		</div>
+		<div style="font-family:arial,helvetica;margin-top:10px;">
+		Test version of Loeb9 Variant. Some adjacency modifications have been made to enable better 
+		regression testing. These changes are described in the DATC.
+		</div>]]></DESCRIPTION>
+		<MAP adjacencyURI="loeb9_adjacency.xml">
+			<MAP_GRAPHIC ref="loeb9" default="true"/>
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY" />
+		</RULEOPTIONS>
+		<POWER name="France" active="true" adjective="French" /> 
+		<POWER name="Austria" active="true" adjective="Austrian" /> 
+		<POWER name="Turkey" active="true" adjective="Turkish" /> 
+		<POWER name="Russia" active="true" adjective="Russian" /> 
+		<POWER name="England" active="true" adjective="English" altnames="Britain" /> 
+		<POWER name="Germany" active="true" adjective="German" /> 
+		<POWER name="Italy" active="true" adjective="Italian" />
+		<POWER name="Spain" active="true" adjective="Spanish" />
+		<POWER name="Norway" active="true" adjective="Norwegian" />
+		<STARTINGTIME turn="Spring, 1914, Movement" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="20" />
+			<YEARS_WITHOUT_SC_CAPTURE value="7" />
+			<GAME_LENGTH value="35" />
+		</VICTORYCONDITIONS>
+ 	 	<!-- new supply centers -->
+		<SUPPLYCENTER province="mad" homepower="spain" owner="spain"/>
+		<SUPPLYCENTER province="cor" homepower="spain" owner="spain"/>
+		<SUPPLYCENTER province="ire" />
+		<SUPPLYCENTER province="pru" />
+		<SUPPLYCENTER province="sil" />
+		<!-- supply centers -->
+		<SUPPLYCENTER province="ank" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="bel" />
+		<SUPPLYCENTER province="ber" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="bre" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="bud" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="bul" />
+	 	<SUPPLYCENTER province="con" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="den" />
+		<SUPPLYCENTER province="edi" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="gre" />
+		<SUPPLYCENTER province="hol" />
+		<SUPPLYCENTER province="kie" homepower="germany" owner="germany"/>
+		<SUPPLYCENTER province="lvp" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="lon" homepower="britain" owner="britain"/>
+	 	<SUPPLYCENTER province="mar" homepower="france" owner="france"/>
+	 	<SUPPLYCENTER province="mos" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="mun" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="nap" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="nor" />
+	 	<SUPPLYCENTER province="par" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="por" />
+	 	<SUPPLYCENTER province="rom" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="rum" />
+		<SUPPLYCENTER province="ser" />
+	 	<SUPPLYCENTER province="sev" homepower="russia" owner="russia"/>
+	 	<SUPPLYCENTER province="smy" homepower="turkey" owner="turkey"/>
+	 	<SUPPLYCENTER province="stp" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="swe" />
+		<SUPPLYCENTER province="tri" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="tun" />
+	 	<SUPPLYCENTER province="ven" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="vie" homepower="austria" owner="austria"/>
+	 	<SUPPLYCENTER province="war" homepower="russia" owner="russia"/>
+		<!-- unit placement for new powers -->
+		<INITIALSTATE province="por" power="spain" unit="fleet" />
+		<INITIALSTATE province="cor" power="spain" unit="army" />
+		<INITIALSTATE province="mad" power="spain" unit="army" />
+		<INITIALSTATE province="nor" power="norway" unit="army" />
+		<INITIALSTATE province="den" power="norway" unit="fleet" />
+		<INITIALSTATE province="swe" power="norway" unit="fleet" />
+		<!-- unit placement -->
+		<INITIALSTATE province="ank" power="turkey" unit="fleet" />
+		<INITIALSTATE province="ber" power="germany" unit="army" />
+		<INITIALSTATE province="bre" power="france" unit="fleet" />
+		<INITIALSTATE province="bud" power="austria" unit="army" />
+		<INITIALSTATE province="con" power="turkey" unit="army" />
+		<INITIALSTATE province="edi" power="britain" unit="fleet" />
+		<INITIALSTATE province="kie" power="germany" unit="fleet" />
+		<INITIALSTATE province="lvp" power="britain" unit="army" />
+		<INITIALSTATE province="lon" power="britain" unit="fleet" />
+		<INITIALSTATE province="mar" power="france" unit="army" />
+		<INITIALSTATE province="mos" power="russia" unit="army" />
+		<INITIALSTATE province="mun" power="germany" unit="army" />
+		<INITIALSTATE province="nap" power="italy" unit="fleet" />
+		<INITIALSTATE province="par" power="france" unit="army" />
+		<INITIALSTATE province="rom" power="italy" unit="army" />
+		<INITIALSTATE province="sev" power="russia" unit="fleet" />
+		<INITIALSTATE province="smy" power="turkey" unit="army" />
+		<INITIALSTATE province="stp" power="russia" unit="fleet" unitcoast="sc" />
+		<INITIALSTATE province="tri" power="austria" unit="fleet" />
+		<INITIALSTATE province="ven" power="italy" unit="army" />
+		<INITIALSTATE province="vie" power="austria" unit="army" />
+		<INITIALSTATE province="war" power="russia" unit="army" />
+	</VARIANT>
+	
+		<VARIANT name="DATC_Loeb9_tc14d" version="1.0" default="false">
+		<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;color:red;">
+		<b>NOTE: This map is for DATC and Regression Testing, and is not recommended for general game play. NOTE: Test Case 14.D</b>
+		</div>
+		<div style="font-family:arial,helvetica;margin-top:10px;">
+		Test version of Loeb9 Variant. Some adjacency modifications have been made to enable better 
+		regression testing. These changes are described in the DATC.
+		</div>]]></DESCRIPTION>
+		<MAP adjacencyURI="loeb9_tc14d_adjacency.xml">
+			<MAP_GRAPHIC ref="loeb9" default="true"/>
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY" />
+		</RULEOPTIONS>
+		<POWER name="France" active="true" adjective="French" /> 
+		<POWER name="Austria" active="true" adjective="Austrian" /> 
+		<POWER name="Turkey" active="true" adjective="Turkish" /> 
+		<POWER name="Russia" active="true" adjective="Russian" /> 
+		<POWER name="England" active="true" adjective="English" altnames="Britain" /> 
+		<POWER name="Germany" active="true" adjective="German" /> 
+		<POWER name="Italy" active="true" adjective="Italian" />
+		<POWER name="Spain" active="true" adjective="Spanish" />
+		<POWER name="Norway" active="true" adjective="Norwegian" />
+		<STARTINGTIME turn="Spring, 1914, Movement" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="20" />
+			<YEARS_WITHOUT_SC_CAPTURE value="7" />
+			<GAME_LENGTH value="35" />
+		</VICTORYCONDITIONS>
+ 	 	<!-- new supply centers -->
+		<SUPPLYCENTER province="mad" homepower="spain" owner="spain"/>
+		<SUPPLYCENTER province="cor" homepower="spain" owner="spain"/>
+		<SUPPLYCENTER province="ire" />
+		<SUPPLYCENTER province="pru" />
+		<SUPPLYCENTER province="sil" />
+		<!-- supply centers -->
+		<SUPPLYCENTER province="ank" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="bel" />
+		<SUPPLYCENTER province="ber" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="bre" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="bud" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="bul" />
+	 	<SUPPLYCENTER province="con" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="den" />
+		<SUPPLYCENTER province="edi" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="gre" />
+		<SUPPLYCENTER province="hol" />
+		<SUPPLYCENTER province="kie" homepower="germany" owner="germany"/>
+		<SUPPLYCENTER province="lvp" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="lon" homepower="britain" owner="britain"/>
+	 	<SUPPLYCENTER province="mar" homepower="france" owner="france"/>
+	 	<SUPPLYCENTER province="mos" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="mun" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="nap" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="nor" />
+	 	<SUPPLYCENTER province="par" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="por" />
+	 	<SUPPLYCENTER province="rom" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="rum" />
+		<SUPPLYCENTER province="ser" />
+	 	<SUPPLYCENTER province="sev" homepower="russia" owner="russia"/>
+	 	<SUPPLYCENTER province="smy" homepower="turkey" owner="turkey"/>
+	 	<SUPPLYCENTER province="stp" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="swe" />
+		<SUPPLYCENTER province="tri" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="tun" />
+	 	<SUPPLYCENTER province="ven" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="vie" homepower="austria" owner="austria"/>
+	 	<SUPPLYCENTER province="war" homepower="russia" owner="russia"/>
+		<!-- unit placement for new powers -->
+		<INITIALSTATE province="por" power="spain" unit="fleet" />
+		<INITIALSTATE province="cor" power="spain" unit="army" />
+		<INITIALSTATE province="mad" power="spain" unit="army" />
+		<INITIALSTATE province="nor" power="norway" unit="army" />
+		<INITIALSTATE province="den" power="norway" unit="fleet" />
+		<INITIALSTATE province="swe" power="norway" unit="fleet" />
+		<!-- unit placement -->
+		<INITIALSTATE province="ank" power="turkey" unit="fleet" />
+		<INITIALSTATE province="ber" power="germany" unit="army" />
+		<INITIALSTATE province="bre" power="france" unit="fleet" />
+		<INITIALSTATE province="bud" power="austria" unit="army" />
+		<INITIALSTATE province="con" power="turkey" unit="army" />
+		<INITIALSTATE province="edi" power="britain" unit="fleet" />
+		<INITIALSTATE province="kie" power="germany" unit="fleet" />
+		<INITIALSTATE province="lvp" power="britain" unit="army" />
+		<INITIALSTATE province="lon" power="britain" unit="fleet" />
+		<INITIALSTATE province="mar" power="france" unit="army" />
+		<INITIALSTATE province="mos" power="russia" unit="army" />
+		<INITIALSTATE province="mun" power="germany" unit="army" />
+		<INITIALSTATE province="nap" power="italy" unit="fleet" />
+		<INITIALSTATE province="par" power="france" unit="army" />
+		<INITIALSTATE province="rom" power="italy" unit="army" />
+		<INITIALSTATE province="sev" power="russia" unit="fleet" />
+		<INITIALSTATE province="smy" power="turkey" unit="army" />
+		<INITIALSTATE province="stp" power="russia" unit="fleet" unitcoast="sc" />
+		<INITIALSTATE province="tri" power="austria" unit="fleet" />
+		<INITIALSTATE province="ven" power="italy" unit="army" />
+		<INITIALSTATE province="vie" power="austria" unit="army" />
+		<INITIALSTATE province="war" power="russia" unit="army" />
+	</VARIANT>
+	
+		<VARIANT name="DATC_Loeb9_tc14fgl" version="1.0" default="false">
+		<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;color:red;">
+		<b>NOTE: This map is for DATC and Regression Testing, and is not recommended for general game play. NOTE: Test Case 14.D</b>
+		</div>
+		<div style="font-family:arial,helvetica;margin-top:10px;">
+		Test version of Loeb9 Variant. Some adjacency modifications have been made to enable better 
+		regression testing. These changes are described in the DATC.
+		</div>]]></DESCRIPTION>
+		<MAP adjacencyURI="loeb9_tc14fgl_adjacency.xml">
+			<MAP_GRAPHIC ref="loeb9" default="true"/>
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY" />
+		</RULEOPTIONS>
+		<POWER name="France" active="true" adjective="French" /> 
+		<POWER name="Austria" active="true" adjective="Austrian" /> 
+		<POWER name="Turkey" active="true" adjective="Turkish" /> 
+		<POWER name="Russia" active="true" adjective="Russian" /> 
+		<POWER name="England" active="true" adjective="English" altnames="Britain" /> 
+		<POWER name="Germany" active="true" adjective="German" /> 
+		<POWER name="Italy" active="true" adjective="Italian" />
+		<POWER name="Spain" active="true" adjective="Spanish" />
+		<POWER name="Norway" active="true" adjective="Norwegian" />
+		<STARTINGTIME turn="Spring, 1914, Movement" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="20" />
+			<YEARS_WITHOUT_SC_CAPTURE value="7" />
+			<GAME_LENGTH value="35" />
+		</VICTORYCONDITIONS>
+ 	 	<!-- new supply centers -->
+		<SUPPLYCENTER province="mad" homepower="spain" owner="spain"/>
+		<SUPPLYCENTER province="cor" homepower="spain" owner="spain"/>
+		<SUPPLYCENTER province="ire" />
+		<SUPPLYCENTER province="pru" />
+		<SUPPLYCENTER province="sil" />
+		<!-- supply centers -->
+		<SUPPLYCENTER province="ank" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="bel" />
+		<SUPPLYCENTER province="ber" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="bre" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="bud" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="bul" />
+	 	<SUPPLYCENTER province="con" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="den" />
+		<SUPPLYCENTER province="edi" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="gre" />
+		<SUPPLYCENTER province="hol" />
+		<SUPPLYCENTER province="kie" homepower="germany" owner="germany"/>
+		<SUPPLYCENTER province="lvp" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="lon" homepower="britain" owner="britain"/>
+	 	<SUPPLYCENTER province="mar" homepower="france" owner="france"/>
+	 	<SUPPLYCENTER province="mos" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="mun" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="nap" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="nor" />
+	 	<SUPPLYCENTER province="par" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="por" />
+	 	<SUPPLYCENTER province="rom" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="rum" />
+		<SUPPLYCENTER province="ser" />
+	 	<SUPPLYCENTER province="sev" homepower="russia" owner="russia"/>
+	 	<SUPPLYCENTER province="smy" homepower="turkey" owner="turkey"/>
+	 	<SUPPLYCENTER province="stp" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="swe" />
+		<SUPPLYCENTER province="tri" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="tun" />
+	 	<SUPPLYCENTER province="ven" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="vie" homepower="austria" owner="austria"/>
+	 	<SUPPLYCENTER province="war" homepower="russia" owner="russia"/>
+		<!-- unit placement for new powers -->
+		<INITIALSTATE province="por" power="spain" unit="fleet" />
+		<INITIALSTATE province="cor" power="spain" unit="army" />
+		<INITIALSTATE province="mad" power="spain" unit="army" />
+		<INITIALSTATE province="nor" power="norway" unit="army" />
+		<INITIALSTATE province="den" power="norway" unit="fleet" />
+		<INITIALSTATE province="swe" power="norway" unit="fleet" />
+		<!-- unit placement -->
+		<INITIALSTATE province="ank" power="turkey" unit="fleet" />
+		<INITIALSTATE province="ber" power="germany" unit="army" />
+		<INITIALSTATE province="bre" power="france" unit="fleet" />
+		<INITIALSTATE province="bud" power="austria" unit="army" />
+		<INITIALSTATE province="con" power="turkey" unit="army" />
+		<INITIALSTATE province="edi" power="britain" unit="fleet" />
+		<INITIALSTATE province="kie" power="germany" unit="fleet" />
+		<INITIALSTATE province="lvp" power="britain" unit="army" />
+		<INITIALSTATE province="lon" power="britain" unit="fleet" />
+		<INITIALSTATE province="mar" power="france" unit="army" />
+		<INITIALSTATE province="mos" power="russia" unit="army" />
+		<INITIALSTATE province="mun" power="germany" unit="army" />
+		<INITIALSTATE province="nap" power="italy" unit="fleet" />
+		<INITIALSTATE province="par" power="france" unit="army" />
+		<INITIALSTATE province="rom" power="italy" unit="army" />
+		<INITIALSTATE province="sev" power="russia" unit="fleet" />
+		<INITIALSTATE province="smy" power="turkey" unit="army" />
+		<INITIALSTATE province="stp" power="russia" unit="fleet" unitcoast="sc" />
+		<INITIALSTATE province="tri" power="austria" unit="fleet" />
+		<INITIALSTATE province="ven" power="italy" unit="army" />
+		<INITIALSTATE province="vie" power="austria" unit="army" />
+		<INITIALSTATE province="war" power="russia" unit="army" />
+	</VARIANT>
+	
+	<VARIANT name="DATC_Loeb9_tc14specialg" version="1.0" default="false">
+		<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;color:red;">
+		<b>NOTE: This map is for DATC and Regression Testing, and is not recommended for general game play. NOTE: Test Case 14.D</b>
+		</div>
+		<div style="font-family:arial,helvetica;margin-top:10px;">
+		Test version of Loeb9 Variant. Some adjacency modifications have been made to enable better 
+		regression testing. These changes are described in the DATC.
+		</div>]]></DESCRIPTION>
+		<MAP adjacencyURI="loeb9_tc14specialg_adjacency.xml">
+			<MAP_GRAPHIC ref="loeb9" default="true"/>
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY" />
+		</RULEOPTIONS>
+		<POWER name="France" active="true" adjective="French" /> 
+		<POWER name="Austria" active="true" adjective="Austrian" /> 
+		<POWER name="Turkey" active="true" adjective="Turkish" /> 
+		<POWER name="Russia" active="true" adjective="Russian" /> 
+		<POWER name="England" active="true" adjective="English" altnames="Britain" /> 
+		<POWER name="Germany" active="true" adjective="German" /> 
+		<POWER name="Italy" active="true" adjective="Italian" />
+		<POWER name="Spain" active="true" adjective="Spanish" />
+		<POWER name="Norway" active="true" adjective="Norwegian" />
+		<STARTINGTIME turn="Spring, 1914, Movement" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="20" />
+			<YEARS_WITHOUT_SC_CAPTURE value="7" />
+			<GAME_LENGTH value="35" />
+		</VICTORYCONDITIONS>
+ 	 	<!-- new supply centers -->
+		<SUPPLYCENTER province="mad" homepower="spain" owner="spain"/>
+		<SUPPLYCENTER province="cor" homepower="spain" owner="spain"/>
+		<SUPPLYCENTER province="ire" />
+		<SUPPLYCENTER province="pru" />
+		<SUPPLYCENTER province="sil" />
+		<!-- supply centers -->
+		<SUPPLYCENTER province="ank" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="bel" />
+		<SUPPLYCENTER province="ber" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="bre" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="bud" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="bul" />
+	 	<SUPPLYCENTER province="con" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="den" />
+		<SUPPLYCENTER province="edi" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="gre" />
+		<SUPPLYCENTER province="hol" />
+		<SUPPLYCENTER province="kie" homepower="germany" owner="germany"/>
+		<SUPPLYCENTER province="lvp" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="lon" homepower="britain" owner="britain"/>
+	 	<SUPPLYCENTER province="mar" homepower="france" owner="france"/>
+	 	<SUPPLYCENTER province="mos" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="mun" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="nap" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="nor" />
+	 	<SUPPLYCENTER province="par" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="por" />
+	 	<SUPPLYCENTER province="rom" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="rum" />
+		<SUPPLYCENTER province="ser" />
+	 	<SUPPLYCENTER province="sev" homepower="russia" owner="russia"/>
+	 	<SUPPLYCENTER province="smy" homepower="turkey" owner="turkey"/>
+	 	<SUPPLYCENTER province="stp" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="swe" />
+		<SUPPLYCENTER province="tri" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="tun" />
+	 	<SUPPLYCENTER province="ven" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="vie" homepower="austria" owner="austria"/>
+	 	<SUPPLYCENTER province="war" homepower="russia" owner="russia"/>
+		<!-- unit placement for new powers -->
+		<INITIALSTATE province="por" power="spain" unit="fleet" />
+		<INITIALSTATE province="cor" power="spain" unit="army" />
+		<INITIALSTATE province="mad" power="spain" unit="army" />
+		<INITIALSTATE province="nor" power="norway" unit="army" />
+		<INITIALSTATE province="den" power="norway" unit="fleet" />
+		<INITIALSTATE province="swe" power="norway" unit="fleet" />
+		<!-- unit placement -->
+		<INITIALSTATE province="ank" power="turkey" unit="fleet" />
+		<INITIALSTATE province="ber" power="germany" unit="army" />
+		<INITIALSTATE province="bre" power="france" unit="fleet" />
+		<INITIALSTATE province="bud" power="austria" unit="army" />
+		<INITIALSTATE province="con" power="turkey" unit="army" />
+		<INITIALSTATE province="edi" power="britain" unit="fleet" />
+		<INITIALSTATE province="kie" power="germany" unit="fleet" />
+		<INITIALSTATE province="lvp" power="britain" unit="army" />
+		<INITIALSTATE province="lon" power="britain" unit="fleet" />
+		<INITIALSTATE province="mar" power="france" unit="army" />
+		<INITIALSTATE province="mos" power="russia" unit="army" />
+		<INITIALSTATE province="mun" power="germany" unit="army" />
+		<INITIALSTATE province="nap" power="italy" unit="fleet" />
+		<INITIALSTATE province="par" power="france" unit="army" />
+		<INITIALSTATE province="rom" power="italy" unit="army" />
+		<INITIALSTATE province="sev" power="russia" unit="fleet" />
+		<INITIALSTATE province="smy" power="turkey" unit="army" />
+		<INITIALSTATE province="stp" power="russia" unit="fleet" unitcoast="sc" />
+		<INITIALSTATE province="tri" power="austria" unit="fleet" />
+		<INITIALSTATE province="ven" power="italy" unit="army" />
+		<INITIALSTATE province="vie" power="austria" unit="army" />
+		<INITIALSTATE province="war" power="russia" unit="army" />
+	</VARIANT>
+	
+	
+	<VARIANT name="TEST_Borders" version="1.0" default="false">
+		<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;color:red;">
+		<b>NOTE: This map is for Regression Testing, and is not recommended for general game play.</b>
+		</div>
+		<div style="font-family:arial,helvetica;margin-top:10px;">
+		This map is a modified version of the standard map, with various borders
+		added, for testing of borders.
+		<ul>
+			<li>Spain : seasonBorder</li>
+			<li>Piedmont : phaseBorder</li>
+			<li>PICARDY : unitBorder</li>
+			<li>KIEL : orderBorder</li>
+			<li>SMYRNA : multiple</li>
+			<li>TYROLIA : yearSingle</li>
+			<li>VIENNA : yearFuture</li>
+			<li>Budapest : yearPast</li>
+			<li>Rumania : yearOdd</li>
+			<li>Bulgaria : yearEven</li>
+		</ul>
+		No units have been placed (and are not needed; the test cases
+		place and check units).
+		</div>]]></DESCRIPTION>
+		<MAP adjacencyURI="std_borders.xml">
+			<MAP_GRAPHIC ref="standard" default="true"/>
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY" />
+			<RULEOPTION name="OPTION_WINGS" value="VALUE_WINGS_ENABLED" />
+		</RULEOPTIONS>
+		<POWER name="France" active="true" adjective="French" /> 
+		<POWER name="Austria" active="true" adjective="Austrian" /> 
+		<POWER name="Turkey" active="true" adjective="Turkish" /> 
+		<POWER name="Russia" active="true" adjective="Russian" /> 
+		<POWER name="England" active="true" adjective="English" altnames="Britain" /> 
+		<POWER name="Germany" active="true" adjective="German" /> 
+		<POWER name="Italy" active="true" adjective="Italian" />
+		<STARTINGTIME turn="Spring, 1914, Movement" allowBCYears="true"/>
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="18" />
+			<YEARS_WITHOUT_SC_CAPTURE value="7" />
+			<GAME_LENGTH value="35" />
+		</VICTORYCONDITIONS>
+ 	 	<!-- supply centers -->
+		<SUPPLYCENTER province="ank" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="bel" />
+		<SUPPLYCENTER province="ber" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="bre" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="bud" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="bul" />
+	 	<SUPPLYCENTER province="con" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="den" />
+		<SUPPLYCENTER province="edi" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="gre" />
+		<SUPPLYCENTER province="hol" />
+		<SUPPLYCENTER province="kie" homepower="germany" owner="germany"/>
+		<SUPPLYCENTER province="lvp" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="lon" homepower="britain" owner="britain"/>
+	 	<SUPPLYCENTER province="mar" homepower="france" owner="france"/>
+	 	<SUPPLYCENTER province="mos" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="mun" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="nap" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="nor" />
+	 	<SUPPLYCENTER province="par" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="por" />
+	 	<SUPPLYCENTER province="rom" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="rum" />
+		<SUPPLYCENTER province="ser" />
+	 	<SUPPLYCENTER province="sev" homepower="russia" owner="russia"/>
+	 	<SUPPLYCENTER province="smy" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="spa" />
+	 	<SUPPLYCENTER province="stp" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="swe" />
+		<SUPPLYCENTER province="tri" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="tun" />
+	 	<SUPPLYCENTER province="ven" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="vie" homepower="austria" owner="austria"/>
+	 	<SUPPLYCENTER province="war" homepower="russia" owner="russia"/>
+		<!-- unit placement -->
+	</VARIANT>
+	
+</VARIANTS>

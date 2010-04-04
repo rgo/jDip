@@ -1,0 +1,265 @@
+<?xml version="1.0"?>
+<!DOCTYPE VARIANTS [
+	<!ELEMENT VARIANTS (DESCRIPTION, MAP_DEFINITION+, VARIANT+)>
+	
+	<!ELEMENT DESCRIPTION (#PCDATA)>
+	
+	<!ELEMENT MAP_DEFINITION (DESCRIPTION?)>
+	<!ATTLIST MAP_DEFINITION 
+		id ID #REQUIRED
+		title CDATA #REQUIRED
+		URI CDATA #REQUIRED
+		thumbURI CDATA #REQUIRED
+		preferredUnitStyle CDATA #IMPLIED
+		>
+	
+	<!ELEMENT VARIANT (DESCRIPTION, MAP, RULEOPTIONS?, POWER+, STARTINGTIME, VICTORYCONDITIONS, SUPPLYCENTER+, INITIALSTATE*)>
+	<!ATTLIST VARIANT
+			name CDATA #REQUIRED
+			default (true|false) "false"
+			version CDATA #REQUIRED
+			aliases CDATA #IMPLIED
+			>
+			
+	<!ELEMENT MAP (MAP_GRAPHIC*)>
+	<!ATTLIST MAP adjacencyURI CDATA #REQUIRED>
+	
+	<!ELEMENT MAP_GRAPHIC EMPTY>
+	<!ATTLIST MAP_GRAPHIC
+			ref IDREF #REQUIRED
+			default (true|false) "false"
+			preferredUnitStyle CDATA #IMPLIED
+			>
+	
+	<!ELEMENT RULEOPTIONS (RULEOPTION+)>
+	<!ELEMENT RULEOPTION EMPTY>
+	<!ATTLIST RULEOPTION	name CDATA #REQUIRED
+				value CDATA #REQUIRED>
+	
+	<!ELEMENT POWER EMPTY>
+	<!ATTLIST POWER name CDATA #REQUIRED
+			active (true|false) "true"
+			adjective CDATA #REQUIRED
+			altnames CDATA #IMPLIED
+			>
+	
+	<!ELEMENT STARTINGTIME EMPTY>
+	<!ATTLIST STARTINGTIME 	turn CDATA #REQUIRED
+				allowBCYears (true|false) "false"
+				>
+	
+	<!ELEMENT VICTORYCONDITIONS (WINNING_SUPPLY_CENTERS?, YEARS_WITHOUT_SC_CAPTURE?, GAME_LENGTH?)>
+	
+	<!ELEMENT WINNING_SUPPLY_CENTERS EMPTY>
+	<!ATTLIST WINNING_SUPPLY_CENTERS value CDATA #REQUIRED>
+	
+	<!ELEMENT YEARS_WITHOUT_SC_CAPTURE EMPTY>
+	<!ATTLIST YEARS_WITHOUT_SC_CAPTURE value CDATA #REQUIRED>
+	
+	<!ELEMENT GAME_LENGTH EMPTY>
+	<!ATTLIST GAME_LENGTH value CDATA #REQUIRED>
+	
+	<!ELEMENT SUPPLYCENTER EMPTY>
+	<!ATTLIST SUPPLYCENTER 	province CDATA #REQUIRED
+				homepower CDATA "none"
+				owner CDATA "none"
+				>
+				
+	<!ELEMENT INITIALSTATE EMPTY>
+	<!ATTLIST INITIALSTATE 	province CDATA #REQUIRED
+				power CDATA #REQUIRED
+				unit CDATA #REQUIRED
+				unitcoast CDATA #IMPLIED
+				>
+]>
+<!-- NOTE: it's very important that the name of the file will be variants.xml, in all lower case -->
+<!-- NOTE: for CDATA escapes, no space between tag and bracket!! -->
+<VARIANTS>
+	<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;">
+	Loeb9 Variants
+	</div>]]></DESCRIPTION>
+	
+	
+	<MAP_DEFINITION id="loeb9" title="Loeb9" 
+		URI="loeb9.svg" thumbURI="loeb9.gif" preferredUnitStyle="modern">
+		<DESCRIPTION>
+		The Loeb9 Map.
+		</DESCRIPTION>
+	</MAP_DEFINITION>
+	
+	
+	<VARIANT name="Loeb9" version="1.0">
+		<DESCRIPTION><![CDATA[
+		Danny Loeb's 9 player variant to diplomacy follows the standard rules
+		of the Adjudicator with the following exceptions:
+		<h2>8th player (Spain):</h2>
+		<div class="indent1cm">
+			Spain is divided into four regions:
+			<ul>
+			<li><b>Navarre:</b>   	Adjacent to the Mid Atlantic, Gascony, Catalonia, Madrid 
+									and Portugal.</li>
+			<li><b>Madrid:</b>    	Adjacent to Portugal, Navarre, Catalonia and Cordoba.</li>
+			<li><b>Catalonia:</b> 	Adjacent to Cordoba, Madrid, Navarre, Gascony, Marseilles,
+									Gulf of Lyon and Western Mediterranean.</li>
+			<li><b>Cordoba:</b>   	Adjacent to Portugal, Madrid, Catalonia, Western Mediterranean
+									and the Mid Atlantic.</li>
+			</ul>			   
+			<p>
+			Madrid and Cordoba are supply centers.
+			</p>
+			<p>
+			The Spanish player begins with Fleet Portugal, Army Cordoba and Army Madrid.
+			</p>
+		</div>
+		
+		<h2>9th player (Norway):</h2>
+		<div class="indent1cm">
+			The Norwegian player begins with Army Norway, Fleet Denmark and Fleet
+			Sweden.
+		</div>
+		
+		<h2>Icy Seas (Arctic Ocean):</h2>
+		<div class="indent1cm">
+			An extra space is inserted on the north end of the map called the
+			Arctic Ocean.  A unit in the Arctic Ocean may not be given any sort of
+			orders durning a fall turn.  No unit may attempt to move into the
+			Arctic Ocean during a fall turn.  The Arctic Ocean is adjacent to the
+			North Atlantic, Norwegian Sea, Barents Sea and Siberia.
+		</div>
+		
+		<h2>Difficult Passable Borders:</h2>
+		<div class="indent1cm">
+			Passage between Cordoba and North Africa and passage between Naples and
+			Sicily is allowed by armies.  However, such a move is made with a force
+			equal to the number of supports (as opposed to one plus the number of
+			supports).  Note that fleets may not make this move and support cannot
+			be given in this fashion.  This form of movement is treated very much
+			like convoyed movement by the adjudicator.  An unsupported unit will
+			have no effect whatsoever on the destination province for the purposes
+			of cutting support or banning retreats.
+		</div>
+		
+		<h2>Other Changes:</h2>
+		<div class="indent1cm">
+			The following islands are now spaces: Iceland, Ireland, Corsica, Sardinia
+			and Sicily.
+			<p>
+				Ireland is a neutral supply center.
+			</p>
+			<p>
+				St Petersburg is divided in half.  The eastern half is not a supply center.
+				It is called Siberia and it is adjacent to Barents Sea, St Petersburg,
+				Moscow, Kazakz and the Arctic Ocean.
+			</p>
+			<p>
+				Moscow is divided in half.  The eastern half is not a supply center.
+				It is called Kazakz and is is adjacent to Siberia, Moscow and
+				Sevastople.
+			</p>
+			<p>
+				Prussia and Silesia are neutral supply centers.
+			</p>
+			<p>
+				The Russian fleet in St Petersburg starts out on the north coast rather than
+				the south coast.
+			</p>
+		</div>
+		<p style="margin-top:21pt;">Author: Danny Loeb</p>]]></DESCRIPTION> 
+		<MAP adjacencyURI="loeb9_adjacency.xml">
+			<MAP_GRAPHIC ref="loeb9" default="true" />
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY" />
+		</RULEOPTIONS>
+		<POWER name="Austria" active="true" adjective="Austrian" /> 
+		<POWER name="England" active="true" adjective="English" altnames="Britain" /> 
+		<POWER name="France" active="true" adjective="French" /> 
+		<POWER name="Germany" active="true" adjective="German" /> 
+		<POWER name="Italy" active="true" adjective="Italian" />
+		<POWER name="Russia" active="true" adjective="Russian" /> 
+		<POWER name="Turkey" active="true" adjective="Turkish" /> 
+		<POWER name="Spain" active="true" adjective="Spanish" /> 
+		<POWER name="Norway" active="true" adjective="Norwegian" /> 
+		<STARTINGTIME turn="Spring, 1901, Movement" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="20" />
+			<YEARS_WITHOUT_SC_CAPTURE value="7" />
+			<GAME_LENGTH value="35" />
+		</VICTORYCONDITIONS>
+ 	 	<!-- supply centers -->
+		<SUPPLYCENTER province="ank" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="bel" />
+		<SUPPLYCENTER province="ber" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="bre" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="bud" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="bul" />
+	 	<SUPPLYCENTER province="con" homepower="turkey" owner="turkey"/>
+		<SUPPLYCENTER province="den" />
+		<SUPPLYCENTER province="edi" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="gre" />
+		<SUPPLYCENTER province="hol" />
+		<SUPPLYCENTER province="kie" homepower="germany" owner="germany"/>
+		<SUPPLYCENTER province="lvp" homepower="britain" owner="britain"/>
+		<SUPPLYCENTER province="lon" homepower="britain" owner="britain"/>
+	 	<SUPPLYCENTER province="mar" homepower="france" owner="france"/>
+	 	<SUPPLYCENTER province="mos" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="mun" homepower="germany" owner="germany"/>
+	 	<SUPPLYCENTER province="nap" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="nor" />
+	 	<SUPPLYCENTER province="par" homepower="france" owner="france"/>
+		<SUPPLYCENTER province="por" />
+	 	<SUPPLYCENTER province="rom" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="rum" />
+		<SUPPLYCENTER province="ser" />
+	 	<SUPPLYCENTER province="sev" homepower="russia" owner="russia"/>
+	 	<SUPPLYCENTER province="smy" homepower="turkey" owner="turkey"/>
+	 	<SUPPLYCENTER province="stp" homepower="russia" owner="russia"/>
+		<SUPPLYCENTER province="swe" />
+		<SUPPLYCENTER province="tri" homepower="austria" owner="austria"/>
+		<SUPPLYCENTER province="tun" />
+	 	<SUPPLYCENTER province="ven" homepower="italy" owner="italy"/>
+		<SUPPLYCENTER province="vie" homepower="austria" owner="austria"/>
+	 	<SUPPLYCENTER province="war" homepower="russia" owner="russia"/>
+		<!-- new supply centers (spain, norway, neutral) -->
+		<SUPPLYCENTER province="mad" homepower="spain" owner="spain"/>
+		<SUPPLYCENTER province="cor" homepower="spain" owner="spain"/>
+		<SUPPLYCENTER province="por" homepower="spain" owner="spain"/>
+		<SUPPLYCENTER province="nor" homepower="norway" owner="norway"/>
+		<SUPPLYCENTER province="den" homepower="norway" owner="norway"/>
+		<SUPPLYCENTER province="swe" homepower="norway" owner="norway"/>
+		<SUPPLYCENTER province="ire" />
+		<SUPPLYCENTER province="pru" />
+		<SUPPLYCENTER province="sil" />
+		<!-- unit placement -->
+		<INITIALSTATE province="ank" power="turkey" unit="fleet" />
+		<INITIALSTATE province="ber" power="germany" unit="army" />
+		<INITIALSTATE province="bre" power="france" unit="fleet" />
+		<INITIALSTATE province="bud" power="austria" unit="army" />
+		<INITIALSTATE province="con" power="turkey" unit="army" />
+		<INITIALSTATE province="edi" power="britain" unit="fleet" />
+		<INITIALSTATE province="kie" power="germany" unit="fleet" />
+		<INITIALSTATE province="lvp" power="britain" unit="army" />
+		<INITIALSTATE province="lon" power="britain" unit="fleet" />
+		<INITIALSTATE province="mar" power="france" unit="army" />
+		<INITIALSTATE province="mos" power="russia" unit="army" />
+		<INITIALSTATE province="mun" power="germany" unit="army" />
+		<INITIALSTATE province="nap" power="italy" unit="fleet" />
+		<INITIALSTATE province="par" power="france" unit="army" />
+		<INITIALSTATE province="rom" power="italy" unit="army" />
+		<INITIALSTATE province="sev" power="russia" unit="fleet" />
+		<INITIALSTATE province="smy" power="turkey" unit="army" />
+		<INITIALSTATE province="stp" power="russia" unit="fleet" unitcoast="sc" />
+		<INITIALSTATE province="tri" power="austria" unit="fleet" />
+		<INITIALSTATE province="ven" power="italy" unit="army" />
+		<INITIALSTATE province="vie" power="austria" unit="army" />
+		<INITIALSTATE province="war" power="russia" unit="army" />
+		<!-- new units (spain, norway) -->
+		<INITIALSTATE province="mad" power="spain" unit="army" />
+		<INITIALSTATE province="cor" power="spain" unit="army" />
+		<INITIALSTATE province="por" power="spain" unit="fleet" />
+		<INITIALSTATE province="nor" power="norway" unit="army" />
+		<INITIALSTATE province="den" power="norway" unit="fleet" />
+		<INITIALSTATE province="swe" power="norway" unit="fleet" />
+	</VARIANT>
+</VARIANTS>
+

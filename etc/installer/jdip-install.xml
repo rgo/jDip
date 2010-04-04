@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<installation version="1.0">
+    <info>
+        <appname>jDip</appname>
+        <appversion>!VERSION!</appversion>
+        <javaversion>1.4</javaversion>
+        <authors>
+			<!-- <author name="The jDip Development Team" email="jdip-users@sourceforge.net"/> -->
+		</authors>
+        <url>http://jdip.sourceforge.net/</url>
+    </info>
+    
+	<guiprefs width="800" height="600" resizable="yes">
+		<laf name="liquid">
+			<os family="unix"/>
+			<os family="windows"/>
+		</laf>
+	</guiprefs>
+ 	
+	
+	<locale>
+        <langpack iso3="eng"/>
+		<!--
+		<langpack iso3="ger"/>
+		<langpack iso3="fra"/>
+		<langpack iso3="ned"/>
+		-->
+    </locale>
+    
+	<resources>
+        <res id="HTMLInfoPanel.info" src="install_readme.html"/>
+        <res id="LicencePanel.licence" src="install_license.txt"/>
+        <res id="shortcutSpec.xml" src="shortcutSpec.xml" />
+		
+		<res id="Installer.image.0" src="images/sequence_1.png" />
+        <res id="Installer.image.1" src="images/sequence_2.png" />
+        <res id="Installer.image.2" src="images/sequence_3.png" />
+        <res id="Installer.image.3" src="images/sequence_4.png" />
+        <res id="Installer.image.4" src="images/sequence_5.png" />
+		<res id="Installer.image.5" src="images/sequence_6.png" />
+        <res id="Installer.image.6" src="images/sequence_7.png" />
+        <res id="Installer.image.7" src="images/sequence_8.png" />
+		
+		<res id="ImgPacksPanel.img.0"  src="images/detailed_thumb.png" />
+		<res id="ImgPacksPanel.img.1"   src="images/asia_thumb.png" />
+        <res id="ImgPacksPanel.img.2"   src="images/chaos_thumb.png" />
+        <res id="ImgPacksPanel.img.3"   src="images/chaos_thumb.png" />
+        <res id="ImgPacksPanel.img.4"   src="images/h31_h32_thumb.png" />
+ 		<res id="ImgPacksPanel.img.5"   src="images/imperium_thumb.png"/>
+		<res id="ImgPacksPanel.img.6"   src="images/loeb9.gif" />
+		<res id="ImgPacksPanel.img.7"   src="images/milan_thumb.png" />
+        <res id="ImgPacksPanel.img.8"   src="images/modern_thumb.jpg" />
+		<res id="ImgPacksPanel.img.9"   src="images/octarine_thumb.png" />
+ 		<res id="ImgPacksPanel.img.10"   src="images/pure_thumb.png" />
+        <res id="ImgPacksPanel.img.11"  src="images/rootz_thumb.png" />
+        <res id="ImgPacksPanel.img.12"  src="images/sailho_thumb.png" />
+		<res id="ImgPacksPanel.img.13"  src="images/youngstown_thumb.png" />
+     </resources>
+    
+	<native type="izpack" name="ShellLink.dll"/>
+	
+	<panels>
+        <panel classname="HelloPanel"/>
+        <panel classname="HTMLInfoPanel"/>
+        <panel classname="LicencePanel"/>
+        <panel classname="ImgPacksPanel"/>
+        <panel classname="TargetPanel"/>
+        <panel classname="InstallPanel"/>
+        <panel classname="ShortcutPanel"/>
+        <panel classname="SimpleFinishPanel"/>
+    </panels>
+    
+	<packs>
+        <pack name="Core" required="yes" override="true">
+            <description>The core jDip program files, the standard map, and variants based on the standard map. This is a required install. Standard-based variants include 1898, Britain, Crowded, Crowded 1898, Fleet Rome, Shift Around, Shift Left, and Shift Right.</description>
+			
+			<file targetdir="$INSTALL_PATH" src="lib"/>
+            <file targetdir="$INSTALL_PATH" src="jdip.ico"/>
+			
+            <file targetdir="$INSTALL_PATH" src="jdip.jar"/>
+            <file targetdir="$INSTALL_PATH" src="LICENSE.TXT"/>
+            <file targetdir="$INSTALL_PATH" src="HISTORY.TXT"/>
+            <file targetdir="$INSTALL_PATH" src="README.TXT"/>
+			
+            <file targetdir="$INSTALL_PATH/variants" src="variants/stdVariants.zip"/>
+            
+			<file targetdir="$INSTALL_PATH/variants" src="variants/modernSymbols.zip"/>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/periodSymbols.zip"/>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/simpleSymbols.zip"/>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/imperiumSymbols.zip"/>
+			
+            <file os="windows" targetdir="$INSTALL_PATH" src="jdip.bat"/>
+            <file os="unix" targetdir="$INSTALL_PATH" src="jdip.sh" keep="true"/>
+            <file os="mac" targetdir="$INSTALL_PATH" src="jdip.sh" keep="true"/>
+			
+			<!-- set executable flag for shell script on unix -->
+			<executable os="unix" targetfile="$INSTALL_PATH/jdip.sh" stage="never" failure="warn" type="bin"/>
+			<executable os="mac" targetfile="$INSTALL_PATH/jdip.sh" stage="never" failure="warn" type="bin"/>
+         </pack>
+		
+		<pack name="Asia" required="no" override="true">
+			<description>The Asia variant.</description>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/AsiaVariants.zip"/>
+		</pack>
+		<pack name="Chaos (nJudge compatible)" required="no" override="true">
+			<description>The Chaos variant, suitable for use with nJudge-based judges.</description>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/ChaosNJudgeVariant.zip"/>
+		</pack>
+		<pack name="Chaos (DPJudge compatible)" required="no" override="true">
+			<description>The Chaos variant, suitable for use with DPJudge-based judges, such as USDP and UKDP.</description>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/ChaosDPJudgeVariant.zip"/>
+		</pack>
+		<pack name="Hundred" required="no" override="true">
+			<description>The Hundred3.1 and Hundred3.2 3-player variants.</description>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/hundredVariants.zip"/>
+		</pack>
+ 		<pack name="Imperium" required="no" override="true">
+			<description>The Imperium variant.</description>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/ImperiumVariants.zip"/>
+		</pack>
+		<pack name="Loeb9" required="no" override="true">
+			<description>Loeb9 variant.</description>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/loeb9Variants.zip"/>
+		</pack>
+		<pack name="Milan" required="no" override="true">
+			<description>The Milan variant.</description>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/milanVariants.zip"/>
+		</pack>
+		<pack name="Modern" required="no" override="true">
+			<description>The Modern variant.</description>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/modernVariants.zip"/>
+		</pack>
+		<pack name="Octarine" required="no" override="true">
+			<description>The Octarine variant.</description>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/OctarineVariants.zip"/>
+		</pack>
+		<pack name="Pure" required="no" override="true">
+			<description>The Pure variant.</description>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/pureVariants.zip"/>
+		</pack>
+		<pack name="Root Z" required="no" override="true">
+			<description>The Root Z variant.</description>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/rootzVariants.zip"/>
+		</pack>
+		<pack name="Sail Ho!" required="no" override="true">
+			<description>Includes both Sail Ho! and Sail Ho! Crowded variants.</description>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/sailhoVariants.zip"/>
+		</pack>
+		<pack name="Youngstown" required="no" override="true">
+			<description>The Youngstown variant.</description>
+            <file targetdir="$INSTALL_PATH/variants" src="variants/youngstownVariants.zip"/>
+		</pack>
+   </packs>
+</installation>

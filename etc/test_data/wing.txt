@@ -1,0 +1,393 @@
+#############################################################
+#
+# WING TEST CASES
+# 
+# The following test cases test adjudicator compliance with
+# Wing units.
+#
+# Basic Wing unit Rules
+# =====================
+#       1.A wing unit can move over both land and water spaces
+#       2.A wing unit can support actions in any space adjacent
+#         to the one it occupies.
+#       3.A wing can give, receive and cut support in the same 
+#         way as armies and fleets.
+#       4.A wing unit cannot convoy or be convoyed.
+#       5.A wing unit cannot capture an SC, but instead blockades it:
+#               1.A blockade occurs when a wing unit occupies
+#                 the SC of another player in a fall season.
+#               2.The player who owns a blockaded SC does not
+#                 get to count it when counting his total 
+#                 number of SCs.
+#               3.A blockade ends as soon as the wing unit
+#                 no longer occupies the SC.
+#               4.Builds only take place in the winter phase,
+#                 just as in games without wings.               
+#
+#
+#
+#############################################################
+
+#############################################################
+#	
+# Set the Variant for all cases.
+#
+# Note that the DATC_Standard variant has the WING unit rule
+# enabled by default, unlike the regular Standard map.
+#
+#############################################################
+VARIANT_ALL DATC_Standard
+
+#############################################################
+# 
+# Basic movement cases
+# 
+#############################################################
+
+# Test sea->coast movement
+CASE wing.1 [movement]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  W Black Sea
+ORDERS
+	Russia:  W Black Sea - Rumania
+POSTSTATE
+	Russia:  W Rumania
+END
+
+
+# Test coast->sea movement
+CASE wing.2 [movement]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  W Bulgaria (east coast)
+ORDERS
+	Russia:  W Bulgaria (east coast) - Black Sea
+POSTSTATE
+	Russia:  W Black Sea
+END
+
+
+# Test coast->Inland movement
+CASE wing.3 [movement]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  W Rumania
+ORDERS
+	Russia:  W Rumania - Budapest
+POSTSTATE
+	Russia:  W Budapest
+END
+
+
+# Test Inland->coast movement
+CASE wing.4 [movement]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  W Serbia
+ORDERS
+	Russia:  W Serbia - Bulgaria
+POSTSTATE
+	Russia:  W Bulgaria
+END
+
+# Test coast-coast movement
+CASE wing.5 [movement]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  W Rumania
+ORDERS
+	Russia:  W Rumania - Bulgaria
+POSTSTATE
+	Russia:  W Bulgaria
+END
+
+# Test inland-inland movement
+CASE wing.6 [movement]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  W Warsaw
+ORDERS
+	Russia:  W Warsaw - Galicia
+POSTSTATE
+	Russia:  W Galicia
+END
+
+# Test sea-sea movement
+CASE wing.7 [movement]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  W Ionian Sea
+ORDERS
+	Russia:  W Ionian Sea - Aegean Sea
+POSTSTATE
+	Russia:  W Aegean Sea
+END
+
+
+#############################################################
+#	
+# Basic support cases: giving support
+#
+#############################################################
+
+# Support a sea fleet hold
+CASE wing.8 [wing giving support]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  W Rumania
+	Russia:  F Black Sea
+	Turkey:  F Constantinople
+	Turkey:  F Ankara
+ORDERS
+	Russia:  W Rumania S F Black Sea H
+	Russia:  F Black Sea H
+	Turkey:  F Constantinople - Black Sea
+	Turkey:  F Ankara S F Constantinople - Black Sea
+POSTSTATE
+	Russia:  W Rumania
+	Russia:  F Black Sea
+	Turkey:  F Constantinople
+	Turkey:  F Ankara
+END
+
+
+# Support a sea fleet move
+CASE wing.9 [wing giving support]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  W Constantinople
+	Russia:  F Black Sea
+	Turkey:  F Ankara
+ORDERS
+	Russia:  W Constantinople S F Black Sea - Ankara
+	Russia:  F Black Sea - Ankara
+	Turkey:  F Ankara H
+POSTSTATE
+	Russia:  W Constantinople
+	Russia:  F Ankara
+POSTSTATE_DISLODGED
+	Turkey:  F Ankara
+END
+
+
+# Support an army hold
+CASE wing.10 [wing giving support]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:   W Warsaw
+	Russia:   A Ukraine
+	Austria:  A Galicia
+	Austria:  A Rumania
+ORDERS
+	Russia:   W Warsaw S Ukraine H
+	Russia:   A Ukraine H
+	Austria:  A Galicia - Ukraine
+	Austria:  A Rumania S A Galicia - Ukraine
+POSTSTATE
+	Russia:   W Warsaw
+	Russia:   A Ukraine
+	Austria:  A Galicia
+	Austria:  A Rumania
+END
+
+
+# Support an army move
+CASE wing.11 [wing giving support]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:   W Warsaw
+	Russia:   A Ukraine
+	Austria:  A Galicia
+ORDERS
+	Russia:   W Warsaw S Ukraine - Galicia
+	Russia:   A Ukraine - Galicia
+	Austria:  A Galicia - Ukraine
+POSTSTATE
+	Russia:   W Warsaw
+	Russia:   A Galicia
+POSTSTATE_DISLODGED	
+	Austria:  A Galicia
+END
+
+
+#############################################################
+#
+# Basic support cases: receiving support
+#
+#############################################################
+
+# Army supporting a Wing hold
+CASE wing.12 [wing receiving support]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:   A Warsaw
+	Russia:   W Ukraine
+	Austria:  A Galicia
+	Austria:  A Rumania
+ORDERS
+	Russia:   A Warsaw S W Ukraine H
+	Russia:   W Ukraine H
+	Austria:  A Galicia - Ukraine
+	Austria:  A Rumania S A Galicia - Ukraine
+POSTSTATE
+	Russia:   A Warsaw
+	Russia:   W Ukraine
+	Austria:  A Galicia
+	Austria:  A Rumania
+END
+
+
+# Army supporting a Wing move
+CASE wing.13 [wing receiving support]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:   A Warsaw
+	Russia:   W Ukraine
+	Austria:  A Galicia
+ORDERS
+	Russia:   A Warsaw S W Ukraine - Galicia
+	Russia:   W Ukraine - Galicia
+	Austria:  A Galicia H
+POSTSTATE
+	Russia:   A Warsaw
+	Russia:   W Galicia
+POSTSTATE_DISLODGED
+	Austria:  A Galicia
+END
+
+
+
+# Fleet supporting a Wing hold
+CASE wing.14 [wing receiving support]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  F Aegean Sea
+	Russia:  W Ionian Sea
+	Italy:   F Adriatic Sea
+	Italy:   F Tyrhennian sea
+ORDERS
+	Russia:  F Aegean Sea S W Ionian Sea H
+	Russia:  W Ionian Sea H
+	Italy:   F Adriatic Sea - Ionian Sea
+	Italy:   F Tyrhennian Sea S F Adriatic Sea - Ionian Sea
+POSTSTATE
+	Russia:  F Aegean Sea
+	Russia:  W Ionian Sea
+	Italy:   F Adriatic Sea
+	Italy:   F Tyrhennian Sea
+END
+
+
+# Fleet supporting a Wing move
+CASE wing.15 [wing receiving support]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  F Albania
+	Russia:  W Ionian Sea
+	Italy:   F Adriatic Sea
+ORDERS
+	Russia:  F Albania S W Ionian Sea - Adriatic Sea
+	Russia:  W Ionian Sea - Adriatic Sea
+	Italy:   F Adriatic Sea H 
+POSTSTATE
+	Russia:  F Albania
+	Russia:  W Adriatic Sea
+POSTSTATE_DISLODGED
+	Italy:   F Adriatic Sea
+END
+
+
+
+#############################################################
+#
+# Basic convoy test cases
+# [wings cannot convoy or be convoyed]
+#
+#############################################################
+
+# Wing attempts to convoy an army
+CASE wing.16 [wing convoying]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  W Black Sea
+	Russia:  A Sevastopol
+ORDERS
+	Russia:  W Black Sea C A Sevastopol - Ankara
+	Russia:  A Sevastopol - Ankara
+POSTSTATE
+	Russia:  W Black Sea
+	Russia:  A Sevastopol
+END
+
+# Wing attempts to convoy a fleet
+CASE wing.17 [wing convoying]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  W Black Sea
+	Russia:  F Sevastopol
+ORDERS
+	Russia:  W Black Sea C F Sevastopol - Ankara
+	Russia:  F Sevastopol - Ankara
+POSTSTATE
+	Russia:  W Black Sea
+	Russia:  F Sevastopol
+END
+
+# Fleet attempts to convoy a Wing
+CASE wing.18 [wing convoying]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  F Black Sea
+	Russia:  W Sevastopol
+ORDERS
+	Russia:  F Black Sea C W Sevastopol - Ankara
+	Russia:  W Sevastopol - Ankara
+POSTSTATE
+	Russia:  F Black Sea
+	Russia:  W Sevastopol
+END
+
+# wing attempts to convoy a Wing
+CASE wing.19 [wing convoying]
+PRESTATE_SETPHASE Spring 1901, Movement
+PRESTATE
+	Russia:  W Black Sea
+	Russia:  W Sevastopol
+ORDERS
+	Russia:  W Black Sea C W Sevastopol - Ankara
+	Russia:  W Sevastopol - Ankara
+POSTSTATE
+	Russia:  W Black Sea
+	Russia:  W Sevastopol
+END
+
+#############################################################
+#
+# Adjustment-phase cases [blockade test]
+#
+#############################################################
+
+# Wing unit blockades a SC owned by another power; that power
+# should not be able to build in that SC [or have any builds]
+# for that turn.
+CASE wing.20 [wing blockade]
+PRESTATE_SETPHASE Fall 1901, Adjustment
+PRESTATE_SUPPLYCENTER_OWNERS
+	Russia:  A Moscow
+	Russia:  A Warsaw
+	Austria: A Vienna
+PRESTATE
+	Russia:  A Moscow
+	Russia:  A Budapest
+	Austria: W Warsaw
+ORDERS
+	Russia:  Build A Warsaw		# fails; Warsaw is occupied. Russia should have 0 builds.
+POSTSTATE
+	Russia:  A Moscow
+	Russia:  A Budapest
+	Austria: W Warsaw
+END
+
+########################### END #############################
+

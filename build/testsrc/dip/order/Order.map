@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" href="./Disband.html" title="dip.order.Disband" alt="" coords="16,896,507,1112"/>
+<area shape="rect" href="./Hold.html" title="dip.order.Hold" alt="" coords="552,896,1043,1112"/>
+<area shape="rect" href="./Order.html" title="dip.order.Order" alt="" coords="2237,349,2771,709"/>
+<area shape="rect" href="./Build.html" title="dip.order.Build" alt="" coords="1088,896,1579,1112"/>
+<area shape="rect" href="./Move.html" title="dip.order.Move" alt="" coords="1624,768,2213,1240"/>
+<area shape="rect" href="./Remove.html" title="dip.order.Remove" alt="" coords="2259,896,2749,1112"/>
+<area shape="rect" href="./Waive.html" title="dip.order.Waive" alt="" coords="2795,896,3285,1112"/>
+<area shape="rect" href="./Convoy.html" title="dip.order.Convoy" alt="" coords="3331,840,3821,1168"/>
+<area shape="rect" href="./DefineState.html" title="dip.order.DefineState" alt="" coords="3867,896,4357,1112"/>
+<area shape="rect" href="./Support.html" title="dip.order.Support" alt="" coords="4403,800,4893,1208"/>
+<area shape="rect" href="./Orderable.html" title="dip.order.Orderable" alt="" coords="2081,11,2572,291"/>
+<area shape="rect" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="2617,131,2745,171"/>
+</map>

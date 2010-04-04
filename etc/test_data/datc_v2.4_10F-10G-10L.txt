@@ -1,0 +1,122 @@
+#############################################################
+#
+#	DATC (Diplomacy Adjudicator Test Cases)
+#	DATC Version 2.4
+#	SECTION 10.F, 10.G, 10.L
+#	TEST CASES
+#
+# 	The DATC is copyright Lucas B. Kruijswijk
+#	http://web.inter.nl.net/users/L.B.Kruijswijk/
+#
+#############################################################
+
+#############################################################
+#	
+# Set the Variant for all cases.
+#
+# IMPORTANT NOTE:
+# 	These test cases use the Loeb9 variant.
+#
+#############################################################
+VARIANT_ALL DATC_Loeb9_tc14fgl
+
+
+#############################################################
+
+
+# DIFFICULT PASSABLE BORDER VARIANT
+# ALL LOEB9 BORDERS + SIC/TUN BORDER
+
+# There is no known real paradox with the difficult passable borders. However, in this test case the question is which of the supports is cut.
+CASE 10.F [SUPPORT PARADOX]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Italy: A Sicily
+	Italy: A North Africa
+	
+	Spain: A Cordoba
+	Spain: A Tunis
+ORDERS
+	Spain: A Cordoba - North Africa
+	Spain: A Tunis Supports A Cordoba - North Africa
+	
+	Italy: A Sicily - Tunis
+	Italy: A North Africa Supports A Sicily - Tunis	
+POSTSTATE
+	Italy: A Sicily
+	Italy: A North Africa
+	
+	Spain: A Cordoba
+	Spain: A Tunis
+END
+
+# The previous test case extended with an additional fleet that prevents the paradox.
+CASE 10.G [ALMOST PARADOX]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Italy: A Sicily
+	Italy: A North Africa
+	
+	Spain: A Cordoba
+	Spain: A Tunis
+	Spain: F Western Mediterranean
+ORDERS
+	Spain: A Cordoba - North Africa # w/only support from wmed, this cuts support in naf, but with support from tunis also, this dislodges Naf
+	Spain: A Tunis Supports A Cordoba - North Africa # Helps
+	Spain: F Western Mediterranean Supports A Cordoba - North Africa
+	
+	Italy: A Sicily - Tunis # Attacks with 0 force... due to border rule
+	Italy: A North Africa Supports A Sicily - Tunis # Support cut from Cor, unit dislodges and disbands (no retreats)
+POSTSTATE
+	Italy: A Sicily
+	
+	Spain: A North Africa
+	Spain: A Tunis
+	Spain: F Western Mediterranean	
+END
+
+# The previous test case extended with an additional fleet that prevents the paradox.
+CASE 10.G2 [ALMOST PARADOX-2]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Italy: A Sicily
+	Italy: A North Africa
+	Italy: F Western Mediterranean
+	
+	Spain: A Cordoba
+	Spain: A Tunis
+ORDERS
+	Italy: A Sicily - Tunis
+	Italy: A North Africa Supports A Sicily - Tunis
+	Italy: F Western Mediterranean Supports A Sicily - Tunis
+	
+	Spain: A Cordoba - North Africa
+	Spain: A Tunis Supports A Cordoba - North Africa
+	
+POSTSTATE
+	Italy: A Tunis
+	Italy: A North Africa
+	Italy: F Western Mediterranean
+	
+	Spain: A Cordoba
+END
+
+# Adjudicators may mark the two adjacent sectors difficult passable, but this is an incorrect situation.
+CASE 14.L [DIFFICULT PASSABLE BORDER IS PROPERTY OF BORDER NOT OF SECTOR]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Italy: F Western Mediterranean
+	Italy: A Tunis
+	
+	Spain: A North Africa
+ORDERS
+	Italy: F Western Mediterranean Supports A Tunis - North Africa
+	Italy: A Tunis - North Africa
+	
+	Spain: A North Africa Hold
+POSTSTATE
+	Italy: F Western Mediterranean
+	Italy: A North Africa
+POSTSTATE_DISLODGED	
+	Spain: A North Africa
+END

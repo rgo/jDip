@@ -1,0 +1,47 @@
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+
+<head>
+	<title>Importing Judge Files</title>
+	<link rel="StyleSheet" href="../application_help.css">
+</head>
+
+
+<body>
+ 
+ <h1>Importing Judge Files</h1>
+ <p>
+ jDip allows the import of files created by the online email Judge system.
+ The allowed files include: game history files (single or multiple turns),
+ game listing files, and turn result files. 
+ </p>
+ <p>
+ For more information about online Judges, see <i>www.diplom.org</i>.
+ </p>
+ <p>
+ Only variants supported by jDip may be imported.
+ </p>
+ 
+ <h2>How Importing Works</h2>
+ <p>
+ If a game is already open, Judge import first checks to see if the game name
+ is the same. If the game name is the same as that being imported, <b>and</b> 
+ the game phase is the same, the imported turns will be added to the current 
+ game. Games with the same name but different phase can be rewound to the correct
+ phase for importing to resume.
+ </p>
+ <p>
+ If no game is open, or, the name of the currently open game is not the same
+ as that being imported, jDip will create a new game from the imported data.
+ </p>
+ <p>
+ If a game listing is imported, a starting position with appropriate player
+ information will be created.
+ </p>
+ <p>
+ If a game history is imported (single or muliple turns), jDip will create a 
+ game with all imported turns.
+ </p>
+ 
+</body>

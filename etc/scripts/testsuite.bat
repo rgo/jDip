@@ -1,0 +1,1 @@
+@java -cp jdip.jar dip.misc.TestSuite %1 %2 %3 %4 %5 %6

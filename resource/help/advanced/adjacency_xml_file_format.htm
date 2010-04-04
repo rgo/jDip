@@ -1,0 +1,245 @@
+<html>
+<head>
+ <title>Adjacency (Province) XML File Format</title>
+ <link rel="StyleSheet" href="../application_help.css">
+</head>
+<body>
+ <h1>Adjacency XML File Format</h1>
+ <h2>Introduction</h2>
+ <p>
+ The Adjacency (or Province) XML file format defines the provinces (long names,
+ abbreviations, and alternate names) as well as their "connectedness" (which 
+ provinces connect to other provinces).
+ </p>
+ <p>
+ The adjacency file may be shared between different variants when the variant 
+ differs in starting unit positions, supply center positions, or powers. However, 
+ a new adjacency file must be created for maps with different connectedness.
+ </p>
+ <h2>Defining Adjacenct Provinces</h2>
+ <p>
+ The &lt;ADJACENCY&gt; element defines adjacency for a given province. A province
+ may have multiple 'layers' of adjacency; in other words, land adjacency and fleet (sea) 
+ adjacency may be different. The adjacency also defines what type a province is.
+ Valid province may have:
+ </p>
+ <ul>
+ 	<li><p>mv: an inland province</p></li>
+ 	<li><p>xc: a sea province</p></li>
+ 	<li><p>mv and xc: a coastal province or an island</p></li>
+ 	<li><p>mv and (1 or more) coasts (nc, sc, wc, or ec): a multi-coastal province or island</p></li>
+ </ul>
+ <p>
+ It is illegal to specify an "xc" with a coast ("nc", "sc", "wc", or "ec"). This is because "xc" is
+ the "any" or "single" coast.
+ </p>
+ <p>
+ If a province is an island (adjacent to multiple sea provinces with "xc" or coastal adjacency), an
+ "mv" adjacency is still required. Since an island is not (and cannot, by definition) be adjacent
+ to other land provinces, the "mv" definition is just a link to itself.
+ </p>
+ <h2>Borders</h2>
+ <p>
+ Borders can exist between Provinces, which can disallow certain types of 
+ orders depending upon the Border options. For example, and "ice" Border could
+ disallow orders for units in the Fall seasons.
+ </p>
+ <p>
+ <b>Note: the Border entity and attributes specifications is not yet final,
+ and is subject to change.</b>
+ </p>
+ <h2>DTD Reference for Adjacency (Province) XML Files</h2>
+ 
+ 
+ <p class="dtd-el" style="margin-top:9pt;">
+ PROVINCES
+ </p>
+ <p class="dtd-el-desc">
+ The root element..
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: (BORDER_DEFINITIONS?, PROVINCE+)
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES: [None]
+ </p>
+
+ <p class="dtd-el" style="margin-top:9pt;">
+ BORDER_DEFINITIONS
+ </p>
+ <p class="dtd-el-desc">
+ Encloses the Border definitions, if present..
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: (BORDER+)
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES: [None]
+ </p>
+ <p class="dtd-attr-name">
+ attribute_name
+ </p>
+ <p class="dtd-attr-desc">
+ xxxx
+ </p>
+
+ <p class="dtd-el" style="margin-top:9pt;">
+ BORDER
+ </p>
+ <p class="dtd-el-desc">
+ Describes a Border, which modifies how units travel between provinces.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: [None]
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ id [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ The unique XML attribute ID of this Border. Provinces use this ID to associate
+ the Border with the Province.
+ </p>
+ <p class="dtd-attr-name">
+ description [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ A text description of this Border
+ </p>
+ <p class="dtd-attr-name">
+ unitTypes [OPTIONAL]
+ </p>
+ <p class="dtd-attr-desc">
+ Which units this applies to; e.g., "fleet", "army"; if none specified,
+ it is assumed to be all units ("fleet, army").
+ </p>
+ <p class="dtd-attr-name">
+ from [OPTIONAL]
+ </p>
+ <p class="dtd-attr-desc">
+ Optionally specifies if this Border only applies to certain provinces
+ or coasts that a unit is coming from. If not specified, all 'from' locations
+ are assumed.
+ </p>
+ <p class="dtd-attr-name">
+ orderTypes [OPTIONAL]
+ </p>
+ <p class="dtd-attr-desc">
+ Defines which order types this border applies to. Order types must be full
+ class names; e.g., to prohibit a Move order, this would be "dip.order.Move".
+ Multiple order types must be comma-separated. If not specified, applies to 
+ all orders.
+ </p>
+ <p class="dtd-attr-name">
+ baseMoveModifier [OPTIONAL]
+ </p>
+ <p class="dtd-attr-desc">
+ The amount of support (positive or negative) given to a Move or Support order
+ for this Border. If not specified, defaults to 0.
+ </p>
+ <p class="dtd-attr-name">
+ prohibited [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ Defines optional restrictions (e.g., based on season, year, etc.).
+ </p>
+
+
+ <p class="dtd-el" style="margin-top:9pt;">
+ PROVINCE
+ </p>
+ <p class="dtd-el-desc">
+ Defines a Province.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: (UNIQUENAME*, ADJACENCY+)
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ shortname [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ The default province abbreviation. E.g., "stp" for "St. Petersburg".
+ This must be unique to the province.
+ </p>
+ <p class="dtd-attr-name">
+ fullname [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ The full name of the province. E.g., "St. Petersburg". This must be
+ unique to the province.
+ </p>
+ <p class="dtd-attr-name">
+ isConvoyableCoast [OPTIONAL: "true" | "false"]
+ </p>
+ <p class="dtd-attr-desc">
+ Boolean value indicating if this coastal province is a convoyable coast
+ (indicates that inland fleets can convoy). If true, and the province is
+ not a coast, an error will occur.
+ </p>
+ <p class="dtd-attr-name">
+ borders [OPTIONAL: IDREFS]
+ </p>
+ <p class="dtd-attr-desc">
+ Defines which, if any, Borders apply to this province.
+ </p>
+
+ <p class="dtd-el" style="margin-top:9pt;">
+ UNIQUENAME
+ </p>
+ <p class="dtd-el-desc">
+ Defines an alternate unique name for the province. This is used 
+ for alternate abbreviations or spellings. There is no limit to 
+ the number of unique names attached to the province; however, 
+ each name must be unique to the province and to all other provinces.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: [Empty]
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ name [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ The optional unique name. 
+ </p>
+
+
+ <p class="dtd-el" style="margin-top:9pt;">
+ ADJACENCY
+ </p>
+ <p class="dtd-el-desc">
+ Defines the connectness of a province.
+ </p>
+ <p class="dtd-el-cont">
+ CONTAINS: [Empty]
+ </p>
+ <p class="dtd-attr">
+ ATTRIBUTES:
+ </p>
+ <p class="dtd-attr-name">
+ type [REQUIRED: "mv" | "xc" | "nc" | "sc" | "wc" | "ec" ]
+ </p>
+ <p class="dtd-attr-desc">
+ A connection layer. Army units move in the "mv" layer, sea units move
+ in the "xc" layer, and coasts are used (for sea units only) if a province
+ has coasts. A province may have upto 4 coasts. See the above section on
+ adjacency for more details.
+ </p>
+ <p class="dtd-attr-name">
+ refs [REQUIRED]
+ </p>
+ <p class="dtd-attr-desc">
+ Space or comma separated list of province abbreviations to which this
+ province is connected. To reference a coast, append a hyphenated coast 
+ (e.g.: "stp" vs. "stp-sc"). 
+ </p>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE toc PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 2.0//EN" "http://java.sun.com/products/javahelp/toc_2_0.dtd">
+<toc version="2.0">
+	<tocitem text="Welcome" target="Welcome"/>
+	<tocitem text="What's New" target="what_s_new_htm"/>
+	<tocitem text="GNU General Public License" target="gnu_general_public_license_htm"/>
+	<tocitem text="Version History" expand="false">
+		<tocitem text="1.6.8" target="ver168_htm"/>
+		<tocitem text="1.6.7" target="ver167_htm"/>
+		<tocitem text="1.6" target="ver160_htm"/>
+		<tocitem text="1.5.1" target="ver151_htm"/>
+		<tocitem text="1.5" target="ver150_htm"/>
+		<tocitem text="1.0" target="ver100_htm"/>
+		<tocitem text="0.95" target="ver095_htm"/>
+		<tocitem text="0.90" target="ver090_htm"/>
+		<tocitem text="0.86" target="ver086_htm"/>
+		<tocitem text="0.85" target="ver085_htm"/>
+		<tocitem text="0.83" target="ver083_htm"/>
+		<tocitem text="0.80" target="ver080_htm"/>
+		<tocitem text="0.75" target="ver075_htm"/>
+	</tocitem>
+	<tocitem text="Working with jDip" expand="false">
+		<tocitem text="The Interface" target="The_Interface"/>
+		<tocitem text="Starting A New Game" target="Starting_A_New_Game"/>
+		<tocitem text="Starting a New Face-to-Face Game" target="StartF2F"/>
+		<tocitem text="Importing Games" expand="false">
+			<tocitem text="Importing from floc.net" target="import_floc_htm"/>
+			<tocitem text="Importing Judge files" target="import_judge_htm"/>
+		</tocitem>
+		<tocitem text="Entering Orders" target="Entering_Orders"/>
+		<tocitem text="Game and Player Info" target="Metadata"/>
+		<tocitem text="Printing" target="Printing"/>
+		<tocitem text="Preferences" target="Preferences"/>
+		<tocitem text="Menu Overview" expand="false">
+			<tocitem text="File" target="using_menus_file_htm"/>
+			<tocitem text="Edit" target="using_menus_edit_htm"/>
+			<tocitem text="Orders" target="using_menus_orders_htm"/>
+			<tocitem text="History" target="using_menus_history_htm"/>
+			<tocitem text="View" target="using_menus_view_htm"/>
+			<tocitem text="Reports" target="using_menus_reports_htm"/>
+			<tocitem text="Help" target="using_menus_help_htm"/>
+		</tocitem>
+	</tocitem>
+	<tocitem text="Frequently Asked Questions" expand="false">
+		<tocitem text="General" target="faq_general_htm"/>
+	</tocitem>
+	<tocitem text="Troubleshooting" expand="false">
+		<tocitem text="Troubleshooting" target="troubleshooting_troubleshootinggeneral_htm"/>
+	</tocitem>
+	<tocitem text="Advanced Topics" expand="false">
+		<tocitem text="Command Line (Startup) Options" target="cmd_options_htm"/>
+		<tocitem text="Save Game Format" target="save_game_format_htm"/>
+		<tocitem text="Creating Variant Plugins" target="advanced_creating_variant_plugins_htm"/>
+		<tocitem text="Variant Plugin File Structure" target="advanced_variant_plugin_file_structure_htm"/>
+		<tocitem text="Variant XML File Format" target="advanced_variant_xml_file_format_htm"/>
+		<tocitem text="Adjacency XML File Format" target="adjacency_xml_file_format_htm"/>
+		<tocitem text="SVG Map File Format" target="advanced_svg_map_file_format_htm"/>
+	</tocitem>
+</toc>

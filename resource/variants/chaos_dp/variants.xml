@@ -1,0 +1,190 @@
+<?xml version="1.0" standalone="yes"?>
+<!DOCTYPE VARIANTS [
+	<!ELEMENT VARIANTS (DESCRIPTION, MAP_DEFINITION+, VARIANT+)>
+	
+	<!ELEMENT DESCRIPTION (#PCDATA)>
+	
+	<!ELEMENT MAP_DEFINITION (DESCRIPTION?)>
+	<!ATTLIST MAP_DEFINITION 
+		id ID #REQUIRED
+		title CDATA #REQUIRED
+		URI CDATA #REQUIRED
+		thumbURI CDATA #REQUIRED
+		preferredUnitStyle CDATA #IMPLIED
+		>
+	
+	<!ELEMENT VARIANT (DESCRIPTION, MAP, RULEOPTIONS?, POWER+, STARTINGTIME, VICTORYCONDITIONS, SUPPLYCENTER+, INITIALSTATE*)>
+	<!ATTLIST VARIANT
+			name CDATA #REQUIRED
+			default (true|false) "false"
+			version CDATA #REQUIRED
+			aliases CDATA #IMPLIED
+			>
+			
+	<!ELEMENT MAP (MAP_GRAPHIC*)>
+	<!ATTLIST MAP adjacencyURI CDATA #REQUIRED>
+	
+	<!ELEMENT MAP_GRAPHIC EMPTY>
+	<!ATTLIST MAP_GRAPHIC
+			ref IDREF #REQUIRED
+			default (true|false) "false"
+			preferredUnitStyle CDATA #IMPLIED
+			>
+	
+	<!ELEMENT RULEOPTIONS (RULEOPTION+)>
+	<!ELEMENT RULEOPTION EMPTY>
+	<!ATTLIST RULEOPTION	name CDATA #REQUIRED
+				value CDATA #REQUIRED>
+	
+	<!ELEMENT POWER EMPTY>
+	<!ATTLIST POWER name CDATA #REQUIRED
+			active (true|false) "true"
+			adjective CDATA #REQUIRED
+			altnames CDATA #IMPLIED
+			>
+	
+	<!ELEMENT STARTINGTIME EMPTY>
+	<!ATTLIST STARTINGTIME 	turn CDATA #REQUIRED
+				allowBCYears (true|false) "false"
+				>
+	
+	<!ELEMENT VICTORYCONDITIONS (WINNING_SUPPLY_CENTERS?, YEARS_WITHOUT_SC_CAPTURE?, GAME_LENGTH?)>
+	
+	<!ELEMENT WINNING_SUPPLY_CENTERS EMPTY>
+	<!ATTLIST WINNING_SUPPLY_CENTERS value CDATA #REQUIRED>
+	
+	<!ELEMENT YEARS_WITHOUT_SC_CAPTURE EMPTY>
+	<!ATTLIST YEARS_WITHOUT_SC_CAPTURE value CDATA #REQUIRED>
+	
+	<!ELEMENT GAME_LENGTH EMPTY>
+	<!ATTLIST GAME_LENGTH value CDATA #REQUIRED>
+	
+	<!ELEMENT SUPPLYCENTER EMPTY>
+	<!ATTLIST SUPPLYCENTER 	province CDATA #REQUIRED
+				homepower CDATA "none"
+				owner CDATA "none"
+				>
+				
+	<!ELEMENT INITIALSTATE EMPTY>
+	<!ATTLIST INITIALSTATE 	province CDATA #REQUIRED
+				power CDATA #REQUIRED
+				unit CDATA #REQUIRED
+				unitcoast CDATA #IMPLIED
+				>
+]>
+<!-- NOTE: it's very important that the name of the file will be variants.xml, in all lower case -->
+<!-- NOTE: for CDATA escapes, no space between tag and bracket!! -->
+<VARIANTS>
+	<DESCRIPTION><![CDATA[The main variant list for jDip]]></DESCRIPTION> 
+	
+	<MAP_DEFINITION id="chaos" title="Standard"  preferredUnitStyle="modern"
+		URI="chaos.svg" thumbURI="chaos_thumb.png">
+		<DESCRIPTION>
+		The traditional map, optimized for Chaos games.
+		</DESCRIPTION>
+	</MAP_DEFINITION>
+	
+	
+	<VARIANT name="Chaos (DPJudge)" version="2.0" default="false">
+		<DESCRIPTION><![CDATA[ 
+		<p>
+			This version of Chaos is compatible with <b>DPJudge</b>-based
+			judges, such as USDP and UKDP. It is not compatible with 
+			nJudge-based judges.
+		</p>
+		<p>
+			The chaos variant is played by 34 players, each owning a single supply
+			center on the standard map.  The game starts in Winter of
+			1900 at the adjustment phase.  Each player starts out choosing which
+			type of unit they wish to build and progressing from there.  When
+			building units, a unit may be built at any owned supply center.
+		</p>
+		<p>
+			Author: Michel Ferion
+		</p>]]></DESCRIPTION> 
+		<MAP adjacencyURI="chaos_adjacency.xml">
+			<MAP_GRAPHIC ref="chaos" default="true" />
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_ANY_OWNED" />
+		</RULEOPTIONS>
+		
+		<POWER name="Ankara" 	active="true" adjective="Ankaran" /> 
+		<POWER name="Belgium" 	active="true" adjective="Belgian" /> 
+		<POWER name="Berlin" 	active="true" adjective="Berliner" /> 
+		<POWER name="Brest" 	active="true" adjective="Breton" />
+		<POWER name="Budapest" 	active="true" adjective="Hungarian" /> 
+		<POWER name="Bulgaria" 	active="true" adjective="Bulgarian" /> 
+		<POWER name="Constantinople" active="true" adjective="Byzantine" /> 
+		<POWER name="Denmark" 	active="true" adjective="Danish" /> 
+		<POWER name="Edinburgh" active="true" adjective="Scottish" /> 
+		<POWER name="Greece" 	active="true" adjective="Greek" /> 
+		<POWER name="Holland" 	active="true" adjective="Dutch" /> 
+		<POWER name="Kiel" 		active="true" adjective="Schleswiger" />
+		<POWER name="Liverpool" active="true" adjective="Liverpudlian" /> 
+		<POWER name="London" 	active="true" adjective="Cockney" /> 
+		<POWER name="Marseilles" active="true" adjective="Marsellais" /> 
+		<POWER name="Moscow" 	active="true" adjective="Muscovite" /> 
+		<POWER name="Munich" 	active="true" adjective="Bavarian" /> 
+		<POWER name="Naples" 	active="true" adjective="Neapolitan" />
+		<POWER name="Norway" 	active="true" adjective="Norwegian" />
+		<POWER name="Paris" 	active="true" adjective="Parisian" />
+		<POWER name="Portugal" 	active="true" adjective="Portuguese" />
+		<POWER name="Rome" 		active="true" adjective="Roman" />
+		<POWER name="Rumania" 	active="true" adjective="Rumanian" />
+		<POWER name="Serbia" 	active="true" adjective="Serbian" />
+		<POWER name="Sevastopol" active="true" adjective="Crimean" />
+		<POWER name="Smyrna" 	active="true" adjective="Smyrnan" />
+		<POWER name="Spain" 	active="true" adjective="Spanish" />
+		<POWER name="StPetersburg" active="true" adjective="St Petersburger" /> 
+		<POWER name="Sweden" 	active="true" adjective="Swedish" /> 
+		<POWER name="Trieste" 	active="true" adjective="Carinthian" /> 
+		<POWER name="Tunis" 	active="true" adjective="Tunisian" /> 
+		<POWER name="Venice" 	active="true" adjective="Venetian" /> 
+		<POWER name="Vienna" 	active="true" adjective="Viennese" /> 
+		<POWER name="Warsaw" 	active="true" adjective="Polish" /> 
+
+		<STARTINGTIME turn="Fall, 1900, Adjustment" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="18" />
+			<YEARS_WITHOUT_SC_CAPTURE value="7" />
+			<GAME_LENGTH value="35" />
+		</VICTORYCONDITIONS>
+		
+ 	 	<!-- supply centers -->
+		<SUPPLYCENTER province="ank" owner="Ankara" 	/>
+		<SUPPLYCENTER province="bel" owner="Belgium" 	/>
+		<SUPPLYCENTER province="ber" owner="Berlin" 	/>
+	 	<SUPPLYCENTER province="bre" owner="Brest" 	    />
+		<SUPPLYCENTER province="bud" owner="Budapest" 	/>
+		<SUPPLYCENTER province="bul" owner="Bulgaria" 	/>
+	 	<SUPPLYCENTER province="con" owner="Constantinople" />
+		<SUPPLYCENTER province="den" owner="Denmark" 	/>
+		<SUPPLYCENTER province="edi" owner="Edinburgh"  />
+		<SUPPLYCENTER province="gre" owner="Greece" 	/>
+		<SUPPLYCENTER province="hol" owner="Holland" 	/>
+		<SUPPLYCENTER province="kie" owner="Kiel" 		/>
+		<SUPPLYCENTER province="lvp" owner="Liverpool"  />
+		<SUPPLYCENTER province="lon" owner="London" 	/>
+	 	<SUPPLYCENTER province="mar" owner="Marseilles" />
+	 	<SUPPLYCENTER province="mos" owner="Moscow" 	/>
+		<SUPPLYCENTER province="mun" owner="Munich" 	/>
+	 	<SUPPLYCENTER province="nap" owner="Naples" 	/>
+		<SUPPLYCENTER province="nor" owner="Norway" 	/>
+	 	<SUPPLYCENTER province="par" owner="Paris" 	    />
+		<SUPPLYCENTER province="por" owner="Portugal" 	/>
+	 	<SUPPLYCENTER province="rom" owner="Rome" 		/>
+		<SUPPLYCENTER province="rum" owner="Rumania" 	/>
+		<SUPPLYCENTER province="ser" owner="Serbia" 	/>
+	 	<SUPPLYCENTER province="sev" owner="Sevastopol" />
+	 	<SUPPLYCENTER province="smy" owner="Smyrna" 	/>
+		<SUPPLYCENTER province="spa" owner="Spain" 	    />
+	 	<SUPPLYCENTER province="stp" owner="StPetersburg"  />
+		<SUPPLYCENTER province="swe" owner="Sweden" 	/>
+		<SUPPLYCENTER province="tri" owner="Trieste" 	/>
+		<SUPPLYCENTER province="tun" owner="Tunis" 	    />
+	 	<SUPPLYCENTER province="ven" owner="Venice" 	/>
+		<SUPPLYCENTER province="vie" owner="Vienna" 	/>
+	 	<SUPPLYCENTER province="war" owner="Warsaw" 	/>   
+	</VARIANT>
+</VARIANTS>

@@ -1,0 +1,100 @@
+#############################################################
+#
+#	DATC (Diplomacy Adjudicator Test Cases) Test Cases
+#	DATC Version 2.4
+#	SECTION 8
+#	ICE VARIANT
+#
+# 	The DATC is copyright Lucas B. Kruijswijk
+#	http://web.inter.nl.net/users/L.B.Kruijswijk/
+#
+#############################################################
+
+#############################################################
+#	
+# Set the Variant for all cases.
+#
+# IMPORTANT NOTE:
+# 	These test cases use the Loeb9 variant.
+#
+#############################################################
+VARIANT_ALL DATC_Loeb9
+
+
+# Move in winter to ice sector should fail.
+CASE 8.A [Move to Ice sector in Winter]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Norway:  F Norwegian Sea
+ORDERS
+	Norway:  F Norwegian Sea - Arctic Ocean
+POSTSTATE
+	Norway:  F Norwegian Sea
+END
+
+# Move in winter from ice sector should fail.
+CASE 8.B [Move from Ice sector in Winter]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Norway:  F Arctic Ocean
+ORDERS
+	Norway:  F Arctic Ocean - Norwegian Sea
+POSTSTATE
+	Norway:  F Arctic Ocean
+END
+
+# Support from an ice sector should fail in fall.
+CASE 8.C [Support from Ice sector in winter]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Norway:  F Arctic Ocean
+	Norway:  F Norwegian Sea
+	England: F North Atlantic Ocean
+ORDERS
+	Norway:  F Arctic Ocean Supports F Norwegian Sea - North Atlantic Ocean
+	Norway:  F Norwegian Sea - North Atlantic Ocean 
+	England: F North Atlantic Ocean Hold			# should not be dislodged.
+POSTSTATE
+	Norway:  F Arctic Ocean
+	Norway:  F Norwegian Sea
+	England: F North Atlantic Ocean
+END
+
+# Retreat to an ice sector in autumn should fail.
+CASE 8.D [No retreat to an Ice sector]
+PRESTATE_SETPHASE Fall 1901, Retreat
+PRESTATE
+	England: F North Atlantic Ocean 
+	England: F North Sea
+PRESTATE_DISLODGED
+	Norway: F Norwegian Sea
+PRESTATE_RESULTS
+	SUCCESS: England: F North Atlantic Ocean - Norwegian Sea
+	SUCCESS: England: F North Sea Supports F North Atlantic Ocean - Norwegian Sea
+	FAILURE: Norway:  F Norwegian Sea Hold
+ORDERS
+	Norway:  F Norwegian Sea - Arctic Sea		# ILLEGAL; unit destroyed
+POSTSTATE
+	England: F North Atlantic Ocean 
+	England: F North Sea
+END
+
+# A convoy in fall in an ice sector should fail.
+CASE 8.E [No Convoy in Ice Sector in Fall]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	England: A Liverpool
+	England: F North Atlantic Ocean
+	England: F Arctic Ocean
+ORDERS
+	England: A Liverpool - Siberia
+	England: F North Atlantic Ocean Convoys A Liverpool - Siberia
+	England: F Arctic Ocean Convoys A Liverpool - Siberia
+POSTSTATE
+	England: A Liverpool
+	England: F North Atlantic Ocean
+	England: F Arctic Ocean
+END
+
+
+

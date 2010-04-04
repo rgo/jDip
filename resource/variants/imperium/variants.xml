@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<!DOCTYPE VARIANTS [
+	<!ELEMENT VARIANTS (DESCRIPTION, MAP_DEFINITION+, VARIANT+)>
+	
+	<!ELEMENT DESCRIPTION (#PCDATA)>
+	
+	<!ELEMENT MAP_DEFINITION (DESCRIPTION?)>
+	<!ATTLIST MAP_DEFINITION 
+		id ID #REQUIRED
+		title CDATA #REQUIRED
+		URI CDATA #REQUIRED
+		thumbURI CDATA #REQUIRED
+		preferredUnitStyle CDATA #IMPLIED
+		>
+	
+	<!ELEMENT VARIANT (DESCRIPTION, MAP, RULEOPTIONS?, POWER+, STARTINGTIME, VICTORYCONDITIONS, SUPPLYCENTER+, INITIALSTATE*)>
+	<!ATTLIST VARIANT
+			name CDATA #REQUIRED
+			default (true|false) "false"
+			version CDATA #REQUIRED
+			aliases CDATA #IMPLIED
+			>
+			
+	<!ELEMENT MAP (MAP_GRAPHIC*)>
+	<!ATTLIST MAP adjacencyURI CDATA #REQUIRED>
+	
+	<!ELEMENT MAP_GRAPHIC EMPTY>
+	<!ATTLIST MAP_GRAPHIC
+			ref IDREF #REQUIRED
+			default (true|false) "false"
+			preferredUnitStyle CDATA #IMPLIED
+			>
+	
+	<!ELEMENT RULEOPTIONS (RULEOPTION+)>
+	<!ELEMENT RULEOPTION EMPTY>
+	<!ATTLIST RULEOPTION	name CDATA #REQUIRED
+				value CDATA #REQUIRED>
+	
+	<!ELEMENT POWER EMPTY>
+	<!ATTLIST POWER name CDATA #REQUIRED
+			active (true|false) "true"
+			adjective CDATA #REQUIRED
+			altnames CDATA #IMPLIED
+			>
+	
+	<!ELEMENT STARTINGTIME EMPTY>
+	<!ATTLIST STARTINGTIME 	turn CDATA #REQUIRED
+				allowBCYears (true|false) "false"
+				>
+	
+	<!ELEMENT VICTORYCONDITIONS (WINNING_SUPPLY_CENTERS?, YEARS_WITHOUT_SC_CAPTURE?, GAME_LENGTH?)>
+	
+	<!ELEMENT WINNING_SUPPLY_CENTERS EMPTY>
+	<!ATTLIST WINNING_SUPPLY_CENTERS value CDATA #REQUIRED>
+	
+	<!ELEMENT YEARS_WITHOUT_SC_CAPTURE EMPTY>
+	<!ATTLIST YEARS_WITHOUT_SC_CAPTURE value CDATA #REQUIRED>
+	
+	<!ELEMENT GAME_LENGTH EMPTY>
+	<!ATTLIST GAME_LENGTH value CDATA #REQUIRED>
+	
+	<!ELEMENT SUPPLYCENTER EMPTY>
+	<!ATTLIST SUPPLYCENTER 	province CDATA #REQUIRED
+				homepower CDATA "none"
+				owner CDATA "none"
+				>
+				
+	<!ELEMENT INITIALSTATE EMPTY>
+	<!ATTLIST INITIALSTATE 	province CDATA #REQUIRED
+				power CDATA #REQUIRED
+				unit CDATA #REQUIRED
+				unitcoast CDATA #IMPLIED
+				>
+]>
+<!-- NOTE: it's very important that the name of the file will be variants.xml, in all lower case -->
+<!-- NOTE: for CDATA escapes, no space between tag and bracket!! -->
+<VARIANTS>
+	<DESCRIPTION><![CDATA[Created variant.]]></DESCRIPTION> 
+	
+	<MAP_DEFINITION id="defaultMap" title="Imperium" preferredUnitStyle="imperium"
+		URI="imperium.svg" thumbURI="imperium_thumb.png">
+		<DESCRIPTION><![CDATA[
+			Imperium map by Martin Asal.
+		]]>
+		</DESCRIPTION> 
+	</MAP_DEFINITION>
+	
+	<VARIANT name="Imperium" version="1.0">
+		<DESCRIPTION><![CDATA[
+		<h2>Scenario</h2>
+		<div class="indent1cm">
+			<p>
+				The German Tribes have invaded the Roman Empire because their
+				traditional homelands can no longer provide adequate sustenance. 
+				The lack of tribal resources described above is represented in 
+				this scenario by the presence of only two SCs outside of the Roman 
+				imperial borders. Furthermore, no unit starts at a SC. Only 9 SCs 
+				can be reached in the first year, which means that all nations will 
+				need to remove units at first. Be careful, or your game will 
+				finish fast!
+			</p>
+			<p>
+				After the first year, everything is different: 
+				There are numerous SCs, many of them near each other. 
+				Can you afford to give them up to someone else?
+			</p>
+		</div>
+		<h2>Rules</h2>
+		<div class="indent1cm">
+			<ol style="margin-left: 0.5cm">
+				<li>Game starts in Spring 401. </li>
+				<li>There are no home-SCs. In the Adjustments Phase,
+					a unit may be built at any owned and open SC.</li>
+				<li>The Rivers Rhenus and Danuvius serve as the borders of several areas.
+					Thracia and Galatia are adjacent to each other, as are Baetica and
+					Mauretania. While an ordinary move is counted with one plus supports,
+					an army crossing a river is counted with one force less. Support
+					crossing a river can’t be given if the target zone is on the other
+					side. These borders are ordinary borders for fleets. Fleets aren't
+					able to move inside the continent.</li>
+				<li>Byzantium is adjacent to the Aegaeis and has a canal.</li>
+				<li>15 of the 28 SCs are necessary for a solo.</li>
+			</ol>
+		</div>
+		<h2>Examples</h2>
+		<div class="indent1cm">
+			<p>
+				Here some examples for the rules with respect to rivers:
+			</p>
+			<div class="indent1cm">
+				<p>
+					<code>A Alamanni - Sequanorum (*OK*)</code><br>
+				</p>
+				<p>
+					<code>A Franci - Colonia Agrippa (*Bounce*)</code><br>
+					<code>A Teutones - Colonia Agrippa (*Bounce*)</code><br>
+				</p>
+				<p>
+					<code>A Dacia - Dalmatia (*OK*)</code><br>
+					<code>A Iazygi - Dalmatia (*Bounce*)</code><br>
+				</p>
+				<p>
+					<code>A Suebi - Castra Regina (*OK*)</code><br>
+					<code>A Vandales Supports A Suebi - Castra Regina (*Fails*)</code><br>
+					<code>A Alpes Supports A Suebi - Castra Regina (*OK*)</code><br>
+				</p>
+			</div>
+		</div>
+		]]>
+		</DESCRIPTION> 
+		<MAP adjacencyURI="imperium_adjacency.xml">
+			<MAP_GRAPHIC ref="defaultMap" default="true" />
+		</MAP>
+		
+		<!-- ruleoptions -->
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_ANY_OWNED"/>
+		</RULEOPTIONS>
+		
+		<!-- powers -->
+		<POWER name="Alamanni" active="true" adjective="Alamannian"/>
+		<POWER name="Franci" active="true" adjective="Francian"/>
+		<POWER name="Gothi" active="true" adjective="Gothian"/>
+		<POWER name="Hunni" active="true" adjective="Hunnian"/>
+		<POWER name="Saxones" active="true" adjective="Saxonian"/>
+		<POWER name="Vandali" active="true" adjective="Vandalian"/>
+
+		
+		<!-- starting time -->
+		<STARTINGTIME turn="Spring 401 Movement" />
+
+		
+		<!-- victory conditions -->
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="15" />
+		</VICTORYCONDITIONS>
+
+ 	 	
+		<!-- supply centers -->
+		<SUPPLYCENTER province="Ale"/>
+		<SUPPLYCENTER province="Anc"/>
+		<SUPPLYCENTER province="Ant"/>
+		<SUPPLYCENTER province="Ath"/>
+		<SUPPLYCENTER province="Bru"/>
+		<SUPPLYCENTER province="Bur"/>
+		<SUPPLYCENTER province="Byz"/>
+		<SUPPLYCENTER province="Cap"/>
+		<SUPPLYCENTER province="Car"/>
+		<SUPPLYCENTER province="Che"/>
+		<SUPPLYCENTER province="Col"/>
+		<SUPPLYCENTER province="Ebu"/>
+		<SUPPLYCENTER province="Gen"/>
+		<SUPPLYCENTER province="Hai"/>
+		<SUPPLYCENTER province="Lon"/>
+		<SUPPLYCENTER province="Lut"/>
+		<SUPPLYCENTER province="Mas"/>
+		<SUPPLYCENTER province="Mil"/>
+		<SUPPLYCENTER province="Oli"/>
+		<SUPPLYCENTER province="Rav"/>
+		<SUPPLYCENTER province="Reg"/>
+		<SUPPLYCENTER province="Rhe"/>
+		<SUPPLYCENTER province="Rom"/>
+		<SUPPLYCENTER province="Rot"/>
+		<SUPPLYCENTER province="Sag"/>
+		<SUPPLYCENTER province="Syr"/>
+		<SUPPLYCENTER province="Ver"/>
+		<SUPPLYCENTER province="Vin"/>
+
+		
+		<!-- unit placement -->
+		<INITIALSTATE province="ala" power="Alamanni" unit="army"/>
+		<INITIALSTATE province="lan" power="Alamanni" unit="army"/>
+		<INITIALSTATE province="qua" power="Alamanni" unit="army"/>
+		<INITIALSTATE province="fra" power="Franci" unit="army"/>
+		<INITIALSTATE province="rip" power="Franci" unit="army"/>
+		<INITIALSTATE province="sue" power="Franci" unit="army"/>
+		<INITIALSTATE province="dac" power="Gothi" unit="army"/>
+		<INITIALSTATE province="vis" power="Gothi" unit="army"/>
+		<INITIALSTATE province="ost" power="Gothi" unit="army"/>
+		<INITIALSTATE province="hu1" power="Hunni" unit="army"/>
+		<INITIALSTATE province="hu2" power="Hunni" unit="army"/>
+		<INITIALSTATE province="hu3" power="Hunni" unit="army"/>
+		<INITIALSTATE province="hu4" power="Hunni" unit="army"/>
+		<INITIALSTATE province="jut" power="Saxones" unit="army"/>
+		<INITIALSTATE province="teu" power="Saxones" unit="army"/>
+		<INITIALSTATE province="iaz" power="Saxones" unit="army"/>
+		<INITIALSTATE province="asd" power="Vandali" unit="army"/>
+		<INITIALSTATE province="sil" power="Vandali" unit="army"/>
+		<INITIALSTATE province="van" power="Vandali" unit="army"/>
+
+	</VARIANT>
+</VARIANTS>

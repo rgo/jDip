@@ -1,0 +1,161 @@
+<html>
+<head>
+ <title>Version History: 1.5</title>
+ <link rel="StyleSheet" href="../application_help.css">
+</head>
+<body>
+<h1>Version History: 1.5</h1>
+<h2>jDip version 1.5</h2>
+<pre>
+- New or Improved Features:
+    + Game Importing:
+        - Direct importing of games from http://www.floc.net
+        - Importing now supports newer nJudge versions           
+        - For floc.net and judge text files: both game listings and single 
+          turns, as well as multiple turns--even entire game histories--can be 
+          imported. If an entire game history is imported for example,
+          a complete game with all turns is created.
+        - Judge files can be imported into existing games if the game name 
+          and phase matches. If the phase does not match, the game may be 
+          rewound prior to import; later phases will then be deleted.
+        - Any variant supported by jDip can be imported.
+    + Maps & Symbols:
+        - Improved Symbols
+        - Map Symbols (Supply Centers, Units, etc.) are now independent of 
+          maps and may be set or changed in the New Game screen or in-game, 
+          via the View menu.
+        - Improved map scrolling and mousewheel support
+        - Faster order drawing and map responsiveness
+        - Various map display tweaks
+    + Complete German translation!
+    + New Variants (with detailed maps)
+        - Loeb9
+        - Milan 
+        - Crowded Milan
+        - RootZ
+    + Complete Loeb9 rule support (difficult passable borders, etc.). Moves 
+      over difficult passable borders (which have a strength of 0) are
+      shown with a thinner-than-normal movement arrow.
+    + 2000 rules / DATC (Diplomacy Adjudicator Test Cases) compliant.
+      jDip is compliant with the latest (Dec-16-2003) version of the DATC.
+      Please see the DATC Compliance Statement (in the Documentation section
+      of the website) for details. For more information about the DATC, see 
+      the Links section of the website).
+    + Convoyed Move Changes:
+        - Explicit Convoying is no longer the default; we now adhere strictly
+          to the 2000 Rules (and DATC).
+        - Convoyed Move behavior behaves as specified in DATC (section 
+          4.A.3 "preferred" choice C). Intent to Convoy is determined as per 
+          2000 rules. Explicit convoying (e.g., "by convoy" or "via convoy") is
+          allowed but no longer required; however, it remains useful for
+          clarification.
+        - Convoyed Moves, if successful, show the convoy path taken when order 
+          results are displayed
+        - "Exact" (or explicit) convoy paths may be entered for Move orders;
+          this allows better compatibility with legacy (e.g., Judge)
+          systems. However, the preferred method is to not enter an
+          explicit convoy path. If an explicit path is entered that is 
+          invalid or disrupted, and there exists another valid convoy 
+          path, the convoyed move will fail. This will not occur when 
+          convoy paths are not explicitly entered.
+    + Illegal Move orders can now receive support to Hold in place. This 
+      contravenes the DPTG (Diplomacy Players' Technical Guide) but is in 
+      accordance to the DATC, and is particularly useful in no-press games.
+    + Builds may be explicitly Waived (full support for the Waive order). 
+      Note that when writing a Waive order, the word "waive" or "waives" must 
+      be used; "w" is not a valid abbreviation, as it can be confused with Wing 
+      units. Some examples: "England: waive london", "waive build in london",
+      or "waive build london". Waived builds are indicated by a checkmark 
+      over the supply center.
+    + Order parsing improvements
+        - Orders with list prefixes (e.g., "1) army xxx-yyy") should now
+          be handled correctly when entered in the Multiple Order Entry  
+          window. Prefixes may be any alphanumeric type, with or without
+          parentheses or periods.
+        - Supports Move orders where the command (Move) precedes
+          any unit/location information (e.g., "move army paris to gascony")
+        - Supports Disband orders where the command (Disband) precedes
+          any unit/location information (e.g., "disband army paris")
+        - Disband and Remove orders are now interchangeable (jDip
+          automatically determines which is correct) 
+        - "Transport" and "Transports" are accepted synonyms for Convoy orders
+        - Better recognition and reporting of ambiguous province names
+        - Better recognition of ambiguous power names
+    + New Preferences: set image export size and JPEG/PNG quality.
+    + New Report: Historical Supply Center summary report
+    + F2F (Face-to-Face) mode changes:
+        - After the turn has been resolved, all orders and results are shown,
+          both on the order list and on the map. To resume entering orders, 
+          click the "Enter Orders" button.
+        - When in F2F mode, the first power tab selected is now random. 
+          This is said to reduce interplayer conflict.
+        - Color indicators added to power tabs
+    + Help system improvements
+    + All included variants now have detailed maps; variants with test 
+      "grid" maps are no longer included.
+- GUI changes:
+    + Dialog style and usability improvements
+    + Better integration into and feel on Mac OS X
+    + Faster and more responsive report dialogs
+    + Faster startup.
+    + Map and Units tab added to New Game dialog
+    + Fancy (Unicode) arrows in Move orders are now converted to "-&gt;" plain
+      text style when copying text to the system clipboard
+    + Error Dialogs now direct users to SourceForge bug tracker and now report 
+      program version and Java system information
+    + Better adjudication result reports (content and formatting)
+    + File, Edit, and Orders menu cleanup and usability improvements.
+    + Animate mode removed
+- Bug Fixes:
+    + Fixed: Judge import bugs
+    + Fixed: Player/Game info bugs (email addresses, web addresses)
+    + Fixed: Various map/variant bugs (e.g., Youngstown adjacency bugs)
+    + Fixed: Freezes in multi-order-entry dialog
+    + Fixed: Supply Centers not re-shown when leaving Influence mode
+    + Fixed: Last occupier not set for imported games
+    + Fixed: Submitted turns visible in F2F mode when returning to current 
+             turn after viewing previous turn results
+    + Fixed: Bounced statistics bug (adjudication was not affected)
+    + Fixed: Retreat order statusbar prompting confusing and/or incorrect
+    + Fixed: Duplicate valid build orders caused an adjudicator exception
+    + Fixed: Internet activity at startup (DTD Entity resolution)
+    + Fixed: Some valid retreats disallowed (USIN cupid F1909M, Trieste)
+    + Fixed: RetreatChecker and Retreats now handle difficult-passable border
+             and multiple retreats to same destination edge cases properly. 
+             Retreats are in compliance with DATC 4.A.5.
+    + Fixed: Occasional errors when exiting.
+    + Fixed: Printing and Exporting bugs
+    + Fixed: View | Names menu not reflecting state of province names
+    + Fixed: Inactive powers have their dislodged units automatically disbanded
+- Core changes:
+    + OrderFormat changes: no static options, improved option handling.
+    + Move order support for defined (explicit) convoy routes ("Judge style")
+    + Many MapTool (the jDip map SVG editor) improvements and bug fixes
+      (this is only available in the source distribution)
+    + CSV parser added to dip.misc.Utils
+    + Network errors now have a specific ErrorDialog method
+    + Common properties file for non-i18n data and associated Utils methods
+    + Initial (and incomplete) implementation of Press support and Press GUI 
+    + SVG jDipNS DTD changes
+    + Variant DTD changes
+    + Loeb9 and more test cases added. All test cases of DATC except
+      section 7 (Colonial Rules, which are not yet supported) are used for
+      testing.
+    + Dialog classes revamped. InfoDialog eliminated; TextViewer used instead.
+    + New Game and Preferences dialogs now in subpackages
+    + Batik library updates
+    + VariantManager changes, with proper support for versioning and SymbolPacks
+    + World changes: Variants now have better abstraction from World object
+    + AbstractCFPListener class for easier ClientFrame event handling
+    + New (and fast!) methods in Path.java for finding all possible sea routes, 
+      convoy routes, etc. between two coastal locations.
+    + Improvements to test harnesses
+- Compatibility:
+    + Save game files from jdip 1.0 cannot be opened with this version.
+- Miscellaneous:
+    + Mouse-pointer changing on OS X is disabled due to non-jDip related bugs. 
+      This will be periodically re-evaluated and re-implemented at a later date.
+      Other platforms are not affected.
+</pre>
+</body>
+</html>

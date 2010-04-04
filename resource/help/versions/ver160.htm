@@ -1,0 +1,91 @@
+<html>
+<head>
+ <title>Version History: 1.6.0</title>
+ <link rel="StyleSheet" href="../application_help.css">
+</head>
+<body>
+<h1>Version History: 1.6.0</h1>
+<h2>jDip version 1.6.0</h2>
+<pre>
+- New or Improved Features:
+    + New Rule Option: the ability to control whether explicit (Judge-style) 
+      or implicit convoyed move orders are allowed. Both are allowed by 
+      default. Note that for compatibility with Judge-based games, it is 
+      the "Explicit" option should be used. This feature is available in the
+      New Game window, under the "Rule Options" tab, as "Convoy Paths".
+    + GUI (mouse) entry of explicit convoyed move orders is now allowed, but
+      only when the "Convoy Paths" rule option is set to "Explicit". If this
+      is not set, explicit convoy paths may be entered manually by typing the
+      order int the order-entry box, since implicit (source and destination
+      only) convoyed Move orders are preferred.
+    + Improved Importing of orders from www.floc.net and nJudge-based games.
+      Explicit convoyed moves are enabled by default for imported games, so
+      they are fully nJudge-compatible. Game importing is now very strict; 
+      if an error occurs during import, the game will not import; older 
+      versions were too lenient with importing, masking possible import errors. 
+    + The Map can be hidden or shown from the View menu. This can be used
+      to make graphical overlays of units for websites and animations.
+    + Game and Player information now has colored tabs to 
+      better identify Powers.
+    + Percent magnification of map is now displayed in status bar.
+    + Order Results now support order formatting (as set by the "Display" 
+      option in Preferences), and as displayed in the Results window.
+    + Improved positioning of dislodged units on the Topological map.
+    + A new Report, "Order Statistics", gives various order statistics 
+      for each Movement phase in a game.
+    + Highly configurable options in Preferences for controlling how
+      orders are displayed. Orders can now even be displayed in strict
+      nJudge format, for example.
+    + Faster scrolling.
+- GUI changes:
+    + New toolbar icons.
+    + Improved appearance on Windows and Linux.
+    + Order entry field and the Order List now will convert stylized (Unicode)
+      arrows (such as those used in Move orders) to "->"  if the font used 
+      is not a Unicode-compatible font.
+- Bug Fixes:
+    + Fixed: Default save/export directory issues (900716).
+    + Fixed: Copy/Paste always pasted both HTML and plain text (919695).
+    + Fixed: F2F mode exception (941601).
+    + Fixed: Submitted moves re-appear in F2F mode (900213).
+    + Fixed: Default abbreviation of Norway changed 
+             to "nwy", from "nor" (948387).
+    + Fixed: Changing map symbols exception (962629).
+    + Fixed: Bounce + Dislodge results in no dislodged result (952038).
+    + Fixed: Border conditions not handled appropriately (962434).
+    + Fixed: When changing to Traditional map, it doesn't display (900714).
+    + Fixed: Importing of chaos games on judges (except USDP, UKDP).
+    + Fixed: "Cut" menu item not appropriately disabled in dialogs.
+    + Fixed: NPE when exiting program during a render.
+    + Fixed: Coast.parse() case bug.
+    + Fixed: Assertion error in Move.validate() (invalid assumption).
+- Core / API changes:
+    + Coasts are now indexed (see Coast.getIndex() and Coast.getCoast()).
+    + OrderResults now support more complex formatting of messages.
+    + Batik libraries updated to Batik 1.5.1. 
+    + JGoodies Looks 1.2.1 added for improved GUI appearance.
+    + Support and Convoy orders have methods to get the power of the supported
+      or convoyed unit.
+    + Rewritten, refactored dip.order.OrderFormat and OrderFormatOptions. 
+      These classes are now more flexible and easier to use, and handle
+      null arguments better (useful for debugging).
+    + Localization support now uses English as the default, so, if other 
+      locales are missing a resource entry, the English entry will be used,
+      instead of generating an error.
+    + More advanced Border support, which is useful when creating variants.
+      The Border class is now properly documented. Border test cases are
+      now part of the standard regression testing suite.
+- Compatibility:
+    + Games saved by this version cannot be read in older versions.
+    + Version 1.5 and 1.5.1 games, with the exception of Loeb9, can be
+      opened without compatibility issues.
+- Known Issues:
+    + Import of "chaos" variant games will not work from DPJudge-based judges
+      (USDP, UKDP), unless the "DPJudge" variant pack is installed.
+    + Please report any game importing failures, especially from floc.net.
+      Only the Judge Name and Game Name are required. Thanks.
+    + Performance on OS X may be considerably slower than on other platforms. 
+      This is under investigation.
+</pre>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<!DOCTYPE VARIANTS [
+	<!ELEMENT VARIANTS (DESCRIPTION, MAP_DEFINITION+, VARIANT+)>
+	
+	<!ELEMENT DESCRIPTION (#PCDATA)>
+	
+	<!ELEMENT MAP_DEFINITION (DESCRIPTION?)>
+	<!ATTLIST MAP_DEFINITION 
+		id ID #REQUIRED
+		title CDATA #REQUIRED
+		URI CDATA #REQUIRED
+		thumbURI CDATA #REQUIRED
+		preferredUnitStyle CDATA #IMPLIED
+		>
+	
+	<!ELEMENT VARIANT (DESCRIPTION, MAP, RULEOPTIONS?, POWER+, STARTINGTIME, VICTORYCONDITIONS, SUPPLYCENTER+, INITIALSTATE*)>
+	<!ATTLIST VARIANT
+			name CDATA #REQUIRED
+			default (true|false) "false"
+			version CDATA #REQUIRED
+			aliases CDATA #IMPLIED
+			>
+			
+	<!ELEMENT MAP (MAP_GRAPHIC*)>
+	<!ATTLIST MAP adjacencyURI CDATA #REQUIRED>
+	
+	<!ELEMENT MAP_GRAPHIC EMPTY>
+	<!ATTLIST MAP_GRAPHIC
+			ref IDREF #REQUIRED
+			default (true|false) "false"
+			preferredUnitStyle CDATA #IMPLIED
+			>
+	
+	<!ELEMENT RULEOPTIONS (RULEOPTION+)>
+	<!ELEMENT RULEOPTION EMPTY>
+	<!ATTLIST RULEOPTION	name CDATA #REQUIRED
+				value CDATA #REQUIRED>
+	
+	<!ELEMENT POWER EMPTY>
+	<!ATTLIST POWER name CDATA #REQUIRED
+			active (true|false) "true"
+			adjective CDATA #REQUIRED
+			altnames CDATA #IMPLIED
+			>
+	
+	<!ELEMENT STARTINGTIME EMPTY>
+	<!ATTLIST STARTINGTIME 	turn CDATA #REQUIRED
+				allowBCYears (true|false) "false"
+				>
+	
+	<!ELEMENT VICTORYCONDITIONS (WINNING_SUPPLY_CENTERS?, YEARS_WITHOUT_SC_CAPTURE?, GAME_LENGTH?)>
+	
+	<!ELEMENT WINNING_SUPPLY_CENTERS EMPTY>
+	<!ATTLIST WINNING_SUPPLY_CENTERS value CDATA #REQUIRED>
+	
+	<!ELEMENT YEARS_WITHOUT_SC_CAPTURE EMPTY>
+	<!ATTLIST YEARS_WITHOUT_SC_CAPTURE value CDATA #REQUIRED>
+	
+	<!ELEMENT GAME_LENGTH EMPTY>
+	<!ATTLIST GAME_LENGTH value CDATA #REQUIRED>
+	
+	<!ELEMENT SUPPLYCENTER EMPTY>
+	<!ATTLIST SUPPLYCENTER 	province CDATA #REQUIRED
+				homepower CDATA "none"
+				owner CDATA "none"
+				>
+				
+	<!ELEMENT INITIALSTATE EMPTY>
+	<!ATTLIST INITIALSTATE 	province CDATA #REQUIRED
+				power CDATA #REQUIRED
+				unit CDATA #REQUIRED
+				unitcoast CDATA #IMPLIED
+				>
+]>
+<!-- NOTE: it's very important that the name of the file will be variants.xml, in all lower case -->
+<!-- NOTE: for CDATA escapes, no space between tag and bracket!! -->
+<VARIANTS>
+	<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;">
+	SailHo! Variant
+	</div>]]></DESCRIPTION>
+	
+	<MAP_DEFINITION id="sailho" title="Sail Ho!" 
+		URI="sail_ho.svg" thumbURI="sailho_thumb.png" preferredUnitStyle="period">
+		<DESCRIPTION>
+		The Sail Ho! map.
+		</DESCRIPTION>
+	</MAP_DEFINITION>
+	
+	<VARIANT name="Sail Ho!" version="2.0" aliases="sailho, sail_ho, sail_ho2, sailho2, sail ho 2, sail ho2">
+		<DESCRIPTION><![CDATA[
+		There are 4 powers in the Sail Ho! variant. Each power has 2 Home Supply Centers (SCs). 
+		The Map contains a total of 16 SCs; half of these SCs are Home SCs and half are 
+		"neutral" SCs. Victory is achieved when 9 SCs are controlled by a single power. 
+		The tricky part of Sail Ho! is that half of the total number of SCs are located on islands! 
+		Thus, there is an incentive for players to make ample use of the "convoy" order.
+		<p>
+		The names of many of the map provinces in Sail Ho! are taken from mythology. Sometimes they 
+		are related to stories of Hercules and Xena and relate to episodes depicted in their television 
+		series.
+		</p>
+		<p>
+		This is the Sail Ho! version 2.0 map, which improves balance over the version 1.0 map.
+		</p>
+		<p style="margin-top:21pt;">Author: Tarzan (http://www.jump.to/SailHo)</p>]]></DESCRIPTION> 
+		<MAP adjacencyURI="sailho_adjacency.xml">
+			<MAP_GRAPHIC ref="sailho" default="true" />
+		</MAP>
+		<POWER name="North" active="true" adjective="Northern" /> 
+		<POWER name="South" active="true" adjective="Southern" /> 
+		<POWER name="West" active="true" adjective="Western" /> 
+		<POWER name="East" active="true" adjective="Eastern" /> 
+		<STARTINGTIME turn="Spring, 1901 Movement" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="9" />
+		</VICTORYCONDITIONS>
+		<!-- supply centers -->
+		<SUPPLYCENTER province="her" homepower="north" owner="north"/>
+		<SUPPLYCENTER province="aeo" homepower="north" owner="north"/>
+		<SUPPLYCENTER province="had" homepower="south" owner="south"/>
+		<SUPPLYCENTER province="xen" homepower="south" owner="south"/>
+		<SUPPLYCENTER province="cen" homepower="east" owner="east"/>
+		<SUPPLYCENTER province="ama" homepower="east" owner="east"/>
+		<SUPPLYCENTER province="les" homepower="west" owner="west"/>
+		<SUPPLYCENTER province="ves" homepower="west" owner="west"/>
+		<SUPPLYCENTER province="aph" />
+		<SUPPLYCENTER province="are" />
+		<SUPPLYCENTER province="cup" />
+		<SUPPLYCENTER province="mor" />
+		<SUPPLYCENTER province="nes" />
+		<SUPPLYCENTER province="pro" />
+		<SUPPLYCENTER province="str" />
+		<SUPPLYCENTER province="tar" />
+		<!-- unit placement -->
+		<INITIALSTATE province="her" power="north" unit="army" />
+		<INITIALSTATE province="aeo" power="north" unit="army" />
+		<INITIALSTATE province="had" power="south" unit="army" />
+		<INITIALSTATE province="xen" power="south" unit="fleet" />
+		<INITIALSTATE province="cen" power="east" unit="army" />
+		<INITIALSTATE province="ama" power="east" unit="fleet" />
+		<INITIALSTATE province="les" power="west" unit="fleet" />
+		<INITIALSTATE province="ves" power="west" unit="fleet" />
+	</VARIANT>
+	
+	<VARIANT name="Sail Ho! Crowded" version="2.0" aliases="sailho_crowded, sailho crowded">
+		<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;">
+		Sail Ho! Crowded is an attempt to combine Sail Ho! and the concept
+		of a "crowded" map. As a result two new powers have been added 
+		(Dissentos and Cyprus) as well as two new supply centers (Fie and Psy).  
+		All supply centers are home centers of the various powers in this variant
+		of Sail Ho. 
+		</div>
+		<div style="font-family:arial,helvetica;margin-top:0.5cm;">
+		See the Sail Ho! variant for the history, design goals, and unique
+		attributes of the Sail Ho! (version 2) variant.
+		</div>
+		<div style="margin-top:0.5cm;font-family:arial,helvetica;">Author: Tarzan and Lynn Mercer</div>]]></DESCRIPTION> 
+		<MAP adjacencyURI="sailho_adjacency.xml">
+			<MAP_GRAPHIC ref="sailho" default="true" />
+		</MAP>
+		<POWER name="North" active="true" adjective="Northern" /> 
+		<POWER name="South" active="true" adjective="Southern" /> 
+		<POWER name="West" active="true" adjective="Western" /> 
+		<POWER name="East" active="true" adjective="Eastern" /> 
+		<POWER name="Dissentos" active="true" adjective="Dissentian" /> 
+		<POWER name="Cyprus" active="true" adjective="Cypriot" /> 
+		<STARTINGTIME turn="Spring, 1901 Movement" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="10" />
+		</VICTORYCONDITIONS>
+		<!-- supply centers -->
+		<SUPPLYCENTER province="mor" homepower="north" owner="north"/>
+		<SUPPLYCENTER province="fie" homepower="north" owner="north"/>
+		<SUPPLYCENTER province="her" homepower="north" owner="north"/>
+		<SUPPLYCENTER province="tar" homepower="south" owner="south"/>
+		<SUPPLYCENTER province="xen" homepower="south" owner="south"/>
+		<SUPPLYCENTER province="had" homepower="south" owner="south"/>
+		<SUPPLYCENTER province="ama" homepower="east" owner="east"/>
+		<SUPPLYCENTER province="aeo" homepower="east" owner="east"/>
+		<SUPPLYCENTER province="cen" homepower="east" owner="east"/>
+		<SUPPLYCENTER province="les" homepower="west" owner="west"/>
+		<SUPPLYCENTER province="ves" homepower="west" owner="west"/>
+		<SUPPLYCENTER province="pro" homepower="west" owner="west"/>
+		<SUPPLYCENTER province="nes" homepower="dissentos" owner="dissentos"/>
+		<SUPPLYCENTER province="str" homepower="dissentos" owner="dissentos"/>
+		<SUPPLYCENTER province="are" homepower="dissentos" owner="dissentos"/>
+		<SUPPLYCENTER province="cup" homepower="cyprus" owner="cyprus"/>
+		<SUPPLYCENTER province="aph" homepower="cyprus" owner="cyprus"/>
+		<SUPPLYCENTER province="psy" homepower="cyprus" owner="cyprus"/>
+		<!-- unit placement -->
+		<INITIALSTATE province="mor" power="north" unit="fleet" />
+		<INITIALSTATE province="fie" power="north" unit="army" />
+		<INITIALSTATE province="her" power="north" unit="army" />
+		<INITIALSTATE province="tar" power="south" unit="fleet" />
+		<INITIALSTATE province="xen" power="south" unit="fleet" />
+		<INITIALSTATE province="had" power="south" unit="army" />
+		<INITIALSTATE province="ama" power="east" unit="fleet" />
+		<INITIALSTATE province="aeo" power="east" unit="army" />
+		<INITIALSTATE province="cen" power="east" unit="army" />
+		<INITIALSTATE province="les" power="west" unit="fleet" />
+		<INITIALSTATE province="ves" power="west" unit="fleet" />
+		<INITIALSTATE province="pro" power="west" unit="army" />
+		<INITIALSTATE province="nes" power="dissentos" unit="fleet" />
+		<INITIALSTATE province="str" power="dissentos" unit="fleet" />
+		<INITIALSTATE province="are" power="dissentos" unit="army" />
+		<INITIALSTATE province="cup" power="cyprus" unit="fleet" />
+		<INITIALSTATE province="aph" power="cyprus" unit="fleet" />
+		<INITIALSTATE province="psy" power="cyprus" unit="army" />
+	</VARIANT>                              
+	
+</VARIANTS>

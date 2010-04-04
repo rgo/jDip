@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<!DOCTYPE PROVINCES [
+	<!ELEMENT PROVINCES (BORDER_DEFINITIONS?, PROVINCE+)>
+	
+	<!-- ===================================================================== -->
+	<!ELEMENT BORDER_DEFINITIONS (BORDER+)>
+	
+	<!ELEMENT BORDER EMPTY>
+	<!ATTLIST BORDER	
+				id ID #REQUIRED
+				description CDATA #REQUIRED
+				from CDATA #IMPLIED
+				unitTypes CDATA #IMPLIED
+				orderTypes CDATA #IMPLIED
+				year CDATA #IMPLIED
+				season CDATA #IMPLIED
+				phase CDATA #IMPLIED
+				baseMoveModifier CDATA #IMPLIED
+				>
+				
+	<!-- ===================================================================== -->
+	<!ELEMENT PROVINCE (UNIQUENAME*, ADJACENCY+)>
+	<!ATTLIST PROVINCE 	
+				shortname CDATA #REQUIRED
+				fullname CDATA #REQUIRED
+				isConvoyableCoast (true|false) "false"
+				borders IDREFS #IMPLIED
+				>	
+	
+				
+	<!ELEMENT UNIQUENAME EMPTY>
+	<!ATTLIST UNIQUENAME name CDATA #REQUIRED>
+	
+	<!ELEMENT ADJACENCY EMPTY>
+	<!ATTLIST ADJACENCY 	
+				type (mv|xc|nc|sc|wc|ec) "mv"
+				refs CDATA #REQUIRED
+				>
+]>
+<PROVINCES>
+		<!-- SAILHO adjacency -->
+		<!-- name, abbreviation, and adjacency data for all provinces -->
+		<!-- NOTE: shortnames & uniqnames do not have to be 3 characters (they can be variable) -->
+		<PROVINCE shortname="fie" fullname="Field of the Golden Fleece">
+			<ADJACENCY type="mv" refs="dei jas alc her" />
+		</PROVINCE>
+		<PROVINCE shortname="dei" fullname="Deianeira's Grave">
+			<ADJACENCY type="mv" refs="zeu fie her oly" />
+		</PROVINCE>
+		<PROVINCE shortname="zeu" fullname="Temple of Zeus">
+			<ADJACENCY type="mv" refs="tan dei oly aeo" />
+		</PROVINCE>
+		<PROVINCE shortname="tan" fullname="Tantalus' Pool">
+			<ADJACENCY type="mv" refs="zeu aeo chi sis" />
+		</PROVINCE>
+		<PROVINCE shortname="sis" fullname="Sisyphus' Hill">
+			<ADJACENCY type="mv" refs="tan chi cen min" />
+		</PROVINCE>
+		<PROVINCE shortname="min" fullname="Minotaur's Labyrinth">
+			<ADJACENCY type="mv" refs="cen sis ech hip" />
+			<ADJACENCY type="xc" refs="hip eas" />
+		</PROVINCE>
+		<PROVINCE shortname="ech" fullname="Echo's Glade">
+			<ADJACENCY type="mv" refs="ama min hip cen" />
+			<ADJACENCY type="xc" refs="nar sow ama cen" />
+		</PROVINCE>
+		<PROVINCE shortname="cen" fullname="Centaur Forest">
+			<ADJACENCY type="mv" refs="min ech sis chi" />
+			<ADJACENCY type="xc" refs="nar ech chi" />
+		</PROVINCE>
+		<PROVINCE shortname="chi" fullname="Chiron's Cave">
+			<ADJACENCY type="mv" refs="aeo cen sis tan" />
+			<ADJACENCY type="xc" refs="aeo nar cen" />
+		</PROVINCE>
+		<PROVINCE shortname="aeo" fullname="Village of Aeolus">
+			<ADJACENCY type="mv" refs="oly mid chi tan zeu" />
+			<ADJACENCY type="xc" refs="mid gli nar chi" />
+		</PROVINCE>
+		<PROVINCE shortname="oly" fullname="Mount Olympus">
+			<ADJACENCY type="mv" refs="dei her sal mid aeo zeu" />
+		</PROVINCE>
+		<PROVINCE shortname="her" fullname="Hercules' Respite">
+			<ADJACENCY type="mv" refs="fie alc sal oly dei" />
+			<ADJACENCY type="xc" refs="alc goc sal" />
+		</PROVINCE>
+		<PROVINCE shortname="alc" fullname="Alcmene's Village">
+			<ADJACENCY type="mv" refs="fie jas mor her" />
+			<ADJACENCY type="xc" refs="mor sod goc her" />
+		</PROVINCE>
+		<PROVINCE shortname="jas" fullname="Jason's Kingdom">
+			<ADJACENCY type="mv" refs="fie mor alc" />
+			<ADJACENCY type="xc" refs="wes mor" />
+		</PROVINCE>
+		<PROVINCE shortname="wes" fullname="Western Ocean">
+			<ADJACENCY type="xc" refs="jas lbs les soa sod mor" />
+		</PROVINCE>
+		<PROVINCE shortname="mor" fullname="Morpheus' Palace">
+			<ADJACENCY type="mv" refs="jas alc" />
+			<ADJACENCY type="xc" refs="jas wes sod alc" />
+		</PROVINCE>
+		<PROVINCE shortname="sod" fullname="Sea of Dreams">
+			<ADJACENCY type="xc" refs="mor wes soa goc alc" />
+		</PROVINCE>
+		<PROVINCE shortname="goc" fullname="Gulf of Chains">
+			<ADJACENCY type="xc" refs="alc sod soa pro sal her" />
+		</PROVINCE>
+		<PROVINCE shortname="sal" fullname="Salmonius' Scheme">
+			<ADJACENCY type="mv" refs="her pro mid oly" />
+			<ADJACENCY type="xc" refs="her goc pro" />
+		</PROVINCE>
+		<PROVINCE shortname="mid" fullname="Realm of King Midas">
+			<ADJACENCY type="mv" refs="oly sal pro aeo" />
+			<ADJACENCY type="xc" refs="pro gli aeo" />
+		</PROVINCE>
+		<PROVINCE shortname="gli" fullname="Glittering Gulf">
+			<ADJACENCY type="xc" refs="mid pro sow nar aeo" />
+		</PROVINCE>
+		<PROVINCE shortname="nar" fullname="Narcissus' Reflection">
+			<ADJACENCY type="xc" refs="aeo gli sow ech cen chi" />
+		</PROVINCE>
+		<PROVINCE shortname="sow" fullname="Sea of Waves">
+			<ADJACENCY type="xc" refs="gli pro soa aph sch ama ech nar" />
+		</PROVINCE>
+		<PROVINCE shortname="ama" fullname="Amazon Village">
+			<ADJACENCY type="mv" refs="hip ech" />
+			<ADJACENCY type="xc" refs="sow sch eas hip ech" />
+		</PROVINCE>
+		<PROVINCE shortname="eas" fullname="Eastern Ocean">
+			<ADJACENCY type="xc" refs="sch ser str cec sou min ama hip" />
+		</PROVINCE>
+		<PROVINCE shortname="sch" fullname="Scholars Channel">
+			<ADJACENCY type="xc" refs="psy/ec cup lov nes ser eas ama sow aph" />
+		</PROVINCE>
+		<PROVINCE shortname="aph" fullname="Aphrodite's Beach">
+			<ADJACENCY type="mv" refs="psy"/>
+			<ADJACENCY type="xc" refs="sow soa psy/wc psy/ec sch" />
+		</PROVINCE>
+		<PROVINCE shortname="pro" fullname="Prometheus' Cliff">
+			<ADJACENCY type="mv" refs="sal mid" />
+			<ADJACENCY type="xc" refs="sal goc soa sow gli mid" />
+		</PROVINCE>
+		<PROVINCE shortname="soa" fullname="Sea of Arrows">
+			<ADJACENCY type="xc" refs="wes les hes/nc ves lov cup psy/wc aph sow pro goc sod" />
+		</PROVINCE>
+		<PROVINCE shortname="les" fullname="Isle of Lesbos">
+			<ADJACENCY type="mv" refs="hes" />
+			<ADJACENCY type="xc" refs="wes lbs fir hes/sc hes/nc soa" />
+		</PROVINCE>
+		<PROVINCE shortname="lbs" fullname="Lesbian Sea">
+			<ADJACENCY type="xc" refs="wes pea fir les" />
+		</PROVINCE>
+		<PROVINCE shortname="fir" fullname="Sea of Fire">
+			<ADJACENCY type="xc" refs="lbs pea tar per sot lov ves hes/sc les" />
+		</PROVINCE>
+		<PROVINCE shortname="ves" fullname="Convent of the Vestal Virgins">
+			<ADJACENCY type="mv" refs="hes" />
+			<ADJACENCY type="xc" refs="hes/nc hes/sc fir lov soa" />
+		</PROVINCE>
+		<PROVINCE shortname="lov" fullname="Lover's Lane">
+			<ADJACENCY type="xc" refs="soa ves fir sot pos nes sch cup" />
+		</PROVINCE>
+		<PROVINCE shortname="cup" fullname="Cupid's Cloud">
+			<ADJACENCY type="mv" refs="psy" />
+			<ADJACENCY type="xc" refs="soa lov sch psy/ec psy/wc" />
+		</PROVINCE>
+		<PROVINCE shortname="nes" fullname="Nestor's Kingdom">
+			<ADJACENCY type="mv" refs="hin are ser" />
+			<ADJACENCY type="xc" refs="lov pos hin ser sch" />
+		</PROVINCE>
+		<PROVINCE shortname="ser" fullname="Serina's Village">
+			<ADJACENCY type="mv" refs="nes are str" />
+			<ADJACENCY type="xc" refs="nes str eas sch" />
+		</PROVINCE>
+		<PROVINCE shortname="are" fullname="Palace of Ares">
+			<ADJACENCY type="mv" refs="nes hin str ser" />
+		</PROVINCE>
+		<PROVINCE shortname="str" fullname="Strife's Cave">
+			<ADJACENCY type="mv" refs="hin ser are" />
+			<ADJACENCY type="xc" refs="hin cec eas ser" />
+		</PROVINCE>
+		<PROVINCE shortname="cec" fullname="Cecrops' Channel">
+			<ADJACENCY type="xc" refs="xen arg sou eas str hin pos" />
+		</PROVINCE>
+		<PROVINCE shortname="sou" fullname="South Sea">
+			<ADJACENCY type="xc" refs="arg jox eas cec" />
+		</PROVINCE>
+		<PROVINCE shortname="arg" fullname="Argo's Pasture">
+			<ADJACENCY type="mv" refs="xen jox" />
+			<ADJACENCY type="xc" refs="xen jox sou cec" />
+		</PROVINCE>
+		<PROVINCE shortname="jox" fullname="Joxter's Retreat">
+			<ADJACENCY type="mv" refs="aut arg xen" />
+			<ADJACENCY type="xc" refs="sou arg" />
+		</PROVINCE>
+		<PROVINCE shortname="xen" fullname="Xena's Rest">
+			<ADJACENCY type="mv" refs="gab aut jox arg" />
+			<ADJACENCY type="xc" refs="pos gab arg cec" />
+		</PROVINCE>
+		<PROVINCE shortname="hin" fullname="Forest of the Golden Hind">
+			<ADJACENCY type="mv" refs="str are nes" />
+			<ADJACENCY type="xc" refs="pos cec str nes" />
+		</PROVINCE>
+		<PROVINCE shortname="pos" fullname="Poseidon's Curse">
+			<ADJACENCY type="xc" refs="lov sot gab xen cec hin nes" />
+		</PROVINCE>
+		<PROVINCE shortname="sot" fullname="Sea of Tears">
+			<ADJACENCY type="xc" refs="fir per had gab pos lov" />
+		</PROVINCE>
+		<PROVINCE shortname="gab" fullname="Gabrielle's Village">
+			<ADJACENCY type="mv" refs="had cal aut xen" />
+			<ADJACENCY type="xc" refs="had xen pos sot" />
+		</PROVINCE>
+		<PROVINCE shortname="aut" fullname="Autolycus' Hideout">
+			<ADJACENCY type="mv" refs="gab cal jox xen" />
+		</PROVINCE>
+		<PROVINCE shortname="cal" fullname="Callisto's Stronghold">
+			<ADJACENCY type="mv" refs="fur aut gab had per" />
+		</PROVINCE>
+		<PROVINCE shortname="had" fullname="Depths of Hades">
+			<ADJACENCY type="mv" refs="per cal gab" />
+			<ADJACENCY type="xc" refs="sot per gab" />
+		</PROVINCE>
+		<PROVINCE shortname="per" fullname="Persephone's Garden">
+			<ADJACENCY type="mv" refs="tar fur cal had" />
+			<ADJACENCY type="xc" refs="fir tar had sot" />
+		</PROVINCE>
+		<PROVINCE shortname="fur" fullname="Realm of the 3 Furies">
+			<ADJACENCY type="mv" refs="tar ely cal per" />
+		</PROVINCE>
+		<PROVINCE shortname="tar" fullname="Tartarus">
+			<ADJACENCY type="mv" refs="cha ely fur per" />
+			<ADJACENCY type="xc" refs="cha per fir pea" />
+		</PROVINCE>
+		<PROVINCE shortname="cha" fullname="Charon's Crossing">
+			<ADJACENCY type="mv" refs="ely tar" />
+			<ADJACENCY type="xc" refs="pea ely tar" />
+		</PROVINCE>
+		<PROVINCE shortname="ely" fullname="Elysian Fields">
+			<ADJACENCY type="mv" refs="fur tar cha" />
+			<ADJACENCY type="xc" refs="pea cha" />
+		</PROVINCE>
+		<PROVINCE shortname="pea" fullname="Ocean of Peace">
+			<ADJACENCY type="xc" refs="lbs ely cha tar fir" />
+		</PROVINCE>
+		<PROVINCE shortname="hes" fullname="Shrine to Hestia">
+			<ADJACENCY type="mv" refs="les ves" />
+			<ADJACENCY type="sc" refs="les fir ves" />
+			<ADJACENCY type="nc" refs="ves soa les" />
+		</PROVINCE>
+		<PROVINCE shortname="psy" fullname="Village of Psyche">
+			<ADJACENCY type="mv" refs="aph cup" />
+			<ADJACENCY type="ec" refs="cup sch aph" />
+			<ADJACENCY type="wc" refs="aph soa cup" />
+		</PROVINCE>
+		<PROVINCE shortname="hip" fullname="Hippolyta's Girdle">
+			<ADJACENCY type="mv" refs="min ama ech" />
+			<ADJACENCY type="xc" refs="min eas ama" />
+		</PROVINCE>
+</PROVINCES>
+

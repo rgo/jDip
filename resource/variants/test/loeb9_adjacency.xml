@@ -1,0 +1,440 @@
+<?xml version="1.0"?>
+<!DOCTYPE PROVINCES [
+	<!ELEMENT PROVINCES (BORDER_DEFINITIONS?, PROVINCE+)>
+	
+	<!-- ===================================================================== -->
+	<!ELEMENT BORDER_DEFINITIONS (BORDER+)>
+	
+	<!ELEMENT BORDER EMPTY>
+	<!ATTLIST BORDER	
+				id ID #REQUIRED
+				description CDATA #REQUIRED
+				from CDATA #IMPLIED
+				unitTypes CDATA #IMPLIED
+				orderTypes CDATA #IMPLIED
+				year CDATA #IMPLIED
+				season CDATA #IMPLIED
+				phase CDATA #IMPLIED
+				baseMoveModifier CDATA #IMPLIED
+				>
+				
+	<!-- ===================================================================== -->
+	<!ELEMENT PROVINCE (UNIQUENAME*, ADJACENCY+)>
+	<!ATTLIST PROVINCE 	
+				shortname CDATA #REQUIRED
+				fullname CDATA #REQUIRED
+				isConvoyableCoast (true|false) "false"
+				borders IDREFS #IMPLIED
+				>	
+	
+				
+	<!ELEMENT UNIQUENAME EMPTY>
+	<!ATTLIST UNIQUENAME name CDATA #REQUIRED>
+	
+	<!ELEMENT ADJACENCY EMPTY>
+	<!ATTLIST ADJACENCY 	
+				type (mv|xc|nc|sc|wc|ec) "mv"
+				refs CDATA #REQUIRED
+				>
+]>
+<PROVINCES>
+		<!-- this sets the 'ice' borders and support-borders -->
+		<BORDER_DEFINITIONS>
+			<BORDER id="ice" description="Ice prevents all orders in the Fall." season="fall" />
+			<BORDER id="mv_naf2cor" from="naf" description="" baseMoveModifier="-1" />
+			<BORDER id="mv_cor2naf" from="cor" description="" baseMoveModifier="-1" />
+			<BORDER id="mv_nap2sic" from="nap" description="" baseMoveModifier="-1" />
+			<BORDER id="mv_sic2nap" from="sic" description="" baseMoveModifier="-1" />
+		</BORDER_DEFINITIONS>
+		<!-- name, abbreviation, and adjacency data for all provinces -->
+		<!-- virtually identical to Judge format -->
+		<!--
+			75 provs
+			86 in loeb9
+			12 added:
+				SPAIN removed
+				
+				navarre
+				madrid
+				catalonia
+				cordoba
+				
+				Iceland
+				Ireland
+				Corsica
+				Sardinia
+				Sicily.
+				
+				Siberia
+				Arctic Ocean
+				Kazakz
+		
+		
+		-->
+		<!-- new provinces (12) -->
+		<PROVINCE shortname="arc" fullname="Arctic Ocean" borders="ice">
+			<UNIQUENAME name="arctic" />
+			<ADJACENCY type="xc" refs="nao nwg bar sib" />
+		</PROVINCE>
+		<PROVINCE shortname="cat" fullname="Catalonia">
+			<ADJACENCY type="mv" refs="mar gas nav mad cor" />
+			<ADJACENCY type="xc" refs="mar lyo wes cor" />
+		</PROVINCE>
+		<PROVINCE shortname="cor" fullname="Cordoba" borders="mv_naf2cor">
+			<ADJACENCY type="mv" refs="por mad cat naf" />
+			<ADJACENCY type="xc" refs="cat wes mao por" />
+		</PROVINCE>
+		<PROVINCE shortname="crs" fullname="Corsica">
+			<ADJACENCY type="mv" refs="crs" />			<!-- creates an island -->
+			<ADJACENCY type="xc" refs="tys lyo" />
+		</PROVINCE>
+		<PROVINCE shortname="ice" fullname="Iceland">
+			<ADJACENCY type="mv" refs="ice" />		<!-- creates an island -->
+			<ADJACENCY type="xc" refs="nwg nao" />
+		</PROVINCE>
+		<PROVINCE shortname="ire" fullname="Ireland">
+			<ADJACENCY type="mv" refs="ire" />		<!-- creates an island -->
+			<ADJACENCY type="xc" refs="nao iri" />
+		</PROVINCE>
+		<PROVINCE shortname="kaz" fullname="Kazakz">
+			<ADJACENCY type="mv" refs="sib mos sev" />
+		</PROVINCE>
+		<PROVINCE shortname="mad" fullname="Madrid">
+			<ADJACENCY type="mv" refs="por nav cat cor" />
+		</PROVINCE>
+		<PROVINCE shortname="nav" fullname="Navarre">
+			<ADJACENCY type="mv" refs="gas cat mad por" />
+			<ADJACENCY type="xc" refs="mao gas por" />
+		</PROVINCE>
+		<PROVINCE shortname="sar" fullname="Sardinia">
+			<ADJACENCY type="mv" refs="sar" />	<!-- creates an island -->
+			<ADJACENCY type="xc" refs="tys wes lyo" />
+		</PROVINCE>
+		<PROVINCE shortname="sib" fullname="Siberia">
+			<ADJACENCY type="mv" refs="kaz mos stp" />
+			<ADJACENCY type="xc" refs="stp/nc bar arc" />
+		</PROVINCE>
+		<PROVINCE shortname="sic" fullname="Sicily" borders="mv_nap2sic">
+			<ADJACENCY type="mv" refs="sic nap" />	<!-- creates an island -->
+			<ADJACENCY type="xc" refs="tys ion" />
+		</PROVINCE>
+		<!-- 'standard' provinces follow -->
+		<PROVINCE shortname="adr" fullname="Adriatic Sea">
+			<ADJACENCY type="xc" refs="alb apu ven tri ion" />
+		</PROVINCE>
+		<PROVINCE shortname="aeg" fullname="Aegean Sea">
+			<ADJACENCY type="xc" refs="gre bul-sc con smy eas ion" />
+		</PROVINCE>
+		<PROVINCE shortname="alb" fullname="Albania">
+			<ADJACENCY type="mv" refs="tri gre ser" />
+			<ADJACENCY type="xc" refs="adr tri gre ion" />
+		</PROVINCE>
+		<PROVINCE shortname="ank" fullname="Ankara">
+			<ADJACENCY type="mv" refs="arm con smy" />
+			<ADJACENCY type="xc" refs="bla arm con" />
+		</PROVINCE>
+		<PROVINCE shortname="apu" fullname="Apulia">
+			<ADJACENCY type="mv" refs="ven nap rom" />
+			<ADJACENCY type="xc" refs="ven adr ion nap" />
+		</PROVINCE>
+		<PROVINCE shortname="arm" fullname="Armenia">
+			<ADJACENCY type="mv" refs="smy syr ank sev" />
+			<ADJACENCY type="xc" refs="ank sev bla" />
+		</PROVINCE>
+		<PROVINCE shortname="bal" fullname="Baltic Sea">
+			<ADJACENCY type="xc" refs="lvn pru ber kie den swe bot" />
+		</PROVINCE>
+		<PROVINCE shortname="bar" fullname="Barents Sea">
+			<ADJACENCY type="xc" refs="nwg stp-nc nor arc sib" />
+		</PROVINCE>
+		<PROVINCE shortname="bel" fullname="Belgium">
+			<ADJACENCY type="mv" refs="hol pic ruh bur" />
+			<ADJACENCY type="xc" refs="eng nth hol pic" />
+		</PROVINCE>
+		<PROVINCE shortname="ber" fullname="Berlin">
+			<ADJACENCY type="mv" refs="kie pru sil mun" />
+			<ADJACENCY type="xc" refs="kie bal pru" />
+		</PROVINCE>
+		<PROVINCE shortname="bla" fullname="Black Sea">
+			<ADJACENCY type="xc" refs="rum sev arm ank con bul-ec" />
+		</PROVINCE>
+		<PROVINCE shortname="boh" fullname="Bohemia">
+			<ADJACENCY type="mv" refs="mun sil gal vie tyr" />
+		</PROVINCE>
+		<PROVINCE shortname="bre" fullname="Brest">
+			<ADJACENCY type="mv" refs="pic gas par" />
+			<ADJACENCY type="xc" refs="mao eng pic gas" />
+		</PROVINCE>
+		<PROVINCE shortname="bud" fullname="Budapest">
+			<ADJACENCY type="mv" refs="vie gal rum ser tri" />
+		</PROVINCE>
+		<PROVINCE shortname="bul" fullname="Bulgaria">
+			<ADJACENCY type="mv" refs="gre con ser rum" />
+			<ADJACENCY type="ec" refs="con bla rum" />
+			<ADJACENCY type="sc" refs="gre aeg con" />
+		</PROVINCE>
+		<PROVINCE shortname="bur" fullname="Burgundy">
+			<ADJACENCY type="mv" refs="mar gas par pic bel ruh mun" />
+		</PROVINCE>
+		<PROVINCE shortname="cly" fullname="Clyde">
+			<ADJACENCY type="mv" refs="edi lvp" />
+			<ADJACENCY type="xc" refs="edi lvp nao nwg" />
+		</PROVINCE>
+		<PROVINCE shortname="con" fullname="Constantinople">
+			<ADJACENCY type="mv" refs="bul ank smy" />
+			<ADJACENCY type="xc" refs="bul-sc bul-ec bla ank smy aeg" />
+		</PROVINCE>
+		<PROVINCE shortname="den" fullname="Denmark">
+			<ADJACENCY type="mv" refs="swe kie" />
+			<ADJACENCY type="xc" refs="hel nth swe bal kie ska" />
+		</PROVINCE>
+		<PROVINCE shortname="eas" fullname="Eastern Mediterranean">
+			<UNIQUENAME name="emed" />
+			<UNIQUENAME name="eastmed" />
+			<UNIQUENAME name="ems" />
+			<UNIQUENAME name="eme" />
+			<ADJACENCY type="xc" refs="syr smy aeg ion" />
+		</PROVINCE>
+		<PROVINCE shortname="edi" fullname="Edinburgh">
+			<ADJACENCY type="mv" refs="lvp yor cly" />
+			<ADJACENCY type="xc" refs="nth nwg cly yor" />
+		</PROVINCE>
+		<PROVINCE shortname="eng" fullname="English Channel">
+			<UNIQUENAME name="ech" />
+			<UNIQUENAME name="channel" />
+			<UNIQUENAME name="man" />
+			<ADJACENCY type="xc" refs="mao iri wal lon nth bel pic bre" />
+		</PROVINCE>
+		<PROVINCE shortname="fin" fullname="Finland">
+			<ADJACENCY type="mv" refs="swe stp nor" />
+			<ADJACENCY type="xc" refs="swe stp-sc bot" />
+		</PROVINCE>
+		<PROVINCE shortname="gal" fullname="Galicia">
+			<ADJACENCY type="mv" refs="war ukr rum bud vie boh sil" />
+		</PROVINCE>
+		<PROVINCE shortname="gas" fullname="Gascony">
+			<ADJACENCY type="mv" refs="par bur mar nav cat bre" />
+			<ADJACENCY type="xc" refs="nav mao bre" />
+		</PROVINCE>
+		<PROVINCE shortname="gre" fullname="Greece">
+			<ADJACENCY type="mv" refs="bul alb ser" />
+			<ADJACENCY type="xc" refs="bul-sc aeg ion alb" />
+		</PROVINCE>
+		<PROVINCE shortname="bot" fullname="Gulf of Bothnia">
+			<UNIQUENAME name="gob" />
+			<UNIQUENAME name="both" />
+			<UNIQUENAME name="gulfofb" />
+			<UNIQUENAME name="bothnia" />
+			<ADJACENCY type="xc" refs="swe fin stp-sc lvn bal" />
+		</PROVINCE>
+		<PROVINCE shortname="lyo" fullname="Gulf of Lyon">
+			<UNIQUENAME name="gol" />
+			<UNIQUENAME name="gulfofl" />
+			<UNIQUENAME name="lyon" />
+			<ADJACENCY type="xc" refs="cat mar pie tus tys wes crs sar" />
+		</PROVINCE>
+		<PROVINCE shortname="hel" fullname="Helgoland Bight">
+			<ADJACENCY type="xc" refs="nth den kie hol" />
+		</PROVINCE>
+		<PROVINCE shortname="hol" fullname="Holland">
+			<ADJACENCY type="mv" refs="bel kie ruh" />
+			<ADJACENCY type="xc" refs="bel nth hel kie" />
+		</PROVINCE>
+		<PROVINCE shortname="ion" fullname="Ionian Sea">
+			<ADJACENCY type="xc" refs="tun tys nap apu adr alb gre aeg eas sic" />
+		</PROVINCE>
+		<PROVINCE shortname="iri" fullname="Irish Sea">
+			<UNIQUENAME name="stg" />
+			<ADJACENCY type="xc" refs="nao lvp wal eng mao ire" />
+		</PROVINCE>
+		<PROVINCE shortname="kie" fullname="Kiel">
+			<ADJACENCY type="mv" refs="hol den ber mun ruh" />
+			<ADJACENCY type="xc" refs="hol hel den bal ber" />
+		</PROVINCE>
+		<PROVINCE shortname="lon" fullname="London">
+			<ADJACENCY type="mv" refs="yor wal" />
+			<ADJACENCY type="xc" refs="yor nth eng wal" />
+		</PROVINCE>			
+		<PROVINCE shortname="lvn" fullname="Livonia">
+			<UNIQUENAME name="lvo" />
+			<UNIQUENAME name="lva" />
+			<ADJACENCY type="mv" refs="pru stp mos war" />
+			<ADJACENCY type="xc" refs="pru bal bot stp-sc" />
+		</PROVINCE>
+		<PROVINCE shortname="lvp" fullname="Liverpool">
+			<UNIQUENAME name="lpl" />
+			<ADJACENCY type="mv" refs="wal edi yor cly" />
+			<ADJACENCY type="xc" refs="wal iri nao cly" />
+		</PROVINCE>
+		
+		<PROVINCE shortname="mar" fullname="Marseilles">
+			<ADJACENCY type="mv" refs="cat pie gas bur" />
+			<ADJACENCY type="xc" refs="cat lyo pie" />
+		</PROVINCE>
+		<PROVINCE shortname="mao" fullname="Mid-Atlantic Ocean">
+			<UNIQUENAME name="mid atlantic ocean" />  <!-- note: no hyphen! -->
+			<UNIQUENAME name="midatlanticocean" />
+			<UNIQUENAME name="mid" />
+			<UNIQUENAME name="mat" />
+			<ADJACENCY type="xc" refs="nao iri eng bre gas nav por cor naf wes" />
+		</PROVINCE>
+		<PROVINCE shortname="mos" fullname="Moscow">
+			<ADJACENCY type="mv" refs="stp lvn war ukr sev kaz sib" />
+		</PROVINCE>
+		<PROVINCE shortname="mun" fullname="Munich">
+			<ADJACENCY type="mv" refs="bur ruh kie ber sil boh tyr" />
+		</PROVINCE>
+		<PROVINCE shortname="naf" fullname="North Africa" borders="mv_cor2naf">
+			<UNIQUENAME name="nora" />
+			<ADJACENCY type="mv" refs="tun cor" />
+			<ADJACENCY type="xc" refs="mao wes tun" />
+		</PROVINCE>
+		<PROVINCE shortname="nap" fullname="Naples" borders="mv_sic2nap">
+			<ADJACENCY type="mv" refs="rom apu sic" />
+			<ADJACENCY type="xc" refs="rom tys ion apu" />
+		</PROVINCE>
+		<PROVINCE shortname="nao" fullname="North Atlantic Ocean">
+			<UNIQUENAME name="nat" />
+			<ADJACENCY type="xc" refs="nwg lvp iri mao cly ice ire arc" />
+		</PROVINCE>
+		<PROVINCE shortname="nth" fullname="North Sea">
+			<UNIQUENAME name="norsea" />
+			<UNIQUENAME name="nts" />
+			<UNIQUENAME name="nrd" />
+			<ADJACENCY type="xc" refs="yor edi nwg nor ska den hel hol bel eng lon" />
+		</PROVINCE>
+		<PROVINCE shortname="nor" fullname="Norway">
+			<UNIQUENAME name="nwy" />
+			<UNIQUENAME name="nge" />
+			<ADJACENCY type="mv" refs="fin stp swe" />
+			<ADJACENCY type="xc" refs="ska nth nwg bar stp-nc swe" />
+		</PROVINCE>
+		<PROVINCE shortname="nwg" fullname="Norwegian Sea">
+			<UNIQUENAME name="norwsea" />
+			<UNIQUENAME name="nrg" />
+			<UNIQUENAME name="gro" />
+			<ADJACENCY type="xc" refs="nao bar nor nth cly edi ice arc" />
+		</PROVINCE>
+		<PROVINCE shortname="par" fullname="Paris">
+			<ADJACENCY type="mv" refs="bre pic bur gas" />
+		</PROVINCE>
+		<PROVINCE shortname="pic" fullname="Picardy">
+			<ADJACENCY type="mv" refs="bur par bre bel" />
+			<ADJACENCY type="xc" refs="bre eng bel" />
+		</PROVINCE>
+		<PROVINCE shortname="pie" fullname="Piedmont">
+			<ADJACENCY type="mv" refs="mar tus ven tyr" />
+			<ADJACENCY type="xc" refs="mar lyo tus" />
+		</PROVINCE>
+		<PROVINCE shortname="por" fullname="Portugal">
+			<ADJACENCY type="mv" refs="nav mad cor" />
+			<ADJACENCY type="xc" refs="mao nav cor" />
+		</PROVINCE>
+		<PROVINCE shortname="pru" fullname="Prussia">
+			<ADJACENCY type="mv" refs="war sil ber lvn" />
+			<ADJACENCY type="xc" refs="ber bal lvn" />
+		</PROVINCE>
+		<PROVINCE shortname="rom" fullname="Rome">
+			<ADJACENCY type="mv" refs="tus nap ven apu" />
+			<ADJACENCY type="xc" refs="tus tys nap" />
+		</PROVINCE>
+		<PROVINCE shortname="ruh" fullname="Ruhr">
+			<UNIQUENAME name="rhe" />
+			<ADJACENCY type="mv" refs="bur bel hol kie mun" />
+		</PROVINCE>
+		<PROVINCE shortname="rum" fullname="Rumania">
+			<ADJACENCY type="mv" refs="ser bud gal ukr sev bul" />
+			<ADJACENCY type="xc" refs="sev bla bul-ec" />
+		</PROVINCE>
+		<PROVINCE shortname="ser" fullname="Serbia">
+			<ADJACENCY type="mv" refs="tri bud rum bul gre alb" />
+		</PROVINCE>
+		<PROVINCE shortname="sev" fullname="Sevastopol">
+			<UNIQUENAME name="sevastapol" />
+			<ADJACENCY type="mv" refs="ukr mos rum arm kaz" />
+			<ADJACENCY type="xc" refs="rum bla arm" />
+		</PROVINCE>
+		<PROVINCE shortname="sil" fullname="Silesia">
+			<ADJACENCY type="mv" refs="mun ber pru war gal boh" />
+		</PROVINCE>
+		<PROVINCE shortname="ska" fullname="Skagerrak">
+			<ADJACENCY type="xc" refs="nth nor den swe" />
+		</PROVINCE>
+		<PROVINCE shortname="smy" fullname="Smyrna">
+			<ADJACENCY type="mv" refs="syr con ank arm" />
+			<ADJACENCY type="xc" refs="syr eas aeg con" />
+		</PROVINCE>
+		<!-- spain removed -->
+		<PROVINCE shortname="stp" fullname="St. Petersburg">
+			<UNIQUENAME name="st petersburg" />  <!-- note: no period after 'st' -->
+			<UNIQUENAME name="stpetersburg" />
+			<UNIQUENAME name="st petersberg" />
+			<UNIQUENAME name="st. petersberg" />
+			<UNIQUENAME name="stpetersberg" />
+			<ADJACENCY type="mv" refs="fin lvn nor mos sib" />
+			<ADJACENCY type="nc" refs="bar nor sib" />
+			<ADJACENCY type="sc" refs="fin lvn bot" />
+		</PROVINCE>
+		<PROVINCE shortname="swe" fullname="Sweden">
+			<ADJACENCY type="mv" refs="fin den nor" />
+			<ADJACENCY type="xc" refs="fin bot bal den ska nor" />
+		</PROVINCE>
+		<PROVINCE shortname="syr" fullname="Syria">
+			<ADJACENCY type="mv" refs="smy arm" />
+			<ADJACENCY type="xc" refs="eas smy" />
+		</PROVINCE>
+		<PROVINCE shortname="tri" fullname="Trieste">
+			<ADJACENCY type="mv" refs="tyr vie bud ser alb ven" />
+			<ADJACENCY type="xc" refs="alb adr ven" />
+		</PROVINCE>
+		<PROVINCE shortname="tun" fullname="Tunis">
+			<ADJACENCY type="mv" refs="naf" />
+			<ADJACENCY type="xc" refs="naf wes tys ion" />
+		</PROVINCE>
+		<PROVINCE shortname="tus" fullname="Tuscany">
+			<ADJACENCY type="mv" refs="rom pie ven" />
+			<ADJACENCY type="xc" refs="rom tys lyo pie" />
+		</PROVINCE>
+		<PROVINCE shortname="tyr" fullname="Tyrolia">
+			<UNIQUENAME name="tyl" />
+			<UNIQUENAME name="trl" />
+			<UNIQUENAME name="alp" />
+			<ADJACENCY type="mv" refs="mun boh vie tri ven pie" />
+		</PROVINCE>
+		<PROVINCE shortname="tys" fullname="Tyrrhenian Sea">
+			<UNIQUENAME name="tyn" />
+			<UNIQUENAME name="tyh" />
+			<ADJACENCY type="xc" refs="wes lyo tus rom nap ion tun sic sar crs" />
+		</PROVINCE>
+		<PROVINCE shortname="ukr" fullname="Ukraine">
+			<ADJACENCY type="mv" refs="rum gal war mos sev" />
+		</PROVINCE>
+		<PROVINCE shortname="ven" fullname="Venice">
+			<ADJACENCY type="mv" refs="tyr tus rom pie apu tri" />
+			<ADJACENCY type="xc" refs="apu adr tri" />
+		</PROVINCE>
+		<PROVINCE shortname="vie" fullname="Vienna">
+			<ADJACENCY type="mv" refs="tyr boh gal bud tri" />
+		</PROVINCE>
+		<PROVINCE shortname="wal" fullname="Wales">
+			<ADJACENCY type="mv" refs="lvp lon yor" />
+			<ADJACENCY type="xc" refs="lvp iri eng lon" />
+		</PROVINCE>
+		<PROVINCE shortname="war" fullname="Warsaw">
+			<UNIQUENAME name="var" />
+			<ADJACENCY type="mv" refs="sil pru lvn mos ukr gal" />
+		</PROVINCE>
+		<PROVINCE shortname="wes" fullname="Western Mediterranean">
+			<UNIQUENAME name="wmed" />
+			<UNIQUENAME name="westmed" />
+			<UNIQUENAME name="wms" />
+			<UNIQUENAME name="wme" />
+			<ADJACENCY type="xc" refs="mao cat cor lyo tys tun naf sar" />
+		</PROVINCE>
+		<PROVINCE shortname="yor" fullname="Yorkshire">
+			<UNIQUENAME name="yonkers" />
+			<ADJACENCY type="mv" refs="edi lon lvp wal" />
+			<ADJACENCY type="xc" refs="edi nth lon" />
+		</PROVINCE>
+</PROVINCES>
+

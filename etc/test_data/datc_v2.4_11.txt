@@ -1,0 +1,38 @@
+#############################################################
+#
+#	DATC (Diplomacy Adjudicator Test Cases) Test Cases
+#	DATC Version 2.4
+#	SECTION 11
+#	BUILD IN ANY SUPPLY CENTER VARIANT
+#
+# 	The DATC is copyright Lucas B. Kruijswijk
+#	http://web.inter.nl.net/users/L.B.Kruijswijk/
+#
+#############################################################
+
+#############################################################
+#	
+# Set the Variant for all cases.
+#
+#############################################################
+VARIANT_ALL DATC_Chaos
+
+
+# Since there is no notion of 'home supply center', the 
+# 'civil disorder' rules changes. It is expected that any owned 
+# supply center is treated as home supply center.
+#
+CASE 11.A [Civil Disorder]
+PRESTATE_SETPHASE Fall 1901, Adjustment
+PRESTATE_SUPPLYCENTER_OWNERS
+	C-Ber: A Naples	
+PRESTATE
+	C-Ber: A Apulia
+	C-Ber: A Prussia
+ORDERS
+	# ** no orders given ** [Civil disorder]
+POSTSTATE
+	C-Ber: A Apulia
+	# A Prussia removed, as it is farther from supply center at Naples
+END
+

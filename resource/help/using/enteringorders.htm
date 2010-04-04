@@ -1,0 +1,148 @@
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+
+<head>
+	<title>Entering Orders</title>
+	<link rel="StyleSheet" href="../application_help.css">
+</head>
+
+
+
+
+<body>
+ 
+ <h1>Entering Orders</h1>
+ 
+ <h2>Order Entry Methods</h2>
+ 
+ <h3>Using the Mouse</h3>
+ <p>
+ Orders may be entered using the mouse, by clicking on units or provinces on the map.
+ The currently selected order (e.g., "Move") is shown on the button bar below the map. 
+ A different order may be selected by clicking on it.
+ <p>
+ Orders may be entered by dragging the unit to the desired location, or by clicking
+ on the desired location. The mouse pointer will give visual feedback to indicate if
+ the action is acceptable for the given order.
+ </p>
+ <p>
+ The statusbar will display both information about the space the mouse pointer is over,
+ and display useful messages about the order entry process.
+ </p>
+ <p>
+ When the mouse pointer is over the map, the first letter of the order name can be 
+ used as a shortcut (e.g., "h" for Hold, "m" for Move, etc.).
+ </p>
+ 
+ <h3>Using the Order Box</h3>
+ <p>
+ Orders may be entered by typing or pasting them into the text box, which is located
+ just above the <b>Order List</b> and under the current game phase display. The Enter
+ key must be pressed for the order to be accepted. Orders that are accepted will clear
+ the text box; orders that fail will remain for editing.
+ </p>
+ <p>
+ If multiple orders need to be entered, the Enter Multiple Orders window (described 
+ below) may be used for easier order entry.
+ </p>
+ 
+ 
+ <h3>Entering Multiple Orders</h3>
+ <p>
+ If multiple orders need to be entered at once, either manually or by pasting them 
+ in from another program, the Enter Multiple Orders can be used. This is available
+ from the menu <b>Orders | Enter Multiple Orders...</b> selection.
+ </p>
+ <p>
+ When entering multiple orders, each order must be on a single line. Orders that span 
+ multiple lines, or multiple orders on a single line will cause orders to be misinterpreted.
+ </p>
+ 
+ <h2>Order Checking</h2>
+ <p>
+ jDip has two levels of interpreting orders: <b>strict</b> and <b>lenient</b>. This 
+ can be changed from the <b>Orders | Order Checking Options...</b> menu item, selecting
+ <b>Order Checking</b> from list that then appears, and changing the option as desired.
+ </p>
+ <p>
+ <b>Strict</b> order checking, the default, ensures that orders are syntactically valid 
+ and legal. For example, a Fleet moving to an adjacent sea or coastal province would be 
+ both syntatically valid and legal.
+ </p>
+ <p>
+ <b>Lenient</b> order checking ensures that orders are syntactically valid, but not
+ nescessarily legal. For example, a Fleet moving to an inland province or non-adjacent 
+ space would be a syntactically valid order, however, it would not be a legal order. 
+ This may be useful in no-press games, for example.
+ </p>
+ <p>
+ Note that prior to adjudication, all orders are checked for legality (they always
+ are checked using <b>strict</b> checking). Illegal or invalid orders will fail at 
+ that time.
+ </p>
+ <p>
+ Also note that while orders always must by syntatically valid, locations (Provinces)
+ specified in an order must be found on the map, or jDip will complain.
+ </p>
+ 
+ <h2>Changing Orders</h2>
+ <p>
+ Orders may be changed or deleted after they have been entered. To delete an order,
+ or multiple orders, select the order or orders from the <b>Order List</b> and 
+ press the "delete" key or select <b>Edit | Delete Selected Order(s)</b>.
+ </p>
+ <p>
+ If a unit already has an order, and a new order is entered for that unit, the 
+ new order will automatically replace the old order.
+ </p>
+ <p>
+ If a mistake is made while entering orders, the <b>Undo</b> and <b>Redo</b> 
+ menu options, under the <b>Edit</b> menu, can be used. Remember that Undo and Redo 
+ are saved across games, so you can Undo and Redo actions all the way back to the beginning
+ of the game.
+ </p>
+ 
+ <h2>Sorting Orders</h2>
+ <p>
+ Orders may be sorted using the buttons at the bottom of the <b>Order List</b>. By clicking
+ a button, orders will be sorted (and stay sorted) by that button. Clicking the same button
+ again will sort the orders in the opposite direction (for example, instead of alphabetical
+ order, reverse-alphabetical order).
+ </p>
+ <p>
+ A subtle background color will be applied to alternating groups, or alternating rows, as
+ appropriate.
+ </p>
+ <p>
+ <b>Province</b> sorts the orders alphabetically by Province name<br>
+ <b>Power</b> sorts the orders alphabetically by the Power name<br>
+ <b>Unit</b> sorts the orders alphabetically by the Unit name<br>
+ <b>Order</b> sorts the orders alphabetically by the Order name	 
+ </p>
+ 
+ <h2>Explicit Adjacent Convoys</h2>
+ <p>
+ For armies with a land route and a convoy route, the army is always 
+ assumed to move over land. No attempt is made to determine "intent". 
+ This is consistent with the DPTG (Diplomacy Players' Technical Guide). 
+ </p>
+ <p>		
+ To force an army to travel by convoy, append to a move order the 
+ phrase "by convoy" or "via convoy". For example: "A lon-wal by convoy"
+ </p>
+ 
+ <h2>The Waive Order</h2>
+ <p>
+ Unused builds do not need to be explicitly waived in jDip. However, some
+ house rules or other adjudicators require builds to be explicitly waived.
+ </p>
+ <p>
+ jDip fully supports the Waive order. It may be entered via the graphical 
+ interface, or by typing in an order (such as "waive build london"). 
+ Note that a province is required for a waive order to be accepted. Waive
+ orders are shown as checkmarks over the supply center.
+ </p>
+
+</body>
+</html>

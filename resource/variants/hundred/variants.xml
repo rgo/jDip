@@ -1,0 +1,378 @@
+<?xml version="1.0"?>
+<!DOCTYPE VARIANTS [
+	<!ELEMENT VARIANTS (DESCRIPTION, MAP_DEFINITION+, VARIANT+)>
+	
+	<!ELEMENT DESCRIPTION (#PCDATA)>
+	
+	<!ELEMENT MAP_DEFINITION (DESCRIPTION?)>
+	<!ATTLIST MAP_DEFINITION 
+		id ID #REQUIRED
+		title CDATA #REQUIRED
+		URI CDATA #REQUIRED
+		thumbURI CDATA #REQUIRED
+		preferredUnitStyle CDATA #IMPLIED
+		>
+	
+	<!ELEMENT VARIANT (DESCRIPTION, MAP, RULEOPTIONS?, POWER+, STARTINGTIME, VICTORYCONDITIONS, SUPPLYCENTER+, INITIALSTATE*)>
+	<!ATTLIST VARIANT
+			name CDATA #REQUIRED
+			default (true|false) "false"
+			version CDATA #REQUIRED
+			aliases CDATA #IMPLIED
+			>
+			
+	<!ELEMENT MAP (MAP_GRAPHIC*)>
+	<!ATTLIST MAP adjacencyURI CDATA #REQUIRED>
+	
+	<!ELEMENT MAP_GRAPHIC EMPTY>
+	<!ATTLIST MAP_GRAPHIC
+			ref IDREF #REQUIRED
+			default (true|false) "false"
+			preferredUnitStyle CDATA #IMPLIED
+			>
+	
+	<!ELEMENT RULEOPTIONS (RULEOPTION+)>
+	<!ELEMENT RULEOPTION EMPTY>
+	<!ATTLIST RULEOPTION	name CDATA #REQUIRED
+				value CDATA #REQUIRED>
+	
+	<!ELEMENT POWER EMPTY>
+	<!ATTLIST POWER name CDATA #REQUIRED
+			active (true|false) "true"
+			adjective CDATA #REQUIRED
+			altnames CDATA #IMPLIED
+			>
+	
+	<!ELEMENT STARTINGTIME EMPTY>
+	<!ATTLIST STARTINGTIME 	turn CDATA #REQUIRED
+				allowBCYears (true|false) "false"
+				>
+	
+	<!ELEMENT VICTORYCONDITIONS (WINNING_SUPPLY_CENTERS?, YEARS_WITHOUT_SC_CAPTURE?, GAME_LENGTH?)>
+	
+	<!ELEMENT WINNING_SUPPLY_CENTERS EMPTY>
+	<!ATTLIST WINNING_SUPPLY_CENTERS value CDATA #REQUIRED>
+	
+	<!ELEMENT YEARS_WITHOUT_SC_CAPTURE EMPTY>
+	<!ATTLIST YEARS_WITHOUT_SC_CAPTURE value CDATA #REQUIRED>
+	
+	<!ELEMENT GAME_LENGTH EMPTY>
+	<!ATTLIST GAME_LENGTH value CDATA #REQUIRED>
+	
+	<!ELEMENT SUPPLYCENTER EMPTY>
+	<!ATTLIST SUPPLYCENTER 	province CDATA #REQUIRED
+				homepower CDATA "none"
+				owner CDATA "none"
+				>
+				
+	<!ELEMENT INITIALSTATE EMPTY>
+	<!ATTLIST INITIALSTATE 	province CDATA #REQUIRED
+				power CDATA #REQUIRED
+				unit CDATA #REQUIRED
+				unitcoast CDATA #IMPLIED
+				>
+]>
+<!-- NOTE: it's very important that the name of the file will be variants.xml, in all lower case -->
+<!-- NOTE: for CDATA escapes, no space between tag and bracket!! -->
+<VARIANTS>
+	<DESCRIPTION><![CDATA[<div style="font-family:arial,helvetica;">
+	Hundred variants.
+	</div>]]></DESCRIPTION>
+	
+	
+	<MAP_DEFINITION id="hundred3" title="Hundred3" 
+		URI="h31_h32_map.svg" thumbURI="h31_h32_thumb.png" preferredUnitStyle="period">
+		<DESCRIPTION>
+		The Hundred 3 map. The map is the same for both the 3.1 and
+		3.2 versions.
+		</DESCRIPTION>
+	</MAP_DEFINITION>
+	
+	
+	<VARIANT name="Hundred3 v1 [H31]" version="1.0" aliases="h31, hundred31">
+	<DESCRIPTION><![CDATA[
+		<p style="margin-top:0pt;">
+		The Hundred Years' War Diplomacy variant of Diplomacy
+		follows the most of the rules as standard diplomacy with
+		a modified map.  The game was designed to allow a balanced
+		three-player variant for quick games when 7 players are not
+		available.  The game is called Hundred3 because it is
+		designed for three players.
+		</p>
+		<p>
+		Hundred3 simulates the end of the Hundred Years' War
+		between France, England and Burgundy.  The game starts in
+		1425, at the height of Anglo-Burgundian gains versus
+		France.
+		</p>
+		<h2>Rules</h2>
+		<ol>
+		<li>
+			The rules of "standard" Diplomacy are valid, unless specifically
+			replaced or amended by these rules
+		</li>
+		<li>
+			The standard map is replaced by the "Hundred" variant map.
+			Northumbria has 2 coasts, West and East.  Aragon has 2 coasts,
+			North and South.  Castile is not divided into coasts, so fleets
+			entering Castile from Biscay can then proceed to the Mediterranean
+			and vice versa.
+		</li>
+		<li>
+			All references in the "standard" rules to specific powers,
+			provinces, locations, and seasons do not apply to "Hundred".
+		</li>
+		<li>
+			The game begins in 1425. Each turn represents 5 "real time" years,
+			and has a movement phase followed by a retreat phase.  Alternating
+			turns will have an adjustment phase (after retreats if required),
+			the first being in 1430.  The Judge and jDip do not follow this
+			convention, so Fall 1425 follows Spring 1425, etc.
+		</li>
+		<li>
+			There are 17 supply centers on the board.  The winner is the power
+			which holds 9 or more supply centers during an adjustment phase.
+		</li>
+		<li>
+			 To represent the reliance on underpaid mercenary units, France
+			 begins the game with more units than it can afford.  The army in Provence
+			 is considered a mercenary unit, and as Provence does not start in an SC,
+			 France must capture at least one SC in 1425 to maintain all 5 units.
+			 <p>
+			 Should France fail to capture an SC, it will be forced to remove one
+			 unit, however, it need not be the actual unit which starts in Provence.
+			 Instead, if it wishes, the French ruler may discharge other troops and
+			 keep the Provencal unit in his service.
+			 </p>
+			 <p.
+			 Other than this first year of no support, the unit in Provence is
+			 identical to all other French units, and its entry into conflict is at
+			 equal strength with all other units.  Even in 1425, the unit moves and
+			 supports at full strength.
+			 </p>
+			 <p>
+			 Provence is NOT a Supply Center and no units may be built there, nor
+			 does occupation of Provence provide any support for any units.
+			 </p>
+		</li>
+		<li>
+			A power may build in any vacant supply center it owns during an
+			adjustment phase, assuming at least one of the original SCs of that
+			power is owned by that power: thus while there are permanent "home
+			centers," as long as you own one, all owned centers act like home
+			centers.  For example, Burgundy may build in London if (1) it is
+			vacant, (2) Burgundy owns London, (3) Burgundy is eligible for a build
+			and (4) Burgundy still owns at least one of: Holland, Flanders, 
+			Luxembourg, or Dijon.
+		</li>
+		<li>
+			Units (armies and fleets) may move or give support from London
+			to Calais or vice versa regardless of the presence of a fleet
+			in the Strait of Dover.  Examples:
+			<div class="indent05cm" style="margin-top:7pt;">
+				<code>E: LON-CAL. B: FLA-CAL.</code> Result: all bounce.<br>
+				<code>E: LON-CAL, DOV s LON-CAL.  B: FLA-CAL.</code> Result: LON-CAL succeeds.<br>
+				<code>E: LON s CAL, CAL H. F: PAR-CAL, DOV s PAR-CAL.</code> Result: CAL holds<br>
+			</div>
+		</li>
+		<li>
+			Note that all provinces of these use the first three letters of a province with the
+			exception of:
+			<p style="margin-left:1cm;">
+				<b>bch</b>   Bristol Channel<br>
+				<b>brt</b>   Brittany<br>
+				<b>ech</b>   English Channel<br>
+				<b>nmd</b>   Normandy<br>
+				<b>num</b>   Northumbria<br>
+				<b>nth</b>   North Sea<br>
+				<b>dov</b>   Strait of Dover<br>
+				<b>was</b>   The Wash<br>
+				<b>pal</b>   The Pale<br>
+			</p>
+		</li>
+		</ol>
+		
+		<h2>History</h2>
+		<div class="indent1cm">
+			<p style="margin-top:0pt;">
+			Note, Hundred3 adds The Pale, The Atlantic, Anjou,
+			Charolais, and Alsace, and removes the French center in
+			Provence (moving it to Castile as a neutral), but is
+			otherwise unchanged from Hundred V1.1.  In addition, the army in provence
+			which existed in Hundred remain, but now must find a supporting SC or risk
+			elimination.
+			</p>
+			<p>
+			Hundred 3.1 adds in the mercenary army in Provence.  
+			This was an adjustment for game balance based on the Hundred3 NoPress 
+			Tournament of 1997 in which Burgundy had a marked advantage.
+			</p>
+			<p>
+			Unlike Standard Diplomacy, Hundred does not fully distinguish between home
+			supply centers and initially neutral supply centers.  All but 4 supply
+			centers (and all non-SCs) are named for regions rather than cities.
+			This is to represent the importance of the duchies and counties for
+			which the participants in the Hundred Years' War fought.  In addition,
+			the designation between home and neutral SCs is of less importance since
+			all owned/unoccupied centers can build units.
+			</p>
+			<p>
+			The four exceptions to the general rule of naming SCs for provinces are
+			the 3 capital cities of London, Paris and Dijon, and the city of Calais.
+			Calais kept a city name because of the unique importance of the port of
+			Calais within Artois, but Artois and art are also valid names.
+			</p>
+			<p>
+			Some provinces which are now named for regions were originally named for
+			cities when hundred was first tested.  These names and abbreviations
+			have been left coded into the judge for old-timers to use.  Thus Holland
+			can also be referred to as Amsterdam(ams), Flanders as Antwerp (ant),
+			Orleanais as Orleans, and Devon as Plymouth (ply).
+			</p>
+			<p>
+			The name of Aquitaine was changed to Guyenne to represent the
+			nomenclature in the 15th century, but Aquitaine (aqu) is still a valid
+			name for judge purposes. In addition, some non-SC centers can also be
+			referred to by old-style names: Lorraine was Swabia (swa), Aragon was
+			Catalonia (cat), Castile was Iberia (ibe), and Northumbria was
+			Northumberland (the latter is really a much smaller subset of the
+			former).
+			</p>
+			<p>
+			You'll be able to tell an early Hundred player if he suggests A Aqu-Cat
+			instead of A Guy-Ara.
+			</p>
+		</div>
+		
+		<h2>Credits</h2>
+		<div class="indent1cm">
+			<p style="margin-top:0pt;">
+			The variant was designed by Andy Schwarz with help from Eric Coffey, as
+			well as fabulous input from the hundreds of players of the original
+			Hundred.  Larry Richardson was the JK who dealt with us to get it coded up
+			originally.  Dave Kleiman was kind enough to deal with this variant during
+			some trying times as we ported over to USIN, and Nick Fitzpatrick played a
+			major role in revising the initial set-up to V1.1.  Version 2 was tested by
+			Nic Chilton and Doug Essinger-Hileman, and the slight change to this
+			Version (Hundred3) was helped by David Norman, with corroborating input
+			from Kristian Dorph Petersen.  The mercenary army in Provence was added
+			after serious testing by the rt-dip crowd.
+			</p>
+		</div>
+		<p style="margin-top:21pt;">
+			Author: Andy Schwarz<br>
+			Map by: Oren Phipps
+		</p>]]></DESCRIPTION> 
+		<MAP adjacencyURI="h31_h32_adjacency.xml">
+			<MAP_GRAPHIC ref="hundred3" default="true" />
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY" />
+		</RULEOPTIONS>
+		<POWER name="Burgundy" active="true" adjective="Burgundian" /> 
+		<POWER name="England" active="true" adjective="English" altnames="Britain" /> 
+		<POWER name="France" active="true" adjective="French" /> 
+		<STARTINGTIME turn="Spring, 1425, Movement" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="9" />
+		</VICTORYCONDITIONS>
+	 	<!-- owned SC -->
+		<SUPPLYCENTER homepower="burgundy" province="dij" owner="burgundy" />
+		<SUPPLYCENTER homepower="burgundy" province="fla" owner="burgundy" />
+		<SUPPLYCENTER homepower="burgundy" province="hol" owner="burgundy" />
+		<SUPPLYCENTER homepower="burgundy" province="lux" owner="burgundy" />
+		<SUPPLYCENTER homepower="england"  province="cal" owner="england" />
+		<SUPPLYCENTER homepower="england"  province="dev" owner="england" />
+		<SUPPLYCENTER homepower="england"  province="guy" owner="england" />
+		<SUPPLYCENTER homepower="england"  province="lon" owner="england" />
+		<SUPPLYCENTER homepower="england"  province="nmd" owner="england" />
+		<SUPPLYCENTER homepower="france"   province="dau" owner="france" />
+		<SUPPLYCENTER homepower="france"   province="orl" owner="france" />
+		<SUPPLYCENTER homepower="france"   province="par" owner="france" />
+		<SUPPLYCENTER homepower="france"   province="tou" owner="france" />
+		<!-- neutral SC -->                      
+		<SUPPLYCENTER province="brt"/>    
+		<SUPPLYCENTER province="can"/>
+		<SUPPLYCENTER province="cas"/>
+		<SUPPLYCENTER province="sco"/>
+		<!-- starting units -->
+		<INITIALSTATE power="burgundy" province="dij" unit="army" />
+		<INITIALSTATE power="burgundy" province="fla" unit="army" />
+		<INITIALSTATE power="burgundy" province="hol" unit="fleet" />
+		<INITIALSTATE power="burgundy" province="lux" unit="army" />
+		<INITIALSTATE power="england"  province="cal" unit="army" />
+		<INITIALSTATE power="england"  province="dev" unit="fleet" />
+		<INITIALSTATE power="england"  province="guy" unit="army" />
+		<INITIALSTATE power="england"  province="lon" unit="fleet" />
+		<INITIALSTATE power="england"  province="nmd" unit="army" />
+		<INITIALSTATE power="france"   province="dau" unit="army" />
+		<INITIALSTATE power="france"   province="orl" unit="army" />
+		<INITIALSTATE power="france"   province="par" unit="army" />
+		<INITIALSTATE power="france"   province="tou" unit="army" />
+		<INITIALSTATE power="france"   province="pro" unit="army" />
+	</VARIANT>
+	
+	
+	<VARIANT name="Hundred3 v2 [H32]" version="1.0" aliases="hundred, h32, hundred32">
+		<DESCRIPTION><![CDATA[
+		<p>
+		Hundred 3.2 differs from Hundred 3.1 in that the English fleet that starts in
+		Devon now starts in the English Channel. Note that England begins the game with
+		5 units and 5 Supply Centers, so it is not a "mercenary" army as is the French
+		Army in Provence. Devon, at the start of the game, is unoccupied.
+		</p>
+		<p>
+			Author: Andy Schwarz<br>
+			Map by: Oren Phipps
+		</p>]]></DESCRIPTION> 
+		<MAP adjacencyURI="h31_h32_adjacency.xml">
+			<MAP_GRAPHIC ref="hundred3" default="true" />
+		</MAP>
+		<RULEOPTIONS>
+			<RULEOPTION name="OPTION_BUILDS" value="VALUE_BUILDS_HOME_ONLY" />
+		</RULEOPTIONS>
+		<POWER name="Burgundy" active="true" adjective="Burgundian" /> 
+		<POWER name="England" active="true" adjective="English" altnames="Britain" /> 
+		<POWER name="France" active="true" adjective="French" /> 
+		<STARTINGTIME turn="Spring, 1425, Movement" />
+		<VICTORYCONDITIONS>
+			<WINNING_SUPPLY_CENTERS value="9" />
+		</VICTORYCONDITIONS>
+	 	<!-- owned SC -->
+		<SUPPLYCENTER homepower="burgundy" province="dij" owner="burgundy" />
+		<SUPPLYCENTER homepower="burgundy" province="fla" owner="burgundy" />
+		<SUPPLYCENTER homepower="burgundy" province="hol" owner="burgundy" />
+		<SUPPLYCENTER homepower="burgundy" province="lux" owner="burgundy" />
+		<SUPPLYCENTER homepower="england" province="cal" owner="england" />
+		<SUPPLYCENTER homepower="england" province="dev" owner="england" />
+		<SUPPLYCENTER homepower="england" province="guy" owner="england" />
+		<SUPPLYCENTER homepower="england" province="lon" owner="england" />
+		<SUPPLYCENTER homepower="england" province="nmd" owner="england" />
+		<SUPPLYCENTER homepower="france" province="dau" owner="france" />
+		<SUPPLYCENTER homepower="france" province="orl" owner="france" />
+		<SUPPLYCENTER homepower="france" province="par" owner="france" />
+		<SUPPLYCENTER homepower="france" province="tou" owner="france" />
+		<!-- neutral SC -->                     
+		<SUPPLYCENTER province="brt"/>
+		<SUPPLYCENTER province="can"/>
+		<SUPPLYCENTER province="cas"/>
+		<SUPPLYCENTER province="sco"/>
+		<!-- starting units -->
+		<INITIALSTATE power="burgundy" province="dij" unit="army" />
+		<INITIALSTATE power="burgundy" province="fla" unit="army" />
+		<INITIALSTATE power="burgundy" province="hol" unit="fleet" />
+		<INITIALSTATE power="burgundy" province="lux" unit="army" />
+		<INITIALSTATE power="england"  province="cal" unit="army" />
+		<INITIALSTATE power="england"  province="ech" unit="fleet" />
+		<INITIALSTATE power="england"  province="guy" unit="army" />
+		<INITIALSTATE power="england"  province="lon" unit="fleet" />
+		<INITIALSTATE power="england"  province="nmd" unit="army" />
+		<INITIALSTATE power="france"   province="dau" unit="army" />
+		<INITIALSTATE power="france"   province="orl" unit="army" />
+		<INITIALSTATE power="france"   province="par" unit="army" />
+		<INITIALSTATE power="france"   province="tou" unit="army" />
+		<INITIALSTATE power="france"   province="pro" unit="army" />
+	</VARIANT>
+		
+</VARIANTS>
+

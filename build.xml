@@ -1,0 +1,1147 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<project name="jDip" default="run" basedir=".">
+<!-- ANT Build.xml file for jDip -->
+<!-- 
+	NOTES:
+		JAVA_HOME and ANT_HOME environment vars must NOT have a trailing (back)slash
+-->
+    <!-- load external properties -->
+	<property file="build.properties"/>
+
+	<!-- set global properties for this build -->
+	<property name="src.dir" value="${base.dir}/src"/>				<!-- defines the src attribute -->
+	<property name="base.build.dir" value="${base.dir}/build"/>		<!-- base BUILD dir -->
+	<property name="testsrc.dir" value="${base.build.dir}/testsrc"/><!-- defines the testsrc} attribute -->
+	<property name="build.dir" value="${base.build.dir}/classes"/>	<!-- create a typical build -->
+	<property name="dist.dir" value="${base.build.dir}/jardist"/>		<!-- create distribution .jar files -->
+	<property name="variant.dir" value="${build.dir}/variants"/>	<!-- dir where variant packs end up in-->
+	<property name="javadoc.dir" value="${base.build.dir}/javadoc"/>		<!-- create javadocs only -->
+	<property name="webstart.dir" value="${base.build.dir}/webstart"/>	<!-- create working webstart package -->
+	<property name="resource.dir" value="${base.dir}/resource/"/>	<!-- jdip runtime resources -->
+	<property name="etc.dir" value="${base.dir}/etc"/>		        <!-- etc dir, various useful stuff -->
+	<property name="lib.dir" value="${base.dir}/lib"/>		        <!-- libs for running jdip -->
+	<property name="lib.build.dir" value="${lib.dir}/build"/>		       	<!-- libs for building (but NOT running) -->
+	<property name="plugin.dir" value="plugins"/>					<!-- what the plugins directory (where tool .jars go) is called -->
+	<property name="installer.dir" value="${base.dir}/etc/installer"/>		<!-- installer dir-->
+	<property name="installer.file" value="jdip-install.xml"/>		<!-- izpack installer file -->
+	<property name="testsuite.file" value="dip.TestSuite"/>			<!-- izpack installer file -->
+	<property name="tool.dir" value="${src.dir}/tool"/>				<!-- where add-in tools source code is located -->
+	<property name="optional.dir" value="${base.build.dir}/optional"/>	<!-- where optional packages go -->
+	<property name="sign.password" value="jdip2003"/>
+	
+	<!-- test and performance output directories and files -->
+	<property name="test.results.dir" value="${base.build.dir}/test_results"/>
+	<property name="perf.tmp" value="${test.results.dir}/perf.tmp"/>
+	<property name="perf.out" value="${test.results.dir}/perf.out"/>
+	<property name="perf.server.out" value="${test.results.dir}/perf.server.out"/>
+	
+	<!-- installer tools -->
+	<property name="packaged.dist.dir" value="${base.build.dir}/packages/"/>	<!-- distribution packages -->						
+	
+	<!-- build tools -->
+	<property name="pmd.dir" value="${lib.build.dir}/pmd"/>				<!-- Path to PMD; also required for CPD -->
+	<property name="izpack.dir" value="${lib.build.dir}/izpack"/>		<!-- Path to IzPack (to build installer) -->
+	<property name="junit.dir" value="${lib.build.dir}/junit"/>			<!-- Path to JUnit -->
+	
+    <!-- build properties -->
+	<property name="build.compiler" value="modern"/>            <!-- package name of source -->
+	<property name="package" value="dip"/>						<!-- root package name -->
+	<property name="cpd.min.tok" value="80"/>					<!-- CPD: minimum token count parameter -->
+	
+	
+	<!-- create the PMD class path -->
+	<path id="pmd.classpath">
+		<pathelement location="${build}"/>
+		<fileset dir="${pmd.dir}/">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<!-- a pattern that exludes files ending in "~", which are editor backup files -->
+	<patternset id="exclude.backup.files">
+		<exclude name="*~"/>
+	</patternset>
+
+	<!-- a pattern that only copies 'variant' files (*Variant.zip) or (*Variant.jar) -->
+	<patternset id="variant.files.only">
+		<include name="*Variants.zip"/>
+		<include name="*Variants.jar"/>
+		<include name="*Variant.zip"/>
+		<include name="*Variant.jar"/>
+	</patternset>
+	
+	<patternset id="symbol.files.only">
+		<include name="*Symbols.zip"/>
+		<include name="*Symbols.jar"/>
+	</patternset>
+	
+	<patternset id="jar.and.text.only">
+		<include name="*.jar"/>
+		<include name="*.txt"/>
+		<include name="*.TXT"/>
+	</patternset>
+	
+	<!-- a pattern which only includes .java source files -->
+	<patternset id="java.source.files.only">
+		<include name="**/*.java"/>
+	</patternset>
+
+	<!-- everything -->
+	<patternset id="everything">
+		<include name="**/*"/>
+	</patternset>
+	
+	<!-- exclude editor backup files, windows thumbs.db files, etc. -->
+	<patternset id="everything.but.crap">
+		<exclude name="**/*~"/>
+		<exclude name="**/*.db"/>
+	</patternset>
+	
+    <!-- all jars in current dir -->
+	<patternset id="jars">
+		<include name="*.jar"/>
+	</patternset>
+
+    <!-- all jars, also those in subdirs -->
+	<patternset id="jars_recursive">
+		<include name="**/*.jar"/>
+	</patternset>
+	
+	<patternset id="textonly">
+		<include name="*.txt"/>
+		<include name="*.TXT"/>
+	</patternset>
+	
+	<path id="compile.class.path">
+		<fileset dir="${lib.dir}">
+			<patternset refid="jars"/>
+		</fileset>
+	</path>
+	
+	<!-- classpath with the lib/ dir, and the dir with compiled .class files, necessary for the 'run' target -->
+	<path id="run.class.path">
+		<path refid="compile.class.path"/>
+		<pathelement location="${build.dir}"/>
+	</path>
+
+    <!-- classpath to run the unit tests -->
+	<path id="unittesting.class.path">
+		<path refid="run.class.path"/>
+		<fileset dir="${lib.dir}">
+			<patternset refid="jars_recursive"/>
+		</fileset>
+	</path>
+	
+	
+	<!-- cleans the build directory -->
+	<target name="clean" description="Delete build/ directory">
+		<delete dir="${base.build.dir}"/>
+	</target>
+	
+	
+	<!-- init -->
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp/>
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${variant.dir}"/>
+		<mkdir dir="${build.dir}/${plugin.dir}"/>
+		<mkdir dir="${build.dir}/resource"/>
+		<mkdir dir="${build.dir}/resource/il8n"/>
+		<mkdir dir="${build.dir}/resource/common"/>
+		<mkdir dir="${build.dir}/resource/help"/>
+		<mkdir dir="${optional.dir}"/>
+		<mkdir dir="${test.results.dir}"/>
+		<mkdir dir="${packaged.dist.dir}"/>
+	</target>
+	
+	<target name="help">
+		<echo message="To see all targets, please use the command: ant -projecthelp"/>
+	</target>
+	
+    <!-- build (compile) -->
+	<target name="build" depends="init" description="Build jDip">
+		<!-- Compile splash.java with a 1.1 target -->
+		<javac srcdir="${src.dir}" destdir="${build.dir}" includes="dip/gui/splash.java" target="1.1" debug="true">
+			<classpath refid="compile.class.path"/>
+		</javac>
+		
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src.dir}" destdir="${build.dir}" includes="dip/**/*.java" excludes="dip/gui/splash.java" source="1.4" debug="true">
+			<classpath refid="compile.class.path"/>
+		</javac>
+		
+		<!-- Copy a resources to another directory -->
+        <!-- exclude files ending in ~ (editor backup files) -->
+		<copy todir="${build.dir}/resource/il8n">
+			<fileset dir="${resource.dir}/il8n">
+				<patternset refid="exclude.backup.files"/>
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/resource/common">
+			<fileset dir="${resource.dir}/common">
+				<patternset refid="exclude.backup.files"/>
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/resource/help">
+			<fileset dir="${resource.dir}/help">
+				<patternset refid="exclude.backup.files"/>
+			</fileset>
+		</copy>
+
+        <!-- build the variants -->
+        <!-- Variant Package: Standard Variants -->
+		<zip  destfile="${variant.dir}/stdVariants.zip"
+				basedir="${resource.dir}/variants/stdVariants"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+
+        <!-- Variant Package: SailHo! -->
+		<zip  destfile="${variant.dir}/sailhoVariants.zip"
+				basedir="${resource.dir}/variants/sailho"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+
+        <!-- Variant Package: Pure -->
+		<zip  destfile="${variant.dir}/pureVariants.zip"
+				basedir="${resource.dir}/variants/pure"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+        
+		<!-- Variant Package: Hundred -->
+		<zip  destfile="${variant.dir}/hundredVariants.zip"
+				basedir="${resource.dir}/variants/hundred"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+        
+		<!-- Variant Package: Youngstown -->
+		<zip  destfile="${variant.dir}/youngstownVariants.zip"
+				basedir="${resource.dir}/variants/youngstown"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+
+        <!-- Variant Package: Test -->
+		<zip  destfile="${variant.dir}/testVariants.zip"
+				basedir="${resource.dir}/variants/test"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+
+ 		<!-- Variant Package: Loeb9 -->
+		<zip  destfile="${variant.dir}/loeb9Variants.zip"
+				basedir="${resource.dir}/variants/loeb9"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+		
+		<!-- Variant Package: RootZ -->
+		<zip  destfile="${variant.dir}/rootzVariants.zip"
+				basedir="${resource.dir}/variants/rootz"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+		
+		<!-- Variant Package: Milan -->
+		<zip  destfile="${variant.dir}/milanVariants.zip"
+				basedir="${resource.dir}/variants/milan"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+				
+		<!-- Variant Package: Chaos (nJudge compatible) -->
+		<zip  destfile="${variant.dir}/chaosNJudgeVariant.zip"
+				basedir="${resource.dir}/variants/chaos"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+				
+		<!-- Variant Package: Chaos (DPJudge compatible) -->
+		<zip  destfile="${variant.dir}/chaosDPJudgeVariant.zip"
+				basedir="${resource.dir}/variants/chaos_dp"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+				
+		<!-- Variant Package: Imperium -->
+		<zip  destfile="${variant.dir}/imperiumVariants.zip"
+				basedir="${resource.dir}/variants/imperium"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+				
+		<!-- Variant Package: Octarine -->
+		<zip  destfile="${variant.dir}/octarineVariants.zip"
+				basedir="${resource.dir}/variants/octarine"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+				
+		<!-- Variant Package: Asia -->
+		<zip  destfile="${variant.dir}/asiaVariants.zip"
+				basedir="${resource.dir}/variants/asia"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+				
+		<!-- Variant Package: Modern -->
+		<zip  destfile="${variant.dir}/modernVariants.zip"
+				basedir="${resource.dir}/variants/modern"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+				
+				
+		<!-- SymbolPack: simple -->
+		<zip  destfile="${variant.dir}/simpleSymbols.zip"
+				basedir="${resource.dir}/variants/symbols/simple"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+       
+		<!-- SymbolPack: period -->
+		<zip  destfile="${variant.dir}/periodSymbols.zip"
+				basedir="${resource.dir}/variants/symbols/period"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+		
+		<!-- SymbolPack: modern -->
+		<zip  destfile="${variant.dir}/modernSymbols.zip"
+				basedir="${resource.dir}/variants/symbols/modern"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+		
+		<!-- SymbolPack: imperium -->
+		<zip  destfile="${variant.dir}/imperiumSymbols.zip"
+				basedir="${resource.dir}/variants/symbols/imperium"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+		
+		<!-- SymbolPack: flagged -->
+		<!--
+		<zip  destfile="${variant.dir}/flaggedSymbols.zip"
+				basedir="${resource.dir}/variants/symbols/flagged"
+				excludes="*~ *.zip"
+				includes="*.xml *.jpg *.png *.svg *.gif"/>
+		-->
+	</target>
+	
+	
+	<!-- run PMD checker -->
+	<target name="pmd" depends="build" description="Check source code with PMD">
+		<!-- PMD task def -->
+		<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="pmd.classpath"/>
+		
+		<!-- check all main files (dip/*). Exclude test/demo code -->
+		<pmd rulesetfiles="${etc.dir}/pmd_rules.xml" failonerror="no">
+			<formatter type="net.sourceforge.pmd.renderers.HTMLRenderer" toFile="${test.results.dir}/pmd_out.html"/>
+			<fileset dir="${src.dir}">
+				<include name="dip/**/*.java"/>
+				<exclude name="AIDemo.java TestParser.java TestSuite.java Convert.java"/>
+			</fileset>
+		</pmd>
+		<echo message="PMD results written to ${test.results.dir}/pmd_out.html"/>
+	</target>
+ 	
+	<!-- run CPD checker -->
+	<target name="cpd" depends="build" description="Check code duplication with CPD (requires PMD)">
+		<!-- CPD task def -->
+		<taskdef name="cpd" classname="net.sourceforge.pmd.cpd.CPDTask" classpathref="pmd.classpath"/>
+		<echo message="Running CPD with a minimum token count of ${cpd.min.tok}"/>
+		<!-- check all main files (dip/*). Exclude test/demo code -->
+		<cpd minimumTokenCount="${cpd.min.tok}" outputFile="${test.results.dir}/cpd_out.html">
+			<fileset dir="${src.dir}">
+				<include name="dip/**/*.java"/>
+				<exclude name="AIDemo.java TestParser.java TestSuite.java Convert.java"/>
+			</fileset>
+		</cpd>
+		<echo message="CPD results written to ${test.results.dir}/cpd_out.html"/>
+	</target>
+	
+	
+	<!-- auto-generate the manifest -->
+	<!-- this prevents errors as we change libraries in the lib/ directory -->
+	<target name="createmanifest" description="create a manifest file">
+		<echo message="Auto-generating jar manifest..."/>
+		
+		<fileset dir="${lib.dir}" id="manifest.fileset">
+			<include name="*.jar"/>
+		</fileset>
+		
+		<property  name="manifest.lib.dir" location="${lib.dir}"/>
+		
+		<pathconvert pathsep=" " dirsep="/" property="manifest.class.path">
+			<map from="${manifest.lib.dir}" to="lib"/>
+			<path>
+				<fileset dir="${manifest.lib.dir}">
+					<include name="*.jar"/>
+				</fileset>
+			</path>
+		</pathconvert>
+		
+		<manifest file="${build.dir}/MANIFEST.MF" mode="replace">
+			<attribute name="Main-Class" value="dip.gui.splash"/>
+			<attribute name="Class-Path" value="${manifest.class.path}"/>
+		</manifest>
+		
+		<echo message="Manifest generation complete."/>
+	</target>
+	
+	<!-- distribution build; creates a .jar file -->
+	<target name="dist" depends="build,createmanifest" description="Create jDip distribution .jar and support files">
+		<!-- Create the distribution directory -->
+		<mkdir dir="${dist.dir}"/>
+		
+		<!-- include build directory, which contains the resource directory -->
+
+		<!-- exclude any tools (source and jar) -->
+		<jar jarfile="${dist.dir}/jdip.jar" basedir="${build.dir}" excludes="variants/** maptool/** tools/** **/*.zip **/*.db **/*.jar **/*.MF **/misc/TestPars*.class **/misc/Convert*.class ${test.results.dir}/**" 
+			manifest="${build.dir}/MANIFEST.MF"/>
+		
+		<!-- make empty 'tool' plugin dir -->
+		<mkdir dir="${dist.dir}/${plugin.dir}"/>
+		
+		<!-- include all required library files in the /lib dir -->
+		<!-- only .jar and .txt files are copied -->
+		<mkdir dir="${dist.dir}/lib"/>
+		<copy todir="${dist.dir}/lib">
+			<fileset dir="${lib.dir}">
+				<patternset refid="jar.and.text.only"/>
+			</fileset>
+		</copy>
+
+		<!-- Copy Variants to variants directory (they need to be there!!) -->
+		<!-- do not copy the 'test' variants -->
+		<copy todir="${dist.dir}/variants">
+			<fileset dir="${variant.dir}/">
+				<patternset refid="variant.files.only"/>
+				<exclude name="**/test*"/>
+			</fileset>
+		</copy>
+		
+		<!-- Copy Symbols to variants directory (they need to be there!!) -->
+		<copy todir="${dist.dir}/variants">
+			<fileset dir="${variant.dir}/">
+				<patternset refid="symbol.files.only"/>
+			</fileset>
+		</copy>
+		
+        <!--        Let's not copy these files for now, need a clean root dir-->
+		<!-- copy other useful support files to main directory -->
+        <!--		<copy todir="${dist.dir}/">-->
+        <!--			<fileset dir="${src.dir}/etc/scripts"/>-->
+        <!--			<fileset dir="${src.dir}/etc/test_data"/>-->
+        <!--		</copy>-->
+		<copy todir="${dist.dir}/">
+			<fileset file="${etc.dir}/scripts/jdip.bat"/>
+			<fileset file="${etc.dir}/scripts/jdip.sh"/>
+		</copy>
+		
+		<copy file="${base.dir}/README.TXT" todir="${dist.dir}"/>
+		<copy file="${base.dir}/LICENSE.TXT" todir="${dist.dir}"/>
+		<copy file="${base.dir}/HISTORY.TXT" todir="${dist.dir}"/>
+	</target>
+
+	<!-- run; we must build first if required -->
+	<target name="run" depends="build" description="Runs jDip">
+		<java classname="dip.gui.ClientFrame" fork="yes" dir="${build.dir}">
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+			<jvmarg  value="-Xss1024K"/>
+		</java>
+	</target>
+	
+	<!-- run from splash -->
+	<target name="runsplash" depends="build" description="Runs jDip w/splash">
+		<java classname="dip.gui.splash" fork="yes" dir="${build.dir}">
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+			<jvmarg  value="-Xss1024K"/>
+		</java>
+	</target>
+	
+	
+	<!-- run, logging output to stdout -->
+	<target name="runlogged" depends="build" description="Runs jDip with Logging to stdout">
+		<java classname="dip.gui.ClientFrame" fork="yes" dir="${build.dir}">
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+			<jvmarg  value="-Xss1024K"/>
+			<arg value="-log"/>
+			<arg value="stdout"/>
+		</java>
+	</target>
+	
+	
+	<!-- IzPack installer target; requires 'dist' -->
+	<target name="install" depends="dist" description="Create Install version of program">
+		<echo message="Making the IzPack installer"/>
+		
+        <!-- Allows us to use the IzPack Ant task -->
+		<taskdef name="izpack" classpath="${izpack.dir}/lib/compiler.jar"
+				classname="com.izforge.izpack.ant.IzPackTask"/>
+
+		<copy todir="${dist.dir}/">
+			<fileset dir="${installer.dir}">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+        
+		<!--  <copy file="${installer.dir}/jdip.ico" todir="${dist.dir}"/>-->
+		<replace file="${dist.dir}/${installer.file}" token="!VERSION!" value="${version}"/>
+		
+		<izpack input="${dist.dir}/jdip-install.xml"
+				output="${packaged.dist.dir}/jdip-${version}-install.jar"
+				installerType="standard"
+				basedir="${dist.dir}"
+				izPackDir="${izpack.dir}/"/>
+	</target>
+
+	<target name="changelog" depends="init" description="Create changelog from CVS">
+		<cvschangelog dir="${src.dir}"
+				cvsroot="/cvsroot/jdip/"
+				destfile="changelog.xml"
+				daysinpast="10"/>
+		<style in="changelog.xml"
+				out="changelog.html"
+				style="${etc.dir}/changelog.xsl">
+			<param name="title" expression="jDip ChangeLog"/>
+			<param name="module" expression="jdip"/>
+			<param name="cvsweb" expression="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/jdip/"/>
+		</style>
+	</target>
+	
+	
+	<!-- create nightly build -->
+	<target name="nightlybuild" description="Creates nightly builds and changelogs">
+		<tstamp>
+			<format property="nightly.date" pattern="MMM-dd-yyyy"/>
+		</tstamp>
+		
+		<antcall target="dist"/>
+		<delete dir="${packaged.dist.dir}"/>
+		<mkdir dir="${packaged.dist.dir}"/>
+		
+		<zip destfile="${packaged.dist.dir}/jdip-nightly-${nightly.date}.zip">
+			<zipfileset dir="${dist.dir}" prefix="jdip"/>
+		</zip>
+		
+		<!-- changelog : designed to work on sourceforge -->
+		<!-- requires a CVS checkout, not export -->
+		<cvschangelog dir="${src.dir}"
+			cvsRoot=":pserver:anonymous@cvs1:/cvsroot/jdip"
+			destfile="changelog.xml"
+			daysinpast="10"/>
+		<style 	in="changelog.xml"
+				out="${packaged.dist.dir}/changelog-${nightly.date}.html"
+				style="${etc.dir}/changelog.xsl">
+			<param name="title" expression="jDip ChangeLog"/>
+			<param name="module" expression="jdip"/>
+			<param name="cvsweb" expression="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/jdip/"/>
+		</style>
+	</target>	
+
+	
+	<!-- build the no-installer version of jdip (based on dist) -->
+	<target name="distpacks" description="Builds javadoc .zip, no-install .zip, source snapshot, and multiplatform jar installer">
+		<delete dir="${packaged.dist.dir}"/>
+		<mkdir dir="${packaged.dist.dir}"/>
+		
+		<!-- create no-install .zip version -->
+		<antcall target="dist"/>
+		<zip destfile="${packaged.dist.dir}/jdip-${version}-bin-noinstaller.zip">
+			<zipfileset dir="${dist.dir}" prefix="jdip"/>
+		</zip>
+		
+		<!-- create the .zip javadocs -->
+		<antcall target="javadoc"/>
+		<zip destfile="${packaged.dist.dir}/jdip-${version}-javadocs.zip">
+			<zipfileset dir="${javadoc.dir}" prefix="javadoc"/>
+		</zip>
+		
+		<!-- create multiplatform install -->
+		<antcall target="install"/>
+		
+		<!-- create a distributable version of source & important files -->
+		<zip destfile="${packaged.dist.dir}/jdip-${version}-source-with-libs.zip" duplicate="fail">
+			<zipfileset dir="${src.dir}" includes="**/*.java" prefix="jdip/src"/>
+			<zipfileset dir="${etc.dir}" excludes="**/*~ **/*.db" prefix="jdip/etc"/>
+			<zipfileset dir="${lib.dir}" includes="*.jar *.txt" excludes="ant/**" prefix="jdip/lib"/>
+			<zipfileset dir="${resource.dir}" excludes="**/*~ **/*.db" prefix="jdip/resource"/>
+			<!-- 'root' files -->
+			<zipfileset dir="${base.dir}" includes="HISTORY.TXT, README.TXT, LICENSE.TXT" prefix="jdip"/>
+			<zipfileset dir="${base.dir}" includes="build.xml" prefix="jdip"/>
+			<zipfileset dir="${base.dir}" includes="build.properties" prefix="jdip"/>
+		</zip>
+	
+	</target>
+	
+
+    <!-- create javadocs; no dependencies -->
+	<target name="javadoc" description="Create JavaDoc documentation">
+		<mkdir  dir="${javadoc.dir}"/>
+		<javadoc
+				sourcepath="${src.dir}" destdir="${javadoc.dir}" author="true" version="true" use="true"
+				windowtitle="jDip ${version} Documentation" doctitle="jDip ${version}" bottom="Copyright 2002-2004 Zachary DelProposto / jDip Development Team. All Rights Reserved."
+				source="1.4"
+				splitindex="true"
+				classpathref="compile.class.path"
+				additionalparam="-breakiterator">
+			<packageset dir="${src.dir}" defaultexcludes="yes">
+				<include  name="dip/**"/>
+			</packageset>
+		</javadoc>
+	</target>
+
+    <!-- JUnitDoclet -->
+	<target name="junitdoclet" depends="build" description="Excecute JUnitDoclet">
+		<mkdir dir="${testsrc.dir}"/>
+		<javadoc
+				packagenames="dip.world.*, dip.process.*, dip.order.*, dip.misc.*"
+				sourcepath="${src.dir}"
+				defaultexcludes="yes"
+				doclet="com.objectfab.tools.junitdoclet.JUnitDoclet"
+				docletpathref="unittesting.class.path"
+				additionalparam="-source 1.4 -d ${testsrc.dir}">
+			<classpath refid="unittesting.class.path"/>
+		</javadoc>
+	</target>
+
+	<target name="junitcompile" description="Compile JUnit tests">
+		<javac srcdir="${testsrc.dir}" destdir="${build.dir}" debug="on">
+			<classpath  refid="unittesting.class.path"/>
+		</javac>
+	</target>
+    <!---->
+	<target name="junittest" depends="junitcompile" description="Execute JUnit tests">
+		<junit fork="yes" haltonfailure="no">
+			<formatter type="plain" usefile="no"/>
+			<test  name="${testsuite.file}"/>
+			<classpath  refid="unittesting.class.path"/>
+		</junit>
+	</target>
+	
+	<!-- parser test -->
+	<!-- NOTE: this requires that "base.dir" is an absolute path -->
+	<target name="testparser" depends="build" description="Run order parser test cases">
+		<!-- convert etc.dir to absolute path -->
+		<property name="absolute.etc.dir" location="${etc.dir}"/>
+		
+		<java classname="dip.misc.TestParser" fork="yes" dir="${build.dir}">
+			<arg value="-input"/>
+			<arg value="${absolute.etc.dir}/test_data/orders.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+	</target>
+	
+	<!-- parser test -->
+	<!-- NOTE: this requires that "base.dir" is an absolute path -->
+	<target name="testparserlogged" depends="build" description="Run order parser test cases, with logging">
+		<!-- convert etc.dir to absolute path -->
+		<property name="absolute.etc.dir" location="${etc.dir}"/>
+		
+		<java classname="dip.misc.TestParser" fork="yes" dir="${build.dir}">
+			<arg value="-log"/>
+			<arg value="-input"/>
+			<arg value="${absolute.etc.dir}/test_data/orders.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+	</target>
+	
+	
+	<target name="checki18n" depends="build" description="Checks localization files for missing keys">
+		<!-- convert etc.dir to absolute path -->
+		<property name="absolute.etc.dir" location="${etc.dir}"/>
+		<java classname="dip.misc.PropertyCheck" fork="yes" dir="${build.dir}">
+			<arg value="${resource.dir}/il8n/il8ntext_en.properties"/>
+			<arg value="${resource.dir}/il8n/il8ntext_de.properties"/>
+			<arg value="${resource.dir}/il8n/il8ntext_fr.properties"/>
+			<arg value="${resource.dir}/il8n/il8ntext_nl.properties"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+	</target>
+	
+	
+	
+	<!-- adjudicator test -->
+	<!-- NOTE: this requires that "base.dir" is an absolute path -->
+	<target name="testadj" depends="build" description="Run adjudicator test cases">
+		
+		<!-- convert etc.dir to absolute path -->
+		<property name="absolute.etc.dir" location="${etc.dir}"/>
+		
+		<!-- DATC test cases -->
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}">
+			<arg value="-statsonly"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_06.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}">
+			<arg value="-statsonly"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_08.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}">
+			<arg value="-statsonly"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_09.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}">
+			<arg value="-statsonly"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_10.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}">
+			<arg value="-statsonly"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_10D.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}">
+			<arg value="-statsonly"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_10F-10G-10L.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}">
+			<arg value="-statsonly"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_11.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}">
+			<arg value="-statsonly"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_12.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}">
+			<arg value="-statsonly"/>
+			<arg value="${absolute.etc.dir}/test_data/explicitConvoys.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}">
+			<arg value="-statsonly"/>
+			<arg value="${absolute.etc.dir}/test_data/wing.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}">
+			<arg value="-statsonly"/>
+			<arg value="${absolute.etc.dir}/test_data/borders.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}">
+			<arg value="-statsonly"/>
+			<arg value="${absolute.etc.dir}/test_data/dipai.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}">
+			<arg value="-statsonly"/>
+			<arg value="${absolute.etc.dir}/test_data/real.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+	</target>
+	
+	
+	<!-- test adjudicator cases, logging to a file called 'casename.out' -->
+	<target name="testadjlogged" depends="build" description="Run adjudicator test cases, with output logged">
+		<!-- convert etc.dir to absolute path -->
+		<property name="absolute.etc.dir" location="${etc.dir}"/>
+		
+		<!-- DATC test cases -->
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}" output="${test.results.dir}/datc_v2.4_06.out" append="false">
+			<arg value="-brief"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_06.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<!-- colonial
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}" output="${test.results.dir}/datc_v2.4_07.out" append="false">
+			<arg value="-brief"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_07.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		-->
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}" output="${test.results.dir}/datc_v2.4_08.out" append="false">
+			<arg value="-brief"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_08.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}" output="${test.results.dir}/datc_v2.4_09.out" append="false">
+			<arg value="-brief"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_09.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}" output="${test.results.dir}/datc_v2.4_10all.out" append="false">
+			<arg value="-brief"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_10.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}" output="${test.results.dir}/datc_v2.4_10all.out" append="true">
+			<arg value="-brief"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_10D.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}" output="${test.results.dir}/datc_v2.4_10all.out" append="true">
+			<arg value="-brief"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_10F-10G-10L.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}" output="${test.results.dir}/datc_v2.4_11.out" append="false">
+			<arg value="-brief"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_11.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}" output="${test.results.dir}/datc_v2.4_12.out" append="false">
+			<arg value="-brief"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_12.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}" output="${test.results.dir}/explicitConvoys.out" append="false">
+			<arg value="-brief"/>
+			<arg value="${absolute.etc.dir}/test_data/explicitConvoys.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}" output="${test.results.dir}/borders.out" append="false">
+			<arg value="-brief"/>
+			<arg value="${absolute.etc.dir}/test_data/borders.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}" output="${test.results.dir}/wing.out" append="false">
+			<arg value="-brief"/>
+			<arg value="${absolute.etc.dir}/test_data/wing.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}" output="${test.results.dir}/dipai.out" append="false">
+			<arg value="-brief"/>
+			<arg value="${absolute.etc.dir}/test_data/dipai.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}" output="${test.results.dir}/real.out" append="false">
+			<arg value="-brief"/>
+			<arg value="${absolute.etc.dir}/test_data/real.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-ea"/>
+		</java>
+	</target>
+	
+	
+	
+	<!-- test performance of adjudicator. Prints nicely formatted results to perf.out file -->
+	<target name="testadjperf" depends="build" description="Adjudicator performance benchmark.">
+		<!-- convert etc.dir to absolute path -->
+		<property name="absolute.etc.dir" location="${etc.dir}"/>
+		
+		<echo message="Running performance tests. This may take a while (20 minutes or so)."/>
+		
+		<!-- DATC: 10,100,1000,2000 -->
+		<echo message="DATC tests: start"/>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="false">
+			<arg value="-perftest:10"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_06.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:100"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_06.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:1000"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_06.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:2000"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_06.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<echo message="DATC tests: end"/>
+		
+		<!-- Real: 10,100,1000,25000,50000,100000 -->
+		<echo message="Real tests: end"/>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:10"/>
+			<arg value="${absolute.etc.dir}/test_data/real.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:100"/>
+			<arg value="${absolute.etc.dir}/test_data/real.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:1000"/>
+			<arg value="${absolute.etc.dir}/test_data/real.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:25000"/>
+			<arg value="${absolute.etc.dir}/test_data/real.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:50000"/>
+			<arg value="${absolute.etc.dir}/test_data/real.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:100000"/>
+			<arg value="${absolute.etc.dir}/test_data/real.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<echo message="Real tests: end"/>
+		
+		<!-- DipAI: 10,100,1000,25000,50000 -->
+		<echo message="DipAI tests: end"/>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:10"/>
+			<arg value="${absolute.etc.dir}/test_data/dipai.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:100"/>
+			<arg value="${absolute.etc.dir}/test_data/dipai.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:1000"/>
+			<arg value="${absolute.etc.dir}/test_data/dipai.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:25000"/>
+			<arg value="${absolute.etc.dir}/test_data/dipai.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:50000"/>
+			<arg value="${absolute.etc.dir}/test_data/dipai.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<echo message="DipAI tests: end"/>
+		
+		<!-- process perf.out to only include lines beginning with "**" -->
+		<echo message="Processing and summarizing test output to ${perf.out}"/>
+		<move file="${perf.tmp}" tofile="${perf.out}">
+			<filterchain>
+				<filterreader classname="org.apache.tools.ant.filters.LineContains">
+					<param type="contains" value="**"/>
+				</filterreader>
+			</filterchain>
+		</move>
+		<echo message="Performance testing and summarization complete."/>
+	</target>
+	
+	<!-- test performance of adjudicator. Prints nicely formatted results to perf.out file -->
+	<target name="testadjperfserver" depends="build" description="Adjudicator performance benchmark using Server VM">
+		<!-- convert etc.dir to absolute path -->
+		<property name="absolute.etc.dir" location="${etc.dir}"/>
+		
+		<echo message="Running performance tests. This may take a while (20 minutes or so)."/>
+		
+		<!-- DATC: 1,2,4 k -->
+		<echo message="DATC tests: start"/>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:1000"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_06.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-server"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:2000"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_06.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-server"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:4000"/>
+			<arg value="${absolute.etc.dir}/test_data/datc_v2.4_06.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-server"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<echo message="DATC tests: end"/>
+		
+		<!-- Real: 25000,50000,100000,150000 -->
+		<echo message="Real tests: start"/>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:25000"/>
+			<arg value="${absolute.etc.dir}/test_data/real.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-server"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:50000"/>
+			<arg value="${absolute.etc.dir}/test_data/real.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-server"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:100000"/>
+			<arg value="${absolute.etc.dir}/test_data/real.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-server"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:150000"/>
+			<arg value="${absolute.etc.dir}/test_data/real.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-server"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<echo message="Real tests: end"/>
+		
+		<!-- DipAI: 25000,50000,100000 -->
+		<echo message="DipAI tests: start"/>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:25000"/>
+			<arg value="${absolute.etc.dir}/test_data/dipai.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-server"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:50000"/>
+			<arg value="${absolute.etc.dir}/test_data/dipai.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-server"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<java classname="dip.misc.TestSuite" fork="yes" dir="${build.dir}"
+				output="${perf.tmp}" append="true">
+			<arg value="-perftest:100000"/>
+			<arg value="${absolute.etc.dir}/test_data/dipai.txt"/>
+			<classpath  refid="run.class.path"/>
+			<jvmarg  value="-server"/>
+			<jvmarg  value="-da"/>
+		</java>
+		<echo message="DipAI tests: end"/>
+		
+		<!-- process perf.out to only include lines beginning with "**" -->
+		<echo message="Processing and summarizing test output to ${perf.out}"/>
+		<move file="${perf.tmp}" tofile="${perf.server.out}">
+			<filterchain>
+				<filterreader classname="org.apache.tools.ant.filters.LineContains">
+					<param type="contains" value="**"/>
+				</filterreader>
+			</filterchain>
+		</move>
+		<echo message="Performance testing and summarization complete."/>
+	</target>
+	
+	
+	<!-- Webstart task -->
+	<target name="webstart" depends="dist" description="Create Webstart version">
+		<!-- this prevents things from being signed twice -->
+		<delete dir="${webstart.dir}"/>
+		
+		<mkdir dir="${webstart.dir}"/>
+		<mkdir dir="${webstart.dir}/lib"/>
+		<mkdir dir="${webstart.dir}/variants"/>
+		
+		<!-- copy webstart files & support files -->
+		<copy file="${etc.dir}/webstart/jdip.jnlp" todir="${webstart.dir}"/>
+		<copy file="${etc.dir}/webstart/jdip_local.jnlp" todir="${webstart.dir}"/>
+		<copy file="${etc.dir}/webstart/help.jnlp" todir="${webstart.dir}"/>
+		<copy file="${etc.dir}/webstart/index.html" todir="${webstart.dir}"/>
+		<copy file="${etc.dir}/64x64_jdip_icon.jpg" todir="${webstart.dir}"/>
+		
+		<!-- copy main jdip jar -->
+		<copy file="${dist.dir}/jdip.jar" todir="${webstart.dir}"/>
+		
+		<!-- copy variants, but name them .jar instead of .zip -->
+		<copy todir="${webstart.dir}/variants">
+			<fileset dir="${dist.dir}/variants"/>
+			<mapper type="glob" from="*.zip" to="*.jar"/>
+		</copy>
+		
+		<!-- copy all support libraries -->
+		<copy todir="${webstart.dir}/lib">
+			<fileset dir="${dist.dir}/lib" excludes="jnlp.jar"/>
+		</copy>
+		
+		<!-- 
+			sign all jars. This includes:
+			
+			1) main jDip file (jdip.jar)
+			2) all variants
+			3) all libraries in /lib, unless they are already signed.
+			
+			pre-SIGNED files must be excluded!! (e.g., jhbasic.jar)
+		-->
+		
+		<!-- main jdip file -->
+		<signjar  jar="${webstart.dir}/jdip.jar" keystore="${etc.dir}/webstart/jdipKeystore" alias="dev" storepass="${sign.password}"/>
+		
+		<!-- variants -->
+		<signjar lazy="true" keystore="${etc.dir}/webstart/jdipKeystore" alias="dev" storepass="${sign.password}">
+			<fileset dir="${webstart.dir}/variants" includes="*.jar *.zip"/>
+		</signjar>
+		
+		<!-- /lib -->
+		<signjar lazy="true" keystore="${etc.dir}/webstart/jdipKeystore" alias="dev" storepass="${sign.password}">
+			<fileset dir="${webstart.dir}/lib" includes="*.jar *.zip" excludes="jhbasic.jar"/>
+		</signjar>
+		
+	</target>
+
+</project>
+

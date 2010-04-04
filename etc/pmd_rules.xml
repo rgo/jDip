@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<ruleset name="jdip_pmd_rules">
+  <description>
+  jDip PMD rules
+  </description>
+  
+  <rule ref="rulesets/basic.xml"/>
+  <!-- rule ref="rulesets/naming.xml"/> -->
+  <rule ref="rulesets/unusedcode.xml"/>
+  
+  <rule ref="rulesets/design.xml/SimplifyBooleanReturnsRule"/>
+  <rule ref="rulesets/design.xml/SimplifyBooleanExpressions"/>
+  <rule ref="rulesets/design.xml/SwitchStmtsShouldHaveDefault"/>
+  <rule ref="rulesets/design.xml/SwitchDensity"/>
+  <rule ref="rulesets/design.xml/AvoidReassigningParametersRule"/>
+  <rule ref="rulesets/design.xml/ConstructorCallsOverridableMethodRule"/>
+  <rule ref="rulesets/design.xml/AccessorClassGenerationRule"/>
+  <rule ref="rulesets/design.xml/FinalFieldCouldBeStatic"/>
+  <rule ref="rulesets/design.xml/BooleanInstantiation"/>
+  <rule ref="rulesets/design.xml/NonCaseLabelInSwitchStatement"/>
+  <rule ref="rulesets/design.xml/NonStaticInitializer"/>
+  <rule ref="rulesets/design.xml/NonCaseLabelInSwitchStatement"/>
+  <rule ref="rulesets/design.xml/DefaultLabelNotLastInSwitchStmt"/>
+  
+  <!-- rule ref="rulesets/imports.xml"/> -->
+  <!-- rule ref="rulesets/JUnitTests.xml"/> -->
+  
+  <rule ref="rulesets/strings.xml"/>
+  <rule ref="rulesets/braces.xml"/>
+  
+  <rule ref="rulesets/codesize.xml/ExcessiveParameterList"/>
+  <rule ref="rulesets/codesize.xml/ExcessivePublicCountRule"/>
+  
+  <rule ref="rulesets/strictexception.xml/AvoidCatchingThrowable"/>
+  <rule ref="rulesets/strictexception.xml/SignatureDeclareThrowsException"/>
+  
+  <rule ref="rulesets/controversial.xml/AssignmentInOperandRule"/>
+  <rule ref="rulesets/controversial.xml/SuspiciousOctalEscapeRule"/>
+  
+</ruleset>
+
+

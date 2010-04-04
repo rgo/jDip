@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" href="./TimeResult.html" title="dip.order.result.TimeResult" alt="" coords="300,285,604,389"/>
+<area shape="rect" href="./DislodgedResult.html" title="dip.order.result.DislodgedResult" alt="" coords="16,464,320,664"/>
+<area shape="rect" href="./SubstitutedResult.html" title="dip.order.result.SubstitutedResult" alt="" coords="365,520,589,608"/>
+<area shape="rect" href="./ConvoyPathResult.html" title="dip.order.result.ConvoyPathResult" alt="" coords="635,512,939,616"/>
+<area shape="rect" href="./DependentMoveFailedResult.html" title="dip.order.result.DependentMoveFailedResult" alt="" coords="984,512,1288,616"/>
+<area shape="rect" href="./Result.html" title="dip.order.result.Result" alt="" coords="467,35,771,187"/>
+<area shape="rect" href="./OrderResult.html" title="dip.order.result.OrderResult" alt="" coords="649,269,924,405"/>
+<area shape="rect" href="./BouncedResult.html" title="dip.order.result.BouncedResult" alt="" coords="1333,472,1637,656"/>
+<area shape="rect" href="./OrderResult.ResultType.html" title="dip.order.result.OrderResult.ResultType" alt="" coords="816,11,1147,211"/>
+</map>

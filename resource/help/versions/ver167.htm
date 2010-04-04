@@ -1,0 +1,49 @@
+<html>
+<head>
+ <title>Version History: 1.6.7</title>
+ <link rel="StyleSheet" href="../application_help.css">
+</head>
+<body>
+<h1>Version History: 1.6.7</h1>
+<h2>jDip version 1.6.7</h2>
+<pre>
+- New or Improved Features:
+    + New Variant: Octarine (created by Bjorn Lijnema).
+    + New Variant: Imperium (created by Martin Asal).
+    + New Variant: Asia.
+    + New Units: Imperium (created by Martin Asal).
+    + Startup time improvements (faster by 10-20%).
+    + Splash screen may be disabled with the "-nosplash" command line option.
+      Note that this improves startup time less than 250 ms.
+    + Improved multiplatform installer.
+    + Order drawing tweaks.
+    + If an error occurs, a bug report can be automatically sent to 
+      the jDip centralized bug database.
+- Bug Fixes:
+    + Fixed: Name display is not remembered when changing maps (975594).
+    + Fixed: Background of saved images is not transparent
+    + Fixed: Multiple move arrows to an empty destination overlap.
+    + Fixed: German language localization was 1.6.5 instead of 1.6.
+             All versions are now standardized at 1.6.7.
+    + Fixed: RootZ Judge import issues.
+    + Fixed: RootZ has an invalid supply center location for Turkey.
+    + Fixed: When importing a Judge game, powers not submitting orders are not
+             handled correctly.
+    + Fixed: Importing of Judge turns to current game fails.
+    + Fixed: Borders with specified "from" locations do not work correctly.
+- Core and API changes:
+    + dip.misc.Convert removed. Replaced by new "jdip_tools" CVS module.
+    + Plugins removed from main jdip code path. Plugins are now in a
+      separate "jdip_plugins" CVS module.
+    + IzPack 3.6 now used to create installer.
+    + Chaos variants are split into nJudge and DP variants.
+    + Xerces updated to 2.6.2.
+- Compatibility:
+    + Fully compatibile with previous 1.6.x versions.
+- Miscellaneous
+    + Changes to the core dip.world.Unit class are in CVS, and will be
+      in the next release. The next release may break save-game
+      compatibility.
+</pre>
+</body>
+</html>

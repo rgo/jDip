@@ -1,0 +1,95 @@
+<html>
+<head>
+ <title>Version History: 0.90</title>
+ <link rel="StyleSheet" href="../application_help.css">
+</head>
+<body>
+<h1>Version History: 0.90</h1>
+
+<h2>jDip version 0.90 (February, 2003)</h2>
+<pre>
+    - New features:
+        + Rudimentary order drawing!
+        + Persistent Undo/Redo! 
+                All orders, edits, and resolves may be undone, even across multiple saves.
+        + Orders can now be hidden on a per-power basis
+        + New view option: Highlight units without orders (not all maps support this feature)
+        + Small drags (&lt; 5 pixels) are now interpreted as clicks; this improves perceived responsiveness
+        + Splash screen at startup
+        + Support for convoyable coasts (used in Ancient Med variant)
+        + Concept of 'borders' added, which can enhance/restrict/condition orders and 
+                allow more variant support
+        + Added 2 new variants: "Crowded 1898" and "Shift Around".
+        + Support (using a non-topological grid map) for Ancient Med and Loeb9 variants
+                note that Loeb9 is not fully supported in this release.
+    - GUI changes / improvements:
+        + GUI order input now respects order checking options settings
+                This enables/disables real-time checking of order legality
+        + GUI order input now respects convoyable coasts
+        + GUI order input now has better checking of support orders
+        + GUI order input now respects Borders (if applicable)
+        + Improved text formatting in order list
+        + Full internationalization support for status bar text
+        + Faster open/save dialog performance
+        + Custom cursor used for bad order input; now consistent across platforms
+        + Filenames are suggested when saving and exporting
+        + ESC key will always abort the GUI entry of an order
+        + Improved ability to cancel orders with mouse
+        + Improved order status and prompting in statusbar messages
+        + Improved traditional map thumbnail image
+        + Improved show/hide supply centers option
+        + New error messsage indicating if there is a version incompatibility
+                when opening save game (.jdip) files.
+        + Property table in Help|About now non-focusable
+        + Game & Player info moved to View menu, and dialog made larger.
+        + Standard variant is now the default in the New Game dialog
+        + Multiple-Order input now properly handles pasted orders with (* *) style Judge order notes
+        + Status, Results, and Info dialogs now non-modal
+        + Improved Results and Status dialog content formatting
+        + Misc. dialog size adjustments
+        + Renamed "Order Validation" to "Order Checking" in menus and dialogs
+        + During render (drawing) events, the right-corner of the Status bar will display "Rendering"
+    - Bug fixes:
+        + Fixed: TestSuite was not using defined RuleOptions
+        + Fixed: Armies occasionally had coastal destinations in the order list 
+        + Fixed: Orders are now rechecked when Order Checking Options have changed.
+        + Fixed: Supply center / Order highlighting display bugs
+        + Fixed: Game Web Address not being saved in Game & Player Info dialog
+        + Fixed: Directories were not shown in Open & Save dialogs
+        + Fixed: Most-recently-used file list bugs
+        + Fixed: Accelerator/shortcut key issues
+        + Fixed: Galicia not clickable on detailed Standard map
+        + Fixed: Select All in some dialogs didn't always highlight
+        + Fixed: Many scrolling bugs
+    - Core changes:
+        + Private XML namespace added to variant SVG files for more sensible customization
+        + API Documentation improvements and updates
+        + Build.xml "Clean" and "Install" targets added (Mike Rosseel).
+                "Install" target requires downloading the IzPack installer
+        + DATC test case maps now are in a separate variant file (testVariants.zip)
+        + Significant refactoring
+                - judge.parser.OrderParser renamed to JudgeOrderParser
+                - dip.order.Orderable interface created
+                - dip.order.Order implements Orderable interface
+                - Order subclasses have better method abstraction
+                - renamed Order method getSourceUnit() to getSourceUnitType()
+                - dip.gui.order package created for GUI Order input and order drawing
+                - OrderFactory is now a true Factory. All orders must be created 
+                        through an OrderFactory.
+                - OrderParser now performs Order parsing.
+   - Miscellaneous:
+        + Test cases added for Ice variant (DATC secion 12)
+        + Test cases added for Convoyable coasts (DATC section 13)
+        + Test cases added for Chaos variant (DATC section 15)
+        + Test cases added for 1898 variant (DATC section 16)
+        + Saved games are not compatible with previous version (version 0.86).
+        + Order drawing will continue to improve throughout subsequent versions,
+                both in style and in speed.
+        + Difficult passable borders, used in some variants (e.g., Loeb9) are not yet supported.
+        + For those requiring rapid adjudication (no GUI), please note that version 0.85 
+                remains the baseline perfomance release. This version has an 
+                approximately 7-8% performance deficit compared to version
+                0.85. Performance optimizations will be addressed in future versions.
+</pre>
+</body>
+</html>

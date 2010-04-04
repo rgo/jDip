@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE PROVINCES [
+	<!ELEMENT PROVINCES (BORDER_DEFINITIONS?, PROVINCE+)>
+	
+	<!-- ===================================================================== -->
+	<!ELEMENT BORDER_DEFINITIONS (BORDER+)>
+	
+	<!ELEMENT BORDER EMPTY>
+	<!ATTLIST BORDER	
+				id ID #REQUIRED
+				description CDATA #REQUIRED
+				from CDATA #IMPLIED
+				unitTypes CDATA #IMPLIED
+				orderTypes CDATA #IMPLIED
+				year CDATA #IMPLIED
+				season CDATA #IMPLIED
+				phase CDATA #IMPLIED
+				baseMoveModifier CDATA #IMPLIED
+				>
+				
+	<!-- ===================================================================== -->
+	<!ELEMENT PROVINCE (UNIQUENAME*, ADJACENCY+)>
+	<!ATTLIST PROVINCE 	
+				shortname CDATA #REQUIRED
+				fullname CDATA #REQUIRED
+				isConvoyableCoast (true|false) "false"
+				borders IDREFS #IMPLIED
+				>	
+	
+				
+	<!ELEMENT UNIQUENAME EMPTY>
+	<!ATTLIST UNIQUENAME name CDATA #REQUIRED>
+	
+	<!ELEMENT ADJACENCY EMPTY>
+	<!ATTLIST ADJACENCY 	
+				type (mv|xc|nc|sc|wc|ec) "mv"
+				refs CDATA #REQUIRED
+				>
+]>
+<PROVINCES>
+		<!-- PURE adjacency -->
+		<PROVINCE shortname="vie" fullname="Vienna">
+			<ADJACENCY type="mv" refs="lon par ber rom mos con" />
+		</PROVINCE>
+		<PROVINCE shortname="lon" fullname="London">
+			<ADJACENCY type="mv" refs="vie par ber rom mos con" />
+		</PROVINCE>
+		<PROVINCE shortname="par" fullname="Paris">
+			<ADJACENCY type="mv" refs="vie lon ber rom mos con" />
+		</PROVINCE>
+		<PROVINCE shortname="ber" fullname="Berlin">
+			<ADJACENCY type="mv" refs="vie lon par rom mos con" />
+		</PROVINCE>
+		<PROVINCE shortname="rom" fullname="Rome">
+			<ADJACENCY type="mv" refs="vie lon par ber mos con" />
+		</PROVINCE>
+		<PROVINCE shortname="mos" fullname="Moscow">
+			<ADJACENCY type="mv" refs="vie lon par ber rom con" />
+		</PROVINCE>
+		<PROVINCE shortname="con" fullname="Constantinople">
+			<ADJACENCY type="mv" refs="vie lon par ber rom mos" />
+		</PROVINCE>
+</PROVINCES>
+

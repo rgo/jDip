@@ -1,0 +1,32 @@
+<map id="G" name="G">
+<area shape="rect" href="./Unit.html" title="dip.world.Unit" alt="" coords="16,235,219,435"/>
+<area shape="rect" href="./Unit.Type.html" title="dip.world.Unit.Type" alt="" coords="264,227,485,443"/>
+<area shape="rect" href="./VictoryConditions.html" title="dip.world.VictoryConditions" alt="" coords="531,227,1061,443"/>
+<area shape="rect" href="./Province.html" title="dip.world.Province" alt="" coords="1107,67,1677,603"/>
+<area shape="rect" href="./Province.Adjacency.html" title="dip.world.Province.Adjacency" alt="" coords="1723,275,2043,395"/>
+<area shape="rect" href="./Location.html" title="dip.world.Location" alt="" coords="2088,147,2557,523"/>
+<area shape="rect" href="./Path.html" title="dip.world.Path" alt="" coords="2603,203,3379,467"/>
+<area shape="rect" href="./Path.PathEvaluator.html" title="dip.world.Path.PathEvaluator" alt="" coords="3424,283,3819,387"/>
+<area shape="rect" href="./Path.AnyConvoyPathEvaluator.html" title="dip.world.Path.AnyConvoyPathEvaluator" alt="" coords="3424,717,3819,821"/>
+<area shape="rect" href="./Path.FAPEvaluator.html" title="dip.world.Path.FAPEvaluator" alt="" coords="4016,299,4275,371"/>
+<area shape="rect" href="./Path.FleetFAPEvaluator.html" title="dip.world.Path.FleetFAPEvaluator" alt="" coords="3864,733,4123,805"/>
+<area shape="rect" href="./Path.ConvoyFAPEvaluator.html" title="dip.world.Path.ConvoyFAPEvaluator" alt="" coords="4168,733,4427,805"/>
+<area shape="rect" href="./TurnState.html" title="dip.world.TurnState" alt="" coords="4320,155,4597,515"/>
+<area shape="rect" href="./WorldFactory.html" title="dip.world.WorldFactory" alt="" coords="4643,291,4888,379"/>
+<area shape="rect" href="./Border.html" title="dip.world.Border" alt="" coords="4933,275,5504,395"/>
+<area shape="rect" href="./InvalidWorldException.html" title="dip.world.InvalidWorldException" alt="" coords="5549,323,5699,347"/>
+<area shape="rect" href="./GameSetup.html" title="dip.world.GameSetup" alt="" coords="5744,315,5832,355"/>
+<area shape="rect" href="./Coast.html" title="dip.world.Coast" alt="" coords="5877,99,6139,571"/>
+<area shape="rect" href="./Phase.html" title="dip.world.Phase" alt="" coords="6184,179,6595,491"/>
+<area shape="rect" href="./Phase.SeasonType.html" title="dip.world.Phase.SeasonType" alt="" coords="6640,139,6893,531"/>
+<area shape="rect" href="./Phase.PhaseType.html" title="dip.world.Phase.PhaseType" alt="" coords="6939,115,7184,555"/>
+<area shape="rect" href="./Phase.YearType.html" title="dip.world.Phase.YearType" alt="" coords="7229,243,7483,427"/>
+<area shape="rect" href="./Position.html" title="dip.world.Position" alt="" coords="7528,11,7963,659"/>
+<area shape="rect" href="./World.html" title="dip.world.World" alt="" coords="8008,51,8373,619"/>
+<area shape="rect" href="./World.VariantInfo.html" title="dip.world.World.VariantInfo" alt="" coords="8419,211,8661,459"/>
+<area shape="rect" href="./RuleOptions.html" title="dip.world.RuleOptions" alt="" coords="8707,163,9160,507"/>
+<area shape="rect" href="./RuleOptions.Option.html" title="dip.world.RuleOptions.Option" alt="" coords="9205,203,9584,467"/>
+<area shape="rect" href="./RuleOptions.OptionValue.html" title="dip.world.RuleOptions.OptionValue" alt="" coords="9629,251,9832,419"/>
+<area shape="rect" href="./Map.html" title="dip.world.Map" alt="" coords="9877,195,10232,475"/>
+<area shape="rect" href="./Power.html" title="dip.world.Power" alt="" coords="10277,251,10475,419"/>
+</map>

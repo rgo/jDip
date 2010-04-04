@@ -1,0 +1,43 @@
+#############################################################
+#
+#	DATC (Diplomacy Adjudicator Test Cases)
+#	DATC Version 2.4
+#	SECTION 10.D ONLY
+#	TEST CASES
+#
+# 	The DATC is copyright Lucas B. Kruijswijk
+#	http://web.inter.nl.net/users/L.B.Kruijswijk/
+#
+#############################################################
+#############################################################
+#	
+# Set the Variant for all cases.
+#
+# IMPORTANT NOTE:
+# 	These test cases use the Loeb9 variant.
+#
+#############################################################
+VARIANT_ALL DATC_Loeb9_tc14d
+
+
+#############################################################
+#	
+# DATC Section 10.D case.
+# Updated to Dec-16-2003 DATC version
+#############################################################
+
+# DIFFICULT PASSABLE BORDER VARIANT
+
+# A move over difficult passable border can not prevent another unit to move into the sector.
+CASE 10.D [TWO MOVES OVER DIFFICULT PASSABLE BORDER CAN BOUNCE]
+PRESTATE_SETPHASE Fall 1901, Movement
+PRESTATE
+	Spain: A Cordoba
+	
+	Italy: A Tunis
+ORDERS
+	Spain: A Cordoba - North Africa
+	Italy: A Tunis - North Africa
+	
+POSTSTATE_SAME
+END

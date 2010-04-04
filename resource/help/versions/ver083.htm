@@ -1,0 +1,60 @@
+<html>
+<head>
+ <title>Version History: 0.83</title>
+ <link rel="StyleSheet" href="../application_help.css">
+</head>
+<body>
+<h1>Version History: 0.83</h1>
+<h2>jDip version 0.83 (September, 2002)</h2>
+<pre>
+    - Core changes:
+        + Revised core Undo/Redo support manager
+        + il8n support of undo/redo menu text
+        + New result type: TimeResult (a time-stamped, time-localized text result message)
+        + New result type: DislodgedResult (for creating dislodged results w/defined retreat locations)
+        + Changed how order resolution is flagged in TurnState (see setResolved() method)
+        + Batik 1.5b4b libraries included
+        + Serializable object versioning added for *all* serialized objects and subclasses
+        + Updated code documentation in several places
+        + Core Judge input parsing modules complete.
+    - GUI changes / improvements:
+        + If a file in the most-recently-used file list does not exist, it is now grayed out.
+        + Dislodged checkbox in Edit mode now disabled if Supply center selected.
+        + View Result menu item disabled when no adjudication results are available.
+        + Order sorting buttons have an improved layout, and toggle indication.
+        + Order list is now always sorted
+        + Edit mode improved: better visual indication and revalidation of orders with each edit
+        + Edit/Review/Game End indicator now on status bar for less visual disruption between modes
+        + Edit mode: must first remove an existing unit before a new unit can be placed in the same province
+    - Bug fixes:
+        + 1898 variant XML configuration file fixed; now identical to Ken Lowe judge 1898 variant.
+        + Fixed XML variant parser bug involving supply center ownership/home-power-ownership.
+        + Adjudication during adjustment phase with no orders for any power resulted in no
+                result creation, and subsequent GUI confusion with respect to resolution status	
+        + Fixed bug in Phase.java, leading to incorrect phase advancement in saved games.
+        + Fixed bug in Position.java leading to incorrect power elimination
+        + Fixed bugs w/parsing in Coast.java and Map.java; Map.parseLocation() is now more robust
+        + Fixed rapid clicking in edit mode created improper/duplicate edits
+        + Fixed World.java getPreviousTurnState() & getNextTurnState() bugs
+        + Fixed subtle bug in Location.java and updated documentation
+        + Fixed filename / gamename titlebar display bugs
+    - New features:
+        + Support for reading Judge History files, and creating an entire game and game history
+        + Support for reading Judge Game Listing files (just creates a starting phase)
+        + Advanced Undo/Redo: all orders, edit mode changes, and adjudication (order resolution) changes are undoable
+        + Clear most-recently-used file list option in preferences.
+        + "Save Copy As..." command added (saves game to another file, without changing currently open file).
+        + If a power does not use all available builds, unused builds are noted in the adjustment adjudication results.
+        + "View | Previous Turn Results" allows viewing adjudication results from previous turn, if available.
+        + Adjudication Complete timestamp now created
+    - Miscellaneous:
+        + Saved games from 0.80 are not compatible. However, the file format should now be stable and quite 
+                future-proof from this version on, barring any major changes to the save game format. Older 
+                files will be automagically upgraded when read in by future versions.
+        + Mouse Clicking: if experiencing trouble registering mouse clicks, make sure that the mouse is not 
+                moving (at all!) when clicking; all moves-with-clicks are interpreted as a Drag and not a Click.
+                An attempt to fix this will be made in a future version. Drag-and-drop of units may also be         
+                supported in a more distant future version.
+</pre>
+</body>
+</html>

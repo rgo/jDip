@@ -1,0 +1,7 @@
+=============================
+HISTORY and CHANGELOG of jDip
+=============================
+
+Please see the Web Site (http://jdip.sourceforge.net/history.html) 
+or the Help file (available by pressing F1 while in jDip) 
+to get the most current version history and changelog.
