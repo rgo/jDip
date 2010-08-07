@@ -1218,6 +1218,7 @@ public class ClientFrame extends JFrame
 			clientMenu.setActionMethod(ClientMenu.FILE_NEW_STD, this, "onFileNewStd");
 			
 			clientMenu.setActionMethod(ClientMenu.FILE_NEW_F2F, this, "onFileNewF2F");
+//                        clientMenu.setActionMethod(ClientMenu.FILE_NEW_NET, this, "onFileNewNET");
 			clientMenu.setActionMethod(ClientMenu.FILE_OPEN, this, "onFileOpen");
 			clientMenu.setActionMethod(ClientMenu.FILE_SAVE, persistMan, "save");
 			clientMenu.setActionMethod(ClientMenu.FILE_SAVEAS, persistMan, "saveAs");

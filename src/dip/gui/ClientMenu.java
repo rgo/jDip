@@ -262,7 +262,7 @@ public class ClientMenu
 		subMenu = makeMenu(FILE_NEW, true);
 		subMenu.add(makeMenuItem(FILE_NEW_STD, false));
 		subMenu.add(makeMenuItem(FILE_NEW_F2F, false));
-		//subMenu.add(makeMenuItem(FILE_NEW_NET, false));
+		subMenu.add(makeMenuItem(FILE_NEW_NET, false));
 		
 		menu.add(subMenu);								// 1 [number to index for MRU file list]
 		menu.add(makeMenuItem(FILE_OPEN));
