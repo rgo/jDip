@@ -28,6 +28,7 @@ import dip.gui.dialog.prefs.*;
 import dip.judge.gui.FlocImportDialog;
 
 import dip.gui.report.ResultWriter;
+import dip.world.InvalidWorldException;
 
 import dip.world.World;
 import dip.world.Phase;
@@ -42,9 +43,13 @@ import dip.misc.SimpleFileFilter;
 import dip.misc.Log;
 
 import dip.judge.parser.JudgeImport;
+import dip.world.WorldFactory;
+import dip.world.variant.data.SymbolPack;
 
 import java.awt.Dimension;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import java.beans.*;
 import java.util.*;
@@ -289,31 +294,62 @@ public class PersistenceManager
 	}// openWorld()
 	
 	
-	
-	/** 
-	*	Creates a new game (Displays New Game dialog), after 
-	* 	confirmation 
-	*/
-	public World newGame() 	
-	{
-		if(confirmDialog())
-		{
-			World world = NewGameDialog.displayDialog(clientFrame);
-			if(world != null)
-			{
-				fileName = null;
-				setChanged(false);
-				setSaveEnabled(true);
-				clientFrame.getClientMenu().setSelected(ClientMenu.EDIT_EDIT_MODE, false);
-				clientFrame.getClientMenu().setViewNamesNone();
-				setTitle(world);
-				
-				// set GameSetup object
-				world.setGameSetup(new DefaultGUIGameSetup());
-				
-				return world;
-			}
-		}
+
+  public World newNetworkGame()
+{
+    try {
+      Variant variant = VariantManager.getVariant("standard", VariantManager.VERSION_NEWEST);
+      World world = WorldFactory.getInstance().createWorld(variant);
+
+      // set essential world data (variant name, map graphic to use)
+      World.VariantInfo variantInfo = world.getVariantInfo();
+      variantInfo.setVariantName( variant.getName() );
+      variantInfo.setVariantVersion( variant.getVersion() );
+      variantInfo.setMapName( variant.getDefaultMapGraphic().getName() );
+      
+      // set GameSetup object
+      world.setGameSetup(new DefaultGUIGameSetup());
+      if (world != null) {
+        fileName = null;
+        setChanged(false);
+        setSaveEnabled(true);
+        clientFrame.getClientMenu().setSelected(ClientMenu.EDIT_EDIT_MODE, false);
+        clientFrame.getClientMenu().setViewNamesNone();
+        setTitle(world);
+        // set GameSetup object
+        world.setGameSetup(new NETGUIGameSetup());
+        return world;
+      }
+      return null;
+    } catch (InvalidWorldException ex) {
+      Logger.getLogger(PersistenceManager.class.getName()).log(Level.SEVERE, null, ex);
+      return null;
+    }
+}
+  /**
+   *	Creates a new game (Displays New Game dialog), after
+   * 	confirmation
+   */
+  public World newGame()
+{
+    if(confirmDialog())
+{
+      World world = NewGameDialog.displayDialog(clientFrame);
+      if(world != null)
+{
+        fileName = null;
+        setChanged(false);
+        setSaveEnabled(true);
+        clientFrame.getClientMenu().setSelected(ClientMenu.EDIT_EDIT_MODE, false);
+        clientFrame.getClientMenu().setViewNamesNone();
+        setTitle(world);
+
+        // set GameSetup object
+        world.setGameSetup(new DefaultGUIGameSetup());
+
+        return world;
+      }
+    }
 		
 		return null;
 	}// newGame()
